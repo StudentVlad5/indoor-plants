@@ -1,11 +1,10 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import { fetchData } from 'services/APIservice';
 import { TeamList } from '../TeamList/TeamList';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
@@ -13,28 +12,28 @@ import { BackDrop, Modal, ButtonClose, IconClose } from './ModalTeam.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 
 export const ModalTeam = () => {
-  const [developers, setDevelopers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [developers] = useState([]);
+  const [isLoading] = useState(false);
+  const [error] = useState(null);
 
   const modal = useSelector(modalComponent);
 
-  useEffect(() => {
-    (async function getData() {
-      setIsLoading(true);
-      try {
-        const { data } = await fetchData('/developers');
-        setDevelopers(data);
-        if (!data) {
-          return onFetchError('Whoops, something went wrong');
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async function getData() {
+  //     setIsLoading(true);
+  //     try {
+  //       const { data } = await fetchData('/developers');
+  //       setDevelopers(data);
+  //       if (!data) {
+  //         return onFetchError('Whoops, something went wrong');
+  //       }
+  //     } catch (error) {
+  //       setError(error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   })();
+  // }, []);
 
   //close modal window
   const dispatch = useDispatch();

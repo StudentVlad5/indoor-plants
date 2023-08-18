@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const initAxios = () => {
-  axios.defaults.baseURL = 'https://animal-welfare-network.onrender.com/api';
+  axios.defaults.baseURL = '';
 };
 
 export default initAxios;

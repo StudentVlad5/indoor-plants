@@ -25,7 +25,6 @@ import {
   PlusIcon,
 } from 'components/NoticesComp/AddNoticeButton/AddNoticeButton.styled';
 import { toggleModalAddNotice } from 'utils/toggleModalNotice';
-import { getBreeds } from 'utils/getBreeds';
 import { useTranslation } from 'react-i18next';
 
 export const UserComp = () => {
@@ -87,7 +86,6 @@ export const UserComp = () => {
               onClick={e => {
                 navigate('/notices/sell?perPage=12&page=1');
                 toggleModalAddNotice(e, isLoggedIn, dispatch);
-                getBreeds(dispatch);
               }}
               data-modal="formSell"
             >

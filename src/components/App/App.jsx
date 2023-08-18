@@ -11,15 +11,9 @@ import { selectIsRefreshing, getPermission } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 
 const HomePage = lazy(() => import('pages/Home'));
-const OurFriendsPage = lazy(() => import('pages/OurFriends'));
-const NoticesPage = lazy(() => import('pages/Notices'));
-const NewsPage = lazy(() => import('pages/News'));
 const UserPage = lazy(() => import('pages/User'));
 const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
-const AdminPage = lazy(() => import('pages/Admin/Admin'));
-const AdminUsersPage = lazy(() => import('pages/Admin/AdminUsers'));
-const AdminNoticesPage = lazy(() => import('pages/Admin/AdminNotices'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -71,11 +65,11 @@ export const App = () => {
                 }
               />
             )}
-            <Route path="news" element={<NewsPage />} />
+            {/* <Route path="news" element={<NewsPage />} />
 
-            <Route path="notices/:id" element={<NoticesPage />} />
+            <Route path="notices/:id" element={<NoticesPage />} /> */}
 
-            <Route
+            {/* <Route
               path="notices/:favorite"
               element={
                 <PrivateRoute
@@ -83,9 +77,9 @@ export const App = () => {
                   component={<NoticesPage />}
                 />
               }
-            />
+            /> */}
 
-            <Route
+            {/* <Route
               path="notices/:own"
               element={
                 <PrivateRoute
@@ -93,9 +87,9 @@ export const App = () => {
                   component={<NoticesPage />}
                 />
               }
-            />
+            /> */}
 
-            <Route path="friends" element={<OurFriendsPage />} />
+            {/* <Route path="friends" element={<OurFriendsPage />} /> */}
 
             <Route
               path="user"
@@ -104,13 +98,13 @@ export const App = () => {
               }
             />
 
-            <Route
+            {/* <Route
               path="admin"
               element={
                 <PrivateRoute redirectTo="/user" component={<AdminPage />} />
               }
-            />
-            <Route
+            /> */}
+            {/* <Route
               path="admin/users"
               element={
                 <PrivateRoute
@@ -118,17 +112,7 @@ export const App = () => {
                   component={<AdminUsersPage />}
                 />
               }
-            />
-
-            <Route
-              path="admin/notices"
-              element={
-                <PrivateRoute
-                  redirectTo="/admin"
-                  component={<AdminNoticesPage />}
-                />
-              }
-            />
+            /> */}
 
             <Route path="*" element={<HomePage />} />
           </Route>

@@ -41,5 +41,5 @@ export const Nav = () => {
 };
 
 MobileNav.propTypes = {
-  toggleMenu: PropTypes.arrayOf(PropTypes.string),
+  toggleMenu: PropTypes.func,
 };

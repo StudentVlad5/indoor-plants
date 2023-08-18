@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { reloadSlice } from './reload/slice';
-import { breedsSlice } from './breeds/slice';
 import { authReducer } from './auth/slice';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -18,7 +17,6 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     reload: reloadSlice.reducer,
     modal: modalReducer,
-    breeds: breedsSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
