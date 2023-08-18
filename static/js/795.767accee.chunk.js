@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[795],{9795:function(e,n,r){r.r(n);r(2791);var s=r(4444),t=r(4116),i=r(3329);n.default=function(){return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(t.H,{title:"Profile",description:"User profile"}),(0,i.jsx)(s.A,{})]})}}}]);
+//# sourceMappingURL=795.767accee.chunk.js.map
