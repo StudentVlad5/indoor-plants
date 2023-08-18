@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { BtnFilter, FilterNoticesWrapper } from './BtnFilterNotices.styled';
 import { addModal } from 'redux/modal/operation';

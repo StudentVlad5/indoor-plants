@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import {
   LegendFieldSet,
@@ -11,6 +12,7 @@ import {
 } from './FilterForm.styled';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 export const FilterForm = ({ closeModal }) => {
   const [typeofpet, setTypeofpet] = useState(
@@ -376,4 +378,8 @@ export const FilterForm = ({ closeModal }) => {
       </BtnContiner>
     </Form>
   );
+};
+
+FilterForm.propTypes = {
+  closeModal: PropTypes.object,
 };

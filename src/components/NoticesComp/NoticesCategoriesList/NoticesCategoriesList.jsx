@@ -1,3 +1,4 @@
+import React from 'react';
 import { NoticesCategoriesItem } from './NoticeCategoryItem/NoticeCategoryItem';
 import { ModalNotices } from '../ModalNotice/ModalNotice';
 import { ModalEditNotice } from '../ModalEditNotice/ModalEditNotice';
@@ -21,6 +22,7 @@ import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 import { FilterModal } from '../FilterNotices/FilterModal/FilterModal';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 let perPage = 12;
 
@@ -143,4 +145,9 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
       <FilterModal />
     </>
   );
+};
+
+NoticesCategoriesList.propTypes = {
+  page: PropTypes.number,
+  setPages: PropTypes.object,
 };

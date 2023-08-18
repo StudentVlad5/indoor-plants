@@ -1,3 +1,4 @@
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
