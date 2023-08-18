@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
@@ -26,4 +27,8 @@ export const MobileMenu = ({ toggleMenu }) => {
       <MobileNav toggleMenu={toggleMenu} />
     </>
   );
+};
+
+MobileMenu.propTypes = {
+  toggleMenu: PropTypes.arrayOf(PropTypes.string),
 };

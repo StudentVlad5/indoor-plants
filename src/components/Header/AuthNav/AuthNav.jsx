@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { ButtonAuth } from '../Elements/button/ButtonAuth';
 import { MobileContainer, Container } from './AuthNav.styled';
 import { useTranslation } from 'react-i18next';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { NoticesComp } from 'components/NoticesComp/NoticesComp';
 import { Section, Container } from 'components/baseStyles/CommonStyle.styled';
 import { SEO } from 'utils/SEO';

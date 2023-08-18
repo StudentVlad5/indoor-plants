@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { NewsListItem } from './NewsListItem/NewsListItem';
 import { List } from './NewsList.styled';
 

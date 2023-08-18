@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MobileNavList, NavList, NavItem } from './Nav.styled';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -37,4 +38,8 @@ export const Nav = () => {
       <NavItem to="/friends">{t('Our friends')}</NavItem>
     </NavList>
   );
+};
+
+MobileNav.propTypes = {
+  toggleMenu: PropTypes.arrayOf(PropTypes.string),
 };

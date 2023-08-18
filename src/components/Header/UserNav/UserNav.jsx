@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getPermission, selectUser, getUserAvatar } from 'redux/auth/selectors';
 import {
@@ -44,4 +45,8 @@ export const UserNav = () => {
       {user}
     </AccountButton>
   );
+};
+
+MobileUserNav.propTypes = {
+  toggleMenu: PropTypes.arrayOf(PropTypes.string),
 };

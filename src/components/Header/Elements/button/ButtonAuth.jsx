@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { AuthLink } from './ButtonAuth.styled';
 
 export const ButtonAuth = ({ title, path, onClick, ...otherprops }) => {

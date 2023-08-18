@@ -1,3 +1,4 @@
+import React from 'react';
 import { lazy, useEffect, Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom'; //Navigate

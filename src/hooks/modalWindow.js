@@ -4,7 +4,7 @@ export const closeByEsc = e => {
   }
 };
 
-export function openModalWindow(e, item) {
+export function openModalWindow(e) {
   e.preventDefault();
   document.querySelector('#popup-root').classList.remove('is-hide');
   window.addEventListener('keydown', closeByEsc);

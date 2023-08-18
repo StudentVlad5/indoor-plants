@@ -1,3 +1,4 @@
+import React from 'react';
 import { UserComp } from 'components/UserComp/UserComp';
 import { SEO } from 'utils/SEO';
 

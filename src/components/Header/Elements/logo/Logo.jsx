@@ -1,4 +1,5 @@
 import { Text, AccentLetter } from './Logo.styled';
+import React from 'react';
 
 export const Logo = () => {
   return (

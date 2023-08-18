@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from 'react-icons/fa';
 import {
   Item,

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import EllipsisText from 'react-ellipsis-text';
 import moment from 'moment';
 import {

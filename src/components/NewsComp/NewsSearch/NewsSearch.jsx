@@ -1,4 +1,6 @@
 import { Formik } from 'formik';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ButtonStyled,
   FormStyled,
@@ -26,7 +28,7 @@ export const NewsSearch = ({ searchText, setParams }) => {
               id="search"
               type="search"
               name="search"
-              placeholder={t("Search")}
+              placeholder={t('Search')}
               value={values.search}
               onChange={e => {
                 handleChange(e);
@@ -43,4 +45,8 @@ export const NewsSearch = ({ searchText, setParams }) => {
       )}
     </Formik>
   );
+};
+NewsSearch.propTypes = {
+  searchText: PropTypes.string,
+  setParams: PropTypes.string,
 };

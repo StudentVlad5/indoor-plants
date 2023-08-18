@@ -1,3 +1,4 @@
+import React from 'react';
 import { AddNoticeModal } from './AddNoticeModal/AddNoticeModal';
 import { ButtonStyled, PlusIcon } from './AddNoticeButton.styled';
 import { useDispatch } from 'react-redux';
