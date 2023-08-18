@@ -1,3 +1,4 @@
+import React from 'react';
 import { useAuth } from 'hooks/useAuth';
 import { useSearchParams } from 'react-router-dom';
 import { BtnFilterNotices } from '../FilterNotices/BtnFilterNotices/BtnFilterNotices';

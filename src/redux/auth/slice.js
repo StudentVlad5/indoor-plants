@@ -42,7 +42,7 @@ export const authSlice = createSlice({
           state.isLoggedIn = true;
         }
       })
-      .addCase(register.rejected, (state, action) => {
+      .addCase(register.rejected, state => {
         state.user = initialState.user;
         state.token = null;
         state.permission = null;
@@ -54,7 +54,7 @@ export const authSlice = createSlice({
         state.permission = action.payload.data.role;
         state.isLoggedIn = true;
       })
-      .addCase(logIn.rejected, (state, action) => {
+      .addCase(logIn.rejected, state => {
         state.user = initialState.user;
         state.token = null;
         state.permission = null;

@@ -1,4 +1,6 @@
+import React from 'react';
 import { PetsList } from './PetsList/PetsList';
+import PropTypes from 'prop-types';
 
 import { AddPetWrapper, PetDataInfo, PetDataWrapper } from './PetsData.styled';
 
@@ -14,4 +16,9 @@ export const PetsData = ({ petsList, removePetList }) => {
       )}
     </AddPetWrapper>
   );
+};
+
+PetsData.propTypes = {
+  petsList: PropTypes.object.isRequired,
+  removePetList: PropTypes.object.isRequired,
 };

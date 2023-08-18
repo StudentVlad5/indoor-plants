@@ -10,6 +10,7 @@ import {
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 export const NoticesSearch = ({ setPages }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -71,4 +72,8 @@ export const NoticesSearch = ({ setPages }) => {
       )}
     </Formik>
   );
+};
+
+NoticesSearch.propTypes = {
+  setPages: PropTypes.object,
 };

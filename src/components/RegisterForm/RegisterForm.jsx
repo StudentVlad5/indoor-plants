@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
@@ -35,7 +36,7 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const onSubmit = ({ values, action }) => {
+  const onSubmit = ({ values }) => {
     setIsLoading(true);
     const { name: userName, email, password, phone, location } = values;
     dispatch(

@@ -1,5 +1,7 @@
+import React from 'react';
 import { PetsItem } from './PetsItem/PetsItem';
 import { PetsListWrapper } from './PetsList.styled';
+import PropTypes from 'prop-types';
 
 export const PetsList = ({ petsList, removePetList }) => {
   return (
@@ -13,4 +15,9 @@ export const PetsList = ({ petsList, removePetList }) => {
       )}
     </>
   );
+};
+
+PetsList.propTypes = {
+  petsList: PropTypes.object.isRequired,
+  removePetList: PropTypes.object.isRequired,
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import { NoticesSearch } from './NoticesSearch/NoticesSearch';
 import { NoticesCategoriesNav } from './NoticesCategoriesNav/NoticesCategoriesNav';
 import { AddNoticeButton } from './AddNoticeButton/AddNoticeButton';

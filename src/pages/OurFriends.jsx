@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { SEO } from 'utils/SEO';
 import { OurFriendsList } from 'components/OurFriendsComp/OurFriendsList/OurFriendsList';

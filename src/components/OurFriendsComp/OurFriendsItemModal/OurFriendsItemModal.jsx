@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Table, Line, Day, Time } from './OurFriendsItemModal.styled';
@@ -7,7 +8,7 @@ export const OurFriendsItemModal = ({ workDays, dayClosed, onClose }) => {
 
   useEffect(() => {
     // closes modal with a click on the root
-    const handleBackdropClick = e => {
+    const handleBackdropClick = () => {
       onClose();
     };
     document

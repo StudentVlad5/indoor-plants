@@ -1,3 +1,4 @@
+import React from 'react';
 import { openModalWindow } from 'hooks/modalWindow';
 import { useDispatch } from 'react-redux';
 import { addModal } from 'redux/modal/operation';

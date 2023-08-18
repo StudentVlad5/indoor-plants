@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
@@ -146,7 +147,7 @@ export const OurFriendsItem = ({ friend }) => {
 };
 
 OurFriendsItem.propTypes = {
-  friends: PropTypes.arrayOf(
+  friend: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
@@ -155,6 +156,7 @@ OurFriendsItem.propTypes = {
       imageUrl: PropTypes.string,
       address: PropTypes.string,
       workDays: PropTypes.any,
+      length: PropTypes.number,
       phone: PropTypes.string,
       email: PropTypes.string,
     }),

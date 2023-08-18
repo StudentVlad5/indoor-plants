@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import {
@@ -10,8 +11,9 @@ import {
   ModalButton,
 } from './ModalLogout.styled';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
-export const ModalLogout = ({ _id, onClose, onCloseBtn }) => {
+export const ModalLogout = ({ onClose, onCloseBtn }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -46,4 +48,9 @@ export const ModalLogout = ({ _id, onClose, onCloseBtn }) => {
       </ModalButtonWrapper>
     </ModalWrapper>
   );
+};
+
+ModalLogout.propTypes = {
+  onClose: PropTypes.function,
+  onCloseBtn: PropTypes.function,
 };

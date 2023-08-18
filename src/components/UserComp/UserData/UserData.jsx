@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserDataItem } from './UserDataItem/UserDataItem';
@@ -64,7 +65,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             // label={'Name:'}
-            label={t("Name")}
+            label={t('Name')}
             defaultValue={userIn.userName}
             type="text"
             name="userName"
@@ -76,7 +77,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             // label={'Email:'}
-            label={t("Email")}
+            label={t('Email')}
             defaultValue={userIn.email}
             type="email"
             name="email"
@@ -88,7 +89,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             // label={'Birthday:'}
-            label={t("Birthday")}
+            label={t('Birthday')}
             defaultValue={birthday || '01.01.1900'}
             type="date"
             name="birthday"
@@ -100,7 +101,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             // label={'Phone:'}
-            label={t("Phone")}
+            label={t('Phone')}
             defaultValue={userIn.phone}
             type="tel"
             name="phone"
@@ -112,7 +113,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             // label={'City:'}
-            label={t("City")}
+            label={t('City')}
             defaultValue={userIn.location}
             type="text"
             name="location"

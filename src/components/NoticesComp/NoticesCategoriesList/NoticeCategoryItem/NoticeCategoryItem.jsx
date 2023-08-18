@@ -1,3 +1,4 @@
+import React from 'react';
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +29,7 @@ import { useState } from 'react';
 import { deleteData } from 'services/APIservice';
 import { addReload } from 'redux/reload/slice';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 export const NoticesCategoriesItem = ({
   data,
@@ -170,7 +172,7 @@ export const NoticesCategoriesItem = ({
             data-modal="itemPet"
             data-id={data._id}
           >
-           {t("Learn more")}
+            {t('Learn more')}
           </BtnLearnMore>
           {(data.owner === id || permission === 'admin') && (
             <>
@@ -195,4 +197,10 @@ export const NoticesCategoriesItem = ({
       </NoticesContainerItem>
     </ItemContainer>
   );
+};
+
+NoticesCategoriesItem.propTypes = {
+  data: PropTypes.object,
+  addToFavoriteFunction: PropTypes.object,
+  isInFavorite: PropTypes.object,
 };

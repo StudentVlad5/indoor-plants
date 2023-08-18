@@ -1,3 +1,4 @@
+import React from 'react';
 // import axios from 'axios';
 // import { useEffect, useState } from 'react';
 // import { addReload } from 'redux/reload/slice';
@@ -33,7 +34,7 @@ export const UserComp = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
   const { t } = useTranslation();
-  
+
   // const [petsList, setPetsList] = useState([]);
 
   // const removePetList = async _id => {
@@ -93,7 +94,7 @@ export const UserComp = () => {
               <div>
                 <PlusIcon />
               </div>
-              {t("Add pet")}
+              {t('Add pet')}
             </ButtonStyled>
             {/* {isLoggedIn && <AddNoticeModal />} */}
             {/* <AddPetButton /> */}

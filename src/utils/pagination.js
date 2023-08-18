@@ -1,10 +1,12 @@
+import React from 'react';
 import ReactPaginate from 'react-paginate';
+import PropTypes from 'prop-types';
 
 export function Pagination({ totalPage, changePage, page }) {
   const handlePageClick = event => {
     changePage(event.selected + 1);
   };
-  const upToTop = event => {
+  const upToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -38,3 +40,9 @@ export function Pagination({ totalPage, changePage, page }) {
     />
   );
 }
+
+Pagination.propTypes = {
+  totalPage: PropTypes.number,
+  page: PropTypes.number,
+  changePage: PropTypes.function,
+};

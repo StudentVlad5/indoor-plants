@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { update } from 'redux/auth/operations';
@@ -12,6 +13,7 @@ import {
   UserDataItemLabel,
   UserDataItemWrapper,
 } from './UserDataItem.styled';
+import PropTypes from 'prop-types';
 
 export const UserDataItem = ({
   name,
@@ -176,4 +178,14 @@ export const UserDataItem = ({
       </UserDataItemInputBtnWrapper>
     </UserDataItemWrapper>
   );
+};
+
+UserDataItem.propTypes = {
+  name: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  defaultValue: PropTypes.string,
+  active: PropTypes.string,
+  setActive: PropTypes.string,
+  profile: PropTypes.string,
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -157,7 +158,7 @@ const AdminUsersPage = () => {
                       </IconButton>
                       <IconButton
                         aria-label="Delete user"
-                        onClick={e => {
+                        onClick={() => {
                           deleteUser(user._id);
                         }}
                       >

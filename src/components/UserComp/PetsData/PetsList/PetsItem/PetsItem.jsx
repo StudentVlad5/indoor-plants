@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   DeleteIcon,
   PetsItemDeleteBtn,
@@ -7,6 +8,7 @@ import {
   PetsItemSpan,
   PetsItemWrapper,
 } from './PetsItem.styled';
+import PropTypes from 'prop-types';
 
 export const PetsItem = ({ pet, profile, removePetList }) => {
   const { name, _id, date, breed, imageUrl, comments } = pet;
@@ -44,4 +46,10 @@ export const PetsItem = ({ pet, profile, removePetList }) => {
       </PetsItemInfoBlock>
     </PetsItemWrapper>
   );
+};
+
+PetsItem.propTypes = {
+  pet: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  removePetList: PropTypes.function,
 };
