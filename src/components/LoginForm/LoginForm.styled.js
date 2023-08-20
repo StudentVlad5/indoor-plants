@@ -4,20 +4,14 @@ import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 
-import BackgroundImage from 'images/register/bgForm.webp';
-import waveMobile from 'images/hero/waveMobileFull.webp';
-import waveTab from 'images/register/BGFornTab.webp';
-
 const FormSection = styled.section`
   @media screen and (max-width: 767.9px) {
-    background-image: url(${waveMobile});
     background-repeat: no-repeat;
     background-size: 620px auto;
     background-position: bottom -250px left 30%;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    background: url(${waveTab});
     background-repeat: no-repeat;
     background-size: 1396px auto;
     background-position: bottom -130px left 50%;
@@ -35,7 +29,6 @@ const FormContainer = styled.div`
     padding-top: 80px;
     min-height: calc(100vh - 120px);
 
-    background: url(${BackgroundImage});
     background-repeat: no-repeat;
     background-size: 1280px auto;
     background-position: bottom 0 left 50%;

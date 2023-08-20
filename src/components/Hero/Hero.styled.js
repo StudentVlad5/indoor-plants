@@ -5,12 +5,6 @@ import {
   Section,
   Title,
 } from 'components/baseStyles/CommonStyle.styled';
-import waveMobile from 'images/hero/waveMobileFull.webp';
-import waveTabFull from 'images/hero/waveTabFull.webp';
-import waveLeftDesk from 'images/hero/wave1-desk.webp';
-import waveRightDesk from 'images/hero/wave2Full.webp';
-import CatAndDog from 'images/hero/dog-cat.png';
-import CatAndDog_w from 'images/hero/dog-cat.webp';
 
 const HeroSection = styled(Section)`
   height: 100%;
@@ -27,19 +21,11 @@ const HeroContainer = styled(Container)`
   justify-content: start;
   align-items: start;
 
-  background-image: url(${CatAndDog}), url(${waveMobile});
-  background-image: -webkit-image-set(url(${CatAndDog_w}) 1x),
-    -webkit-image-set(url(${waveMobile}) 1x);
-
   background-repeat: no-repeat;
   background-size: 320px auto, 620px auto;
   background-position: bottom 0px left 70%, bottom -20px left 25%;
 
   @media screen and (min-width: 768px) {
-    background-image: url(${CatAndDog}), url(${waveTabFull});
-    background-image: -webkit-image-set(url(${CatAndDog_w}) 1x),
-      -webkit-image-set(url(${waveTabFull}) 1x);
-
     background-repeat: no-repeat;
     background-size: 50vh auto, 1400px auto;
     background-position: bottom 0px left 90%, bottom -150px left 30%;
@@ -47,12 +33,6 @@ const HeroContainer = styled(Container)`
 
   @media screen and (min-width: 1280px) {
     min-height: calc(100vh - 120px);
-
-    background-image: url(${CatAndDog}), url(${waveRightDesk}),
-      url(${waveLeftDesk});
-    background-image: -webkit-image-set(url(${CatAndDog_w}) 1x),
-      -webkit-image-set(url(${waveRightDesk}) 1x),
-      -webkit-image-set(url(${waveLeftDesk}) 1x);
 
     background-repeat: no-repeat;
     background-size: 524px auto, 425px 393px, 1178px 450px;
@@ -135,7 +115,6 @@ const HeroTitle = styled(Title)`
   margin-bottom: 0;
   text-align: left;
   font-size: 32px;
-  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
     margin-top: 88px;
