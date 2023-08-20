@@ -12,6 +12,11 @@ import { useTranslation } from 'react-i18next';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
+const CatalogPage = lazy(() => import('pages/Catalog'));
+const ProductCardPage = lazy(() => import('pages/ProductCard'));
+const FavoritePage = lazy(() => import('pages/Favorite'));
+const GiftsPage = lazy(() => import('pages/Gifts'));
+const CarePage = lazy(() => import('pages/Care'));
 const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
 
@@ -65,54 +70,25 @@ export const App = () => {
                 }
               />
             )}
-            {/* <Route path="news" element={<NewsPage />} />
-
-            <Route path="notices/:id" element={<NoticesPage />} /> */}
-
-            {/* <Route
-              path="notices/:favorite"
+            <Route path="catalog" element={<CatalogPage />} />
+            <Route path="catalog/:id" element={<ProductCardPage />} />
+            <Route
+              path="catalog/favorite"
               element={
                 <PrivateRoute
                   redirectTo="/register"
-                  component={<NoticesPage />}
+                  component={<FavoritePage />}
                 />
               }
-            /> */}
-
-            {/* <Route
-              path="notices/:own"
-              element={
-                <PrivateRoute
-                  redirectTo="/register"
-                  component={<NoticesPage />}
-                />
-              }
-            /> */}
-
-            {/* <Route path="friends" element={<OurFriendsPage />} /> */}
-
+            />
+            <Route path="gifts" element={<GiftsPage />} />
+            <Route path="care" element={<CarePage />} />
             <Route
               path="user"
               element={
                 <PrivateRoute redirectTo="/register" component={<UserPage />} />
               }
             />
-
-            {/* <Route
-              path="admin"
-              element={
-                <PrivateRoute redirectTo="/user" component={<AdminPage />} />
-              }
-            /> */}
-            {/* <Route
-              path="admin/users"
-              element={
-                <PrivateRoute
-                  redirectTo="/admin"
-                  component={<AdminUsersPage />}
-                />
-              }
-            /> */}
 
             <Route path="*" element={<HomePage />} />
           </Route>
