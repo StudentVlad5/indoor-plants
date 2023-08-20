@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[875],{1875:function(t,e,n){n.r(e);n(2791);var o=n(4116),a=n(3329);e.default=function(){return(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(o.H,{title:"HomeForest Catalog",description:"Catalog of goods"}),(0,a.jsx)("h3",{children:"CatalogPage"})]})}}}]);
+//# sourceMappingURL=875.7bd28790.chunk.js.map

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[643],{9643:function(e,t,n){n.r(t);n(2791);var o=n(4116),r=n(3329);t.default=function(){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(o.H,{title:"HomeForest Favorite",description:"Favorite of goods"}),(0,r.jsx)("h3",{children:"FavoritePage"})]})}}}]);
+//# sourceMappingURL=643.cd8dc734.chunk.js.map
