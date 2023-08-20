@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
 const CatalogPage = lazy(() => import('pages/Catalog'));
-const ProductCardPage = lazy(() => import('pages/ProductCard'));
+const ProductCardPage = lazy(() => import('pages/ProductCardPage'));
 const FavoritePage = lazy(() => import('pages/Favorite'));
 const GiftsPage = lazy(() => import('pages/Gifts'));
 const CarePage = lazy(() => import('pages/Care'));

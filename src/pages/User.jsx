@@ -5,7 +5,7 @@ import { SEO } from 'utils/SEO';
 const UserPage = () => {
   return (
     <>
-      <SEO title="Profile" description="User profile" />
+      <SEO title="HomeForest Profile" description="User profile" />
       <UserComp />
     </>
   );

@@ -4,7 +4,7 @@ import { SEO } from 'utils/SEO';
 const ProductCardPage = () => {
   return (
     <>
-      <SEO title="ProductCardPage" description="Product Card Page" />
+      <SEO title="HomeForest ProductCard" description="Product Card Page" />
       <h3>ProductCardPage</h3>
     </>
   );

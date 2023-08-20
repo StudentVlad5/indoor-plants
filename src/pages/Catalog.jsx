@@ -4,7 +4,7 @@ import { SEO } from 'utils/SEO';
 const CatalogPage = () => {
   return (
     <>
-      <SEO title="CatalogPage" description="Catalog of goods" />
+      <SEO title="HomeForest Catalog" description="Catalog of goods" />
       <h3>CatalogPage</h3>
     </>
   );
