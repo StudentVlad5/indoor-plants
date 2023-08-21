@@ -1,4 +1,9 @@
 const theme = {
+  breakpoints: {
+    mobile: '375px',
+    tablet: '768px',
+    desktop: '1440px',
+  },
   colors: {
     fon: '#FCF9F2',
     green: '#5A6B47',

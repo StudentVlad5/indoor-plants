@@ -1,21 +1,24 @@
 import styled from 'styled-components';
+import theme from 'components/baseStyles/Variables.styled';
 
 const Section = styled.section`
-  margin: ${props => props.margin || '0 auto'};
-  padding-top: ${props => props.paddingTop || '60px'};
-  padding-bottom: ${props => props.paddingBottom || '60px'};
+  position: relative;
+  margin: 0 auto;
+  padding: 60px 0;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
-    margin: ${props => props.marginTablet || '0 auto'};
-    padding-top: ${props => props.paddingTopTablet || '60px'};
-    padding-bottom: ${props => props.paddingBottomTablet || '60px'};
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+
+    height: 1px;
+    width: 100%;
+    background: ${theme.colors.brown1};
   }
 
-  @media screen and (min-width: 1440px) {
-    margin: ${props => props.marginDesktop || '0 auto'};
-    padding-top: ${props => props.paddingTopDesktop || '120px'};
-    padding-bottom: ${props => props.paddingBottomDesktop || '120px'};
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding: 120px 0;
   }
 `;
 
@@ -24,11 +27,11 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 0 10px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding: 0 30px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     max-width: 1440px;
     padding: 0 120px;
   }
@@ -42,7 +45,7 @@ const Title = styled.h1`
   line-height: normal;
   color: ${props => props.theme.brown};
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 48px;
   }
 `;
@@ -65,7 +68,7 @@ const Headline = styled.h3`
   line-height: 144.5%; /* 46.24px */
   color: ${props => props.theme.brown};
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 32px;
   }
 `;
