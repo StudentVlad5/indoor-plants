@@ -11,11 +11,11 @@ const ProductCardContainer = styled(Container)`
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    padding: 0;
+    /* padding: 0; */
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 0;
+    /* padding: 0; */
   }
 `;
 

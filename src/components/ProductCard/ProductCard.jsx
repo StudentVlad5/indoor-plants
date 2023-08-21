@@ -10,8 +10,8 @@ import {
 
 export const ProductCard = () => {
   return (
-    <ProductCardSection>
-      <ProductCardContainer>
+    <ProductCardContainer>
+      <ProductCardSection>
         <ProductNav>
           <ProductNavList>
             <ProductNavItem>
@@ -32,7 +32,7 @@ export const ProductCard = () => {
             <img />
           </div>
         </div>
-      </ProductCardContainer>
-    </ProductCardSection>
+      </ProductCardSection>
+    </ProductCardContainer>
   );
 };
