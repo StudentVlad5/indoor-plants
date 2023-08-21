@@ -1,6 +1,10 @@
 import React from 'react';
-import { ProductCardContainer } from './ProductCard.styled';
+import { ProductCardContainer, ProductCardSection } from './ProductCard.styled';
 
 export const ProductCard = () => {
-  return <ProductCardContainer></ProductCardContainer>;
+  return (
+    <ProductCardSection>
+      <ProductCardContainer></ProductCardContainer>
+    </ProductCardSection>
+  );
 };
