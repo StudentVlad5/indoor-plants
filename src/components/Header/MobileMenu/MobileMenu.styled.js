@@ -1,5 +1,5 @@
 import { ReactComponent as iconClose } from 'images/svg/icon_close.svg';
-
+import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 
 const MobileHeader = styled.header`
@@ -15,8 +15,8 @@ const MobileHeader = styled.header`
 const IconClose = styled(iconClose)`
   cursor: pointer;
   & > path {
-    stroke: ${props => props.theme.black};
-    fill: ${props => props.theme.black};
+    stroke: ${theme.colors.grey1};
+    fill: ${theme.colors.grey1};
   }
 `;
 
