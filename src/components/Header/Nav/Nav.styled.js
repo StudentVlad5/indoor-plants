@@ -77,10 +77,10 @@ const NavItem = styled(NavLink)`
   transition: all 0.25s ease-in;
   :focus,
   :hover {
-    color: ${theme.colors.orangeLight};
+    color: ${theme.colors.brown};
   }
   &.active {
-    color: ${theme.colors.orangeLight};
+    color: ${theme.colors.brown};
     text-decoration: underline;
   }
 `;

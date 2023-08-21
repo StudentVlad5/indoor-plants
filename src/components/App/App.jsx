@@ -14,7 +14,7 @@ import NotFoundPage from 'pages/NotFound';
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
 const CatalogPage = lazy(() => import('pages/Catalog'));
-const ProductCardPage = lazy(() => import('pages/ProductCardPage'));
+const ProductCardPage = lazy(() => import('pages/ProductCard'));
 const FavoritePage = lazy(() => import('pages/Favorite'));
 const GiftsPage = lazy(() => import('pages/Gifts'));
 const CarePage = lazy(() => import('pages/Care'));
@@ -84,6 +84,7 @@ export const App = () => {
             />
             <Route path="gifts" element={<GiftsPage />} />
             <Route path="care" element={<CarePage />} />
+
             <Route
               path="user"
               element={
