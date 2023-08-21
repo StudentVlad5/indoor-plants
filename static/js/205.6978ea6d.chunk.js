@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[205],{4205:function(r,e,t){t.r(e);t(2791);var n=t(4116),s=t(3329);e.default=function(){return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(n.H,{title:"HomeForest ProductCard",description:"Product Card Page"}),(0,s.jsx)("h3",{children:"ProductCardPage"})]})}}}]);
-//# sourceMappingURL=205.6978ea6d.chunk.js.map
