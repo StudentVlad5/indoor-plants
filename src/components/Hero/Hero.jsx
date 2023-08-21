@@ -8,7 +8,7 @@ export const Hero = () => {
   return (
     <HeroSection>
       <HeroContainer>
-        <HeroTitle>{t('Take good care of your small pets')}</HeroTitle>
+        <HeroTitle>{t('HOME')}</HeroTitle>
       </HeroContainer>
     </HeroSection>
   );

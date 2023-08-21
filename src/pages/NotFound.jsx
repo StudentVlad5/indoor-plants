@@ -23,19 +23,19 @@ const NotFoundPage = () => {
           srcSet={`${img_mobile_webp_1} 1x, ${img_mobile_webp_2} 2x, ${img_mobile_webp_3} 3x, type="image/webp"`}
         />
         <source
-          media="(min-width:1200px)"
+          media="(min-width:1280px)"
           srcSet={`${img_desktop_webp_1} 1x, ${img_desktop_webp_2} 2x, ${img_desktop_webp_3} 3x, type="image/webp"`}
         />
         <source
-          media="(max-width:1199,99px) and (min-width: 320px)"
+          media="(max-width:1279,99px) and (min-width: 320px)"
           srcSet={`${img_tablet_webp_1} 1x, ${img_tablet_webp_2} 2x, ${img_tablet_webp_3} 3x, type="image/webp"`}
         />
 
         <img
           className="404_image"
           src={img_tablet_webp_1}
-          srcSet={`${img_mobile_webp_1} 319.98w, ${img_tablet_webp_1} 780w, ${img_desktop_webp_1} 1200w`}
-          sizes="(min-width:1200px) 1200px, (max-width:1199,99px) and (min-width: 320px) 780px, (max-width:319.98px) 319.98px, 100vw"
+          srcSet={`${img_mobile_webp_1} 319.98w, ${img_tablet_webp_1} 768w, ${img_desktop_webp_1} 1280w`}
+          sizes="(min-width:1280px) 1280px, (max-width:1279,99px) and (min-width: 320px) 768px, (max-width:319.98px) 319.98px, 100vw"
           alt="Page not found"
           width="100%"
           height="100vh"

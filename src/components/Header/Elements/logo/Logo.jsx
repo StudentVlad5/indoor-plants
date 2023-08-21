@@ -1,10 +1,6 @@
-import { Text, AccentLetter } from './Logo.styled';
+import { Text } from './Logo.styled';
 import React from 'react';
 
 export const Logo = () => {
-  return (
-    <Text to="/">
-      pe<AccentLetter>t</AccentLetter>ly
-    </Text>
-  );
+  return <Text to="/">homeforest</Text>;
 };

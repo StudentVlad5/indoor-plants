@@ -1,5 +1,7 @@
-export const theme = {
-  light: {
+const theme = {
+  colors: {
+    brown1: '#5F4A32',
+    brown2: '#8c8276',
     mainBg: '#FDF7F2',
     blackText: '#111111',
     black: '#000000',
@@ -20,26 +22,12 @@ export const theme = {
     colorOfInput: '#FFFFFF',
     colorscheme: 'light',
   },
-
-  dark: {
-    mainBg: '#000000',
-    blackText: '#FFFFFF',
-    black: '#FFFFFF',
-    inpTextModal: '#FFFFFF',
-    white: '#000000',
-    orangeLight: '#F59256',
-    orange: '#FF6101',
-    textDiscr: '#111321',
-    blue: '#3091EB',
-    error: '#E2001A',
-    success: '#3CBC81',
-    textUserNav: '#b8860b',
-    inputColor: '#fac9ab',
-    logout: '#FFFFFF',
-    shadowColor: 'rgba(225, 225, 225, 0.31)',
-    colorBorder: '#000000',
-    colorOfForm: '#1c1c1c',
-    colorOfInput: '#FFFFFF',
-    colorscheme: 'dark',
+  fonts: ['Archivo', 'sans-serif'],
+  fontSizes: {
+    small: '1em',
+    medium: '2em',
+    large: '3em',
   },
 };
+
+export default theme;

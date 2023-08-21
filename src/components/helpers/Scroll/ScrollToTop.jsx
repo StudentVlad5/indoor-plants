@@ -1,6 +1,6 @@
 import React from 'react';
 import ScrollToTop from 'react-scroll-to-top';
-import { theme } from 'components/baseStyles/Variables.styled';
+import theme from 'components/baseStyles/Variables.styled';
 import { MdKeyboardDoubleArrowUp } from 'react-icons/md';
 
 const ScrollTop = () => {
@@ -14,8 +14,8 @@ const ScrollTop = () => {
         justifyContent: 'center',
         width: '40px',
         height: '40px',
-        backgroundColor: `${theme.light.orangeLight}`,
-        color: `${theme.light.white}`,
+        backgroundColor: `${theme.colors.orangeLight}`,
+        color: `${theme.colors.white}`,
       }}
       component={<MdKeyboardDoubleArrowUp size={30} />}
     />
