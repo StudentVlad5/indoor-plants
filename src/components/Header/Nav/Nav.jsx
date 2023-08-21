@@ -12,14 +12,17 @@ export const MobileNav = ({ toggleMenu }) => {
 
   return (
     <MobileNavList>
-      <NavItem to={`/news?${searchParams}`} onClick={toggleMenu}>
-        {t('News')}
+      <NavItem to={`/?${searchParams}`} onClick={toggleMenu}>
+        {t('About Us')}
       </NavItem>
-      <NavItem to={`/notices/sell?${searchParams}`} onClick={toggleMenu}>
-        {t('Find pet')}
+      <NavItem to={`/catalog?${searchParams}`} onClick={toggleMenu}>
+        {t('Shop')}
       </NavItem>
-      <NavItem to="/friends" onClick={toggleMenu}>
-        {t('Our friends')}
+      <NavItem to={`/gifts?${searchParams}`} onClick={toggleMenu}>
+        {t('Gifts')}
+      </NavItem>
+      <NavItem to="/care" onClick={toggleMenu}>
+        {t('Care')}
       </NavItem>
     </MobileNavList>
   );
@@ -33,9 +36,10 @@ export const Nav = () => {
 
   return (
     <NavList>
-      <NavItem to={`/news?${searchParams}`}>{t('News')}</NavItem>
-      <NavItem to={`/notices/sell?${searchParams}`}>{t('Find pet')}</NavItem>
-      <NavItem to="/friends">{t('Our friends')}</NavItem>
+      <NavItem to={`/?${searchParams}`}>{t('About Us')}</NavItem>
+      <NavItem to={`/catalog?${searchParams}`}>{t('Shop')}</NavItem>
+      <NavItem to={`/gifts?${searchParams}`}>{t('Gifts')}</NavItem>
+      <NavItem to="/care">{t('Care')}</NavItem>
     </NavList>
   );
 };

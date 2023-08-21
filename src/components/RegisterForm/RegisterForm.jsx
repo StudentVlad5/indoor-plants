@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-import { theme } from 'components/baseStyles/Variables.styled';
+import theme from 'components/baseStyles/Variables.styled';
 import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
 import {

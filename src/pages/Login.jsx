@@ -5,7 +5,7 @@ import { SEO } from 'utils/SEO';
 const Login = () => {
   return (
     <>
-      <SEO title="Log in" description="Log in to your account" />
+      <SEO title="HomeForest Log in" description="Log in to your account" />
       <LoginForm />
     </>
   );

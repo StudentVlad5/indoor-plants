@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { ReactComponent as EditCamera } from 'images/svg/userData/camera.svg';
-import { theme } from 'components/baseStyles/Variables.styled';
 
 export const UserDataContainer = styled.div`
   margin-bottom: 42px;
@@ -75,26 +73,13 @@ export const EditPhotoLabel = styled.label`
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.orange};
   }
 
   :hover svg {
-    fill: ${props => props.theme.orange};
   }
 
   @media screen and (min-width: 768px) {
     padding-right: 0px;
-  }
-`;
-
-export const EditCameraStyle = styled(EditCamera)`
-  margin-right: 4px;
-  fill: ${props => props.theme.orangeLight};
-  transition: all 150ms linear;
-
-  &:hover,
-  :focus {
-    fill: ${props => props.theme.orange};
   }
 `;
 
@@ -161,13 +146,6 @@ export const UserDataInput = styled.input`
   height: 24px;
   padding: 4px 18px;
   border-radius: 40px;
-  background-color: ${p =>
-    p.disabled
-      ? `${props => props.theme.white}`
-      : `${props => props.theme.mainBg}`};
-  // border: ${p => (p.disabled ? '1px solid' : 'none')};
-  border-color: ${p =>
-    p.disabled ? 'transparent' : `${theme.light.inputColor}`};
 
   :focus {
     outline-color: transparent;
@@ -181,7 +159,6 @@ export const UserDataBtn = styled.button`
   padding: 0;
   width: 20px;
   height: 20px;
-  background: ${props => props.theme.mainBg};
   border-radius: 50%;
   border-color: transparent;
   margin-left: 9px;

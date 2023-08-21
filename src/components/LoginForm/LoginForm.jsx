@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import schemas from 'components/Schemas/schemas';
-import { theme } from 'components/baseStyles/Variables.styled';
+import theme from 'components/baseStyles/Variables.styled';
 
 import {
   FormSection,

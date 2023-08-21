@@ -3,8 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 
-  'Montserrat Regular', 'Montserrat Medium', sans-serif;
+  /* Raisonne Pro */
+  font-family: 'Archivo', 'Montserrat Regular', 'Montserrat Medium', sans-serif;;
+  /* Nib Pro */
+  font-family: 'Domine', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

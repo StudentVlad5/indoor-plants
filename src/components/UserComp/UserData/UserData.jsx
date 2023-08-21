@@ -2,10 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserDataItem } from './UserDataItem/UserDataItem';
-import defaultUserPhoto from '../../../images/UserData/defaultUserPhoto.webp';
 import {
   EditCameraForm,
-  EditCameraStyle,
   EditCameraWrapper,
   EditPhotoInput,
   EditPhotoLabel,
@@ -41,13 +39,12 @@ export const UserData = () => {
       <UserDataContainer>
         <UserDataImgWrapper>
           <UserDataImg
-            src={userIn.avatar ? userIn.avatar : defaultUserPhoto}
+            // src={userIn.avatar ? userIn.avatar : defaultUserPhoto}
             alt="User"
           />
           <EditCameraForm>
             <EditCameraWrapper>
               <EditPhotoLabel htmlFor="user_photo">
-                <EditCameraStyle />
                 <span>{t('Edit photo')}</span>
               </EditPhotoLabel>
             </EditCameraWrapper>

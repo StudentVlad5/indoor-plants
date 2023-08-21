@@ -1,5 +1,5 @@
-export const theme = {
-  light: {
+const theme = {
+  colors: {
     fon: '#FCF9F2',
     green: '#5A6B47',
     green1: '#65784F',
@@ -29,35 +29,12 @@ export const theme = {
     redLight: '#FFE8E9',
     grey: '#717171',
   },
-
-  dark: {
-    fon: '#FCF9F2',
-    green: '#5A6B47',
-    green1: '#65784F',
-    green2: '#9AB879',
-    green3: '#D0F7A3',
-    green4: '#E5FBCC',
-    green5: '#E3E9D4',
-    green6: '#F4F4E8',
-    green7: '#B2FA5F',
-    green8: '#B2FA5F',
-    darkGreen: '#374920',
-    beige: '#A69883',
-    beige1: '#CCBCA1',
-    beige2: '#E6D3B5',
-    beige3: '#F2DFBF',
-    beige4: '#F3ECDF',
-    beige5: '#F3ECDF',
-    brown: '#3F3222',
-    brown1: '#5F4A32',
-    brown2: '#8C8276',
-    brown3: '#BDAF9F',
-    blue: '#C8CFD5',
-    blue1: '#D5DDE3',
-    blue2: '#E3EAEF',
-    blue3: '#F2F2F2',
-    red: '#E0181D',
-    redLight: '#FFE8E9',
-    grey: '#717171',
+  fonts: ['Archivo', 'sans-serif'],
+  fontSizes: {
+    small: '1em',
+    medium: '2em',
+    large: '3em',
   },
 };
+
+export default theme;

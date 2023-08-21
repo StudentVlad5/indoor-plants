@@ -5,7 +5,7 @@ import { SEO } from 'utils/SEO';
 const Register = () => {
   return (
     <>
-      <SEO title="Register" description="Register your account" />
+      <SEO title="HomeForest Register" description="Register your account" />
       <RegisterForm />
     </>
   );
