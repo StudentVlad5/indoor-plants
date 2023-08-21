@@ -1,36 +1,63 @@
 import styled from 'styled-components';
+import theme from 'components/baseStyles/Variables.styled';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 const ProductCardSection = styled(Section)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 100%;
-  position: relative;
-
-  @media screen and (min-width: 1440px) {
-    max-width: 1440px;
-    padding-top: 0;
-  }
+  padding-top: 40px;
 `;
 
 const ProductCardContainer = styled(Container)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px 0px 20px;
   margin: 0 auto;
   width: 100%;
-  position: relative;
 
   @media screen and (min-width: 768px) {
-    padding: 24px 32px 0px 32px;
+    padding: 0;
   }
 
   @media screen and (min-width: 1440px) {
-    max-width: 1440px;
+    padding: 0;
   }
 `;
 
-export { ProductCardSection, ProductCardContainer };
+const ProductNav = styled.div`
+  padding: 24px 0;
+  border-top: 1px solid ${theme.colors.brown1};
+  border-bottom: 1px solid ${theme.colors.brown1};
+`;
+
+const ProductNavList = styled.ul`
+  display: inline-flex;
+`;
+
+const ProductNavItem = styled.li`
+  position: relative;
+  margin-right: 13px;
+
+  &:not(:last-child)::before {
+    content: ' / ';
+    position: absolute;
+    top: 0;
+    right: -8px;
+  }
+`;
+
+const ProductNavLink = styled.a`
+  font-family: ${theme.fonts[0]}; //'Nib Pro'
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: ${props =>
+    props.$primary ? theme.colors.green : theme.colors.green1};
+
+  text-decoration: none;
+`;
+
+export {
+  ProductCardSection,
+  ProductCardContainer,
+  ProductNav,
+  ProductNavList,
+  ProductNavItem,
+  ProductNavLink,
+};

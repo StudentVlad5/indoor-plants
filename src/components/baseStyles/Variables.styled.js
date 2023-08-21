@@ -28,6 +28,7 @@ const theme = {
     red: '#E0181D',
     redLight: '#FFE8E9',
     grey: '#717171',
+    grey1: '#656970',
   },
   fonts: ['Archivo', 'sans-serif'],
   fontSizes: {

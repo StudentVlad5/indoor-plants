@@ -20,32 +20,22 @@ const Section = styled.section`
 `;
 
 const Container = styled.div`
-  display: ${props => props.display || 'flex'};
-  flex-direction: ${props => props.flexDirection || 'column'};
-  align-items: ${props => props.alignItems || 'center'};
-  justify-content: ${props => props.justifyContent || 'center'};
   width: 100%;
   margin: 0 auto;
   padding: 0 10px;
 
   @media screen and (min-width: 768px) {
-    flex-direction: ${props => props.flexDirectionTablet || 'column'};
-    align-items: ${props => props.alignItemsTablet || 'center'};
-    justify-content: ${props => props.justifyContentTablet || 'center'};
     padding: 0 30px;
   }
 
   @media screen and (min-width: 1440px) {
-    flex-direction: ${props => props.flexDirectionDesktop || 'column'};
-    align-items: ${props => props.alignItemsDesktop || 'center'};
-    justify-content: ${props => props.justifyContentDesktop || 'center'};
     max-width: 1440px;
     padding: 0 120px;
   }
 `;
 
 const Title = styled.h1`
-  font-family: 'Raisonne', sans-serif;
+  font-family: 'Archivo', sans-serif;
   font-size: 42px;
   font-style: normal;
   font-weight: 600;
@@ -58,7 +48,7 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.h2`
-  font-family: 'Raisonne Pro', sans-serif;
+  font-family: 'Archivo', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -68,7 +58,7 @@ const Subtitle = styled.h2`
 `;
 
 const Headline = styled.h3`
-  font-family: 'Nib Pro', sans-serif;
+  font-family: 'Domine', sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
