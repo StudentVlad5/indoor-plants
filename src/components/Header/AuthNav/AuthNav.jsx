@@ -24,12 +24,7 @@ export const AuthNav = ({ toggleMenu }) => {
 
   return (
     <Container>
-      <ButtonAuth title={t('Login')} path="/login" onClick={toggleMenu} />
-      <ButtonAuth
-        title={t('Registration')}
-        path="/register"
-        onClick={toggleMenu}
-      />
+      <ButtonAuth title={t('Sign in')} path="/login" onClick={toggleMenu} />
     </Container>
   );
 };
