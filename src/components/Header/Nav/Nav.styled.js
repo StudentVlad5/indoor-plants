@@ -27,7 +27,6 @@ const MobileNavList = styled.nav`
 const NavList = styled(MobileNavList)`
   display: none;
   white-space: nowrap;
-
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     flex-direction: row;
@@ -54,21 +53,18 @@ const NavItem = styled(NavLink)`
   &:not(:first-child) {
     margin-top: 40px;
   }
-
   @media screen and (min-width: ${theme.breakpoints
       .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     &:not(:first-child) {
       margin-top: 60px;
     }
   }
-
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     &:not(:first-child) {
       margin-top: 0px;
       margin-left: 0px;
     }
   }
-
   transition: ${theme.transition[0]};
   :focus,
   :hover {
