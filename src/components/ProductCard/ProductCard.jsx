@@ -137,13 +137,11 @@ export const ProductCard = () => {
               <ProductImage width={347} src={img} alt="Product image" />
               <DeliveryInfo>
                 <DeliveryInfoItem>
-                  {/* <ShippingIcon /> */}
                   <Car width={32} height={32} />
                   <span>Free shipping</span>
                   <p>Get free standard shipping when you spend $150 or more.</p>
                 </DeliveryInfoItem>
                 <DeliveryInfoItem>
-                  {/* <GuaranteeIcon /> */}
                   <Done width={32} height={32} />
                   <span>Guarantee</span>
                   <p>
@@ -182,12 +180,10 @@ export const ProductCard = () => {
               <ProductSubTitle>Quantity:</ProductSubTitle>
               <Quantity>
                 <IconBtn type="button" aria-label="plus">
-                  {/* <PlusIcon /> */}
                   <Plus />
                 </IconBtn>
                 <span>1</span>
                 <IconBtn type="button" aria-label="minus">
-                  {/* <MinusIcon /> */}
                   <Minus />
                 </IconBtn>
               </Quantity>
@@ -240,7 +236,7 @@ export const ProductCard = () => {
                   Care and Maintenance
                 </ProductSubTitle>
                 <IconBtn type="button" aria-label="switch to open description">
-                  <svg width={24} height={24}></svg>
+                  <Open />
                 </IconBtn>
               </Accord>
               <AccordIncludedList>
