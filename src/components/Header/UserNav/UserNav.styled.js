@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as iconUser } from 'images/svg/icon_user.svg';
+import theme from 'components/baseStyles/Variables.styled';
 
 const MobileAccountButton = styled(NavLink)`
   display: flex;
@@ -12,19 +13,15 @@ const MobileAccountButton = styled(NavLink)`
   height: 35px;
   border-radius: 40px;
   text-decoration: none;
-  background-color: ${props => props.theme.orangeLight};
-  border: 2px solid ${props => props.theme.orangeLight};
-  color: ${props => props.theme.white};
+  color: ${theme.colors.brown1};
 
-  font-family: 'Manrope';
+  font-family: ${theme.fonts[0]};
   font-style: normal;
-  font-size: 14px;
+  font-size: ${theme.fontSizes.small};
   line-height: 19px;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.04em;
 
-  @media screen and (min-width: 768px) {
-    margin-top: 0px;
-    height: 44px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: none;
   }
 `;
@@ -32,7 +29,7 @@ const MobileAccountButton = styled(NavLink)`
 const AccountButton = styled(MobileAccountButton)`
   display: none;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding: 8px 28px;
     display: flex;
     height: 44px;
@@ -47,8 +44,8 @@ const IconUser = styled(iconUser)`
   height: 20px;
   margin-right: 12px;
   display: block;
-  fill: ${props => props.theme.white};
-  @media screen and (min-width: 768px) {
+  fill: ${theme.colors.brown1};
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 28px;
     height: 28px;
   }
@@ -60,10 +57,10 @@ const AvatarUser = styled.img`
   height: 20px;
   margin-right: 12px;
   display: block;
-  fill: ${props => props.theme.white};
+  fill: ${theme.colors.brown1};
   border-radius: 50%;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 28px;
     height: 28px;
   }

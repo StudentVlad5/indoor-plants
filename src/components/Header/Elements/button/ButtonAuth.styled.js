@@ -1,54 +1,41 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import theme from 'components/baseStyles/Variables.styled';
 
 const AuthLink = styled(NavLink)`
-  padding: 8px 28px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${props => props.theme.black};
+  color: ${theme.colors.brown2};
   height: 35px;
-  border-radius: 40px;
   text-decoration: none;
-  color: ${props =>
-    props.$active
-      ? `${props => props.theme.white}`
-      : `${props => props.theme.blackText}`};
-  background-color: ${props =>
-    props.$active
-      ? `${props => props.theme.orangeLight}`
-      : `${props => props.theme.white}`};
-  border: 2px solid ${props => props.theme.orangeLight};
+  text-transform: uppercase;
 
-  font-family: 'Manrope';
+  font-family: ${theme.fonts[0]};
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: ${theme.fontSizes.small};
   line-height: 19px;
-  letter-spacing: 0.04em;
-  transition: all 0.25s ease-in;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  transition: ${theme.transition[0]};
 
   :hover,
   :focus {
-    background-color: ${props => props.theme.orangeLight};
-    color: ${props => props.theme.white};
+    color: ${theme.colors.darkGreen};
   }
 
   &.active {
-    background-color: ${props => props.theme.orangeLight};
-    color: ${props => props.theme.white};
+    color: ${theme.colors.darkGreen};
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
-    padding: 8.5px 28px;
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     height: 44px;
-    font-size: 20px;
     line-height: 27px;
   }
-  @media screen and (min-width: 1280px) {
-    padding: 10px 28px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     height: 48px;
-    font-size: 20px;
     line-height: 27px;
   }
 `;

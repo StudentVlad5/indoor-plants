@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getPermission, selectUser, getUserAvatar } from 'redux/auth/selectors';
+import { selectUser, getUserAvatar } from 'redux/auth/selectors';
 import {
   MobileAccountButton,
   AccountButton,
@@ -13,15 +13,10 @@ import {
 export const MobileUserNav = ({ toggleMenu }) => {
   const user = useSelector(selectUser);
   const avatar = useSelector(getUserAvatar);
-  const permission = useSelector(getPermission);
+
   // const { t } = useTranslation();
 
-  return permission === 'admin' ? (
-    <MobileAccountButton to="/admin" onClick={toggleMenu}>
-      {avatar ? <AvatarUser src={avatar} alt="User" /> : <IconUser />}
-      {user}
-    </MobileAccountButton>
-  ) : (
+  return (
     <MobileAccountButton to="/user" onClick={toggleMenu}>
       {avatar ? <AvatarUser src={avatar} alt="User" /> : <IconUser />}
       {user}
@@ -32,14 +27,8 @@ export const MobileUserNav = ({ toggleMenu }) => {
 export const UserNav = () => {
   const user = useSelector(selectUser);
   const avatar = useSelector(getUserAvatar);
-  const permission = useSelector(getPermission);
 
-  return permission === 'admin' ? (
-    <AccountButton to="/admin">
-      {avatar ? <AvatarUser src={avatar} alt="User" /> : <IconUser />}
-      {user}
-    </AccountButton>
-  ) : (
+  return (
     <AccountButton to="/user">
       {avatar ? <AvatarUser src={avatar} alt="User" /> : <IconUser />}
       {user}

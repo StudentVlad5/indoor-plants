@@ -8,7 +8,7 @@ const MobileHeader = styled.header`
   justify-content: space-between;
   padding: 16px 20px 0px 20px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding: 24px 32px 0px 32px;
   }
 `;

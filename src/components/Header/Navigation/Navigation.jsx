@@ -4,8 +4,17 @@ import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Nav } from 'components/Header/Nav/Nav';
 import { AuthNav } from 'components/Header/AuthNav/AuthNav';
 import { UserNav } from 'components/Header/UserNav/UserNav';
-import { Container } from './Navigation.styled';
-import { Menu } from '../Elements/menu/Menu';
+import {
+  Container,
+  IconSearch,
+  NavBlock,
+  IconFavorite,
+  IconBasket,
+  MobileContainer,
+  MobileNavBlock,
+  IconSearchMobile,
+  IconFavoriteMobile,
+} from './Navigation.styled';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -13,9 +22,25 @@ export const Navigation = () => {
   return (
     <Container>
       <Nav />
-      {isLoggedIn ? <UserNav /> : <AuthNav />}
-
-      <Menu />
+      <NavBlock>
+        <IconSearch />
+        {isLoggedIn ? <UserNav /> : <AuthNav />}
+        <IconFavorite />
+        <IconBasket />
+      </NavBlock>
     </Container>
+  );
+};
+
+export const MobileNavigation = () => {
+  return (
+    <MobileContainer>
+      <Nav />
+      <MobileNavBlock>
+        <IconSearchMobile />
+        <IconFavoriteMobile />
+        <IconBasket />
+      </MobileNavBlock>
+    </MobileContainer>
   );
 };

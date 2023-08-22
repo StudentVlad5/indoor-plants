@@ -10,25 +10,28 @@ const MobileNavList = styled.nav`
   font-family: ${theme.fonts[0]};
   font-size: ${theme.medium};
   text-decoration: none;
+  white-space: nowrap;
   text-transform: uppercase;
   margin-top: 60px;
 
-  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     margin-top: 88px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: none;
   }
 `;
 
 const NavList = styled(MobileNavList)`
   display: none;
-
-  @media screen and (min-width: 1280px) {
+  white-space: nowrap;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
+    gap: 82px;
     margin: 0px;
     width: 100%;
   }
@@ -37,51 +40,42 @@ const NavList = styled(MobileNavList)`
 const NavItem = styled(NavLink)`
   cursor: pointer;
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.medium};
-  text-decoration: none;
-  text-transform: uppercase;
   font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 44px;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: ${theme.fontSizes.small};
+  line-height: 19px;
+  letter-spacing: -0.04em;
   text-decoration: none;
+  white-space: nowrap;
   color: ${theme.colors.brown1};
 
   &:not(:first-child) {
     margin-top: 40px;
   }
-
-  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 66px;
-
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     &:not(:first-child) {
       margin-top: 60px;
     }
   }
-
-  @media screen and (min-width: 1280px) {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 27px;
-
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     &:not(:first-child) {
       margin-top: 0px;
-      margin-left: 80px;
+      margin-left: 0px;
     }
   }
-
-  color: ${theme.colors.brown1};
-  transition: all 0.25s ease-in;
+  transition: ${theme.transition[0]};
   :focus,
   :hover {
-    color: ${theme.colors.brown};
+    color: ${theme.colors.darkGreen};
+    transform: ${theme.scale[0]};
+    text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
   }
   &.active {
-    color: ${theme.colors.brown};
-    text-decoration: underline;
+    color: ${theme.colors.darkGreen};
+    transform: ${theme.scale[0]};
+    text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
   }
 `;
 

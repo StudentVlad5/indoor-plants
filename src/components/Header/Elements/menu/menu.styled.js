@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import theme from 'components/baseStyles/Variables.styled';
 
 import { ReactComponent as iconMenu } from 'images/svg/icon_menu.svg';
 
 const Burger = styled(iconMenu)`
   margin-left: 20px;
   cursor: pointer;
-  fill: ${props => props.theme.black};
+  fill: ${theme.colors.brown1};
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: none;
   }
 `;
@@ -23,13 +24,13 @@ const MobileMenuSection = styled.div`
   transition: transform 250ms ease-in-out;
   display: flex;
   flex-direction: column;
-  background-color: ${props => props.theme.mainBg};
+  background-color: ${theme.colors.white};
 
   &.is-expanded {
     transform: translateX(0);
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: none;
   }
 `;
