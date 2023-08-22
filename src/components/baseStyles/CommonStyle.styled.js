@@ -38,35 +38,35 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Archivo', sans-serif; //Raisonne pro
   font-size: 42px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  color: ${props => props.theme.brown};
+  color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 48px;
   }
 `;
 
-const Subtitle = styled.h2`
-  font-family: 'Archivo', sans-serif;
+const Subtitle = styled.p`
+  font-family: 'Archivo', sans-serif; //Raisonne pro
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  color: ${props => props.theme.brown};
+  color: ${theme.colors.green};
   text-transform: uppercase;
 `;
 
-const Headline = styled.h3`
-  font-family: 'Domine', sans-serif;
+const Headline = styled.h2`
+  font-family: 'Domine', sans-serif; //Nib pro
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: 144.5%; /* 46.24px */
-  color: ${props => props.theme.brown};
+  color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 32px;
