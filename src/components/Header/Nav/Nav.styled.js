@@ -10,22 +10,25 @@ const MobileNavList = styled.nav`
   font-family: ${theme.fonts[0]};
   font-size: ${theme.medium};
   text-decoration: none;
+  white-space: nowrap;
   text-transform: uppercase;
   margin-top: 60px;
 
-  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     margin-top: 88px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: none;
   }
 `;
 
 const NavList = styled(MobileNavList)`
   display: none;
+  white-space: nowrap;
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -37,35 +40,33 @@ const NavList = styled(MobileNavList)`
 const NavItem = styled(NavLink)`
   cursor: pointer;
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.medium};
-  text-decoration: none;
-  text-transform: uppercase;
   font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 44px;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: ${theme.fontSizes.medium};
+  line-height: 19px;
+  letter-spacing: -0.04em;
   text-decoration: none;
+  white-space: nowrap;
   color: ${theme.colors.brown1};
 
   &:not(:first-child) {
     margin-top: 40px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     font-weight: 500;
-    font-size: 48px;
-    line-height: 66px;
+    font-size: ${theme.fontSizes.medium};
 
     &:not(:first-child) {
       margin-top: 60px;
     }
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-weight: 500;
-    font-size: 20px;
-    line-height: 27px;
+    font-size: ${theme.fontSizes.large};
 
     &:not(:first-child) {
       margin-top: 0px;
@@ -73,14 +74,13 @@ const NavItem = styled(NavLink)`
     }
   }
 
-  color: ${theme.colors.brown1};
-  transition: all 0.25s ease-in;
+  transition: ${theme.transition[0]};
   :focus,
   :hover {
-    color: ${theme.colors.brown};
+    color: ${theme.colors.darkGreen};
   }
   &.active {
-    color: ${theme.colors.brown};
+    color: ${theme.colors.darkGreen};
     text-decoration: underline;
   }
 `;

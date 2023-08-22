@@ -3,6 +3,9 @@ const theme = {
     mobile: '375px',
     tablet: '768px',
     desktop: '1440px',
+    mobile_max: '374.98px',
+    tablet_max: '767.98px',
+    desktop_max: '1439.98px',
   },
   colors: {
     fon: '#FCF9F2',
@@ -34,13 +37,17 @@ const theme = {
     redLight: '#FFE8E9',
     grey: '#717171',
     grey1: '#656970',
+    white: '#ffffff',
   },
-  fonts: ['Archivo', 'sans-serif'],
+  fonts: ['Archivo, sans-serif', 'Domine, serif'],
   fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
+    small: '14px',
+    medium: '18px',
+    large: '20px',
+    extraLarge: '36px',
   },
+  transition: ['all 0.25s ease-in'],
+  scale: ['scale(1.15)'],
 };
 
 export default theme;

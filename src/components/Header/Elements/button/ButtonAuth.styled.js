@@ -14,28 +14,27 @@ const AuthLink = styled(NavLink)`
   font-family: ${theme.fonts[0]};
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: ${theme.fontSizes.medium};
   line-height: 19px;
   letter-spacing: -0.04em;
-  transition: all 0.25s ease-in;
+  transition: ${theme.transition[0]};
 
   :hover,
   :focus {
-    background-color: ${theme.colors.orangeLight};
-    color: ${theme.colors.white};
+    color: ${theme.colors.darkGreen};
   }
 
   &.active {
-    background-color: ${theme.colors.orangeLight};
-    color: ${theme.colors.white};
+    color: ${theme.colors.darkGreen};
   }
 
-  @media screen and (min-width: 767.99px) and (max-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     height: 44px;
     font-size: 20px;
     line-height: 27px;
   }
-  @media screen and (min-width: 1279.99px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     height: 48px;
     font-size: 20px;
     line-height: 27px;
