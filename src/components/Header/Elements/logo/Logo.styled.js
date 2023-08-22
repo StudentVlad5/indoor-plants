@@ -6,7 +6,7 @@ const Text = styled(NavLink)`
   font-family: ${theme.fonts[0]};
   font-weight: 700;
   font-style: normal;
-  font-size: ${theme.fontSizes.large};
+  font-size: ${theme.fontSizes.extraXL};
   line-height: 42px;
   letter-spacing: 0.07em;
   color: ${theme.colors.brown2};
@@ -14,8 +14,8 @@ const Text = styled(NavLink)`
   text-decoration: none;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-size: 32px;
     line-height: 48px;
+    font-size: ${theme.fontSizes.extraXXL};
   }
 `;
 

@@ -31,7 +31,8 @@ const NavList = styled(MobileNavList)`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
+    gap: 82px;
     margin: 0px;
     width: 100%;
   }
@@ -43,7 +44,7 @@ const NavItem = styled(NavLink)`
   font-style: normal;
   font-weight: 500;
   text-transform: uppercase;
-  font-size: ${theme.fontSizes.medium};
+  font-size: ${theme.fontSizes.small};
   line-height: 19px;
   letter-spacing: -0.04em;
   text-decoration: none;
@@ -56,21 +57,15 @@ const NavItem = styled(NavLink)`
 
   @media screen and (min-width: ${theme.breakpoints
       .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
-    font-weight: 500;
-    font-size: ${theme.fontSizes.medium};
-
     &:not(:first-child) {
       margin-top: 60px;
     }
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    font-weight: 500;
-    font-size: ${theme.fontSizes.large};
-
     &:not(:first-child) {
       margin-top: 0px;
-      margin-left: 80px;
+      margin-left: 0px;
     }
   }
 
@@ -78,10 +73,13 @@ const NavItem = styled(NavLink)`
   :focus,
   :hover {
     color: ${theme.colors.darkGreen};
+    transform: ${theme.scale[0]};
+    text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
   }
   &.active {
     color: ${theme.colors.darkGreen};
-    text-decoration: underline;
+    transform: ${theme.scale[0]};
+    text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
   }
 `;
 

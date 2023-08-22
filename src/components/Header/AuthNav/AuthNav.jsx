@@ -8,12 +8,7 @@ export const MobileAuthNav = ({ toggleMenu }) => {
   const { t } = useTranslation();
   return (
     <MobileContainer>
-      <ButtonAuth title={t('Login')} path="/login" onClick={toggleMenu} />
-      <ButtonAuth
-        title={t('Registration')}
-        path="/register"
-        onClick={toggleMenu}
-      />
+      <ButtonAuth title={t('Sign in')} path="/login" onClick={toggleMenu} />
     </MobileContainer>
   );
 };

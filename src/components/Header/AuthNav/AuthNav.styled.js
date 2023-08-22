@@ -9,7 +9,7 @@ const MobileContainer = styled.nav`
   margin-top: 46px;
   transition: ${theme.transition[0]};
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     margin-top: 0px;
     display: none;
   }
@@ -23,18 +23,15 @@ const Container = styled(MobileContainer)`
   display: none;
   transition: ${theme.transition[0]};
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    display: flex;
-    gap: 12px;
-  }
-
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    gap: 20px;
+    display: flex;
+    gap: 24px;
   }
   :hover,
   :focus {
     transform: ${theme.scale[0]};
     transition: ${theme.transition[0]};
+    text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
   }
 `;
 

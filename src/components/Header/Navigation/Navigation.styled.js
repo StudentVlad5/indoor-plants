@@ -6,6 +6,7 @@ import { ReactComponent as iconBasket } from 'images/svg/icon_basketLight__heade
 
 const IconSearch = styled(iconSearch)`
   cursor: pointer;
+  display: none;
   size: 24px;
   transition: ${theme.transition[0]};
   & > path {
@@ -16,11 +17,17 @@ const IconSearch = styled(iconSearch)`
   :focus {
     transform: ${theme.scale[0]};
     transition: ${theme.transition[0]};
+  }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 `;
 
 const IconFavorite = styled(iconFavorite)`
   cursor: pointer;
+  display: none;
   size: 24px;
   transition: ${theme.transition[0]};
   & > path {
@@ -32,10 +39,18 @@ const IconFavorite = styled(iconFavorite)`
     transform: ${theme.scale[0]};
     transition: ${theme.transition[0]};
   }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 `;
 
 const IconBasket = styled(iconBasket)`
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   size: 24px;
   transition: ${theme.transition[0]};
   & > path {
@@ -51,31 +66,77 @@ const IconBasket = styled(iconBasket)`
 
 const Container = styled.div`
   display: flex;
-  text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.3);
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 100%;
-    margin-left: 80px;
+    margin-left: 94px;
   }
 `;
 
 const NavBlock = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
 
   @media screen and (min-width: ${theme.breakpoints
       .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     display: flex;
-    justify-content: center;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
-    justify-content: center;
-    width: 100%;
+    gap: 24px;
   }
 `;
-export { Container, NavBlock, IconSearch, IconFavorite, IconBasket };
+
+const MobileContainer = styled(Container)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 100%;
+    margin-left: 0px;
+  }
+`;
+const MobileNavBlock = styled(NavBlock)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
+const IconSearchMobile = styled(IconSearch)`
+  display: flex;
+  width: 100%;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    display: none;
+  }
+`;
+const IconFavoriteMobile = styled(IconFavorite)`
+  display: flex;
+  width: 100%;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
+export {
+  Container,
+  NavBlock,
+  IconSearch,
+  IconFavorite,
+  IconBasket,
+  MobileContainer,
+  MobileNavBlock,
+  IconSearchMobile,
+  IconFavoriteMobile,
+};

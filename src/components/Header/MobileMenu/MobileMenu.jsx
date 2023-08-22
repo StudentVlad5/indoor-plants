@@ -8,6 +8,7 @@ import { MobileAuthNav } from 'components/Header/AuthNav/AuthNav';
 import { MobileUserNav } from 'components/Header/UserNav/UserNav';
 import { MobileNav } from 'components/Header/Nav/Nav';
 import { Logo } from 'components/Header/Elements/logo/Logo';
+import { MobileNavigation } from '../Navigation/Navigation';
 
 export const MobileMenu = ({ toggleMenu }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -24,6 +25,7 @@ export const MobileMenu = ({ toggleMenu }) => {
       ) : (
         <MobileAuthNav toggleMenu={toggleMenu} />
       )}
+      <MobileNavigation />
       <MobileNav toggleMenu={toggleMenu} />
     </>
   );
