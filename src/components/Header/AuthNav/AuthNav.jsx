@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 
 export const MobileAuthNav = ({ toggleMenu }) => {
   const { t } = useTranslation();
-
   return (
     <MobileContainer>
       <ButtonAuth title={t('Login')} path="/login" onClick={toggleMenu} />
