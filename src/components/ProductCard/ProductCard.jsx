@@ -40,23 +40,23 @@ import {
 } from './ProductCard.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
-import img from '../../images/product/i-ladna-monstera-deliciosa-dziurawa-filodendron 1.png';
-import img1 from '../../images/product/Ellipse 175.png';
-import img2 from '../../images/product/Ellipse 176.png';
-import img3 from '../../images/product/Ellipse 177.png';
-import img4 from '../../images/product/Ellipse 178.png';
-import img5 from '../../images/product/Ellipse 179.png';
-import img6 from '../../images/product/Ellipse 180.png';
+import img from 'images/product/i-ladna-monstera-deliciosa-dziurawa-filodendron 1.png';
+import img1 from 'images/product/Ellipse 175.png';
+import img2 from 'images/product/Ellipse 176.png';
+import img3 from 'images/product/Ellipse 177.png';
+import img4 from 'images/product/Ellipse 178.png';
+import img5 from 'images/product/Ellipse 179.png';
+import img6 from 'images/product/Ellipse 180.png';
 
-import { ReactComponent as Car } from '../../images/svg/shipping.svg';
-import { ReactComponent as Done } from '../../images/svg/done.svg';
-import { ReactComponent as Plus } from '../../images/svg/plus.svg';
-import { ReactComponent as Minus } from '../../images/svg/minus.svg';
-import { ReactComponent as Open } from '../../images/svg/open.svg';
-import { ReactComponent as Cat } from '../../images/svg/cat.svg';
-import { ReactComponent as Evenodd } from '../../images/svg/evenodd.svg';
-import { ReactComponent as Oil } from '../../images/svg/oil.svg';
-import { ReactComponent as Sun } from '../../images/svg/sun.svg';
+import { ReactComponent as Car } from 'images/svg/shipping.svg';
+import { ReactComponent as Done } from 'images/svg/done.svg';
+import { ReactComponent as Plus } from 'images/svg/plus.svg';
+import { ReactComponent as Minus } from 'images/svg/minus.svg';
+import { ReactComponent as Open } from 'images/svg/open.svg';
+import { ReactComponent as Cat } from 'images/svg/cat.svg';
+import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
+import { ReactComponent as Oil } from 'images/svg/oil.svg';
+import { ReactComponent as Sun } from 'images/svg/sun.svg';
 
 export const ProductCard = () => {
   return (

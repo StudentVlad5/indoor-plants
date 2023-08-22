@@ -14,7 +14,7 @@ const ScrollTop = () => {
         justifyContent: 'center',
         width: '40px',
         height: '40px',
-        backgroundColor: `${theme.colors.orangeLight}`,
+        backgroundColor: `${theme.colors.green}`,
         color: `${theme.colors.white}`,
       }}
       component={<MdKeyboardDoubleArrowUp size={30} />}
