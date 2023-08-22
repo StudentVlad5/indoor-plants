@@ -1,5 +1,5 @@
+import { Hero } from 'components/HomeComp/Hero/Hero';
 import React from 'react';
-import { Hero } from '../components/Hero/Hero';
 import { SEO } from 'utils/SEO';
 
 const HomePage = () => {
