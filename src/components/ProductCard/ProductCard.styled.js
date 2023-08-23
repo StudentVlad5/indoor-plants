@@ -220,6 +220,20 @@ const Option = styled.button`
   border-radius: 10px;
   border: 0.5px solid ${theme.colors.brown1};
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: #6f8d4c;
+    background-color: ${theme.colors.green5};
+    border: 1px solid ${theme.colors.green2};
+  }
+
+  &:disabled {
+    color: ${theme.colors.brown2};
+    background-color: transparent;
+    border: 1px solid ${theme.colors.brown2};
+    cursor: default;
+  }
 `;
 
 const Quantity = styled.div`
@@ -255,6 +269,15 @@ const IconBtn = styled.button`
     width: 24px;
     height: 24px;
   }
+
+  &:disabled {
+    cursor: default;
+
+    & > svg > path {
+      stroke: ${theme.colors.brown2};
+      fill: ${theme.colors.brown2};
+    }
+  }
 `;
 
 const TextBtn = styled.button`
@@ -282,6 +305,13 @@ const TextBtn = styled.button`
     background-color: ${theme.colors.green2};
     border: 1px solid ${theme.colors.green2};
   }
+
+  &:disabled {
+    color: ${theme.colors.brown1};
+    background-color: ${theme.colors.green4};
+    border: 1px solid ${theme.colors.green4};
+    cursor: default;
+  }
 `;
 
 const InfoSection = styled.div`
@@ -302,6 +332,9 @@ const AccordCareList = styled.ul`
   flex-direction: column;
   justify-content: center;
   gap: 12px;
+
+  animation: fade-in-top 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  transition: all ${theme.transition};
 `;
 
 const AccordCareItem = styled.li`
@@ -330,6 +363,9 @@ const AccordIncludedList = styled.ul`
 
   list-style: disc;
   color: ${theme.colors.grey};
+
+  animation: fade-in-top 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  transition: all ${theme.transition};
 `;
 
 const AccordIncludedItem = styled.li`
