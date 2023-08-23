@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as LogoutIcon } from '../../../images/svg/logout/logout.svg';
+import { ReactComponent as LogoutIcon } from '../../../images/svg/logout.svg';
 
 export const LogoutBtn = styled.button`
   display: flex;

@@ -1,4 +1,5 @@
 import 'modern-normalize';
+import theme from 'components/baseStyles/Variables.styled';
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
@@ -7,11 +8,14 @@ body {
   font-family: 'Archivo', 'Montserrat Regular', 'Montserrat Medium', sans-serif;
   /* Nib Pro */
   font-family: 'Domine', serif;
+
+  background-color:${theme.colors.fon};
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-
   transition: .3s ease;
+  
   &.scroll {
       max-height: 100vh;
       overflow: hidden;

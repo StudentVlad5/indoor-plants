@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as Close } from '../../../../images/svg/logout/close.svg';
+import { ReactComponent as Close } from '../../../../images/svg/icon_close.svg';
 
 export const ModalWrapper = styled.div`
   position: absolute;
