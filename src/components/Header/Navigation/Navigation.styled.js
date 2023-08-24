@@ -11,7 +11,7 @@ const IconSearch = styled(iconSearch)`
   transition: ${theme.transition[0]};
   & > path {
     stroke: ${theme.colors.brown1};
-    fill: ${theme.colors.brown1};
+    /* fill: ${theme.colors.brown1}; */
   }
   :hover,
   :focus {
@@ -32,7 +32,7 @@ const IconFavorite = styled(iconFavorite)`
   transition: ${theme.transition[0]};
   & > path {
     stroke: ${theme.colors.brown1};
-    fill: ${theme.colors.brown1};
+    /* fill: ${theme.colors.brown1}; */
   }
   :hover,
   :focus {
@@ -55,7 +55,7 @@ const IconBasket = styled(iconBasket)`
   transition: ${theme.transition[0]};
   & > path {
     stroke: ${theme.colors.brown1};
-    fill: ${theme.colors.brown1};
+    /* fill: ${theme.colors.brown1}; */
   }
   :hover,
   :focus {
@@ -80,8 +80,7 @@ const NavBlock = styled.div`
   align-items: center;
   gap: 10px;
 
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     display: flex;
   }
 

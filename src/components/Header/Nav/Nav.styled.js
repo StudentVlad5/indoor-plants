@@ -14,8 +14,7 @@ const MobileNavList = styled.nav`
   text-transform: uppercase;
   margin-top: 60px;
 
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     margin-top: 88px;
   }
 
@@ -44,7 +43,7 @@ const NavItem = styled(NavLink)`
   font-weight: 500;
   text-transform: uppercase;
   font-size: ${theme.fontSizes.small};
-  line-height: 19px;
+  line-height: normal;
   letter-spacing: -0.04em;
   text-decoration: none;
   white-space: nowrap;
@@ -53,8 +52,7 @@ const NavItem = styled(NavLink)`
   &:not(:first-child) {
     margin-top: 40px;
   }
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     &:not(:first-child) {
       margin-top: 60px;
     }
@@ -70,12 +68,12 @@ const NavItem = styled(NavLink)`
   :hover {
     color: ${theme.colors.darkGreen};
     transform: ${theme.scale[0]};
-    text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 2px 3px 2px rgba(0, 0, 0, 0.2);
   }
   &.active {
     color: ${theme.colors.darkGreen};
     transform: ${theme.scale[0]};
-    text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 2px 3px 2px rgba(0, 0, 0, 0.2);
   }
 `;
 
