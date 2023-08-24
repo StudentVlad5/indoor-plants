@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/indoor-plants/static/css/main.c3d5249d.css",
-    "main.js": "/indoor-plants/static/js/main.b463dc9b.js",
-    "static/js/640.a161b78f.chunk.js": "/indoor-plants/static/js/640.a161b78f.chunk.js",
+    "main.js": "/indoor-plants/static/js/main.fa53ad6d.js",
+    "static/js/640.ed9909ec.chunk.js": "/indoor-plants/static/js/640.ed9909ec.chunk.js",
     "static/js/889.43f2e597.chunk.js": "/indoor-plants/static/js/889.43f2e597.chunk.js",
     "static/js/875.7bd28790.chunk.js": "/indoor-plants/static/js/875.7bd28790.chunk.js",
-    "static/js/132.1a5084f7.chunk.js": "/indoor-plants/static/js/132.1a5084f7.chunk.js",
+    "static/js/132.738b439b.chunk.js": "/indoor-plants/static/js/132.738b439b.chunk.js",
     "static/js/643.cd8dc734.chunk.js": "/indoor-plants/static/js/643.cd8dc734.chunk.js",
     "static/js/406.2acdfe26.chunk.js": "/indoor-plants/static/js/406.2acdfe26.chunk.js",
     "static/js/30.6ec020ab.chunk.js": "/indoor-plants/static/js/30.6ec020ab.chunk.js",
@@ -57,11 +57,11 @@
     "static/media/open.svg": "/indoor-plants/static/media/open.fb37f33cbfa6a6dd83b3d5e6ab510eb4.svg",
     "static/media/minus.svg": "/indoor-plants/static/media/minus.8853824879a4e822b91e026401b394e3.svg",
     "main.c3d5249d.css.map": "/indoor-plants/static/css/main.c3d5249d.css.map",
-    "main.b463dc9b.js.map": "/indoor-plants/static/js/main.b463dc9b.js.map",
-    "640.a161b78f.chunk.js.map": "/indoor-plants/static/js/640.a161b78f.chunk.js.map",
+    "main.fa53ad6d.js.map": "/indoor-plants/static/js/main.fa53ad6d.js.map",
+    "640.ed9909ec.chunk.js.map": "/indoor-plants/static/js/640.ed9909ec.chunk.js.map",
     "889.43f2e597.chunk.js.map": "/indoor-plants/static/js/889.43f2e597.chunk.js.map",
     "875.7bd28790.chunk.js.map": "/indoor-plants/static/js/875.7bd28790.chunk.js.map",
-    "132.1a5084f7.chunk.js.map": "/indoor-plants/static/js/132.1a5084f7.chunk.js.map",
+    "132.738b439b.chunk.js.map": "/indoor-plants/static/js/132.738b439b.chunk.js.map",
     "643.cd8dc734.chunk.js.map": "/indoor-plants/static/js/643.cd8dc734.chunk.js.map",
     "406.2acdfe26.chunk.js.map": "/indoor-plants/static/js/406.2acdfe26.chunk.js.map",
     "30.6ec020ab.chunk.js.map": "/indoor-plants/static/js/30.6ec020ab.chunk.js.map",
@@ -71,6 +71,6 @@
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.b463dc9b.js"
+    "static/js/main.fa53ad6d.js"
   ]
 }
