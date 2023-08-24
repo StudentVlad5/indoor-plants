@@ -15,6 +15,7 @@ import img3 from 'images/product/Ellipse 177.png';
 import img4 from 'images/product/Ellipse 178.png';
 import img5 from 'images/product/Ellipse 179.png';
 import img6 from 'images/product/Ellipse 180.png';
+// import defaultImg from 'images/No-image-available.webp';
 
 import { ReactComponent as Car } from 'images/svg/shipping.svg';
 import { ReactComponent as Done } from 'images/svg/done.svg';
@@ -29,17 +30,25 @@ import { ReactComponent as Sun } from 'images/svg/sun.svg';
 const product = {
   id: 123,
   name: 'Monstera',
-  price: 220,
-  discount: 165,
   description: 'have attractive leathery leaves that are often cut into lobes',
   options: [
     {
-      title: '4“ plastic grow pot',
+      title: 'L plastic grow pot',
+      price: 200,
+      discount: 135,
       total: 5,
     },
-    { title: '6“ horti white pot', total: 0 },
+    {
+      title: 'XL horti white pot',
+      price: 220,
+      discount: 165,
+      total: 0,
+    },
   ],
   totalQuantity: 5,
+  price: 220,
+  discount: 165,
+  currency: '$',
   typeOfPlants: 'flowering plant',
   light: 'bright indirect light',
   petFriendly: 'moderately toxic',
@@ -55,15 +64,34 @@ export const ProductCard = () => {
     name,
     price,
     discount,
+    currency,
     description,
     options,
     totalQuantity,
     images,
   } = product;
 
-  const [value, setValue] = useState(1);
-  // const [totalValue, setTotalValue] = useState(0);
+  // get data from selected option
+  const [optionData, setOptionData] = useState({
+    title: null,
+    price: price ? price : discount || 0,
+    discount: discount ? discount : price || 0,
+    total: totalQuantity || 0,
+  });
 
+  const getOptionData = e => {
+    e.preventDefault();
+    const selectedOption = e.currentTarget.dataset.option;
+    const selectedData = options.find(
+      option => option.title === selectedOption,
+    );
+    setOptionData(selectedData);
+  };
+
+  //get selected value
+  const [value, setValue] = useState(1);
+
+  // open details for the info section
   const [showCareDetails, setCareShowDetails] = useState(false);
   const toggleCareDetails = () => setCareShowDetails(state => !state);
   const [showIncludedDetails, setShowIncludedDetails] = useState(false);
@@ -126,7 +154,7 @@ export const ProductCard = () => {
             </Swiper> */}
 
             <SC.ControlsList>
-              {images.map((img, i) => {
+              {images?.map((img, i) => {
                 return (
                   <SC.ControlsItem key={i}>
                     <img src={img} alt="Image" loading="lazy" />
@@ -137,6 +165,7 @@ export const ProductCard = () => {
             <div>
               <SC.ProductImage
                 width={347}
+                height={600}
                 src={img}
                 alt="Product image"
                 loading="lazy"
@@ -164,34 +193,47 @@ export const ProductCard = () => {
                 <Headline> {name}</Headline>
                 {discount ? (
                   <SC.Prices>
-                    <SC.Discount>{discount}$</SC.Discount>
-                    <SC.Price>{price}$</SC.Price>
+                    <SC.Discount>
+                      {optionData.discount}
+                      {currency}
+                    </SC.Discount>
+                    <SC.Price>
+                      {optionData.price}
+                      {currency}
+                    </SC.Price>
                   </SC.Prices>
                 ) : (
                   <SC.Prices>
-                    <SC.Discount>{price}$</SC.Discount>
+                    <SC.Discount>
+                      {optionData.price}
+                      {currency}
+                    </SC.Discount>
                   </SC.Prices>
                 )}
               </SC.Heading>
               <SC.Description>{description}</SC.Description>
             </div>
-            <SC.Options>
-              <SC.ProductSubTitle>Option:</SC.ProductSubTitle>
-              <SC.OptionsList>
-                {options.map((option, i) => {
-                  return (
-                    <SC.Option
-                      key={i}
-                      type="button"
-                      aria-label={option.title}
-                      disabled={0 === option.total}
-                    >
-                      {option.title}
-                    </SC.Option>
-                  );
-                })}
-              </SC.OptionsList>
-            </SC.Options>
+            {options.length !== 0 && (
+              <SC.Options>
+                <SC.ProductSubTitle>Option:</SC.ProductSubTitle>
+                <SC.OptionsList>
+                  {options.map((option, i) => {
+                    return (
+                      <SC.Option
+                        key={i}
+                        type="button"
+                        aria-label={option.title}
+                        disabled={0 === option.total}
+                        onClick={e => getOptionData(e)}
+                        data-option={option.title}
+                      >
+                        {option.title}
+                      </SC.Option>
+                    );
+                  })}
+                </SC.OptionsList>
+              </SC.Options>
+            )}
             <SC.Options>
               <SC.ProductSubTitle>Quantity:</SC.ProductSubTitle>
               <SC.Quantity>
@@ -199,7 +241,7 @@ export const ProductCard = () => {
                   type="button"
                   aria-label="plus"
                   onClick={() => setValue(value + 1)}
-                  disabled={value >= totalQuantity}
+                  disabled={value >= optionData.total}
                 >
                   <Plus />
                 </SC.IconBtn>

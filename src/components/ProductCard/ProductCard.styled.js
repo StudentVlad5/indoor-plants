@@ -82,6 +82,8 @@ const ControlsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  max-height: 600px;
 `;
 
 const ControlsItem = styled.li`
