@@ -26,6 +26,14 @@ import {
   FeedbackBox,
   FeedbackUser,
   CareImg,
+  ListItemDiscrSize,
+  HealthBoxDiscr,
+  BoxText,
+  HealthListItem,
+  CareBoxDiscr,
+  CareImgBox,
+  CareBoxText,
+  FeedbackTitle,
 } from './Products.styled';
 import plant from '../../../images/hero/products/plant.png';
 import woman from '../../../images/hero/products/woman.png';
@@ -78,6 +86,28 @@ export const Products = () => {
     'Gifts',
   ];
 
+  const feedbackArr = [
+    {
+      text: 'Yukka has taken pride of place in his new home and looks beautiful in the sun on a white wall.',
+      user: 'Matthew H.',
+    },
+    {
+      text: ' Strelitzia is beautiful! 😍 I got it as a gift from my husband and I think it was from the heart because she has been with us for less than a month and two new leaves are already growing 🙂',
+      user: 'Jenny P.',
+    },
+  ];
+  const [currentSlide, setcurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setcurrentSlide(prevSlide => (prevSlide + 1) % feedbackArr.length);
+  };
+
+  const prevSlide = () => {
+    setcurrentSlide(prevSlide =>
+      prevSlide === 0 ? feedbackArr.length - 1 : prevSlide - 1,
+    );
+  };
+
   return (
     <ProductsBox>
       <ProductsTitle>Discounts from 10 to 25%</ProductsTitle>
@@ -101,15 +131,17 @@ export const Products = () => {
             </ProductsListItemDiscrText>
 
             <ProductsListItemDiscrText>
-              <p>SIZE</p>
-              <p style={{ marginLeft: 'auto' }}>L</p>
+              <ListItemDiscrSize>SIZE</ListItemDiscrSize>
+              <ListItemDiscrSize style={{ marginLeft: 'auto' }}>
+                L
+              </ListItemDiscrSize>
             </ProductsListItemDiscrText>
           </ProductsListItemDiscr>
         </ProductsListItem>
       </ProductsList>
 
       <HealthBox>
-        <div>
+        <HealthBoxDiscr>
           <HealthHeadTitle>health as part of a lifestyle</HealthHeadTitle>
           <HealthTitle>How plants make us happy</HealthTitle>
           <HealthDiscr>
@@ -123,21 +155,41 @@ export const Products = () => {
           <ImgBox>
             <img src={woman} alt="" />
           </ImgBox>
+        </HealthBoxDiscr>
 
-          <HealthImgTitle>New Arrivals</HealthImgTitle>
-          <HealthList>
-            {imgArr.map((image, idx) => (
-              <li key={idx}>
-                <img src={image} alt="" />
-                <HealthImgDiscr>{titleArr[idx]}</HealthImgDiscr>
-              </li>
-            ))}
-          </HealthList>
-        </div>
+        <HealthBoxDiscr>
+          <ImgBox>
+            <img src={woman} alt="" />
+          </ImgBox>
+          <BoxText>
+            <HealthHeadTitle>health as part of a lifestyle</HealthHeadTitle>
+            <HealthTitle>How plants make us happy</HealthTitle>
+            <HealthDiscr>
+              Here are some of the health benefits of indoor plants. For example
+              indoor plants have can help reduce stress and anxiety. Studies
+              have shown that just looking at plants can lower blood pressure
+              and heart rate.
+            </HealthDiscr>
+
+            <ReadMore href="#">Read more</ReadMore>
+          </BoxText>
+        </HealthBoxDiscr>
+      </HealthBox>
+
+      <HealthBox>
+        <HealthImgTitle>New Arrivals</HealthImgTitle>
+        <HealthList>
+          {imgArr.map((image, idx) => (
+            <HealthListItem key={idx}>
+              <img src={image} alt="" />
+              <HealthImgDiscr>{titleArr[idx]}</HealthImgDiscr>
+            </HealthListItem>
+          ))}
+        </HealthList>
       </HealthBox>
 
       <CareBox>
-        <div>
+        <CareBoxDiscr>
           <HealthHeadTitle>Care and treatment</HealthHeadTitle>
           <HealthTitle>Spring care for indoor plants</HealthTitle>
           <HealthDiscr>
@@ -148,20 +200,41 @@ export const Products = () => {
           </HealthDiscr>
 
           <ReadMore href="#">Read more</ReadMore>
+          <CareImgBox>
+            <CareImg src={youngWoman} alt="" />
+          </CareImgBox>
+        </CareBoxDiscr>
+
+        <CareBoxDiscr>
+          <div>
+            <CareBoxText>
+              <HealthHeadTitle>Care and treatment</HealthHeadTitle>
+              <HealthTitle>Spring care for indoor plants</HealthTitle>
+              <HealthDiscr>
+                Spring is an important time for indoor plants as it marks the
+                beginning of their active growth period. It is also the right
+                time to repot your plants. Here are some tips on how and when to
+                do it best.
+              </HealthDiscr>
+
+              <ReadMore href="#">Read more</ReadMore>
+            </CareBoxText>
+          </div>
           <CareImg src={youngWoman} alt="" />
-        </div>
+        </CareBoxDiscr>
       </CareBox>
 
       <Feedback>
-        <HealthTitle>What our clients say</HealthTitle>
+        <FeedbackTitle>What our clients say</FeedbackTitle>
+
         <FeedbackBox>
-          <ArrowIcon />
+          <ArrowIcon onClick={prevSlide} />
           <FeedbackDiscr>
             <QuotationMarkIcon />
-            Yukka has taken pride of place in his new home and looks beautiful
-            in the sun on a white wall. <FeedbackUser>Matthew H.</FeedbackUser>
+            {feedbackArr[currentSlide].text}
+            <FeedbackUser>{feedbackArr[currentSlide].user}</FeedbackUser>
           </FeedbackDiscr>
-          <ArrowIcon />
+          <ArrowIcon onClick={nextSlide} />
         </FeedbackBox>
       </Feedback>
     </ProductsBox>

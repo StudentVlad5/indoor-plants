@@ -13,7 +13,7 @@ export const HeroContainer = styled.div`
   -webkit-box-pack: center;
   justify-content: center;
   padding: 0;
-
+  position: relative;
   /* position: relative; // for img
 
   height: 100%;
@@ -40,6 +40,26 @@ export const HeroContainer = styled.div`
   } */
 `;
 
+export const Img = styled.img`
+  background-repeat: no-repeat;
+  background-size: 'cover';
+  width: 100%;
+  display: block;
+
+  &:nth-child(1) {
+    @media screen and (min-width: 1440px) {
+      display: none;
+    }
+  }
+
+  &:nth-child(2) {
+    display: none;
+    @media screen and (min-width: 1440px) {
+      display: block;
+    }
+  }
+`;
+
 export const HeroBox = styled.div`
   position: absolute;
   padding: 37px 77px 37px 16px;
@@ -54,12 +74,12 @@ export const HeroBox = styled.div`
     -5px -5px 4px 0px rgba(255, 255, 255, 0.1) inset,
     20px 30px 100px 0px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(7.5px);
-`;
 
-export const Img = styled.img`
-  background-repeat: no-repeat;
-  background-size: 'cover';
-  width: 100%;
+  @media screen and (min-width: 1440px) {
+    width: 530px;
+    height: 100%;
+    padding: 306px 112px;
+  }
 `;
 
 export const HeroBoxText = styled.div`
@@ -75,6 +95,11 @@ export const HeroTitle = styled.h1`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  width: 330px;
+
+  @media screen and (min-width: 1440px) {
+    font-size: 48px;
+  }
 `;
 
 export const HeroDiscr = styled.p`
@@ -85,6 +110,10 @@ export const HeroDiscr = styled.p`
   font-weight: 400;
   line-height: 166%; /* 26.56px */
   margin: 12px 0;
+  @media screen and (min-width: 1440px) {
+    font-size: 20px;
+    font-weight: 600;
+  }
 `;
 
 export const HeroBtn = styled.button`
@@ -101,4 +130,8 @@ export const HeroBtn = styled.button`
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+  
+  @media screen and (min-width: 1440px) {
+    padding: 10px 75px;
+  }
 `;
