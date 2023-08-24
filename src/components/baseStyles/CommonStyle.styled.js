@@ -38,10 +38,10 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: 'Archivo', sans-serif; //Raisonne pro
+  font-family: ${theme.fonts[0]}; //Raisonne pro
   font-size: 42px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   color: ${theme.colors.green};
 
@@ -51,7 +51,7 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.p`
-  font-family: 'Archivo', sans-serif; //Raisonne pro
+  font-family: ${theme.fonts[0]}; //Raisonne pro
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -61,10 +61,10 @@ const Subtitle = styled.p`
 `;
 
 const Headline = styled.h2`
-  font-family: 'Domine', sans-serif; //Nib pro
+  font-family: ${theme.fonts[1]}; //Nib pro
   font-size: 24px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 144.5%; /* 46.24px */
   color: ${theme.colors.green};
 

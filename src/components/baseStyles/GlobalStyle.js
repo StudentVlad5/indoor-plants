@@ -5,9 +5,11 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 body {
   /* Raisonne Pro */
-  font-family: 'Archivo', 'Montserrat Regular', 'Montserrat Medium', sans-serif;
+  font-family: 'Archivo', sans-serif;
+  /* font-family: 'Barlow', sans-serif; */
   /* Nib Pro */
   font-family: 'Domine', serif;
+ /* font-family: 'Fraunces', serif; */
 
   background-color:${theme.colors.fon};
   

@@ -32,7 +32,7 @@ const NavList = styled(MobileNavList)`
     justify-content: start;
     gap: 82px;
     margin: 0px;
-    width: 100%;
+    /* width: 100%; */
   }
 `;
 
@@ -44,7 +44,7 @@ const NavItem = styled(NavLink)`
   text-transform: uppercase;
   font-size: ${theme.fontSizes.small};
   line-height: normal;
-  letter-spacing: -0.04em;
+  /* letter-spacing: -0.04em; */
   text-decoration: none;
   white-space: nowrap;
   color: ${theme.colors.brown1};

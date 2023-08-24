@@ -66,6 +66,7 @@ const IconBasket = styled(iconBasket)`
 
 const Container = styled.div`
   display: flex;
+  justify-content: space-between;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 100%;
