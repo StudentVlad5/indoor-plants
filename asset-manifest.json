@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/indoor-plants/static/css/main.c3d5249d.css",
-    "main.js": "/indoor-plants/static/js/main.fa53ad6d.js",
+    "main.js": "/indoor-plants/static/js/main.cbc73d14.js",
     "static/js/640.ed9909ec.chunk.js": "/indoor-plants/static/js/640.ed9909ec.chunk.js",
     "static/js/889.43f2e597.chunk.js": "/indoor-plants/static/js/889.43f2e597.chunk.js",
     "static/js/875.7bd28790.chunk.js": "/indoor-plants/static/js/875.7bd28790.chunk.js",
@@ -41,23 +41,23 @@
     "static/media/cat.svg": "/indoor-plants/static/media/cat.06046e28cf06ab6492ef446f4d9ac95a.svg",
     "static/media/quotationMark.svg": "/indoor-plants/static/media/quotationMark.aa734593d9a62961d4f6fcd247f2fdd3.svg",
     "index.html": "/indoor-plants/index.html",
-    "static/media/icon_favorite__header.svg": "/indoor-plants/static/media/icon_favorite__header.a4e618179a13d9ad6ff367796eadc7f4.svg",
+    "static/media/icon_basketLight__header.svg": "/indoor-plants/static/media/icon_basketLight__header.61fd0d072907556dae3b6bee62752a67.svg",
     "static/media/shipping.svg": "/indoor-plants/static/media/shipping.51413c35cf002549f8164f82440b6d50.svg",
     "static/media/done.svg": "/indoor-plants/static/media/done.2d4f419cefabe3aed9cfe9576b4fef44.svg",
     "static/media/icon_user.svg": "/indoor-plants/static/media/icon_user.9393c06bd9ab55761a6b58f015a0e9bd.svg",
     "static/media/oil.svg": "/indoor-plants/static/media/oil.6d1f1f6f4faa17ec6ce24a1e37914401.svg",
-    "static/media/icon_searchLight__header.svg": "/indoor-plants/static/media/icon_searchLight__header.d4166477355407ae84b24ae43df0e8c4.svg",
-    "static/media/icon_basketLight__header.svg": "/indoor-plants/static/media/icon_basketLight__header.e65c64d41f930c9e38a37d197d701c58.svg",
+    "static/media/icon_favorite__header.svg": "/indoor-plants/static/media/icon_favorite__header.35b277f970f0a6b174f8e5370186839b.svg",
     "static/media/evenodd.svg": "/indoor-plants/static/media/evenodd.aecc545ac3c7ba6a8c6ade474086fcd4.svg",
     "static/media/icon_plus.svg": "/indoor-plants/static/media/icon_plus.02c1551648e710effc7e8656f9a1a040.svg",
-    "static/media/icon_close.svg": "/indoor-plants/static/media/icon_close.73b1d8773d59eabcd477439289b362e4.svg",
-    "static/media/icon_menu.svg": "/indoor-plants/static/media/icon_menu.f4c9e32cba2d69a8571c3b612e4985de.svg",
+    "static/media/icon_close.svg": "/indoor-plants/static/media/icon_close.260c96aba626d6a8d203d583f1cf31cb.svg",
+    "static/media/icon_menu.svg": "/indoor-plants/static/media/icon_menu.4287e90eebb410a64c7d6402780b62c7.svg",
     "static/media/plus.svg": "/indoor-plants/static/media/plus.02ca1cf143cd5e6a93628fb068db77ee.svg",
     "static/media/arrow.svg": "/indoor-plants/static/media/arrow.d2d7b1f5419f920e5348fc7f7ad7d5f4.svg",
+    "static/media/icon_searchLight__header.svg": "/indoor-plants/static/media/icon_searchLight__header.07d78551c389ba66bd591a1aec2dd02e.svg",
     "static/media/open.svg": "/indoor-plants/static/media/open.fb37f33cbfa6a6dd83b3d5e6ab510eb4.svg",
     "static/media/minus.svg": "/indoor-plants/static/media/minus.8853824879a4e822b91e026401b394e3.svg",
     "main.c3d5249d.css.map": "/indoor-plants/static/css/main.c3d5249d.css.map",
-    "main.fa53ad6d.js.map": "/indoor-plants/static/js/main.fa53ad6d.js.map",
+    "main.cbc73d14.js.map": "/indoor-plants/static/js/main.cbc73d14.js.map",
     "640.ed9909ec.chunk.js.map": "/indoor-plants/static/js/640.ed9909ec.chunk.js.map",
     "889.43f2e597.chunk.js.map": "/indoor-plants/static/js/889.43f2e597.chunk.js.map",
     "875.7bd28790.chunk.js.map": "/indoor-plants/static/js/875.7bd28790.chunk.js.map",
@@ -71,6 +71,6 @@
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.fa53ad6d.js"
+    "static/js/main.cbc73d14.js"
   ]
 }
