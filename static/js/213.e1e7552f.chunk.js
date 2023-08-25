@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[213],{1213:function(n,t,e){e.d(t,{N6B:function(){return o}});var l=e(9983);function o(n){return(0,l.w_)({tag:"svg",attr:{viewBox:"0 0 15 15",fill:"none"},child:[{tag:"path",attr:{fillRule:"evenodd",clipRule:"evenodd",d:"M7.5 2C7.77614 2 8 2.22386 8 2.5L8 12.5C8 12.7761 7.77614 13 7.5 13C7.22386 13 7 12.7761 7 12.5L7 2.5C7 2.22386 7.22386 2 7.5 2Z",fill:"currentColor"}}]})(n)}}}]);
+//# sourceMappingURL=213.e1e7552f.chunk.js.map
