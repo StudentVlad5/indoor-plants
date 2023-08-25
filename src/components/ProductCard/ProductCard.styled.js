@@ -7,7 +7,7 @@ import {
 } from 'components/baseStyles/CommonStyle.styled';
 
 const ProductCardSection = styled(Section)`
-  padding-top: 40px;
+  padding-top: 0;
 `;
 
 const ProductCardContainer = styled(Container)`
@@ -38,10 +38,10 @@ const ProductNavItem = styled.li`
 `;
 
 const ProductNavLink = styled.a`
-  font-family: ${theme.fonts[0]}; //'Nib Pro'
+  font-family: ${theme.fonts[1]}; //'Nib Pro'
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   color: ${props =>
     props.$primary ? theme.colors.green : theme.colors.green1};
@@ -115,7 +115,7 @@ const DeliveryInfoItem = styled.li`
   width: 200px;
 
   & span {
-    font-family: 'Archivo'; //Raisonne Pro
+    font-family: ${theme.fonts[0]}; //Raisonne Pro
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -126,7 +126,7 @@ const DeliveryInfoItem = styled.li`
 
   & p {
     text-align: center;
-    font-family: 'Domine'; //Nib Pro
+    font-family: ${theme.fonts[1]}; //Nib Pro
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -163,20 +163,20 @@ const Prices = styled.ul`
 `;
 
 const Discount = styled.li`
-  font-family: 'Domine'; //Nib Pro
+  font-family: ${theme.fonts[1]}; //Nib Pro
   font-size: 24px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
 
   color: ${theme.colors.green1};
 `;
 
 const Price = styled.li`
-  font-family: 'Domine'; //Nib Pro
+  font-family: ${theme.fonts[1]}; //Nib Pro
   font-size: 20px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   text-decoration-line: line-through;
 
@@ -208,7 +208,7 @@ const Option = styled.button`
   width: 137px;
   padding: 6px 8px;
 
-  font-family: 'Archivo'; //Raisonne Pro
+  font-family: ${theme.fonts[0]}; //Raisonne Pro
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -250,7 +250,7 @@ const Quantity = styled.div`
   border: 0.5px solid ${theme.colors.brown1};
 
   & span {
-    font-family: 'Domine'; //Nib Pro
+    font-family: ${theme.fonts[1]}; //Nib Pro
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -286,7 +286,7 @@ const TextBtn = styled.button`
   width: 100%;
   padding: 10px 0;
 
-  font-family: 'Archivo'; //Raisonne Pro
+  font-family: ${theme.fonts[0]}; //Raisonne Pro
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -348,7 +348,7 @@ const AccordCareItem = styled.li`
 
   & span {
     color: ${theme.colors.brown2};
-    font-family: 'Domine'; //Nib Pro
+    font-family: ${theme.fonts[1]}; //Nib Pro
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -373,7 +373,7 @@ const AccordIncludedList = styled.ul`
 const AccordIncludedItem = styled.li`
   display: list-item;
 
-  font-family: 'Domine'; //Nib Pro
+  font-family: ${theme.fonts[1]}; //Nib Pro
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

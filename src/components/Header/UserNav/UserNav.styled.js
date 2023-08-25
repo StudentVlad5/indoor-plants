@@ -19,7 +19,7 @@ const MobileAccountButton = styled(NavLink)`
   font-style: normal;
   font-size: ${theme.fontSizes.small};
   line-height: normal;
-  letter-spacing: -0.04em;
+  /* letter-spacing: -0.04em; */
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: none;

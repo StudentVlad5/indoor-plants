@@ -5,7 +5,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 10px 0px 10px;
+  padding: 40px 10px 40px 10px;
   margin: 0 auto;
   width: 100%;
   position: fixed;
@@ -14,11 +14,11 @@ const HeaderContainer = styled.header`
 
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding: 40px 30px 0px 30px;
+    padding: 40px 30px 40px 30px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    padding: 50px 120px 0px 120px;
+    padding: 50px 120px 40px 120px;
     max-width: ${theme.breakpoints.desktop};
   }
 
