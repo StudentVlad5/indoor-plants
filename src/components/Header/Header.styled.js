@@ -1,24 +1,25 @@
 import styled from 'styled-components';
+import theme from 'components/baseStyles/Variables.styled';
 
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px 0px 20px;
+  padding: 40px 10px 0px 10px;
   margin: 0 auto;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 10;
 
-  @media screen and (min-width: 768px) {
-    padding: 24px 32px 0px 32px;
-    /* max-width: 900px; */
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding: 40px 30px 0px 30px;
   }
 
-  @media screen and (min-width: 1280px) {
-    padding: 16px 120px 0px 120px;
-    /* max-width: 1440px; */
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding: 50px 120px 0px 120px;
+    max-width: ${theme.breakpoints.desktop};
   }
 
   transition: background-color 0.3s ease-in-out; /* Додаємо плавну анімацію для переходу background-color */

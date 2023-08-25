@@ -1,3 +1,4 @@
+import { CatalogList } from 'components/CatalogList/CatalogList';
 import React from 'react';
 import { SEO } from 'utils/SEO';
 
@@ -6,6 +7,7 @@ const CatalogPage = () => {
     <>
       <SEO title="HomeForest Catalog" description="Catalog of goods" />
       <h3>CatalogPage</h3>
+      <CatalogList />
     </>
   );
 };

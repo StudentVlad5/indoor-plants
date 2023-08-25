@@ -6,14 +6,21 @@ const MobileHeader = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 16px 20px 0px 20px;
+  align-items: center;
+  padding: 40px 30px 0px 30px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding: 24px 32px 0px 32px;
+    padding: 40px 45px 0px 45px;
+  }
+
+  & a {
+    margin: 0 auto;
   }
 `;
+
 const IconClose = styled(iconClose)`
   cursor: pointer;
+
   & > path {
     stroke: ${theme.colors.grey1};
     fill: ${theme.colors.grey1};

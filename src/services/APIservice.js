@@ -2,9 +2,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // const { BASE_URL } = window.global;
-const BASE_URL =
-  'https://trefle.io/api/v1/plants?token=Qm4J-FWwgb62cSxboArARECiQLFbnumbTBtv6qLf6RY';
-// const BASE_URL = 'http://localhost:3030/api';
+
+const BASE_URL = 'http://localhost:3030/api';
 
 // pathParams
 async function fetchData(pathParams) {
