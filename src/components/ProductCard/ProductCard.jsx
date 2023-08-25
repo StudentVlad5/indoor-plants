@@ -49,6 +49,8 @@ import { ReactComponent as Sun } from 'images/svg/sun.svg';
 //   images: [img1, img2, img3, img4, img5, img6],
 // };
 
+const { BASE_URL_IMG } = window.global;
+
 export const ProductCard = ({ product }) => {
   const {
     _id,
@@ -148,7 +150,7 @@ export const ProductCard = ({ product }) => {
               {images?.map((img, i) => {
                 return (
                   <SC.ControlsItem key={i}>
-                    <img src={img} alt="Image" loading="lazy" />
+                    <img src={BASE_URL_IMG + img} alt="Image" loading="lazy" />
                   </SC.ControlsItem>
                 );
               })}
@@ -157,7 +159,7 @@ export const ProductCard = ({ product }) => {
               <SC.ProductImage
                 width={347}
                 height={600}
-                src={images[0]}
+                src={BASE_URL_IMG + images[0]}
                 alt="Product image"
                 loading="lazy"
               />

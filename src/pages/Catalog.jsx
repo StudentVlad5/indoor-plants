@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SEO } from 'utils/SEO';
 import { fetchData } from '../services/APIservice';
@@ -10,13 +11,14 @@ const CatalogPage = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [searchParams] = useSearchParams();
   const { t } = useTranslation();
 
   useEffect(() => {
     (async function getData() {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(`/catalog`);
+        const { data } = await fetchData(`/catalog?${searchParams}`);
         setProducts(data);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));

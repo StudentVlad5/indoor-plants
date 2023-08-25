@@ -4,7 +4,8 @@ import * as SC from './Catalog.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
 import { ReactComponent as Open } from 'images/svg/open.svg';
-import imgDefault from 'images/No-image-available.webp';
+
+const { BASE_URL_IMG } = window.global;
 
 export const Catalog = ({ products }) => {
   const [showSort, setShowSort] = useState(false);
@@ -149,7 +150,7 @@ export const Catalog = ({ products }) => {
               return (
                 <SC.Card key={card._id}>
                   <SC.CardImage
-                    src={card.images[0] ? card.images[0] : imgDefault}
+                    src={BASE_URL_IMG + card.images[0]}
                     alt={card.name}
                     width="285"
                     height="460"

@@ -9,7 +9,10 @@ import { GlobalStyle } from 'components/baseStyles/GlobalStyle';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 
-window.global = { BASE_URL: 'http://localhost:3030/api' };
+window.global = {
+  BASE_URL: 'http://localhost:3030/api',
+  BASE_URL_IMG: 'http://localhost:3030/uploads/',
+};
 // window.global = { BASE_URL: 'https://trefle.io/api/v1/plants?token=Qm4J-FWwgb62cSxboArARECiQLFbnumbTBtv6qLf6RY'};
 
 ReactDOM.createRoot(document.getElementById('root')).render(
