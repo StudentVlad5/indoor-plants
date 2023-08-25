@@ -8,15 +8,6 @@ import PropTypes from 'prop-types';
 import * as SC from './ProductCard.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
-import img from 'images/product/i-ladna-monstera-deliciosa-dziurawa-filodendron 1.png';
-import img1 from 'images/product/Ellipse 175.png';
-import img2 from 'images/product/Ellipse 176.png';
-import img3 from 'images/product/Ellipse 177.png';
-import img4 from 'images/product/Ellipse 178.png';
-import img5 from 'images/product/Ellipse 179.png';
-import img6 from 'images/product/Ellipse 180.png';
-// import defaultImg from 'images/No-image-available.webp';
-
 import { ReactComponent as Car } from 'images/svg/shipping.svg';
 import { ReactComponent as Done } from 'images/svg/done.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
@@ -27,40 +18,40 @@ import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
 
-const product = {
-  id: 123,
-  name: 'Monstera',
-  description: 'have attractive leathery leaves that are often cut into lobes',
-  options: [
-    {
-      title: 'L plastic grow pot',
-      price: 200,
-      discount: 135,
-      total: 5,
-    },
-    {
-      title: 'XL horti white pot',
-      price: 220,
-      discount: 165,
-      total: 0,
-    },
-  ],
-  totalQuantity: 5,
-  price: 220,
-  discount: 165,
-  currency: '$',
-  typeOfPlants: 'flowering plant',
-  light: 'bright indirect light',
-  petFriendly: 'moderately toxic',
-  maintenance: 'moderately',
-  potSize: 'XL',
-  waterSchedule: 'moderately',
-  images: [img1, img2, img3, img4, img5, img6],
-};
+// const product = {
+//   id: 123,
+//   name: 'Monstera',
+//   description: 'have attractive leathery leaves that are often cut into lobes',
+//   options: [
+//     {
+//       title: 'L plastic grow pot',
+//       price: 200,
+//       discount: 135,
+//       total: 5,
+//     },
+//     {
+//       title: 'XL horti white pot',
+//       price: 220,
+//       discount: 165,
+//       total: 0,
+//     },
+//   ],
+//   totalQuantity: 5,
+//   price: 220,
+//   discount: 165,
+//   currency: '$',
+//   typeOfPlants: 'flowering plant',
+//   light: 'bright indirect light',
+//   petFriendly: 'moderately toxic',
+//   maintenance: 'moderately',
+//   potSize: 'XL',
+//   waterSchedule: 'moderately',
+//   images: [img1, img2, img3, img4, img5, img6],
+// };
 
-export const ProductCard = () => {
+export const ProductCard = ({ product }) => {
   const {
-    id,
+    _id,
     name,
     price,
     discount,
@@ -111,7 +102,7 @@ export const ProductCard = () => {
               </SC.ProductNavLink>
             </SC.ProductNavItem>
             <SC.ProductNavItem>
-              <SC.ProductNavLink href={`/catalog/${id}`} $primary>
+              <SC.ProductNavLink href={`/catalog/${_id}`} $primary>
                 {name}
               </SC.ProductNavLink>
             </SC.ProductNavItem>
@@ -166,7 +157,7 @@ export const ProductCard = () => {
               <SC.ProductImage
                 width={347}
                 height={600}
-                src={img}
+                src={images[0]}
                 alt="Product image"
                 loading="lazy"
               />
@@ -345,21 +336,28 @@ export const ProductCard = () => {
 };
 
 ProductCard.propTypes = {
-  product: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      description: PropTypes.number.isRequired,
-      options: PropTypes.array.isRequired,
-      totalQuantity: PropTypes.number.isRequired,
-      typeOfPlants: PropTypes.string,
-      light: PropTypes.string,
-      petFriendly: PropTypes.string,
-      maintenance: PropTypes.string,
-      potSize: PropTypes.string,
-      waterSchedule: PropTypes.string,
-      images: PropTypes.array,
-    }),
-  ),
+  product: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    discount: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        price: PropTypes.number,
+        discount: PropTypes.number,
+        total: PropTypes.number,
+      }),
+    ),
+    totalQuantity: PropTypes.number,
+    typeOfPlants: PropTypes.string,
+    light: PropTypes.string,
+    petFriendly: PropTypes.string,
+    maintenance: PropTypes.string,
+    potSize: PropTypes.string,
+    waterSchedule: PropTypes.string,
+    images: PropTypes.array,
+  }),
 };
