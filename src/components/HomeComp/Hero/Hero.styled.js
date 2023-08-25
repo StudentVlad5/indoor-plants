@@ -1,11 +1,6 @@
 import styled from 'styled-components';
-import { Section } from 'components/baseStyles/CommonStyle.styled';
 
-export const HeroSection = styled(Section)`
-  /* height: 100%;
-  padding: 0; */
-  background-color: #fcf9f2;
-`;
+export const HeroSection = styled.section``;
 
 export const HeroContainer = styled.div`
   display: flex;
@@ -14,37 +9,12 @@ export const HeroContainer = styled.div`
   justify-content: center;
   padding: 0;
   position: relative;
-  /* position: relative; // for img
-
-  height: 100%;
-  width: 100%;
-
-  justify-content: start;
-  align-items: start;
-
-  background-repeat: no-repeat; 
-
-  @media screen and (min-width: 768px) {
-    background-repeat: no-repeat;
-    background-size: 50vh auto, 1400px auto;
-    background-position: bottom 0px left 90%, bottom -150px left 30%;
-  }
-
-  @media screen and (min-width: 1280px) {
-    min-height: calc(100vh - 120px);
-
-    background-repeat: no-repeat;
-    background-size: 524px auto, 425px 393px, 1178px 450px;
-    background-position: bottom 0px left 92%, bottom 0px right 0px,
-      bottom 0px left 0px;
-  } */
 `;
 
 export const Img = styled.img`
-  background-repeat: no-repeat;
-  background-size: 'cover';
-  width: 100%;
   display: block;
+  height: auto;
+  max-width: 100%;
 
   &:nth-child(1) {
     @media screen and (min-width: 1440px) {
@@ -79,6 +49,7 @@ export const HeroBox = styled.div`
     width: 530px;
     height: 100%;
     padding: 306px 112px;
+    margin-left: 360px;
   }
 `;
 
@@ -130,7 +101,7 @@ export const HeroBtn = styled.button`
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
-  
+
   @media screen and (min-width: 1440px) {
     padding: 10px 75px;
   }

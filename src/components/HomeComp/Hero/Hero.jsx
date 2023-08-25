@@ -29,10 +29,8 @@ export const Hero = () => {
             <HeroBtn type="button">Shop now</HeroBtn>
           </HeroBoxText>
         </HeroBox>
-
       </HeroContainer>
       <Products />
-
     </HeroSection>
   );
 };
