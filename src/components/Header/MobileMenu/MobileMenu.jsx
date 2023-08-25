@@ -16,8 +16,8 @@ export const MobileMenu = ({ toggleMenu }) => {
   return (
     <>
       <MobileHeader>
-        <Logo to="/" onClick={toggleMenu} />
         <IconClose onClick={toggleMenu} />
+        <Logo to="/" onClick={toggleMenu} />
       </MobileHeader>
 
       {isLoggedIn ? (

@@ -10,7 +10,7 @@ const Text = styled(NavLink)`
   line-height: 42px;
   letter-spacing: 0.07em;
   color: ${theme.colors.brown2};
-  text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
+  text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.2);
   text-decoration: none;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
