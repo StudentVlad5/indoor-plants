@@ -6,6 +6,7 @@ const Section = styled.section`
   margin: 0 auto;
   padding: 60px 0;
   width: 100%;
+  max-width: ${theme.breakpoints.mobile};
 
   &::before {
     content: '';
@@ -16,9 +17,13 @@ const Section = styled.section`
     width: 100%;
     background: ${theme.colors.brown1};
   }
-
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
+    max-width: ${theme.breakpoints.tablet};
+  }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding: 120px 0;
+    max-width: ${theme.breakpoints.desktop};
   }
 `;
 

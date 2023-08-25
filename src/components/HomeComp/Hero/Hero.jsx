@@ -11,6 +11,7 @@ import {
 } from './Hero.styled';
 // import { useTranslation } from 'react-i18next';
 import hero from '../../../images/hero/hero1.png';
+import heroDesk from '../../../images/hero/heroDesk.png';
 import { Products } from '../Products/Products';
 export const Hero = () => {
   // const { t } = useTranslation();
@@ -19,6 +20,8 @@ export const Hero = () => {
     <HeroSection>
       <HeroContainer>
         <Img src={hero} alt="heroImg" />
+        <Img src={heroDesk} alt="heroImg" />
+
         <HeroBox>
           <HeroBoxText>
             <HeroTitle>Indoor Plants</HeroTitle>
@@ -26,10 +29,8 @@ export const Hero = () => {
             <HeroBtn type="button">Shop now</HeroBtn>
           </HeroBoxText>
         </HeroBox>
-
       </HeroContainer>
       <Products />
-
     </HeroSection>
   );
 };

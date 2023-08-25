@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SEO } from 'utils/SEO';
 import { fetchData } from '../services/APIservice';
-import { Catalog } from '../components/Catalog/Catalog';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+import { Catalog } from '../components/Catalog/Catalog';
 
 const CatalogPage = () => {
   const [products, setProducts] = useState([]);
