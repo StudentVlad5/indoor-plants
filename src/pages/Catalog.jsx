@@ -1,14 +1,20 @@
-import { CatalogList } from 'components/CatalogList/CatalogList';
 import React from 'react';
+import { CatalogList } from 'components/CatalogList/CatalogList';
+import { Section } from 'components/baseStyles/CommonStyle.styled';
 import { SEO } from 'utils/SEO';
+import { CatalogFilter } from 'components/CatalogFilter/CatalogFilter';
+import { CatalogSortBy } from 'components/CatalogSortBy/CatalogSortBy';
 
 const CatalogPage = () => {
   return (
-    <>
+    <Section>
       <SEO title="HomeForest Catalog" description="Catalog of goods" />
-      <h3>CatalogPage</h3>
-      <CatalogList />
-    </>
+      <CatalogSortBy />
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <CatalogFilter />
+        <CatalogList />
+      </div>
+    </Section>
   );
 };
 
