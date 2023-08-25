@@ -289,11 +289,15 @@ const GridContainer = styled.div`
 const Grid = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: stretch;
   gap: 20px;
+  width: 100%;
 
-  width: calc(100% - 285px);
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    justify-content: flex-end;
+    width: calc(100% - 285px);
+  }
 `;
 
 const Card = styled.li`

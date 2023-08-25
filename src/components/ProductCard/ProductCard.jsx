@@ -52,11 +52,12 @@ import { ReactComponent as Sun } from 'images/svg/sun.svg';
 const { BASE_URL_IMG } = window.global;
 
 export const ProductCard = ({ product }) => {
+  console.log('render ~ product:', product);
   const {
     _id,
     name,
-    price,
-    discount,
+    oldPrice,
+    currentPrice,
     currency,
     description,
     options,
@@ -67,8 +68,8 @@ export const ProductCard = ({ product }) => {
   // get data from selected option
   const [optionData, setOptionData] = useState({
     title: null,
-    price: price ? price : discount || 0,
-    discount: discount ? discount : price || 0,
+    oldPrice: oldPrice ? oldPrice : currentPrice || 0,
+    currentPrice: currentPrice ? currentPrice : oldPrice || 0,
     total: totalQuantity || 0,
   });
 
@@ -184,21 +185,21 @@ export const ProductCard = ({ product }) => {
             <div>
               <SC.Heading>
                 <Headline> {name}</Headline>
-                {discount ? (
+                {currentPrice ? (
                   <SC.Prices>
                     <SC.Discount>
-                      {optionData.discount}
+                      {optionData.currentPrice}
                       {currency}
                     </SC.Discount>
                     <SC.Price>
-                      {optionData.price}
+                      {optionData.oldPrice}
                       {currency}
                     </SC.Price>
                   </SC.Prices>
                 ) : (
                   <SC.Prices>
                     <SC.Discount>
-                      {optionData.price}
+                      {optionData.oldPrice}
                       {currency}
                     </SC.Discount>
                   </SC.Prices>
@@ -216,7 +217,7 @@ export const ProductCard = ({ product }) => {
                         key={i}
                         type="button"
                         aria-label={option.title}
-                        disabled={0 === option.total}
+                        disabled={0 == option.total}
                         onClick={e => getOptionData(e)}
                         data-option={option.title}
                       >
@@ -338,28 +339,29 @@ export const ProductCard = ({ product }) => {
 };
 
 ProductCard.propTypes = {
-  product: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    discount: PropTypes.number.isRequired,
-    currency: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        price: PropTypes.number,
-        discount: PropTypes.number,
-        total: PropTypes.number,
-      }),
-    ),
-    totalQuantity: PropTypes.number,
-    typeOfPlants: PropTypes.string,
-    light: PropTypes.string,
-    petFriendly: PropTypes.string,
-    maintenance: PropTypes.string,
-    potSize: PropTypes.string,
-    waterSchedule: PropTypes.string,
-    images: PropTypes.array,
-  }),
+  product: PropTypes.any,
+  // product: PropTypes.shape({
+  //   _id: PropTypes.string.isRequired,
+  //   name: PropTypes.string.isRequired,
+  //   currentPrice: PropTypes.number.isRequired,
+  //   oldPrice: PropTypes.number.isRequired,
+  //   currency: PropTypes.string.isRequired,
+  //   description: PropTypes.string.isRequired,
+  //   options: PropTypes.arrayOf(
+  //     PropTypes.shape({
+  //       title: PropTypes.string,
+  //       oldPrice: PropTypes.number,
+  //       currentPrice: PropTypes.number,
+  //       total: PropTypes.number,
+  //     }),
+  //   ),
+  //   totalQuantity: PropTypes.number,
+  //   typeOfPlants: PropTypes.string,
+  //   light: PropTypes.string,
+  //   petFriendly: PropTypes.string,
+  //   maintenance: PropTypes.string,
+  //   potSize: PropTypes.string,
+  //   waterSchedule: PropTypes.string,
+  //   images: PropTypes.arrayOf(PropTypes.string),
+  // }),
 };

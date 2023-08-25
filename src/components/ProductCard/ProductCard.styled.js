@@ -7,7 +7,7 @@ import {
 } from 'components/baseStyles/CommonStyle.styled';
 
 const ProductCardSection = styled(Section)`
-  padding-top: 0;
+  padding-top: 130px;
 `;
 
 const ProductCardContainer = styled(Container)`
@@ -47,7 +47,13 @@ const ProductNavLink = styled.a`
     props.$primary ? theme.colors.green : theme.colors.green1};
 
   text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.darkGreen};
+  }
 `;
+
 const ProductContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -205,7 +211,7 @@ const OptionsList = styled.div`
 `;
 
 const Option = styled.button`
-  width: 137px;
+  /* width: 137px; */
   padding: 6px 8px;
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
