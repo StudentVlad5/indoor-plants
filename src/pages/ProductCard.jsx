@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react'; //
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { SEO } from 'utils/SEO';
 import { fetchData } from '../services/APIservice';
-import { cardComponent } from 'redux/card/selectors';
+// import { cardComponent } from 'redux/card/selectors';
 import { ProductCard } from '../components/ProductCard/ProductCard';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-// import { Title } from 'components/baseStyles/CommonStyle.styled';
+import { useParams } from 'react-router-dom';
 
 const ProductCardPage = () => {
-  const card = useSelector(cardComponent);
-  console.log('ProductCardPage ~ card:', card);
+  const routeParams = useParams();
+  console.log('routeParams:', routeParams);
 
   const [product, setProduct] = useState([]);
-  // const [product, setProduct] = useState({});
-  console.log('page ~ product:', product);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { t } = useTranslation();
@@ -24,9 +22,10 @@ const ProductCardPage = () => {
     async function getData() {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(`/catalog/${card.id}`);
+        const { data } = await fetchData(`/catalog/${routeParams.id}`);
         console.log('getData ~ data:', data);
         setProduct(data);
+        console.log(product.length);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
@@ -37,10 +36,10 @@ const ProductCardPage = () => {
       }
     }
 
-    if (card.id !== '') {
+    if (routeParams.id !== '' && routeParams !== undefined) {
       getData();
     }
-  }, [card.id, t]);
+  }, [routeParams.id, t]);
 
   return (
     <>
@@ -50,12 +49,9 @@ const ProductCardPage = () => {
       />
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError(t('Whoops, something went wrong'))}
-      {product.length > 0 && !error && <ProductCard product={product} />}
-      {/* {product ? (
+      {Object.keys(product).length > 0 && !error && (
         <ProductCard product={product} />
-      ) : (
-        <Title>{t("Whoops, we don't have any information")}</Title>
-      )} */}
+      )}
     </>
   );
 };
