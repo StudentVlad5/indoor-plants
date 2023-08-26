@@ -11,8 +11,6 @@ import { useParams } from 'react-router-dom';
 
 const ProductCardPage = () => {
   const routeParams = useParams();
-  console.log('routeParams:', routeParams);
-
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -23,9 +21,7 @@ const ProductCardPage = () => {
       setIsLoading(true);
       try {
         const { data } = await fetchData(`/catalog/${routeParams.id}`);
-        console.log('getData ~ data:', data);
         setProduct(data);
-        console.log(product.length);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
