@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { HealthDiscr, HealthTitle } from '../Health/Health.styled';
 import { ReactComponent as arrow } from 'images/svg/arrow.svg';
 import { ReactComponent as quotationMark } from 'images/svg/quotationMark.svg';
+import { ReactComponent as quotationMarkIconDesk } from 'images/svg/quotationMarkIconDesk.svg';
 
 export const FeedbackSection = styled(Section)`
   position: relative;
@@ -27,23 +28,30 @@ export const FeedbackBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-/* 
-  &:nth-child(1) {
-    display: block;
-    @media screen and (min-width: 1440px) {
-      display: none;
-    }
-  }
 
-  &:nth-child(2) {
+  @media screen and (min-width: 1440px) {
     display: none;
-    @media screen and (min-width: 1440px) {
-      display: block;
-    }
-  } */
+  }
+`;
+
+export const FeedbackBox1 = styled.div`
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+export const FeedbackBox1Text = styled.div`
+  display: flex;
+  align-items: center;
+  width: 586px;
 `;
 
 export const FeedbackTitle = styled(HealthTitle)`
+  margin-top: 0;
+  margin-bottom: 32px;
+
   @media screen and (min-width: 1440px) {
     text-align: center;
     font-size: 32px;
@@ -56,9 +64,16 @@ export const FeedbackTitle = styled(HealthTitle)`
 
 export const FeedbackDiscr = styled(HealthDiscr)`
   text-align: center;
-  width: 261px;
+  width: 433px;
+  height: 108px;
   margin-bottom: 0;
+
+  @media screen and (min-width: 1440px) {
+    text-align: left;
+    margin-left: 20px;
+  }
 `;
+export const QuotationMarkIconDesk = styled(quotationMarkIconDesk)``;
 
 export const QuotationMarkIcon = styled(quotationMark)``;
 

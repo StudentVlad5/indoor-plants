@@ -1,13 +1,44 @@
-import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
+import { Container } from 'components/baseStyles/CommonStyle.styled';
+import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 
 export const ProductsBox = styled(Container)`
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-bottom: 60px;
+
+  @media screen and (min-width: 1440px) {
+    padding-bottom: 120px;
+  }
 `;
 
-export const ProductsSection = styled(Section)`
-  padding-top: 0;
+export const ProductsSection = styled.div`
+  /* padding-top: 0; */
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+
+  position: relative;
+  margin: 0 auto;
+  padding: 60px 0;
+  width: 100%;
+  max-width: ${theme.breakpoints.mobile};
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+
+    height: 1px;
+    width: 100%;
+    background: ${theme.colors.brown1};
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    max-width: ${theme.breakpoints.tablet};
+  }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding: 120px 0;
+    max-width: ${theme.breakpoints.desktop};
+  }
 `;
 
 export const ProductsTitle = styled.h2`
