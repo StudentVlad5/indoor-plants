@@ -4,7 +4,7 @@ import theme from 'components/baseStyles/Variables.styled';
 import { ReactComponent as iconMenu } from 'images/svg/icon_menu.svg';
 
 const Burger = styled(iconMenu)`
-  margin-left: 20px;
+  /* margin-left: 20px; */
   cursor: pointer;
   fill: ${theme.colors.brown1};
 

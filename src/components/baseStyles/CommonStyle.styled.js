@@ -6,7 +6,6 @@ const Section = styled.section`
   margin: 0 auto;
   padding: 60px 0;
   width: 100%;
-  max-width: ${theme.breakpoints.mobile};
 
   &::before {
     content: '';
@@ -17,9 +16,11 @@ const Section = styled.section`
     width: 100%;
     background: ${theme.colors.brown1};
   }
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    max-width: ${theme.breakpoints.tablet};
+    padding: 80px 0;
   }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding: 120px 0;
     max-width: ${theme.breakpoints.desktop};
@@ -66,11 +67,15 @@ const Subtitle = styled.p`
 
 const Headline = styled.h2`
   font-family: ${theme.fonts[1]}; //Nib pro
-  font-size: 24px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 500;
   line-height: 144.5%; /* 46.24px */
   color: ${theme.colors.green};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 24px;
+  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 32px;

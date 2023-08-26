@@ -18,41 +18,9 @@ import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
 
-// const product = {
-//   id: 123,
-//   name: 'Monstera',
-//   description: 'have attractive leathery leaves that are often cut into lobes',
-//   options: [
-//     {
-//       title: 'L plastic grow pot',
-//       price: 200,
-//       discount: 135,
-//       total: 5,
-//     },
-//     {
-//       title: 'XL horti white pot',
-//       price: 220,
-//       discount: 165,
-//       total: 0,
-//     },
-//   ],
-//   totalQuantity: 5,
-//   price: 220,
-//   discount: 165,
-//   currency: '$',
-//   typeOfPlants: 'flowering plant',
-//   light: 'bright indirect light',
-//   petFriendly: 'moderately toxic',
-//   maintenance: 'moderately',
-//   potSize: 'XL',
-//   waterSchedule: 'moderately',
-//   images: [img1, img2, img3, img4, img5, img6],
-// };
-
 const { BASE_URL_IMG } = window.global;
 
 export const ProductCard = ({ product }) => {
-  console.log('render ~ product:', product);
   const {
     _id,
     name,
@@ -339,29 +307,29 @@ export const ProductCard = ({ product }) => {
 };
 
 ProductCard.propTypes = {
-  product: PropTypes.any,
-  // product: PropTypes.shape({
-  //   _id: PropTypes.string.isRequired,
-  //   name: PropTypes.string.isRequired,
-  //   currentPrice: PropTypes.number.isRequired,
-  //   oldPrice: PropTypes.number.isRequired,
-  //   currency: PropTypes.string.isRequired,
-  //   description: PropTypes.string.isRequired,
-  //   options: PropTypes.arrayOf(
-  //     PropTypes.shape({
-  //       title: PropTypes.string,
-  //       oldPrice: PropTypes.number,
-  //       currentPrice: PropTypes.number,
-  //       total: PropTypes.number,
-  //     }),
-  //   ),
-  //   totalQuantity: PropTypes.number,
-  //   typeOfPlants: PropTypes.string,
-  //   light: PropTypes.string,
-  //   petFriendly: PropTypes.string,
-  //   maintenance: PropTypes.string,
-  //   potSize: PropTypes.string,
-  //   waterSchedule: PropTypes.string,
-  //   images: PropTypes.arrayOf(PropTypes.string),
-  // }),
+  // product: PropTypes.any,
+  product: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    currentPrice: PropTypes.number.isRequired,
+    oldPrice: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        oldPrice: PropTypes.number,
+        currentPrice: PropTypes.number,
+        total: PropTypes.number,
+      }),
+    ),
+    totalQuantity: PropTypes.number,
+    typeOfPlants: PropTypes.string,
+    light: PropTypes.string,
+    petFriendly: PropTypes.string,
+    maintenance: PropTypes.string,
+    potSize: PropTypes.string,
+    waterSchedule: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+  }),
 };
