@@ -12,12 +12,14 @@ import img_mobile_webp_3 from '../images/error/404_indoor_plants_mobile_3x.webp'
 import img_desktop_webp_1 from '../images/error/404_indoor_plants_desktop_1x.webp';
 import img_desktop_webp_2 from '../images/error/404_indoor_plants_desktop_2x.webp';
 import img_desktop_webp_3 from '../images/error/404_indoor_plants_desktop_3x.webp';
+import { NotFound } from 'components/NotFound/NotFound';
+import { ErrorContainer, ErrorImg } from 'components/NotFound/NotFound.styled';
 
 const NotFoundPage = () => {
   return (
-    <>
+    <ErrorContainer>
       <SEO title="HomeForest NotFoundPage" description="Not Found Page" />
-      <picture>
+      <picture style={{ height: '100%', width: '100%' }}>
         <source
           media="(max-width:319.98px)"
           srcSet={`${img_mobile_webp_1} 1x, ${img_mobile_webp_2} 2x, ${img_mobile_webp_3} 3x, type="image/webp"`}
@@ -31,7 +33,7 @@ const NotFoundPage = () => {
           srcSet={`${img_tablet_webp_1} 1x, ${img_tablet_webp_2} 2x, ${img_tablet_webp_3} 3x, type="image/webp"`}
         />
 
-        <img
+        <ErrorImg
           className="404_image"
           src={img_tablet_webp_1}
           srcSet={`${img_mobile_webp_1} 319.98w, ${img_tablet_webp_1} 768w, ${img_desktop_webp_1} 1280w`}
@@ -42,7 +44,8 @@ const NotFoundPage = () => {
           loading="lazy"
         />
       </picture>
-    </>
+      <NotFound />
+    </ErrorContainer>
   );
 };
 

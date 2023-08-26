@@ -45,6 +45,7 @@ const theme = {
     small: '14px',
     medium: '18px',
     large: '20px',
+    extra: '24px',
     extraXL: '32px',
     extraXXL: '36px',
   },
