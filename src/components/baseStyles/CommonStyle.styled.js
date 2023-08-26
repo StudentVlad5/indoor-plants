@@ -17,8 +17,7 @@ const Section = styled.section`
     width: 100%;
     background: ${theme.colors.brown1};
   }
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     max-width: ${theme.breakpoints.tablet};
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {

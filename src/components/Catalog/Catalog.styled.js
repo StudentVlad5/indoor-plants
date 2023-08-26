@@ -3,7 +3,7 @@ import theme from 'components/baseStyles/Variables.styled';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 const CatalogSection = styled(Section)`
-  padding-top: 24px;
+  padding-top: 154px;
 `;
 
 const CatalogContainer = styled(Container)`
@@ -44,11 +44,15 @@ const Sort = styled.div`
 
   & span {
     font-family: ${theme.fonts[0]}; //Raisonne Pro
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     color: ${theme.colors.green};
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      font-size: 14px;
+    }
   }
 `;
 
@@ -117,21 +121,40 @@ const IconBtn = styled.button`
   }
 `;
 
-const GridContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-
-  width: 100%;
-  margin-top: 36px;
-`;
-
 const FiltersBox = styled.div`
+  position: relative;
   display: inline-flex;
   flex-direction: column;
   gap: 36px;
 
-  width: 285px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
+const FiltersWrapper = styled.div`
+  position: absolute;
+  top: 50px;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+`;
+
+const FiltersContainer = styled.div`
+  display: none;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 36px;
+    width: 285px;
+  }
 `;
 
 const Filters = styled.ul`
@@ -139,7 +162,6 @@ const Filters = styled.ul`
   flex-direction: column;
   align-items: center;
   /* gap: 16px; */
-
   width: 100%;
 `;
 
@@ -149,16 +171,17 @@ const Filter = styled.li`
   justify-content: space-between;
 
   width: 100%;
-  padding: 18px 0;
+  padding: 8px 0;
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding: 18px 0;
     font-size: 14px;
   }
 
@@ -171,10 +194,10 @@ const Filter = styled.li`
 
 const FilterBtn = styled.button`
   width: 100%;
-  padding: 16px 0;
+  padding: 6px 0;
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -190,6 +213,7 @@ const FilterBtn = styled.button`
   cursor: pointer;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding: 16px 0;
     font-size: 14px;
   }
 
@@ -207,10 +231,10 @@ const FilterBtn = styled.button`
 
 const InfoBtn = styled.button`
   width: 100%;
-  padding: 16px 0;
+  padding: 6px 0;
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -226,6 +250,7 @@ const InfoBtn = styled.button`
   cursor: pointer;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding: 16px 0;
     font-size: 14px;
   }
 
@@ -252,17 +277,35 @@ const InfoBtnBox = styled.div`
   width: 100%;
 `;
 
+const GridContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  width: 100%;
+  margin-top: 36px;
+`;
+
 const Grid = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: stretch;
   gap: 20px;
+  width: 100%;
 
-  width: calc(100% - 285px);
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    justify-content: flex-end;
+    width: calc(100% - 285px);
+  }
 `;
 
-const Card = styled.li``;
+const Card = styled.li`
+  & a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+`;
 
 const CardImage = styled.img`
   width: 214px;
@@ -353,11 +396,13 @@ export {
   SortList,
   SortItem,
   IconBtn,
-  FiltersBox,
-  FilterBtn,
   InfoBtn,
   InfoBtnBox,
   GridContainer,
+  FiltersContainer,
+  FiltersBox,
+  FiltersWrapper,
+  FilterBtn,
   Filters,
   Filter,
   Grid,

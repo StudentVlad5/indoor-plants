@@ -3,6 +3,7 @@ import { reloadSlice } from './reload/slice';
 import { authReducer } from './auth/slice';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { cardReducer } from './card/slice';
 import { modalReducer } from './modal/slice';
 
 // Persisting token and role fields from auth slice to localstorage
@@ -16,6 +17,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     reload: reloadSlice.reducer,
+    card: cardReducer,
     modal: modalReducer,
   },
   middleware: getDefaultMiddleware =>
