@@ -140,14 +140,14 @@ const FiltersBox = styled.div`
 const FiltersWrapper = styled.div`
   position: absolute;
   top: 35px;
-  left: 0;
+  right: 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 
-  width: 100%;
+  width: 50vw;
   padding: 8px;
 
   background-color: ${theme.colors.fon};
@@ -183,11 +183,12 @@ const Filters = styled.ul`
 
 const Filter = styled.li`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
-  padding: 8px 0 0 10px;
+  padding: 8px 0 8px 10px;
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
   font-size: 10px;
@@ -197,7 +198,7 @@ const Filter = styled.li`
   color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding: 18px 0 0 10px;
+    padding: 18px 0 18px 10px;
     font-size: 14px;
   }
 
@@ -242,6 +243,36 @@ const FilterBtn = styled.button`
     color: ${theme.colors.brown1};
     border: 1px solid ${theme.colors.brown2};
     cursor: default;
+  }
+`;
+
+const FilterHeading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+`;
+
+const FilterInnerList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
+
+  width: 100%;
+
+  & > label {
+    display: flex;
+  }
+`;
+
+const FilterInnerListItem = styled.input`
+  margin-right: 4px;
+
+  &:checked {
+    background-color: ${theme.colors.green} !important;
   }
 `;
 
@@ -432,6 +463,9 @@ export {
   FilterBtn,
   Filters,
   Filter,
+  FilterHeading,
+  FilterInnerList,
+  FilterInnerListItem,
   Grid,
   Card,
   CardImage,
