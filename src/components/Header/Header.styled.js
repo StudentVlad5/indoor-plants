@@ -12,14 +12,12 @@ const HeaderContainer = styled.header`
   top: 0;
   z-index: 10;
 
-
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding: 40px 30px 40px 30px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding: 50px 120px 40px 120px;
-    max-width: ${theme.breakpoints.desktop};
   }
 
   transition: background-color 0.3s ease-in-out; /* Додаємо плавну анімацію для переходу background-color */

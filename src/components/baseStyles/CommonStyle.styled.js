@@ -36,7 +36,7 @@ const Container = styled.div`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    max-width: 1440px;
+    max-width: ${theme.breakpoints.desktop};
     padding: 0 120px;
   }
 `;
