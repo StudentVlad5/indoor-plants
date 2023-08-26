@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
-import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
+import {
+  Container,
+  Section,
+  Subtitle,
+} from 'components/baseStyles/CommonStyle.styled';
 
 const CatalogSection = styled(Section)`
   padding-top: 122px;
@@ -22,6 +26,11 @@ const Heading = styled.div`
   width: 100%;
 `;
 
+const HeadingBtnBox = styled.div`
+  display: flex;
+  gap: 18px;
+`;
+
 const SortBox = styled.div`
   position: relative;
   display: flex;
@@ -29,7 +38,7 @@ const SortBox = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    min-width: 285px;
+    min-width: 150px;
   }
 `;
 
@@ -40,9 +49,9 @@ const Sort = styled.div`
   padding: 10px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    gap: 181px;
+    gap: 50px;
 
-    padding: 19px 15px;
+    padding: 15px;
     border: 0.5px solid ${theme.colors.brown2};
   }
 
@@ -78,7 +87,7 @@ const SortList = styled.ul`
   box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 2px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    top: 65px;
+    top: 58px;
     right: 0;
     width: 100%;
     border-radius: 0;
@@ -443,12 +452,50 @@ const CardSize = styled.div`
   }
 `;
 
-const InfoSection = styled.div``;
+const BenefitsSection = styled(Section)`
+  text-align: center;
+`;
+
+const BenefitsList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  margin-top: 64px;
+`;
+
+const BenefitsItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 285px;
+  }
+`;
+
+const BenefitsSubtitle = styled(Subtitle)`
+  color: ${theme.colors.brown1};
+`;
+
+const BenefitsDescription = styled.span`
+  font-family: ${theme.fonts[1]}; //Nib Pro
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 166%; /* 26.56px */
+
+  color: ${theme.colors.brown2};
+`;
 
 export {
   CatalogSection,
   CatalogContainer,
   Heading,
+  HeadingBtnBox,
   SortBox,
   Sort,
   SortList,
@@ -475,5 +522,9 @@ export {
   CardDiscount,
   CardPrice,
   CardSize,
-  InfoSection,
+  BenefitsSection,
+  BenefitsList,
+  BenefitsItem,
+  BenefitsSubtitle,
+  BenefitsDescription,
 };

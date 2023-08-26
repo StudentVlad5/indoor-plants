@@ -201,20 +201,20 @@ export const ProductCard = ({ product }) => {
               <SC.Quantity>
                 <SC.IconBtn
                   type="button"
-                  aria-label="plus"
-                  onClick={() => setValue(value + 1)}
-                  disabled={value >= optionData.total}
-                >
-                  <Plus />
-                </SC.IconBtn>
-                <span>{value}</span>
-                <SC.IconBtn
-                  type="button"
                   aria-label="minus"
                   onClick={() => setValue(value - 1)}
                   disabled={value <= 0}
                 >
                   <Minus />
+                </SC.IconBtn>
+                <span>{value}</span>
+                <SC.IconBtn
+                  type="button"
+                  aria-label="plus"
+                  onClick={() => setValue(value + 1)}
+                  disabled={value >= optionData.total}
+                >
+                  <Plus />
                 </SC.IconBtn>
               </SC.Quantity>
             </SC.Options>
