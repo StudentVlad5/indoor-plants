@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
-import { BackButton } from 'components/helpers/BackLink/BackLink';
 
 export const ErrorContainer = styled.div`
   position: relative;
@@ -90,21 +89,12 @@ export const ErrorBtn = styled.button`
   border: 1px solid ${theme.colors.brown};
   color: ${theme.colors.brown};
   background-color: transparent;
+  cursor: pointer;
   &:hover,
   &:focus {
     color: ${theme.colors.white};
     background-color: ${theme.colors.green};
   }
-`;
-
-export const GoBackBtn = styled(BackButton)`
-  font-family: 'Raisonne Pro', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  text-align: center;
-  text-transform: uppercase;
-  line-height: normal;
 `;
 
 export const ErrorImg = styled.img`
