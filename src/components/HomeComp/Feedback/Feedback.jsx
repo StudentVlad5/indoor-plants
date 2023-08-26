@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import {
   ArrowIcon,
-  Feedback,
+  // Feedback,
   FeedbackBox,
+  FeedbackBox1,
+  FeedbackBox1Text,
   FeedbackDiscr,
-  FeedbackSection,
+  // FeedbackSection,
   FeedbackTitle,
   FeedbackUser,
   QuotationMarkIcon,
+  QuotationMarkIconDesk,
 } from './Feedback.styled';
+import { ProductsSection } from '../Products/Products.styled';
 
 export const FeedbackComp = () => {
   const feedbackArr = [
@@ -17,7 +21,7 @@ export const FeedbackComp = () => {
       user: 'Matthew H.',
     },
     {
-      text: ' Strelitzia is beautiful! 😍 I got it as a gift from my husband and I think it was from the heart because she has been with us for less than a month and two new leaves are already growing 🙂',
+      text: 'Strelitzia is beautiful! 😍 I got it as a gift from my husband and I think it was from the heart because she has been with us for less than a month and two new leaves are already growing 🙂',
       user: 'Jenny P.',
     },
   ];
@@ -33,27 +37,40 @@ export const FeedbackComp = () => {
   };
 
   return (
-    <FeedbackSection>
-      <Feedback>
-        <FeedbackTitle>What our clients say</FeedbackTitle>
-        <FeedbackBox>
-          <ArrowIcon onClick={prevSlide} />
-          <FeedbackDiscr>
-            <QuotationMarkIcon />
-            {feedbackArr[currentSlide].text}
-            <FeedbackUser>{feedbackArr[currentSlide].user}</FeedbackUser>
-          </FeedbackDiscr>
-          <ArrowIcon onClick={nextSlide} />
-        </FeedbackBox>
+    <ProductsSection>
+      {/* <Feedback> */}
+      <FeedbackTitle>What our clients say</FeedbackTitle>
+      <FeedbackBox>
+        <ArrowIcon onClick={prevSlide} />
+        <FeedbackDiscr>
+          <QuotationMarkIcon />
+          {feedbackArr[currentSlide].text}
+          <FeedbackUser>{feedbackArr[currentSlide].user}</FeedbackUser>
+        </FeedbackDiscr>
+        <ArrowIcon onClick={nextSlide} />
+      </FeedbackBox>
 
-        {/* <FeedbackBox>
+      <FeedbackBox1>
+        <FeedbackBox1Text>
+          <QuotationMarkIconDesk />
           <FeedbackDiscr>
-            <QuotationMarkIcon />
-            {feedbackArr[currentSlide].text}
-            <FeedbackUser>{feedbackArr[currentSlide].user}</FeedbackUser>
+            Yukka has taken pride of place in his new home and looks beautiful
+            in the sun on a white wall, I am delighted because it is really
+            beautiful and impressive. The best plant shop I recommend. Matthew
+            H.
           </FeedbackDiscr>
-        </FeedbackBox> */}
-      </Feedback>
-    </FeedbackSection>
+        </FeedbackBox1Text>
+
+        <FeedbackBox1Text>
+          <QuotationMarkIconDesk />
+          <FeedbackDiscr>
+            Strelitzia is beautiful! 😍 I got it as a gift from my husband and I
+            think it was from the heart because she has been with us for less
+            than a month and two new leaves are already growing 🙂 Jenny P.
+          </FeedbackDiscr>
+        </FeedbackBox1Text>
+      </FeedbackBox1>
+      {/* </Feedback> */}
+    </ProductsSection>
   );
 };

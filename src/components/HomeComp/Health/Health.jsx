@@ -6,17 +6,18 @@ import {
   HealthDiscr,
   HealthHeadTitle,
   HealthTitle,
-  HelstSection,
+  // HelstSection,
   ImgBox,
   ReadMore,
 } from './Health.styled';
 import woman from '../../../images/hero/products/woman.png';
 import { Discr } from './Discr/Discr';
+import { ProductsSection } from '../Products/Products.styled';
 
 export const Health = () => {
   return (
     <>
-      <HelstSection>
+      <ProductsSection>
         <HealthBox>
           <HealthBoxDiscr>
             <HealthHeadTitle>health as part of a lifestyle</HealthHeadTitle>
@@ -52,7 +53,7 @@ export const Health = () => {
             </BoxText>
           </HealthBoxDiscr>
         </HealthBox>
-      </HelstSection>
+      </ProductsSection>
       <Discr />
     </>
   );

@@ -1,5 +1,5 @@
-import { Section } from "components/baseStyles/CommonStyle.styled";
-import styled from "styled-components";
+import { Section } from 'components/baseStyles/CommonStyle.styled';
+import styled from 'styled-components';
 
 export const CareSection = styled(Section)`
   position: relative;
@@ -33,7 +33,6 @@ export const CareBoxDiscr = styled.div`
   &:nth-child(2) {
     display: none;
     @media screen and (min-width: 1440px) {
-      display: block;
       display: flex;
     }
   }
@@ -45,7 +44,6 @@ export const CareBoxText = styled.div`
 
 export const CareImgBox = styled.div`
   position: relative;
-  padding-bottom: 60px;
   margin-top: 24px;
   display: flex;
   justify-content: center;

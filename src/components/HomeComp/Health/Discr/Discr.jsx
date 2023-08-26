@@ -1,11 +1,17 @@
 import React from 'react';
-
-
 import dog from '../../../../images/hero/products/dog-plants.png';
 import pepper from '../../../../images/hero/products/pepper.png';
 import african from '../../../../images/hero/products/african.png';
 import packaging from '../../../../images/hero/products/plant-packaging.png';
-import { HealthBox, HealthImgDiscr, HealthImgTitle, HealthList, HealthListItem, HelstSection } from '../Health.styled';
+import {
+  // HealthBox,
+  HealthImgDiscr,
+  HealthImgTitle,
+  HealthList,
+  HealthListItem,
+  // HelstSection,
+} from '../Health.styled';
+import { ProductsSection } from 'components/HomeComp/Products/Products.styled';
 
 export const Discr = () => {
   const imgArr = [dog, pepper, african, packaging];
@@ -16,8 +22,8 @@ export const Discr = () => {
     'Gifts',
   ];
   return (
-    <HelstSection>
-      <HealthBox>
+    <ProductsSection>
+      {/* <HealthBox> */}
         <HealthImgTitle>New Arrivals</HealthImgTitle>
         <HealthList>
           {imgArr.map((image, idx) => (
@@ -27,7 +33,7 @@ export const Discr = () => {
             </HealthListItem>
           ))}
         </HealthList>
-      </HealthBox>
-    </HelstSection>
+      {/* </HealthBox> */}
+    </ProductsSection>
   );
 };

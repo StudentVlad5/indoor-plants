@@ -1,5 +1,5 @@
-import { Section } from "components/baseStyles/CommonStyle.styled";
-import styled from "styled-components";
+import { Section } from 'components/baseStyles/CommonStyle.styled';
+import styled from 'styled-components';
 
 export const HelstSection = styled(Section)`
   position: relative;
@@ -13,6 +13,7 @@ export const HelstSection = styled(Section)`
     background: #5f4a32;
   }
 `;
+
 export const HealthBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -105,7 +106,6 @@ export const ReadMore = styled.a`
 
 export const ImgBox = styled.div`
   position: relative;
-  padding-bottom: 60px;
   margin-top: 24px;
   display: flex;
   justify-content: center;
@@ -130,12 +130,15 @@ export const HealthListItem = styled.li`
 `;
 
 export const HealthImgTitle = styled(HealthTitle)`
-  margin-top: 60px;
+  margin-top: 0;
+  margin-bottom: 32px;
+
   @media screen and (min-width: 1440px) {
     text-align: center;
     font-size: 32px;
     font-weight: 600;
     line-height: 144.5%; /* 46.24px */
+    margin-bottom: 40px;
   }
 `;
 

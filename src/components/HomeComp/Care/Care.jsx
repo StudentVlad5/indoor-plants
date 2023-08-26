@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  CareBox,
+  // CareBox,
   CareBoxDiscr,
   CareBoxText,
   CareImg,
   CareImgBox,
-  CareSection,
+  // CareSection,
 } from './Care.styled';
 import youngWoman from '../../../images/hero/products/young-woman.png';
 import {
@@ -14,11 +14,12 @@ import {
   HealthTitle,
   ReadMore,
 } from '../Health/Health.styled';
+import { ProductsSection } from '../Products/Products.styled';
 
 export const Care = () => {
   return (
-    <CareSection>
-      <CareBox>
+    <ProductsSection>
+      {/* <CareBox> */}
         <CareBoxDiscr>
           <HealthHeadTitle>Care and treatment</HealthHeadTitle>
           <HealthTitle>Spring care for indoor plants</HealthTitle>
@@ -50,9 +51,11 @@ export const Care = () => {
               <ReadMore href="#">Read more</ReadMore>
             </CareBoxText>
           </div>
-          <CareImg src={youngWoman} alt="" />
+          <CareImgBox>
+            <CareImg src={youngWoman} alt="" />
+          </CareImgBox>
         </CareBoxDiscr>
-      </CareBox>
-    </CareSection>
+      {/* </CareBox> */}
+    </ProductsSection>
   );
 };
