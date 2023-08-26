@@ -3,7 +3,11 @@ import theme from 'components/baseStyles/Variables.styled';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 const CatalogSection = styled(Section)`
-  padding-top: 154px;
+  padding-top: 122px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-top: 154px;
+  }
 `;
 
 const CatalogContainer = styled(Container)`
@@ -68,6 +72,7 @@ const SortList = styled.ul`
   gap: 4px;
 
   padding: 15px;
+  background-color: ${theme.colors.fon};
   border: 0.5px solid ${theme.colors.brown2};
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 2px;
@@ -134,15 +139,26 @@ const FiltersBox = styled.div`
 
 const FiltersWrapper = styled.div`
   position: absolute;
-  top: 50px;
-  left: 0;
+  top: 35px;
+  right: 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 
-  width: 100%;
+  width: 50vw;
+  padding: 8px;
+
+  background-color: ${theme.colors.fon};
+  border: 0.5px solid ${theme.colors.brown2};
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 2px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    top: 65px;
+    border-radius: 0;
+  }
 `;
 
 const FiltersContainer = styled.div`
@@ -167,11 +183,12 @@ const Filters = styled.ul`
 
 const Filter = styled.li`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
-  padding: 8px 0;
+  padding: 8px 0 8px 10px;
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
   font-size: 10px;
@@ -181,7 +198,7 @@ const Filter = styled.li`
   color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding: 18px 0;
+    padding: 18px 0 18px 10px;
     font-size: 14px;
   }
 
@@ -226,6 +243,36 @@ const FilterBtn = styled.button`
     color: ${theme.colors.brown1};
     border: 1px solid ${theme.colors.brown2};
     cursor: default;
+  }
+`;
+
+const FilterHeading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+`;
+
+const FilterInnerList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
+
+  width: 100%;
+
+  & > label {
+    display: flex;
+  }
+`;
+
+const FilterInnerListItem = styled.input`
+  margin-right: 4px;
+
+  &:checked {
+    background-color: ${theme.colors.green} !important;
   }
 `;
 
@@ -279,11 +326,15 @@ const InfoBtnBox = styled.div`
 
 const GridContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
 
   width: 100%;
   margin-top: 36px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    justify-content: space-between;
+  }
 `;
 
 const Grid = styled.ul`
@@ -292,7 +343,14 @@ const Grid = styled.ul`
   justify-content: center;
   align-items: stretch;
   gap: 20px;
+
   width: 100%;
+  max-width: calc(100% - 20px);
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    justify-content: space-around;
+    width: calc(100% - 60px);
+  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     justify-content: flex-end;
@@ -405,6 +463,9 @@ export {
   FilterBtn,
   Filters,
   Filter,
+  FilterHeading,
+  FilterInnerList,
+  FilterInnerListItem,
   Grid,
   Card,
   CardImage,

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'; //
 import { useTranslation } from 'react-i18next';
-// import { useSelector } from 'react-redux';
 import { SEO } from 'utils/SEO';
 import { fetchData } from '../services/APIservice';
-// import { cardComponent } from 'redux/card/selectors';
 import { ProductCard } from '../components/ProductCard/ProductCard';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';

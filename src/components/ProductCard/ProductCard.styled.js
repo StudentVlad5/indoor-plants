@@ -7,7 +7,11 @@ import {
 } from 'components/baseStyles/CommonStyle.styled';
 
 const ProductCardSection = styled(Section)`
-  padding-top: 130px;
+  padding-top: 122px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding-top: 130px;
+  }
 `;
 
 const ProductCardContainer = styled(Container)`
@@ -59,12 +63,14 @@ const ProductContent = styled.div`
   flex-direction: column;
   gap: 40px;
 
-  margin-top: 48px;
+  margin-top: 18px;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row;
     justify-content: space-between;
     gap: 0;
+
+    margin-top: 48px;
   }
 `;
 
@@ -89,55 +95,81 @@ const ControlsList = styled.ul`
   flex-direction: column;
   gap: 24px;
 
+  height: 100%;
   max-height: 600px;
 `;
 
 const ControlsItem = styled.li`
   & > img {
     width: 80px;
-    height: 80px;
+    height: auto;
     border-radius: 80px;
   }
 `;
 
 const ProductImage = styled.img`
   width: 437px;
-  height: 600px;
+  height: auto;
   margin-bottom: 16px;
 `;
 
 const DeliveryInfo = styled.ul`
   display: inline-flex;
   justify-content: flex-start;
-  gap: 38px;
+  gap: 16px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    gap: 38px;
+  }
 `;
 
 const DeliveryInfoItem = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
 
-  width: 200px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    gap: 12px;
+    width: 200px;
+  }
 
   & span {
     font-family: ${theme.fonts[0]}; //Raisonne Pro
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
     color: ${theme.colors.green};
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      font-size: 14px;
+    }
   }
 
   & p {
     text-align: center;
     font-family: ${theme.fonts[1]}; //Nib Pro
-    font-size: 12px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: 160%; /* 19.2px */
     color: ${theme.colors.brown2};
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      font-size: 12px;
+    }
+  }
+
+  & svg {
+    width: 18px;
+    height: 18px;
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      width: 24px;
+      height: 24px;
+    }
   }
 `;
 

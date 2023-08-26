@@ -1,7 +1,5 @@
 import React, { useState } from 'react'; //, useEffect
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { addCard } from 'redux/card/operation';
 import PropTypes from 'prop-types';
 import * as SC from './Catalog.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
@@ -17,16 +15,9 @@ export const Catalog = ({ products }) => {
   const [showFilter, setShowFilter] = useState(false);
   const toggleFilter = () => setShowFilter(state => !state);
 
-  const dispatch = useDispatch();
-
-  const saveCardData = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(
-      addCard({
-        id: e.currentTarget.dataset.id,
-      }),
-    );
+  const getUniqueOptions = key => {
+    const unique = [...new Set(products.map(item => item[key]))];
+    return unique.sort();
   };
 
   return (
@@ -72,81 +63,191 @@ export const Catalog = ({ products }) => {
               <SC.FiltersWrapper>
                 <SC.Filters>
                   <SC.Filter>
-                    <span>TYPE OF PLANTS</span>
-                    <SC.IconBtn
-                      type="button"
-                      aria-label="switch to open filter"
-                      aria-expanded="false"
-                      onClick={toggleFilter}
-                    >
-                      <Open />
-                    </SC.IconBtn>
+                    <SC.FilterHeading>
+                      <span>TYPE OF PLANTS</span>
+                      <SC.IconBtn
+                        type="button"
+                        aria-label="switch to open filter"
+                        aria-expanded="false"
+                        onClick={toggleFilter}
+                      >
+                        <Open />
+                      </SC.IconBtn>
+                    </SC.FilterHeading>
+                    <SC.FilterInnerList>
+                      {getUniqueOptions('typeOfPlants').map((card, i) => {
+                        return (
+                          <label key={i}>
+                            <SC.FilterInnerListItem
+                              type="checkbox"
+                              name="typeOfPlants"
+                              value={card}
+                            />
+                            {card}
+                          </label>
+                        );
+                      })}
+                    </SC.FilterInnerList>
                   </SC.Filter>
                   <SC.Filter>
-                    <span>LIGHT</span>
-                    <SC.IconBtn
-                      type="button"
-                      aria-label="switch to open filter"
-                      aria-expanded="false"
-                      onClick={toggleFilter}
-                    >
-                      <Open />
-                    </SC.IconBtn>
+                    <SC.FilterHeading>
+                      <span>LIGHT</span>
+                      <SC.IconBtn
+                        type="button"
+                        aria-label="switch to open filter"
+                        aria-expanded="false"
+                        onClick={toggleFilter}
+                      >
+                        <Open />
+                      </SC.IconBtn>
+                    </SC.FilterHeading>
+                    <SC.FilterInnerList>
+                      {getUniqueOptions('light').map((card, i) => {
+                        return (
+                          <label key={i}>
+                            <SC.FilterInnerListItem
+                              type="checkbox"
+                              name="light"
+                              value={card}
+                            />
+                            {card}
+                          </label>
+                        );
+                      })}
+                    </SC.FilterInnerList>
                   </SC.Filter>
                   <SC.Filter>
-                    <span>PET FRIENDLY</span>
-                    <SC.IconBtn
-                      type="button"
-                      aria-label="switch to open filter"
-                      aria-expanded="false"
-                      onClick={toggleFilter}
-                    >
-                      <Open />
-                    </SC.IconBtn>
+                    <SC.FilterHeading>
+                      <span>PET FRIENDLY</span>
+                      <SC.IconBtn
+                        type="button"
+                        aria-label="switch to open filter"
+                        aria-expanded="false"
+                        onClick={toggleFilter}
+                      >
+                        <Open />
+                      </SC.IconBtn>
+                    </SC.FilterHeading>
+                    <SC.FilterInnerList>
+                      {getUniqueOptions('petFriendly').map((card, i) => {
+                        return (
+                          <label key={i}>
+                            <SC.FilterInnerListItem
+                              type="checkbox"
+                              name="light"
+                              value={card}
+                            />
+                            {card}
+                          </label>
+                        );
+                      })}
+                    </SC.FilterInnerList>
                   </SC.Filter>
                   <SC.Filter>
-                    <span>PRICE</span>
-                    <SC.IconBtn
-                      type="button"
-                      aria-label="switch to open filter"
-                      aria-expanded="false"
-                      onClick={toggleFilter}
-                    >
-                      <Open />
-                    </SC.IconBtn>
+                    <SC.FilterHeading>
+                      <span>PRICE</span>
+                      <SC.IconBtn
+                        type="button"
+                        aria-label="switch to open filter"
+                        aria-expanded="false"
+                        onClick={toggleFilter}
+                      >
+                        <Open />
+                      </SC.IconBtn>
+                    </SC.FilterHeading>
+                    {/* {getUniqueOptions('currentPrice').map((card, i) => {
+                      return (
+                        <label key={i}>
+                          <SC.FilterInnerListItem
+                            type="checkbox"
+                            name="light"
+                            value={card}
+                          />
+                          {card}
+                        </label>
+                      );
+                    })} */}
                   </SC.Filter>
                   <SC.Filter>
-                    <span>MAINTENANCE</span>
-                    <SC.IconBtn
-                      type="button"
-                      aria-label="switch to open filter"
-                      aria-expanded="false"
-                      onClick={toggleFilter}
-                    >
-                      <Open />
-                    </SC.IconBtn>
+                    <SC.FilterHeading>
+                      <span>MAINTENANCE</span>
+                      <SC.IconBtn
+                        type="button"
+                        aria-label="switch to open filter"
+                        aria-expanded="false"
+                        onClick={toggleFilter}
+                      >
+                        <Open />
+                      </SC.IconBtn>
+                    </SC.FilterHeading>
+                    <SC.FilterInnerList>
+                      {getUniqueOptions('maintenance').map((card, i) => {
+                        return (
+                          <label key={i}>
+                            <SC.FilterInnerListItem
+                              type="checkbox"
+                              name="light"
+                              value={card}
+                            />
+                            {card}
+                          </label>
+                        );
+                      })}
+                    </SC.FilterInnerList>
                   </SC.Filter>
                   <SC.Filter>
-                    <span>POT SIZE</span>
-                    <SC.IconBtn
-                      type="button"
-                      aria-label="switch to open filter"
-                      aria-expanded="false"
-                      onClick={toggleFilter}
-                    >
-                      <Open />
-                    </SC.IconBtn>
+                    <SC.FilterHeading>
+                      <span>POT SIZE</span>
+                      <SC.IconBtn
+                        type="button"
+                        aria-label="switch to open filter"
+                        aria-expanded="false"
+                        onClick={toggleFilter}
+                      >
+                        <Open />
+                      </SC.IconBtn>
+                    </SC.FilterHeading>
+                    <SC.FilterInnerList>
+                      {getUniqueOptions('potSize').map((card, i) => {
+                        return (
+                          <label key={i}>
+                            <SC.FilterInnerListItem
+                              type="checkbox"
+                              name="light"
+                              value={card}
+                            />
+                            {card}
+                          </label>
+                        );
+                      })}
+                    </SC.FilterInnerList>
                   </SC.Filter>
                   <SC.Filter>
-                    <span>WATER SCHEDULE</span>
-                    <SC.IconBtn
-                      type="button"
-                      aria-label="switch to open filter"
-                      aria-expanded="false"
-                      onClick={toggleFilter}
-                    >
-                      <Open />
-                    </SC.IconBtn>
+                    <SC.FilterHeading>
+                      <span>WATER SCHEDULE</span>
+                      <SC.IconBtn
+                        type="button"
+                        aria-label="switch to open filter"
+                        aria-expanded="false"
+                        onClick={toggleFilter}
+                      >
+                        <Open />
+                      </SC.IconBtn>
+                    </SC.FilterHeading>
+                    <SC.FilterInnerList>
+                      {getUniqueOptions('waterSchedule').map((card, i) => {
+                        return (
+                          <label key={i}>
+                            <SC.FilterInnerListItem
+                              type="checkbox"
+                              name="light"
+                              value={card}
+                            />
+                            {card}
+                          </label>
+                        );
+                      })}
+                    </SC.FilterInnerList>
                   </SC.Filter>
                 </SC.Filters>
                 <SC.FilterBtn type="button">CLEAR ALL</SC.FilterBtn>
@@ -162,81 +263,191 @@ export const Catalog = ({ products }) => {
           <SC.FiltersContainer>
             <SC.Filters>
               <SC.Filter>
-                <span>TYPE OF PLANTS</span>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open filter"
-                  aria-expanded="false"
-                  onClick={toggleFilter}
-                >
-                  <Open />
-                </SC.IconBtn>
+                <SC.FilterHeading>
+                  <span>TYPE OF PLANTS</span>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open filter"
+                    aria-expanded="false"
+                    onClick={toggleFilter}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.FilterHeading>
+                <SC.FilterInnerList>
+                  {getUniqueOptions('typeOfPlants').map((card, i) => {
+                    return (
+                      <label key={i}>
+                        <SC.FilterInnerListItem
+                          type="checkbox"
+                          name="typeOfPlants"
+                          value={card}
+                        />
+                        {card}
+                      </label>
+                    );
+                  })}
+                </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <span>LIGHT</span>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open filter"
-                  aria-expanded="false"
-                  onClick={toggleFilter}
-                >
-                  <Open />
-                </SC.IconBtn>
+                <SC.FilterHeading>
+                  <span>LIGHT</span>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open filter"
+                    aria-expanded="false"
+                    onClick={toggleFilter}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.FilterHeading>
+                <SC.FilterInnerList>
+                  {getUniqueOptions('light').map((card, i) => {
+                    return (
+                      <label key={i}>
+                        <SC.FilterInnerListItem
+                          type="checkbox"
+                          name="light"
+                          value={card}
+                        />
+                        {card}
+                      </label>
+                    );
+                  })}
+                </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <span>PET FRIENDLY</span>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open filter"
-                  aria-expanded="false"
-                  onClick={toggleFilter}
-                >
-                  <Open />
-                </SC.IconBtn>
+                <SC.FilterHeading>
+                  <span>PET FRIENDLY</span>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open filter"
+                    aria-expanded="false"
+                    onClick={toggleFilter}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.FilterHeading>
+                <SC.FilterInnerList>
+                  {getUniqueOptions('petFriendly').map((card, i) => {
+                    return (
+                      <label key={i}>
+                        <SC.FilterInnerListItem
+                          type="checkbox"
+                          name="light"
+                          value={card}
+                        />
+                        {card}
+                      </label>
+                    );
+                  })}
+                </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <span>PRICE</span>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open filter"
-                  aria-expanded="false"
-                  onClick={toggleFilter}
-                >
-                  <Open />
-                </SC.IconBtn>
+                <SC.FilterHeading>
+                  <span>PRICE</span>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open filter"
+                    aria-expanded="false"
+                    onClick={toggleFilter}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.FilterHeading>
+                {/* {getUniqueOptions('currentPrice').map((card, i) => {
+                      return (
+                        <label key={i}>
+                          <SC.FilterInnerListItem
+                            type="checkbox"
+                            name="light"
+                            value={card}
+                          />
+                          {card}
+                        </label>
+                      );
+                    })} */}
               </SC.Filter>
               <SC.Filter>
-                <span>MAINTENANCE</span>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open filter"
-                  aria-expanded="false"
-                  onClick={toggleFilter}
-                >
-                  <Open />
-                </SC.IconBtn>
+                <SC.FilterHeading>
+                  <span>MAINTENANCE</span>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open filter"
+                    aria-expanded="false"
+                    onClick={toggleFilter}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.FilterHeading>
+                <SC.FilterInnerList>
+                  {getUniqueOptions('maintenance').map((card, i) => {
+                    return (
+                      <label key={i}>
+                        <SC.FilterInnerListItem
+                          type="checkbox"
+                          name="light"
+                          value={card}
+                        />
+                        {card}
+                      </label>
+                    );
+                  })}
+                </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <span>POT SIZE</span>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open filter"
-                  aria-expanded="false"
-                  onClick={toggleFilter}
-                >
-                  <Open />
-                </SC.IconBtn>
+                <SC.FilterHeading>
+                  <span>POT SIZE</span>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open filter"
+                    aria-expanded="false"
+                    onClick={toggleFilter}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.FilterHeading>
+                <SC.FilterInnerList>
+                  {getUniqueOptions('potSize').map((card, i) => {
+                    return (
+                      <label key={i}>
+                        <SC.FilterInnerListItem
+                          type="checkbox"
+                          name="light"
+                          value={card}
+                        />
+                        {card}
+                      </label>
+                    );
+                  })}
+                </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <span>WATER SCHEDULE</span>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open filter"
-                  aria-expanded="false"
-                  onClick={toggleFilter}
-                >
-                  <Open />
-                </SC.IconBtn>
+                <SC.FilterHeading>
+                  <span>WATER SCHEDULE</span>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open filter"
+                    aria-expanded="false"
+                    onClick={toggleFilter}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.FilterHeading>
+                <SC.FilterInnerList>
+                  {getUniqueOptions('waterSchedule').map((card, i) => {
+                    return (
+                      <label key={i}>
+                        <SC.FilterInnerListItem
+                          type="checkbox"
+                          name="light"
+                          value={card}
+                        />
+                        {card}
+                      </label>
+                    );
+                  })}
+                </SC.FilterInnerList>
               </SC.Filter>
             </SC.Filters>
             <SC.FilterBtn type="button">CLEAR ALL</SC.FilterBtn>
@@ -248,11 +459,7 @@ export const Catalog = ({ products }) => {
           <SC.Grid>
             {products.map(card => {
               return (
-                <SC.Card
-                  key={card._id}
-                  onClick={e => saveCardData(e)}
-                  data-id={card._id}
-                >
+                <SC.Card key={card._id}>
                   <NavLink to={`/catalog/${card._id}`}>
                     <SC.CardImage
                       src={BASE_URL_IMG + card.images[0]}
