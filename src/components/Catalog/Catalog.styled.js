@@ -245,7 +245,9 @@ const FilterBtn = styled.button`
 
   &:hover,
   &:focus {
-    border: 1px solid ${theme.colors.brown2};
+    color: #6f8d4c;
+    background-color: ${theme.colors.green5};
+    border: 1px solid ${theme.colors.green2};
   }
 
   &:disabled {
@@ -261,10 +263,17 @@ const FilterHeading = styled.div`
   justify-content: space-between;
 
   width: 100%;
+
+  cursor: pointer;
+
+  &.active ~ div {
+    display: flex;
+  }
 `;
 
 const FilterInnerList = styled.div`
-  display: flex;
+  display: none;
+  /* display: flex; */
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
@@ -281,7 +290,7 @@ const FilterInnerListItem = styled.input`
   margin-right: 4px;
 
   &:checked {
-    background-color: ${theme.colors.green} !important;
+    background-color: ${theme.colors.green};
   }
 `;
 

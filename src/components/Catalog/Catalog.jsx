@@ -28,6 +28,11 @@ export const Catalog = ({ products }) => {
   const [showFilter, setShowFilter] = useState(false);
   const toggleFilter = () => setShowFilter(state => !state);
 
+  const toggleFilterItem = e => {
+    e.stopPropagation();
+    e.currentTarget.classList.toggle('active');
+  };
+
   const getUniqueOptions = key => {
     const unique = [...new Set(products.map(item => item[key]))];
     return unique.sort();
@@ -75,13 +80,16 @@ export const Catalog = ({ products }) => {
                 <SC.FiltersWrapper>
                   <SC.Filters>
                     <SC.Filter>
-                      <SC.FilterHeading>
+                      <SC.FilterHeading
+                        onClick={e => {
+                          toggleFilterItem(e);
+                        }}
+                      >
                         <span>TYPE OF PLANTS</span>
                         <SC.IconBtn
                           type="button"
                           aria-label="switch to open filter"
                           aria-expanded="false"
-                          onClick={toggleFilter}
                         >
                           <Open />
                         </SC.IconBtn>
@@ -102,13 +110,16 @@ export const Catalog = ({ products }) => {
                       </SC.FilterInnerList>
                     </SC.Filter>
                     <SC.Filter>
-                      <SC.FilterHeading>
+                      <SC.FilterHeading
+                        onClick={e => {
+                          toggleFilterItem(e);
+                        }}
+                      >
                         <span>LIGHT</span>
                         <SC.IconBtn
                           type="button"
                           aria-label="switch to open filter"
                           aria-expanded="false"
-                          onClick={toggleFilter}
                         >
                           <Open />
                         </SC.IconBtn>
@@ -129,13 +140,16 @@ export const Catalog = ({ products }) => {
                       </SC.FilterInnerList>
                     </SC.Filter>
                     <SC.Filter>
-                      <SC.FilterHeading>
+                      <SC.FilterHeading
+                        onClick={e => {
+                          toggleFilterItem(e);
+                        }}
+                      >
                         <span>PET FRIENDLY</span>
                         <SC.IconBtn
                           type="button"
                           aria-label="switch to open filter"
                           aria-expanded="false"
-                          onClick={toggleFilter}
                         >
                           <Open />
                         </SC.IconBtn>
@@ -156,13 +170,16 @@ export const Catalog = ({ products }) => {
                       </SC.FilterInnerList>
                     </SC.Filter>
                     <SC.Filter>
-                      <SC.FilterHeading>
+                      <SC.FilterHeading
+                        onClick={e => {
+                          toggleFilterItem(e);
+                        }}
+                      >
                         <span>PRICE</span>
                         <SC.IconBtn
                           type="button"
                           aria-label="switch to open filter"
                           aria-expanded="false"
-                          onClick={toggleFilter}
                         >
                           <Open />
                         </SC.IconBtn>
@@ -181,13 +198,16 @@ export const Catalog = ({ products }) => {
                     })} */}
                     </SC.Filter>
                     <SC.Filter>
-                      <SC.FilterHeading>
+                      <SC.FilterHeading
+                        onClick={e => {
+                          toggleFilterItem(e);
+                        }}
+                      >
                         <span>MAINTENANCE</span>
                         <SC.IconBtn
                           type="button"
                           aria-label="switch to open filter"
                           aria-expanded="false"
-                          onClick={toggleFilter}
                         >
                           <Open />
                         </SC.IconBtn>
@@ -208,13 +228,16 @@ export const Catalog = ({ products }) => {
                       </SC.FilterInnerList>
                     </SC.Filter>
                     <SC.Filter>
-                      <SC.FilterHeading>
+                      <SC.FilterHeading
+                        onClick={e => {
+                          toggleFilterItem(e);
+                        }}
+                      >
                         <span>POT SIZE</span>
                         <SC.IconBtn
                           type="button"
                           aria-label="switch to open filter"
                           aria-expanded="false"
-                          onClick={toggleFilter}
                         >
                           <Open />
                         </SC.IconBtn>
@@ -235,13 +258,16 @@ export const Catalog = ({ products }) => {
                       </SC.FilterInnerList>
                     </SC.Filter>
                     <SC.Filter>
-                      <SC.FilterHeading>
+                      <SC.FilterHeading
+                        onClick={e => {
+                          toggleFilterItem(e);
+                        }}
+                      >
                         <span>WATER SCHEDULE</span>
                         <SC.IconBtn
                           type="button"
                           aria-label="switch to open filter"
                           aria-expanded="false"
-                          onClick={toggleFilter}
                         >
                           <Open />
                         </SC.IconBtn>
@@ -276,13 +302,16 @@ export const Catalog = ({ products }) => {
           <SC.FiltersContainer>
             <SC.Filters>
               <SC.Filter>
-                <SC.FilterHeading>
+                <SC.FilterHeading
+                  onClick={e => {
+                    toggleFilterItem(e);
+                  }}
+                >
                   <span>TYPE OF PLANTS</span>
                   <SC.IconBtn
                     type="button"
                     aria-label="switch to open filter"
                     aria-expanded="false"
-                    onClick={toggleFilter}
                   >
                     <Open />
                   </SC.IconBtn>
@@ -303,13 +332,16 @@ export const Catalog = ({ products }) => {
                 </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <SC.FilterHeading>
+                <SC.FilterHeading
+                  onClick={e => {
+                    toggleFilterItem(e);
+                  }}
+                >
                   <span>LIGHT</span>
                   <SC.IconBtn
                     type="button"
                     aria-label="switch to open filter"
                     aria-expanded="false"
-                    onClick={toggleFilter}
                   >
                     <Open />
                   </SC.IconBtn>
@@ -330,13 +362,16 @@ export const Catalog = ({ products }) => {
                 </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <SC.FilterHeading>
+                <SC.FilterHeading
+                  onClick={e => {
+                    toggleFilterItem(e);
+                  }}
+                >
                   <span>PET FRIENDLY</span>
                   <SC.IconBtn
                     type="button"
                     aria-label="switch to open filter"
                     aria-expanded="false"
-                    onClick={toggleFilter}
                   >
                     <Open />
                   </SC.IconBtn>
@@ -357,13 +392,16 @@ export const Catalog = ({ products }) => {
                 </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <SC.FilterHeading>
+                <SC.FilterHeading
+                  onClick={e => {
+                    toggleFilterItem(e);
+                  }}
+                >
                   <span>PRICE</span>
                   <SC.IconBtn
                     type="button"
                     aria-label="switch to open filter"
                     aria-expanded="false"
-                    onClick={toggleFilter}
                   >
                     <Open />
                   </SC.IconBtn>
@@ -382,13 +420,16 @@ export const Catalog = ({ products }) => {
                     })} */}
               </SC.Filter>
               <SC.Filter>
-                <SC.FilterHeading>
+                <SC.FilterHeading
+                  onClick={e => {
+                    toggleFilterItem(e);
+                  }}
+                >
                   <span>MAINTENANCE</span>
                   <SC.IconBtn
                     type="button"
                     aria-label="switch to open filter"
                     aria-expanded="false"
-                    onClick={toggleFilter}
                   >
                     <Open />
                   </SC.IconBtn>
@@ -409,13 +450,16 @@ export const Catalog = ({ products }) => {
                 </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <SC.FilterHeading>
+                <SC.FilterHeading
+                  onClick={e => {
+                    toggleFilterItem(e);
+                  }}
+                >
                   <span>POT SIZE</span>
                   <SC.IconBtn
                     type="button"
                     aria-label="switch to open filter"
                     aria-expanded="false"
-                    onClick={toggleFilter}
                   >
                     <Open />
                   </SC.IconBtn>
@@ -436,13 +480,16 @@ export const Catalog = ({ products }) => {
                 </SC.FilterInnerList>
               </SC.Filter>
               <SC.Filter>
-                <SC.FilterHeading>
+                <SC.FilterHeading
+                  onClick={e => {
+                    toggleFilterItem(e);
+                  }}
+                >
                   <span>WATER SCHEDULE</span>
                   <SC.IconBtn
                     type="button"
                     aria-label="switch to open filter"
                     aria-expanded="false"
-                    onClick={toggleFilter}
                   >
                     <Open />
                   </SC.IconBtn>
