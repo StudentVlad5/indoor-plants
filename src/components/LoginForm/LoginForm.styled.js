@@ -2,16 +2,19 @@ import styled from 'styled-components';
 import { Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
+import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
+import theme from 'components/baseStyles/Variables.styled';
 
 const FormSection = styled.section`
-  @media screen and (max-width: 767.9px) {
+  @media screen and (max-width: ${theme.breakpoints.tablet_max}) {
     background-repeat: no-repeat;
     background-size: 620px auto;
     background-position: bottom -250px left 30%;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     background-repeat: no-repeat;
     background-size: 1396px auto;
     background-position: bottom -130px left 50%;
@@ -21,11 +24,14 @@ const FormSection = styled.section`
 const FormContainer = styled.div`
   height: 100%;
   min-height: calc(100vh - 140px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 170px;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding-top: 80px;
     min-height: calc(100vh - 120px);
 
@@ -38,10 +44,29 @@ const FormContainer = styled.div`
 const TitleLogin = styled(Title)`
   margin-bottom: 40px;
   margin-top: 0;
+  text-transform: uppercase;
 
-  @media screen and (min-width: 768px) {
-    font-size: 36px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes.extraXL};
     font-weight: 500;
+    margin-bottom: 32px;
+    color: ${theme.colors.brown1};
+  }
+`;
+const TitleLogo = styled(Title)`
+  font-family: ${theme.fonts[0]};
+  font-weight: 700;
+  font-style: normal;
+  font-size: ${theme.fontSizes.extraXL};
+  line-height: 42px;
+  letter-spacing: 0.07em;
+  color: ${theme.colors.brown2};
+  text-decoration: none;
+  margin-bottom: 24px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    line-height: 48px;
+    font-size: ${theme.fontSizes.extraXXL};
   }
 `;
 export const IconValid = styled(FaCheck)`
@@ -86,19 +111,14 @@ const FormLogin = styled(Form)`
   padding-top: 44px;
   margin: 0 auto;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 608px;
-    height: 492px;
+    height: 100%;
     margin: 0 auto;
     padding: 60px 0 40px 0;
-
-    background-color: ${props => props.theme.colorOfForm};
-    border-radius: 40px;
-    -webkit-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
-    -moz-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
-    box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
+    background-color: transparent;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 618px;
     padding: 60px 0 60px 0;
   }
@@ -123,40 +143,40 @@ const ShowPassword = styled.span`
 `;
 const Input = styled.input`
   width: 280px;
-  font-size: 14px;
+  font-size: ${theme.fontSizes.small};
   line-height: 1.3;
   padding: 11px 0 12px 14px;
-  background: ${props => props.theme.colorOfInput};
-  color: ${props => props.theme.inpText};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  // margin-bottom: 16px;
+  background: ${theme.colors.blue1};
+  color: ${theme.colors.brown2};
+  border: none;
   transition: all 0.25s ease-in;
   &:focus,
   &:hover {
-    border-color: ${props => props.theme.orange};
+    border-color: ${theme.colors.darkGreen};
+    color: ${theme.colors.darkGreen};
     outline: none;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 448px;
-    font-size: 18px;
+    font-size: ${theme.fontSizes.medium};
     padding: 14px 0 13px 32px;
   }
-  @media screen and (min-width: 1280px) {
-    width: 458px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 558px;
+  }
+  &::placeholder {
+    text-transform: uppercase;
   }
 `;
-const Button = styled.button`
-  width: 100%;
-  padding: 11px 0 12px 14px;
-  text-align: center;
-  color: ${props => props.theme.white};
-  background: ${props => props.theme.orangeLight};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  margin: 8px 0 40px 0;
+const Btn = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 4px;
+  color: ${theme.colors.brown1};
+  background: ${theme.colors.green4};
   transform: scale(1);
-  transition: transform 0.5s;
   cursor: pointer;
   position: relative;
   overflow-x: hidden;
@@ -166,33 +186,14 @@ const Button = styled.button`
   :focus {
     transform: scale(1.05);
     transition: transform 0.5s;
-  }
-  :hover:before {
-    left: 100%;
-  }
-  :before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: ${props => props.theme.orangeLight};
-    transition: all 450ms;
+    color: ${theme.colors.white};
+    background: ${theme.colors.brown2};
   }
   :disabled {
     opacity: 0.5;
     cursor: auto;
     transform: none;
     transition: none;
-  }
-  :disabled:before {
-    transform: none;
-    transition: none;
-  }
-  @media screen and (min-width: 768px) {
-    width: 458px;
-    font-size: 20px;
   }
 `;
 const ErrorBox = styled.div`
@@ -207,7 +208,7 @@ const ErrorBox = styled.div`
   line-height: 1.4;
   letter-spacing: 0.03em;
   margin-bottom: -16px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     left: 32px;
   }
 `;
@@ -215,40 +216,57 @@ const ErrorBox = styled.div`
 const Div = styled.div`
   margin-bottom: 32px;
 `;
+const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 280px;
+  margin-bottom: 32px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 448px;
+    font-size: ${theme.fontSizes.medium};
+  }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 558px;
+  }
+`;
 
 const StyledLink = styled(Link)`
-  color: ${props => props.theme.blue};
-  margin-left: 4px;
+  color: ${theme.colors.brown2};
   transition: all 0.25s ease-in;
   :hover,
   :focus {
-    color: ${props => props.theme.orangeLight};
+    color: ${theme.colors.brown3};
   }
 `;
+
 const BoxText = styled.div`
-  font-family: 'Manrope';
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  font-family: ${theme.fonts[0]};
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  font-size: ${theme.fontSizes.small};
   letter-spacing: 0.04em;
-  color: ${props => props.theme.logout};
+  color: ${theme.brown2};
 `;
 
 export {
   FormSection,
   FormContainer,
   TitleLogin,
+  TitleLogo,
   FormLogin,
   ShowPassword,
   Input,
-  Button,
+  Btn,
   StyledLink,
   BoxText,
-  // Background,
   ErrorBox,
   Div,
+  BtnContainer,
 };

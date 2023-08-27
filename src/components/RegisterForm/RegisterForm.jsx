@@ -26,7 +26,7 @@ import {
 } from './RegisterForm.styled';
 import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
@@ -34,7 +34,7 @@ const RegisterForm = () => {
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const onSubmit = ({ values }) => {
     setIsLoading(true);
@@ -138,7 +138,7 @@ const RegisterForm = () => {
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
           <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
-            <TitleRegister>{t('Register')}</TitleRegister>
+            <TitleRegister>{'Register'}</TitleRegister>
             {isShown && (
               <Div>
                 <Input
@@ -150,7 +150,7 @@ const RegisterForm = () => {
                   }}
                   name="email"
                   type="email"
-                  placeholder={t('Email')}
+                  placeholder={'Email'}
                   value={formik.values.email}
                   validate={schemas.registerSchema.email}
                   onChange={formik.handleChange}
@@ -178,7 +178,7 @@ const RegisterForm = () => {
                   }}
                   name="password"
                   type={showPass ? 'text' : 'password'}
-                  placeholder={t('Password')}
+                  placeholder={'Password'}
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   onBlur={formik.handleBlur}
@@ -203,7 +203,7 @@ const RegisterForm = () => {
                   }}
                   name="confirmPassword"
                   type={showConfirmPass ? 'text' : 'password'}
-                  placeholder={t('Confirm Password')}
+                  placeholder={'Confirm Password'}
                   onChange={formik.handleChange}
                   value={formik.values.confirmPassword}
                   onBlur={formik.handleBlur}
@@ -219,7 +219,7 @@ const RegisterForm = () => {
             )}
             {isShown && (
               <Button type="button" onClick={showForm} disabled={isValid}>
-                {t('Next')}
+                {'Next'}
               </Button>
             )}
             {!isShown && (
@@ -233,7 +233,7 @@ const RegisterForm = () => {
                   }}
                   name="name"
                   type="text"
-                  placeholder={t('Name')}
+                  placeholder={'Name'}
                   onChange={formik.handleChange}
                   value={formik.values.name}
                   onBlur={formik.handleBlur}
@@ -259,7 +259,7 @@ const RegisterForm = () => {
                   }}
                   name="location"
                   type="text"
-                  placeholder={t('Location, region')}
+                  placeholder={'Location, region'}
                   value={formik.values.location}
                   onBlur={formik.handleBlur}
                   disabled={!ready}
@@ -296,7 +296,7 @@ const RegisterForm = () => {
                   }}
                   id="phone"
                   type="phone"
-                  placeholder={t('Mobile phone')}
+                  placeholder={'Mobile phone'}
                   onChange={formik.handleChange}
                   value={formik.values.phone}
                   onBlur={formik.handleBlur}
@@ -312,21 +312,19 @@ const RegisterForm = () => {
                 ) : null}
               </Div>
             )}
-            {!isShown && <Button type="submit">{t('Register')}</Button>}
+            {!isShown && <Button type="submit">{'Register'}</Button>}
             {!isShown && (
               <BackButton type="button" onClick={hideForm}>
-                {t('Back')}
+                {'Back'}
               </BackButton>
             )}
             <BoxText>
-              <span>{t('Already have an account?')}</span>{' '}
-              <StyledLink to="/login">{t('Login')}</StyledLink>
+              <span>{'Already have an account?'}</span>{' '}
+              <StyledLink to="/login">{'Login'}</StyledLink>
             </BoxText>
           </FormRegister>
         </Formik>
-        {isLoading && (
-          <h1 style={{ textAlign: 'center' }}>{t('Loading...')}</h1>
-        )}
+        {isLoading && <h1 style={{ textAlign: 'center' }}>{'Loading...'}</h1>}
       </FormContainer>
     </FormSection>
   );

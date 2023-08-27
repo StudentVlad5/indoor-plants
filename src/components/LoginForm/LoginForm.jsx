@@ -12,7 +12,7 @@ import {
   FormLogin,
   ShowPassword,
   Input,
-  Button,
+  Btn,
   StyledLink,
   BoxText,
   IconValid,
@@ -20,16 +20,18 @@ import {
   ErrorBox,
   Div,
   TitleLogin,
+  TitleLogo,
+  BtnContainer,
 } from './LoginForm.styled';
 import { logIn } from 'redux/auth/operations';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 export const LoginForm = () => {
   const [isShown, setIsShown] = useState(true); //
   const [showPass, setShowPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const hideForm = () => {
     setIsShown(true);
@@ -74,7 +76,8 @@ export const LoginForm = () => {
       <FormContainer>
         <Formik validationSchema={schemas.schemasLogin}>
           <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
-            <TitleLogin>{t('Login')}</TitleLogin>
+            <TitleLogo>{'homeforest'}</TitleLogo>
+            <TitleLogin>{'Login Page'}</TitleLogin>
             {isShown && (
               <Div>
                 <Input
@@ -86,16 +89,16 @@ export const LoginForm = () => {
                   }}
                   name="email"
                   type="email"
-                  placeholder={t('Email')}
+                  placeholder={'Email'}
                   validate={schemas.schemasLogin.email}
                   onChange={formik.handleChange}
                   value={formik.values.email}
                   onBlur={formik.handleBlur}
                 />
                 {!formik.values.email ? null : !formik.errors.email ? (
-                  <IconValid color={theme.light.success} />
+                  <IconValid color={theme.colors.green} />
                 ) : (
-                  <IconInValid color={theme.light.error} />
+                  <IconInValid color={theme.colors.red} />
                 )}
                 {formik.errors.email || formik.touched.email ? (
                   <ErrorBox>{formik.errors.email}</ErrorBox>
@@ -114,7 +117,7 @@ export const LoginForm = () => {
                   }}
                   name="password"
                   type={showPass ? 'text' : 'password'}
-                  placeholder={t('Password')}
+                  placeholder={'Password'}
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   onBlur={formik.handleBlur}
@@ -128,23 +131,22 @@ export const LoginForm = () => {
                 ) : null}
               </Div>
             )}
+            <BtnContainer>
+              {isShown && (
+                <Btn type="submit" disabled={isValid}>
+                  {'Sign In'}
+                </Btn>
+              )}
 
-            {isShown && (
-              <Button type="submit" disabled={isValid}>
-                {t('Login')}
-              </Button>
-            )}
-
-            {!isShown && <Button type="submit">{t('Login')}</Button>}
-            <BoxText>
-              <span>{t("Still don't have an account?")}</span>{' '}
-              <StyledLink to="/register">{t('Register')}</StyledLink>
-            </BoxText>
+              {!isShown && <Btn type="submit">{'Sign In'}</Btn>}
+              <BoxText>
+                <StyledLink to="/register">{'Create acount'}</StyledLink>
+                <StyledLink to="/">{'Forgot your password?'}</StyledLink>
+              </BoxText>
+            </BtnContainer>
           </FormLogin>
         </Formik>
-        {isLoading && (
-          <h1 style={{ textAlign: 'center' }}>{t('Loading...')}</h1>
-        )}
+        {isLoading && <h1 style={{ textAlign: 'center' }}>{'Loading...'}</h1>}
       </FormContainer>
     </FormSection>
   );
