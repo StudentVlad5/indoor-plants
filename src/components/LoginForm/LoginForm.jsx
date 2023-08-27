@@ -22,6 +22,7 @@ import {
   TitleLogin,
   TitleLogo,
   BtnContainer,
+  Span,
 } from './LoginForm.styled';
 import { logIn } from 'redux/auth/operations';
 // import { useTranslation } from 'react-i18next';
@@ -69,7 +70,11 @@ export const LoginForm = () => {
   };
 
   const showAccentValidateInput = (hasValue, isValide) => {
-    return !hasValue ? null : isValide ? '#E2001A' : '#3CBC81';
+    return !hasValue
+      ? null
+      : isValide
+      ? `${theme.colors.red}`
+      : `${theme.colors.darkGreen}`;
   };
   return (
     <FormSection>
@@ -89,7 +94,6 @@ export const LoginForm = () => {
                   }}
                   name="email"
                   type="email"
-                  placeholder={'Email'}
                   validate={schemas.schemasLogin.email}
                   onChange={formik.handleChange}
                   value={formik.values.email}
@@ -103,6 +107,7 @@ export const LoginForm = () => {
                 {formik.errors.email || formik.touched.email ? (
                   <ErrorBox>{formik.errors.email}</ErrorBox>
                 ) : null}
+                <Span className="floating-label">Email</Span>
               </Div>
             )}
 
@@ -117,7 +122,6 @@ export const LoginForm = () => {
                   }}
                   name="password"
                   type={showPass ? 'text' : 'password'}
-                  placeholder={'Password'}
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   onBlur={formik.handleBlur}
@@ -129,16 +133,19 @@ export const LoginForm = () => {
                 {formik.errors.password && formik.touched.password ? (
                   <ErrorBox>{formik.errors.password}</ErrorBox>
                 ) : null}
+                <Span className="floating-label">Password</Span>
               </Div>
             )}
             <BtnContainer>
               {isShown && (
                 <Btn type="submit" disabled={isValid}>
-                  {'Sign In'}
+                  {isLoading ? 'Loading' : 'Sign In'}
                 </Btn>
               )}
 
-              {!isShown && <Btn type="submit">{'Sign In'}</Btn>}
+              {!isShown && (
+                <Btn type="submit">{isLoading ? 'Loading' : 'Sign In'}</Btn>
+              )}
               <BoxText>
                 <StyledLink to="/register">{'Create acount'}</StyledLink>
                 <StyledLink to="/">{'Forgot your password?'}</StyledLink>
@@ -146,7 +153,6 @@ export const LoginForm = () => {
             </BtnContainer>
           </FormLogin>
         </Formik>
-        {isLoading && <h1 style={{ textAlign: 'center' }}>{'Loading...'}</h1>}
       </FormContainer>
     </FormSection>
   );

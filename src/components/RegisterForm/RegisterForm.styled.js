@@ -3,19 +3,18 @@ import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
+import theme from 'components/baseStyles/Variables.styled';
+import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 
 export const FormSection = styled.section`
-  @media screen and (max-width: 767.9px) {
-    /* min-height: 540px; */
-
+  @media screen and (max-width: ${theme.breakpoints.tablet_max}) {
     background-repeat: no-repeat;
     background-size: 620px auto;
     background-position: bottom -250px left 30%;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    /* min-height: 720px; */
-
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     background-repeat: no-repeat;
     background-size: 1396px auto;
     background-position: bottom -130px left 50%;
@@ -25,12 +24,15 @@ export const FormSection = styled.section`
 export const FormContainer = styled.div`
   height: 100%;
   min-height: calc(100vh - 140px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  @media (min-width: 767px) and (max-width: 1279px) {
-    padding-top: 168px;
+  @media (min-width: ${theme.breakpoints.tablet}) {
+    padding-top: 170px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding-top: 44px;
     min-height: calc(100vh - 120px);
 
@@ -42,11 +44,32 @@ export const FormContainer = styled.div`
 export const TitleRegister = styled(Title)`
   margin-bottom: 40px;
   margin-top: 0;
-  @media screen and (min-width: 768px) {
-    font-size: 36px;
+  text-transform: uppercase;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes.extraXL};
     font-weight: 500;
+    margin-bottom: 32px;
+    color: ${theme.colors.brown1};
   }
 `;
+
+export const TitleLogo = styled(Title)`
+  font-family: ${theme.fonts[0]};
+  font-weight: 700;
+  font-style: normal;
+  font-size: ${theme.fontSizes.extraXL};
+  line-height: 42px;
+  letter-spacing: 0.07em;
+  color: ${theme.colors.brown2};
+  text-decoration: none;
+  margin-bottom: 24px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    line-height: 48px;
+    font-size: ${theme.fontSizes.extraXXL};
+  }
+`;
+
 export const FormRegister = styled(Form)`
   position: relative;
   width: 280px;
@@ -57,19 +80,15 @@ export const FormRegister = styled(Form)`
   padding-top: 44px;
   margin: 0 auto;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 608px;
+    height: 100%;
     margin: 0 auto;
     padding: 60px 0 40px 0;
-
-    background-color: ${props => props.theme.colorOfForm};
-    border-radius: 40px;
-    -webkit-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
-    -moz-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
-    box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
+    background-color: transparent;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 618px;
     padding: 60px 0 60px 0;
   }
@@ -124,112 +143,64 @@ export const IconInValid = styled(FaTimes)`
   }
 `;
 
-export const LocationList = styled.ul`
-  width: 98%;
-  position: absolute;
-
-  top: 74%;
-  left: 1.1%;
-  background-color: ${props => props.theme.mainBg};
-  z-index: 100;
-  border: 1px solid;
-  border-top-color: transparent;
-  border-left-color: ${props => props.theme.error};
-  border-right-color: ${props => props.theme.error};
-  border-bottom-color: ${props => props.theme.error};
-
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-`;
-export const LocationItem = styled.li`
-  margin: 16px 30px 0 30px;
-  &:not(:last-child) {
-    margin-bottom: 16px;
-  }
-  cursor: pointer;
-
-  font-family: 'Manrope', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 10px;
-  line-height: 1.375;
-  letter-spacing: 0.04em;
-  text-align: left;
-  color: ${props => props.theme.black};
-  background: ${props => props.theme.white};
-  transition: all 0.25s ease-in;
-  &:hover {
-    color: ${props => props.theme.orangeLight};
-  }
-
-  &:focus {
-    color: ${props => props.theme.orangeLight};
-  }
-
-  @media screen and (min-width: 768px) {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-`;
-
 export const Input = styled(Field)`
   width: 280px;
-  font-size: 14px;
+  font-size: ${theme.fontSizes.small};
   line-height: 1.3;
   padding: 11px 0 12px 14px;
-  background-color: ${props => props.theme.colorOfInput};
-  color: ${props => props.theme.inpText};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
+  margin-bottom: 0px;
+  background: ${theme.colors.blue1};
+  color: ${theme.colors.brown2};
+  border: none;
   transition: all 0.25s ease-in;
   &:focus,
   &:hover {
-    border-color: ${props => props.theme.orange};
+    border-color: ${theme.colors.darkGreen};
+    color: ${theme.colors.darkGreen};
     outline: none;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 448px;
-    font-size: 18px;
+    font-size: ${theme.fontSizes.medium};
     padding: 14px 0 13px 32px;
   }
-  @media screen and (min-width: 1280px) {
-    width: 458px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 558px;
+  }
+  &::placeholder {
+    text-transform: uppercase;
+  }
+  &:focus ~ .floating-label,
+  &:not([value='']):not(:focus):invalid ~ .floating-label,
+  &:not([value='']):not(:focus):valid ~ .floating-label {
+    top: -15px;
+    left: 20px;
+    font-size: 11px;
+    opacity: 1;
   }
 `;
-export const PhoneInput = styled.div`
-  width: 280px;
-  padding: 11px 0 12px 14px;
-  background: ${props => props.theme.colorOfInput};
-  color: ${props => props.theme.inpText};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  margin-bottom: 16px;
-  transition: all 0.25s ease-in;
-  &:focus,
-  &:hover {
-    border-color: ${props => props.theme.orange};
-    outline: none;
-  }
-  @media screen and (min-width: 768px) {
-    width: 448px;
-    padding: 14px 0 13px 32px;
-    font-size: 18px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 458px;
-  }
+
+export const Span = styled.span`
+  position: absolute;
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
+  text-transform: uppercase;
+  pointer-events: none;
+  left: 20px;
+  top: 18px;
+  transition: 0.2s ease all;
 `;
-export const Button = styled.button`
-  width: 100%;
-  padding: 11px 0 12px 14px;
-  text-align: center;
-  color: ${props => props.theme.white};
-  background: ${props => props.theme.orangeLight};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  margin: 8px 0 40px 0;
+
+export const Btn = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: 125px;
+  border-radius: 4px;
+  color: ${theme.colors.brown1};
+  background: ${theme.colors.green4};
   transform: scale(1);
-  transition: transform 0.5s;
   cursor: pointer;
   position: relative;
   overflow-x: hidden;
@@ -239,19 +210,8 @@ export const Button = styled.button`
   :focus {
     transform: scale(1.05);
     transition: transform 0.5s;
-  }
-  :hover:before {
-    left: 100%;
-  }
-  :before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: ${props => props.theme.orangeLight};
-    transition: all 450ms;
+    color: ${theme.colors.white};
+    background: ${theme.colors.brown2};
   }
   :disabled {
     opacity: 0.5;
@@ -259,27 +219,22 @@ export const Button = styled.button`
     transform: none;
     transition: none;
   }
-  :disabled:before {
-    transform: none;
-    transition: none;
-  }
-  @media screen and (min-width: 768px) {
-    width: 458px;
-    font-size: 20px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 180px;
   }
 `;
-export const BackButton = styled.button`
-  width: 100%;
-  padding: 11px 0 12px 14px;
-  text-align: center;
-  color: #000;
-  background: ${props => props.theme.orangeLight};
-  border: 1px solid ${props => props.theme.orangeLight};
-  border-radius: 40px;
-  margin: -24px 0 40px 0;
-  cursor: pointer;
+export const BackButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 125px;
+  border: none;
+  border-radius: 4px;
+  color: ${theme.colors.brown1};
+  background: ${theme.colors.green4};
   transform: scale(1);
-  transition: transform 0.5s;
+  cursor: pointer;
+  position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
   transition: all 0.25s ease-in;
@@ -287,44 +242,34 @@ export const BackButton = styled.button`
   :focus {
     transform: scale(1.05);
     transition: transform 0.5s;
+    color: ${theme.colors.white};
+    background: ${theme.colors.brown2};
   }
-  :hover:before {
-    left: 100%;
+  :disabled {
+    opacity: 0.5;
+    cursor: auto;
+    transform: none;
+    transition: none;
   }
-  :before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: ${props => props.theme.orangeLight};
-    transition: all 450ms;
-  }
-  @media screen and (min-width: 768px) {
-    width: 458px;
-    font-size: 20px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 180px;
   }
 `;
 
 export const ErrBox = styled.div`
-  position: relative;
-  bottom: 0px;
-  left: 15px;
+  position: absolute;
+  white-space: nowrap;
+  bottom: -5px;
+  left: 60%;
   color: #e53e3e;
-  font-family: 'Manrope';
-  font-size: 12px;
+  font-family: ${theme.fonts[1]};
+  font-size: ${theme.fontSizes.small};
   font-style: normal;
   line-height: 1.4;
   letter-spacing: 0.03em;
   margin-bottom: -16px;
-  display: flex;
-  flex-wrap: wrap;
-  word-wrap: break-word;
-  max-width: 400px;
-
-  @media screen and (min-width: 768px) {
-    left: 32px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    /* left: 32px; */
   }
 `;
 
@@ -332,52 +277,42 @@ export const Div = styled.div`
   margin-bottom: 32px;
 `;
 
+export const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 280px;
+  margin-bottom: 32px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 448px;
+    font-size: ${theme.fontSizes.medium};
+    flex-direction: row;
+  }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 558px;
+  }
+`;
+
 export const StyledLink = styled(Link)`
-  color: ${props => props.theme.blue};
-  margin-left: 4px;
+  color: ${theme.colors.brown2};
   transition: all 0.25s ease-in;
   :hover,
   :focus {
-    color: ${props => props.theme.orangeLight};
+    color: ${theme.colors.brown3};
   }
 `;
 export const BoxText = styled.div`
-  font-family: 'Manrope';
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  font-family: ${theme.fonts[0]};
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  font-size: ${theme.fontSizes.small};
   letter-spacing: 0.04em;
-
-  color: ${props => props.theme.logout};
-`;
-
-// export const Background = styled.div`
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   z-index: -100;
-//   background-image: url(${mobileBackground});
-//   background-position: center bottom;
-//   background-size: contain;
-//   background-repeat: no-repeat;
-//   height: 100vh;
-//   @media screen and (min-width: 768px) {
-//     background-image: url(${tabletBackground});
-//   }
-//   @media screen and (min-width: 1280px) {
-//     background-image: url(${desktopBackground});
-//   }
-// `;
-
-export const SpinerWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  color: ${theme.brown2};
 `;

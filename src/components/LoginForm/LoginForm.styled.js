@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form } from 'formik';
+import { Field, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
@@ -141,7 +141,7 @@ const ShowPassword = styled.span`
     height: inherit;
   }
 `;
-const Input = styled.input`
+const Input = styled(Field)`
   width: 280px;
   font-size: ${theme.fontSizes.small};
   line-height: 1.3;
@@ -167,7 +167,27 @@ const Input = styled.input`
   &::placeholder {
     text-transform: uppercase;
   }
+  &:focus ~ .floating-label,
+  &:not([value='']):not(:focus):invalid ~ .floating-label,
+  &:not([value='']):not(:focus):valid ~ .floating-label {
+    top: -15px;
+    left: 20px;
+    font-size: 11px;
+    opacity: 1;
+  }
 `;
+
+export const Span = styled.span`
+  position: absolute;
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
+  text-transform: uppercase;
+  pointer-events: none;
+  left: 20px;
+  top: 18px;
+  transition: 0.2s ease all;
+`;
+
 const Btn = styled(Button)`
   display: flex;
   justify-content: center;
@@ -199,11 +219,11 @@ const Btn = styled(Button)`
 const ErrorBox = styled.div`
   position: absolute;
   white-space: nowrap;
-  bottom: 0px;
+  bottom: -5px;
   left: 15px;
   color: #e53e3e;
-  font-family: 'Manrope';
-  font-size: 12px;
+  font-family: ${theme.fonts[1]};
+  font-size: ${theme.fontSizes.small};
   font-style: normal;
   line-height: 1.4;
   letter-spacing: 0.03em;
