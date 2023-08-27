@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-import theme from 'components/baseStyles/Variables.styled';
 import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
+import theme from 'components/baseStyles/Variables.styled';
 import {
   FormRegister,
   FormContainer,
@@ -32,7 +32,6 @@ const RegisterForm = () => {
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  // const { t } = useTranslation();
 
   const onSubmit = ({ values }) => {
     setIsLoading(true);
@@ -186,7 +185,7 @@ const RegisterForm = () => {
                 </Btn>
                 <BoxText>
                   <span>{'Already have an account?'}</span>
-                  <StyledLink to="/login">{'Login'}</StyledLink>
+                  <StyledLink to="/signin">{'Sign In'}</StyledLink>
                 </BoxText>
               </BtnContainer>
             )}
@@ -280,7 +279,7 @@ const RegisterForm = () => {
                 </BackButton>
                 <BoxText>
                   <span>{'Already have an account?'}</span>{' '}
-                  <StyledLink to="/login">{'Login'}</StyledLink>
+                  <StyledLink to="/signin">{'Sign In'}</StyledLink>
                 </BoxText>
               </BtnContainer>
             )}

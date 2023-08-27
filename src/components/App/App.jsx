@@ -52,7 +52,7 @@ export const App = () => {
 
             {permission === 'admin' ? (
               <Route
-                path="login"
+                path="signin"
                 element={
                   <RestrictedRoute
                     redirectTo="/admin"
@@ -62,7 +62,7 @@ export const App = () => {
               />
             ) : (
               <Route
-                path="login"
+                path="signin"
                 element={
                   <RestrictedRoute
                     redirectTo="/user"

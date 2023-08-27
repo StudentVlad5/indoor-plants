@@ -19,7 +19,6 @@ const initialState = {
     phone: null,
     favorites: null,
     birthday: null,
-    role: 'user',
   },
   token: null,
   permission: null,
