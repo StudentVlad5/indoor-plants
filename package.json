@@ -94,6 +94,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/StudentVlad5/indoor-plants/issues"
-  },
-  "proxy": "http://localhost:3000"
+  }
 }

@@ -14,7 +14,8 @@ export const CatalogList = () => {
   const [, setError] = useState(null);
   const [searchParams] = useSearchParams();
 
-  const BASE_URL_IMG = 'http://localhost:3030/uploads/';
+  const { BASE_URL_IMG } = window.global;
+  // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
 
   useEffect(() => {
     async function fetchListOfGoods() {

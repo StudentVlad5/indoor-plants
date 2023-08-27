@@ -10,8 +10,9 @@ async function fetchData(pathParams) {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
       'Access-Control-Expose-Headers': 'Content-Range',
+      'Access-Control-Allow-Header': 'Origin, Content-Type, X-Auth-Token',
     },
   });
 
