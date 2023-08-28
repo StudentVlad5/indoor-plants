@@ -3,8 +3,8 @@ import React from 'react';
 // import { useEffect, useState } from 'react';
 // import { addReload } from 'redux/reload/slice';
 // import { reloadValue } from 'redux/reload/selectors';
-import { useDispatch } from 'react-redux';
-import { useAuth } from 'hooks/useAuth';
+// import { useDispatch } from 'react-redux';
+// import { useAuth } from 'hooks/useAuth';
 // import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { Logout } from 'components/UserComp/Logout/Logout';
@@ -17,22 +17,22 @@ import {
   UserDataContainer,
   UserDataWrapper,
   UserTitle,
+  FolderBtn,
+  FolderWrapper,
 } from './UserComp.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
-import { useNavigate } from 'react-router-dom';
-import {
-  ButtonStyled,
-  PlusIcon,
-} from 'components/NoticesComp/AddNoticeButton/AddNoticeButton.styled';
-import { toggleModalAddNotice } from 'utils/toggleModalNotice';
-import { useTranslation } from 'react-i18next';
+// import { useNavigate } from 'react-router-dom';
+// import {
+//   ButtonStyled,
+//   PlusIcon,
+// } from 'components/NoticesComp/AddNoticeButton/AddNoticeButton.styled';
+// import { toggleModalAddNotice } from 'utils/toggleModalNotice';
+// import { useTranslation } from 'react-i18next';
 
 export const UserComp = () => {
-  const navigate = useNavigate();
-
-  const dispatch = useDispatch();
-  const { isLoggedIn } = useAuth();
-  const { t } = useTranslation();
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const { isLoggedIn } = useAuth();
 
   // const [petsList, setPetsList] = useState([]);
 
@@ -71,29 +71,19 @@ export const UserComp = () => {
           Profile
         </Title>
         <UserDataWrapper>
-          <UserTitle as="h2">My information:</UserTitle>
+          <FolderWrapper>
+            <UserTitle as="h2">My account:</UserTitle>
+            <FolderBtn>Profile settings</FolderBtn>
+            <FolderBtn>My orders</FolderBtn>
+            <FolderBtn>Favorites</FolderBtn>
+            <Logout />
+          </FolderWrapper>
           <UserDataContainer>
             <UserData />
-            <Logout />
           </UserDataContainer>
         </UserDataWrapper>
         <UserAboutWrapper>
           <TopContainer>
-            <UserTitle as="h2" hidden>
-              My pets:
-            </UserTitle>
-            <ButtonStyled
-              onClick={e => {
-                navigate('/notices/sell?perPage=12&page=1');
-                toggleModalAddNotice(e, isLoggedIn, dispatch);
-              }}
-              data-modal="formSell"
-            >
-              <div>
-                <PlusIcon />
-              </div>
-              {t('Add pet')}
-            </ButtonStyled>
             {/* {isLoggedIn && <AddNoticeModal />} */}
             {/* <AddPetButton /> */}
           </TopContainer>

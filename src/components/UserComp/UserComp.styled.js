@@ -1,38 +1,53 @@
 import styled from 'styled-components';
+import theme from 'components/baseStyles/Variables.styled';
 import {
   Container,
   Section,
   Title,
 } from 'components/baseStyles/CommonStyle.styled';
+import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 
 export const UserSection = styled(Section)`
-  padding-top: 60px;
-  padding-bottom: 40px;
+  padding-top: 122px;
 
-  @media screen and (min-width: 768px) {
-    padding-bottom: 40px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    padding-bottom: 40px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-top: 154px;
   }
 `;
+
 export const UserContainer = styled(Container)`
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
+  margin: 0 auto;
+  width: 100%;
 `;
 
 export const UserDataWrapper = styled.div`
-  @media screen and (min-width: 768px) {
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  flex-wrap: nowrap;
+  align-items: start;
+  width: 100%;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    flex-direction: row;
   }
 
-  @media screen and (min-width: 1280px) {
-    margin-right: 32px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+  }
+`;
+
+export const FolderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 320px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 437px;
   }
 `;
 
@@ -103,17 +118,45 @@ export const UserTitle = styled(Title)`
   padding-left: 8px;
   padding-right: 8px;
   padding-bottom: 0px;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.37;
+  margin-bottom: 24px;
+  font-size: ${theme.fontSizes.extra};
+  font-weight: 400;
+  line-height: 1.25;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.blackText};
+  text-transform: uppercase;
+  color: ${theme.colors.brown1};
   outline: none;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     text-align: start;
     padding-bottom: 4px;
     font-size: 28px;
     letter-spacing: 0;
+  }
+`;
+export const FolderBtn = styled(Button)`
+  display: flex;
+  width: 180px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: normal;
+  border-radius: 5px;
+  border: 1px solid ${theme.colors.brown};
+  color: ${theme.colors.brown};
+  background-color: transparent;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.green};
   }
 `;

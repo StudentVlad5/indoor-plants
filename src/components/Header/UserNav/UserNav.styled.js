@@ -23,6 +23,7 @@ const MobileAccountButton = styled(NavLink)`
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: none;
+    margin: 0 auto;
   }
 `;
 

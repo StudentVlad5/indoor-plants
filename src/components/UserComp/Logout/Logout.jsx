@@ -7,12 +7,12 @@ import {
   Modal,
 } from './Logout.styled';
 import { ModalLogout } from './ModalLogout/ModalLogout';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 export const Logout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -24,7 +24,7 @@ export const Logout = () => {
     <>
       <LogoutBtn onClick={toggleModal}>
         <LogoutIconStyled />
-        <LogoutBtnText>{t('Log Out')}</LogoutBtnText>
+        <LogoutBtnText>Log Out</LogoutBtnText>
       </LogoutBtn>
 
       {isModalOpen && (
