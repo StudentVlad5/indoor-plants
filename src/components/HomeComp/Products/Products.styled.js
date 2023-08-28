@@ -3,24 +3,18 @@ import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 
 export const ProductsBox = styled(Container)`
-  padding-bottom: 60px;
+  padding-bottom: 0;
 
   @media screen and (min-width: 1440px) {
-    padding-bottom: 120px;
+    padding-bottom: 0;
   }
 `;
 
 export const ProductsSection = styled.div`
-  /* padding-top: 0; */
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-
   position: relative;
   margin: 0 auto;
   padding: 60px 0;
   width: 100%;
-  max-width: ${theme.breakpoints.mobile};
 
   &::before {
     content: '';
@@ -32,12 +26,8 @@ export const ProductsSection = styled.div`
     background: ${theme.colors.brown1};
   }
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    max-width: ${theme.breakpoints.tablet};
-  }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding: 120px 0;
-    max-width: ${theme.breakpoints.desktop};
   }
 `;
 
