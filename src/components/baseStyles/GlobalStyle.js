@@ -309,7 +309,7 @@ input::-webkit-calendar-picker-indicator:hover {
 }
 
 // NAVLINK
-.active {
+.linkFolder.active {
   color: ${theme.colors.white};
   background-color: ${theme.colors.green};
 }

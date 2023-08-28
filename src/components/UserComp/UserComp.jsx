@@ -76,9 +76,15 @@ export const UserComp = () => {
         <UserDataWrapper>
           <FolderWrapper>
             <UserTitle as="h2">My account:</UserTitle>
-            <LinkFolder to={`/user/profile`}>Profile settings</LinkFolder>
-            <LinkFolder to={`/user/orders`}>My orders</LinkFolder>
-            <LinkFolder to={`/user/favorites`}>Favorites</LinkFolder>
+            <LinkFolder className="linkFolder" to={`/user/profile`}>
+              Profile settings
+            </LinkFolder>
+            <LinkFolder className="linkFolder" to={`/user/orders`}>
+              My orders
+            </LinkFolder>
+            <LinkFolder className="linkFolder" to={`/user/favorites`}>
+              Favorites
+            </LinkFolder>
             <Logout />
           </FolderWrapper>
           {/* <UserDataContainer> */}
