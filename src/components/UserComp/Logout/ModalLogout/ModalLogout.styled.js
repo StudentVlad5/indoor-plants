@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { ReactComponent as Close } from '../../../../images/svg/icon_close.svg';
+import theme from 'components/baseStyles/Variables.styled';
+import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 
 export const ModalWrapper = styled.div`
   position: absolute;
   /* width: 90%; */
-  background-color: ${props => props.theme.white};
+  background-color: ${theme.colors.white};
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 40px;
@@ -13,21 +15,13 @@ export const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  @media (min-width: 768px) {
-    /* max-width: 60%; */
-  }
-
-  @media (min-width: 1280px) {
-    /* max-width: 40%; */
-  }
 `;
 
 export const CloseBtnWrapper = styled.div`
   position: relative;
 `;
 
-export const ModalCloseBtn = styled.button`
+export const ModalCloseBtn = styled(Button)`
   position: absolute;
   right: 100px;
   top: -30px;
@@ -36,7 +30,6 @@ export const ModalCloseBtn = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
-  background: ${props => props.theme.mainBg};
   border-color: transparent;
   border-radius: 50%;
   width: 34px;
@@ -45,10 +38,10 @@ export const ModalCloseBtn = styled.button`
   transform: all 150ms linear;
   transition: all 0.25s ease-in;
   :hover svg {
-    fill: ${props => props.theme.orange};
+    fill: ${theme.colors.white};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 44px;
     height: 44px;
     right: -30px;
@@ -58,20 +51,17 @@ export const ModalCloseBtn = styled.button`
 export const CloseIcon = styled(Close)`
   width: 16px;
   height: 16px;
-  fill: ${props => props.theme.black};
+  fill: ${theme.colors.brown};
   transform: all 150ms linear;
   transition: all 0.25s ease-in;
   &:hover,
   :focus {
-    fill: ${props => props.theme.orange};
-  }
-
-  @media screen and (min-width: 768px) {
+    fill: ${theme.colors.white};
   }
 `;
 
 export const ModalDescription = styled.p`
-  color: ${props => props.theme.blackText};
+  color: ${theme.colors.darkGreen};
   font-size: 16px;
   font-weight: 500;
   text-align: center;
@@ -79,7 +69,7 @@ export const ModalDescription = styled.p`
   padding-left: 24px;
   padding-right: 24px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 20px;
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -90,32 +80,32 @@ export const ModalButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-export const ModalButton = styled.button`
+export const ModalButton = styled(Button)`
   width: 100px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 40px;
-  letter-spacing: 0.04em;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 16px;
-  font-weight: 500;
-  color: ${props => props.theme.blackText};
-  background: ${props => props.theme.white};
-  border: 2px solid;
-  border-color: ${props => props.theme.orangeLight};
+  text-decoration: none;
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: normal;
+  border-radius: 5px;
+  border: 1px solid ${theme.colors.brown};
+  color: ${theme.colors.brown};
+  background-color: transparent;
   cursor: pointer;
-  transform: all 150ms linear;
-  transition: all 0.25s ease-in;
   &:hover,
-  :focus {
-    background: ${props => props.theme.orangeLight};
-    color: ${props => props.theme.white};
+  &:focus {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.green};
   }
 
-  @media screen and (min-width: 768px) {
-    font-size: 20px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes.large};
   }
 `;

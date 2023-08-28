@@ -10,12 +10,12 @@ import {
   ModalButtonWrapper,
   ModalButton,
 } from './ModalLogout.styled';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 export const ModalLogout = ({ onClose, onCloseBtn }) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const handleDelete = () => {
     dispatch(logOut());
@@ -29,21 +29,19 @@ export const ModalLogout = ({ onClose, onCloseBtn }) => {
           <CloseIcon />
         </ModalCloseBtn>
       </CloseBtnWrapper>
-      <ModalDescription>{t('Are you sure you want to exit?')}</ModalDescription>
+      <ModalDescription>{'Are you sure you want to exit?'}</ModalDescription>
       <ModalButtonWrapper>
         <ModalButton type="button" onClick={handleDelete}>
-          {t('Yes')}
+          {'Yes'}
         </ModalButton>
         <ModalButton
           type="button"
           onClick={onCloseBtn}
           style={{
-            backgroundColor: '#F59256',
-            color: 'white',
             marginLeft: '20px',
           }}
         >
-          {t('No')}
+          {'No'}
         </ModalButton>
       </ModalButtonWrapper>
     </ModalWrapper>
