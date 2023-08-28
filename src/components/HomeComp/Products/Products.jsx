@@ -4,51 +4,53 @@ import {
   ProductsTitle,
   ProductsBtn,
   ProductsList,
-  ProductsListItem,
-  ProductsListItemDiscr,
-  ProductsListItemDiscrText,
-  ListItemDiscrTitle,
+  // ProductsListItem,
+  // ProductsListItemDiscr,
+  // ProductsListItemDiscrText,
+  // ListItemDiscrTitle,
   ProductsImg,
-  ListItemDiscrSize,
+  // ListItemDiscrSize,
   ProductsSection,
 } from './Products.styled';
-import plant from '../../../images/hero/products/plant.png';
+// import plant from '../../../images/hero/products/plant.png';
 import { fetchData } from 'services/APIservice';
 import { Health } from '../Health/Health';
 import { Care } from '../Care/Care';
 import { FeedbackComp } from '../Feedback/Feedback';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+import { ItemWraper, NameWraper } from 'components/Catalog/CatalogList/CatalogList.styled';
 
 export const Products = () => {
-  //   const [plants, setPlants] = useState([]);
+  const [listOfGoods, setListOfGoods] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [, setError] = useState(null);
+  const [searchParams] = useSearchParams();
 
-  //   useEffect(() => {
-  //     fetch(
-  //       'https://trefle.io/api/v1/plants?token=Qm4J-FWwgb62cSxboArARECiQLFbnumbTBtv6qLf6RY',
-  //     )
-  //       .then(response => response.json())
-  //       .then(data => setPlants(data.data))
-  //       .catch(error => console.error('Error fetching data:', error));
-  //   }, []);
+  const { BASE_URL_IMG } = window.global;
+  // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
 
-  const [listItem, setListItem] = useState([]);
-  async function fetchPlants() {
-    // setIsLoading(true);
-    try {
-      const { data } = await fetchData('');
-
-      if (!data) {
-        console.log('error');
+  useEffect(() => {
+    async function fetchListOfGoods() {
+      setIsLoading(true);
+      try {
+        const { data } = await fetchData(`/catalog?${searchParams}`);
+        if (!data) {
+          return onFetchError('Whoops, something went wrong');
+        }
+        console.log(data);
+        setListOfGoods(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
-      setListItem(data.data);
-      // setTotalPage(data.totalPage);
-    } catch (error) {
-      console.log(error);
     }
-    // finally {
-    //   setIsLoading(false);
-    // }
-  }
-  fetchPlants();
+    fetchListOfGoods();
+  }, []);
+
+  console.log(listOfGoods);
 
   return (
     <ProductsBox>
@@ -57,12 +59,67 @@ export const Products = () => {
         <ProductsBtn href="#">See all</ProductsBtn>
 
         <ProductsList>
-          {listItem.slice(0, 4).map(plant => {
-            <ProductsListItem key={plant.id}>
-              {plant.common_name}
-            </ProductsListItem>;
-          })}
-          <ProductsListItem>
+          {listOfGoods?.length === 0 && !isLoading ? (
+            <h3>Whoops! Can&apost find anything...</h3>
+          ) : (
+            listOfGoods.splice(0, 4).map(item => (
+              // <ProductsListItem key={item._id}>
+              //   <ProductsListItemDiscr>
+              //     <ProductsImg
+              //       src={BASE_URL_IMG + item.images[0]}
+              //       alt={item.name}
+              //     />
+
+              //     <ProductsListItemDiscrText>
+              //       <ListItemDiscrTitle>{item.name}</ListItemDiscrTitle>
+              //       <ListItemDiscrSize>SIZE</ListItemDiscrSize>
+              //       {item.options.map(data => (
+              //         // <li style={{ margin: 'auto' }} key={data.title}>
+
+              //         <ListItemDiscrSize
+              //           key={data.title}
+              //           style={{ marginLeft: 'auto' }}
+              //         >
+              //           {data.title} {/* SIZE  */}
+              //         </ListItemDiscrSize>
+
+              //         //  <ListItemDiscrTitle style={{ marginLeft: 'auto' }}>
+              //         //   {Math
+              //         //     .round
+              //         //     // Number(data.price.split(',').join('.')) -
+              //         //     //   Number(data.discount.split(',').join('.')),
+              //         //     // 2,
+              //         //     ()}
+              //         //   {item.currency}
+              //         // </ListItemDiscrTitle>
+              //         // </li>
+              //       ))}
+              //     </ProductsListItemDiscrText>
+              //   </ProductsListItemDiscr>
+              // </ProductsListItem>
+
+              <ItemWraper key={item._id}>
+                <ProductsImg src={BASE_URL_IMG + item.images[0]} alt={item.name} />
+                <h4 style={{ margin: '4px auto' }}>{item.name}</h4>
+                <NameWraper>
+                  {item.options.map(data => (
+                    <li style={{ margin: 'auto' }} key={data.title}>
+                      {data.title} -{' '}
+                      122
+                      {/* {Math.round(
+                        // Number(data.price.split(',').join('.')) -
+                        //   Number(data.discount.split(',').join('.')),
+                        // 2,
+                      )} */}
+                      {item.currency}
+                    </li>
+                  ))}
+                </NameWraper>
+              </ItemWraper>
+            ))
+          )}
+
+          {/*<ProductsListItem>
             <ProductsListItemDiscr>
               <ProductsImg src={plant} alt="" />
 
@@ -80,10 +137,10 @@ export const Products = () => {
                 </ListItemDiscrSize>
               </ProductsListItemDiscrText>
             </ProductsListItemDiscr>
-          </ProductsListItem>
+          </ProductsListItem> */}
         </ProductsList>
       </ProductsSection>
-      
+
       <Health />
       <Care />
       <FeedbackComp />
