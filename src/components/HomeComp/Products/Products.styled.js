@@ -110,3 +110,17 @@ export const ListItemDiscrSize = styled.p`
     line-height: 140%;
   }
 `;
+
+export const ItemWraper = styled.div`
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  width: 285px;
+  height: 520px;
+`;
+
+export const NameWraper = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+`;

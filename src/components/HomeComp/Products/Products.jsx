@@ -11,6 +11,8 @@ import {
   ProductsImg,
   // ListItemDiscrSize,
   ProductsSection,
+  ItemWraper,
+  NameWraper,
 } from './Products.styled';
 // import plant from '../../../images/hero/products/plant.png';
 import { fetchData } from 'services/APIservice';
@@ -20,7 +22,6 @@ import { FeedbackComp } from '../Feedback/Feedback';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { ItemWraper, NameWraper } from 'components/Catalog/CatalogList/CatalogList.styled';
 
 export const Products = () => {
   const [listOfGoods, setListOfGoods] = useState([]);
@@ -39,7 +40,7 @@ export const Products = () => {
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
-        console.log(data);
+        // console.log(data);
         setListOfGoods(data);
       } catch (error) {
         setError(error);
@@ -50,7 +51,7 @@ export const Products = () => {
     fetchListOfGoods();
   }, []);
 
-  console.log(listOfGoods);
+  // console.log(listOfGoods);
 
   return (
     <ProductsBox>
@@ -99,13 +100,15 @@ export const Products = () => {
               // </ProductsListItem>
 
               <ItemWraper key={item._id}>
-                <ProductsImg src={BASE_URL_IMG + item.images[0]} alt={item.name} />
+                <ProductsImg
+                  src={BASE_URL_IMG + item.images[0]}
+                  alt={item.name}
+                />
                 <h4 style={{ margin: '4px auto' }}>{item.name}</h4>
                 <NameWraper>
                   {item.options.map(data => (
                     <li style={{ margin: 'auto' }} key={data.title}>
-                      {data.title} -{' '}
-                      122
+                      {data.title} - 122
                       {/* {Math.round(
                         // Number(data.price.split(',').join('.')) -
                         //   Number(data.discount.split(',').join('.')),
