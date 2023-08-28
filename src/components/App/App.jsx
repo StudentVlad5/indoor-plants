@@ -76,11 +76,32 @@ export const App = () => {
                 <PrivateRoute redirectTo="/register" component={<UserPage />} />
               }
             >
-              <Route path="profile" element={<h2>profile information</h2>} />
-              <Route path="orders" element={<h2>orders information</h2>} />
+              <Route
+                path="profile"
+                element={
+                  <PrivateRoute
+                    redirectTo="/register"
+                    component={<h2>profile information</h2>}
+                  />
+                }
+              />
+              <Route
+                path="orders"
+                element={
+                  <PrivateRoute
+                    redirectTo="/register"
+                    component={<h2>orders information</h2>}
+                  />
+                }
+              />
               <Route
                 path="favorites"
-                element={<h2>favorites information</h2>}
+                element={
+                  <PrivateRoute
+                    redirectTo="/register"
+                    component={<h2>favorites information</h2>}
+                  />
+                }
               />
             </Route>
 
