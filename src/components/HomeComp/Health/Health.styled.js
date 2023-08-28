@@ -122,6 +122,9 @@ export const HealthList = styled.ul`
 `;
 
 export const HealthListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   @media screen and (min-width: 1440px) {
     &:not(:last-child) {
       margin-right: 20px;
