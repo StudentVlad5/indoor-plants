@@ -7,7 +7,7 @@ import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
-import { selectIsRefreshing, getPermission } from 'redux/auth/selectors';
+import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
 
@@ -24,7 +24,6 @@ const LoginPage = lazy(() => import('pages/Login'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const permission = useSelector(getPermission);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -50,27 +49,13 @@ export const App = () => {
               }
             />
 
-            {permission === 'admin' ? (
-              <Route
-                path="signin"
-                element={
-                  <RestrictedRoute
-                    redirectTo="/admin"
-                    component={<LoginPage />}
-                  />
-                }
-              />
-            ) : (
-              <Route
-                path="signin"
-                element={
-                  <RestrictedRoute
-                    redirectTo="/user"
-                    component={<LoginPage />}
-                  />
-                }
-              />
-            )}
+            <Route
+              path="signin"
+              element={
+                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+              }
+            />
+
             <Route path="catalog" element={<CatalogPage />} />
             <Route path="catalog/:id" element={<ProductCardPage />} />
             <Route
@@ -90,7 +75,14 @@ export const App = () => {
               element={
                 <PrivateRoute redirectTo="/register" component={<UserPage />} />
               }
-            />
+            >
+              <Route path="profile" element={<h2>profile information</h2>} />
+              <Route path="orders" element={<h2>orders information</h2>} />
+              <Route
+                path="favorites"
+                element={<h2>favorites information</h2>}
+              />
+            </Route>
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>

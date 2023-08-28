@@ -1,4 +1,5 @@
 import React from 'react';
+
 // import axios from 'axios';
 // import { useEffect, useState } from 'react';
 // import { addReload } from 'redux/reload/slice';
@@ -6,19 +7,21 @@ import React from 'react';
 // import { useDispatch } from 'react-redux';
 // import { useAuth } from 'hooks/useAuth';
 // import { PetsData } from 'components/UserComp/PetsData/PetsData';
-import { UserData } from 'components/UserComp/UserData/UserData';
+// import { UserData } from 'components/UserComp/UserData/UserData';
 import { Logout } from 'components/UserComp/Logout/Logout';
+
+import { Outlet } from 'react-router-dom';
 // import { AddPetButton } from 'components/UserComp/PetsData/AddPetButton/AddPetButton';
 import {
   UserSection,
   UserContainer,
-  TopContainer,
+  // TopContainer,
   UserAboutWrapper,
-  UserDataContainer,
+  // UserDataContainer,
   UserDataWrapper,
   UserTitle,
-  FolderBtn,
   FolderWrapper,
+  LinkFolder,
 } from './UserComp.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 // import { useNavigate } from 'react-router-dom';
@@ -73,21 +76,22 @@ export const UserComp = () => {
         <UserDataWrapper>
           <FolderWrapper>
             <UserTitle as="h2">My account:</UserTitle>
-            <FolderBtn>Profile settings</FolderBtn>
-            <FolderBtn>My orders</FolderBtn>
-            <FolderBtn>Favorites</FolderBtn>
+            <LinkFolder to={`/user/profile`}>Profile settings</LinkFolder>
+            <LinkFolder to={`/user/orders`}>My orders</LinkFolder>
+            <LinkFolder to={`/user/favorites`}>Favorites</LinkFolder>
             <Logout />
           </FolderWrapper>
-          <UserDataContainer>
-            <UserData />
-          </UserDataContainer>
+          {/* <UserDataContainer> */}
+          {/* <UserData /> */}
+          {/* </UserDataContainer> */}
         </UserDataWrapper>
         <UserAboutWrapper>
-          <TopContainer>
-            {/* {isLoggedIn && <AddNoticeModal />} */}
-            {/* <AddPetButton /> */}
-          </TopContainer>
+          {/* <TopContainer> */}
+          {/* {isLoggedIn && <AddNoticeModal />} */}
+          {/* <AddPetButton /> */}
+          {/* </TopContainer> */}
           {/* <PetsData petsList={petsList} removePetList={removePetList} /> */}
+          <Outlet />
         </UserAboutWrapper>
       </UserContainer>
     </UserSection>

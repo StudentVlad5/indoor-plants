@@ -5,7 +5,7 @@ import {
   Section,
   Title,
 } from 'components/baseStyles/CommonStyle.styled';
-import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
+import { NavLink } from 'react-router-dom';
 
 export const UserSection = styled(Section)`
   padding-top: 122px;
@@ -18,6 +18,7 @@ export const UserSection = styled(Section)`
 export const UserContainer = styled(Container)`
   margin: 0 auto;
   width: 100%;
+  height: 100vh;
 `;
 
 export const UserDataWrapper = styled.div`
@@ -134,14 +135,15 @@ export const UserTitle = styled(Title)`
     letter-spacing: 0;
   }
 `;
-export const FolderBtn = styled(Button)`
+
+export const LinkFolder = styled(NavLink)`
   display: flex;
   width: 180px;
   height: 40px;
   justify-content: center;
   align-items: center;
   margin-bottom: 24px;
-
+  text-decoration: none;
   font-family: ${theme.fonts[0]};
   font-size: ${theme.fontSizes.small};
   font-style: normal;
