@@ -52,48 +52,22 @@ export const FolderWrapper = styled.div`
   }
 `;
 
-export const UserDataContainer = styled.div`
-  position: relative;
-  background-color: ${props => props.theme.white};
-  border-radius: 20px;
-  box-shadow: 7px 4px 14px ${props => props.theme.shadowColor};
-  margin-bottom: 40px;
-  margin-top: 18px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
-    margin-top: 40px;
-    margin-left: -32px;
-    padding-right: 40px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
-    border-bottom-right-radius: 40px;
-    border-top-right-radius: 40px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    margin-bottom: 0px;
-    margin-top: 24px;
-    margin-left: -16px;
-    padding-right: 16px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-`;
-
 export const UserAboutWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 
-  @media screen and (min-width: 768px) {
-    width: 100%;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    flex-direction: row;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    flex-direction: row;
   }
 `;
+
 export const TopContainer = styled.div`
   display: flex;
   justify-content: space-between;

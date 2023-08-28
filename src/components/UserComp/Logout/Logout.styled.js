@@ -1,57 +1,58 @@
 import styled from 'styled-components';
 import { ReactComponent as LogoutIcon } from '../../../images/svg/logout.svg';
+import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
+import theme from 'components/baseStyles/Variables.styled';
 
-export const LogoutBtn = styled.button`
+export const LogoutBtn = styled(Button)`
   display: flex;
+  width: 180px;
+  height: 40px;
+  justify-content: center;
   align-items: center;
-  background: ${props => props.theme.white};
-  border: none;
+  margin-bottom: 24px;
+  text-decoration: none;
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: normal;
+  border-radius: 5px;
+  border: 1px solid ${theme.colors.brown};
+  color: ${theme.colors.brown};
+  background-color: transparent;
   cursor: pointer;
-  margin-left: auto;
-  padding-right: 12px;
-  transform: all 150ms linear;
-  transition: all 0.25s ease-in;
-  :hover svg {
-    stroke: ${props => props.theme.orange};
-  }
-
-  @media screen and (min-width: 768px) {
-    position: absolute;
-    bottom: 24px;
-    left: 32px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    position: static;
-    margin-left: 16px;
-    padding-right: 0px;
+  &:hover,
+  &:focus,
+  &:hover > .logout_icon,
+  &:focus > .logout_icon {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.green};
+    fill: ${theme.colors.white};
+    stroke: ${theme.colors.white};
+    transition: all 150ms linear;
   }
 `;
 
 export const LogoutIconStyled = styled(LogoutIcon)`
-  stroke: ${props => props.theme.orangeLight};
+  stroke: ${theme.colors.brown};
   transition: all 150ms linear;
 
   &:hover,
   :focus {
-    fill: ${props => props.theme.orange};
+    fill: ${theme.colors.white};
+    stroke: ${theme.colors.white};
   }
 `;
 
 export const LogoutBtnText = styled.span`
-  font-family: Manrope, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.37;
-  letter-spacing: 0.04em;
-  color: ${props => props.theme.logout};
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
+  font-weight: 400;
+  letter-spacing: -0.04em;
   margin-left: 8px;
   transition: all 150ms linear;
-
-  &:hover,
-  :focus {
-    color: ${props => props.theme.orange};
-  }
 `;
 
 export const Modal = styled.div`

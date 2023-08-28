@@ -84,15 +84,10 @@ export const UserComp = () => {
           {/* <UserDataContainer> */}
           {/* <UserData /> */}
           {/* </UserDataContainer> */}
+          <UserAboutWrapper>
+            <Outlet />
+          </UserAboutWrapper>
         </UserDataWrapper>
-        <UserAboutWrapper>
-          {/* <TopContainer> */}
-          {/* {isLoggedIn && <AddNoticeModal />} */}
-          {/* <AddPetButton /> */}
-          {/* </TopContainer> */}
-          {/* <PetsData petsList={petsList} removePetList={removePetList} /> */}
-          <Outlet />
-        </UserAboutWrapper>
       </UserContainer>
     </UserSection>
   );

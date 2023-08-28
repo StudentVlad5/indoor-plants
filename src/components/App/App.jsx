@@ -10,6 +10,7 @@ import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
+import { UserData } from 'components/UserComp/UserData/UserData';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -81,7 +82,7 @@ export const App = () => {
                 element={
                   <PrivateRoute
                     redirectTo="/register"
-                    component={<h2>profile information</h2>}
+                    component={<UserData />}
                   />
                 }
               />

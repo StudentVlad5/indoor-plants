@@ -1,35 +1,38 @@
+import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 
 export const UserDataContainer = styled.div`
-  margin-bottom: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 0px;
 
-  @media screen and (min-width: 768px) {
-    display: flex;
-    flex-direction: row-reverse;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     justify-content: space-between;
-    margin-bottom: 0px;
   }
 
-  @media screen and (min-width: 1280px) {
-    display: block;
-    margin-bottom: 24px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    flex-direction: row;
+    margin: 30px 0;
+    padding: 0 20px;
   }
 `;
 
 export const UserDataImgWrapper = styled.div`
   margin-bottom: 32px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     margin-bottom: 0px;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     position: relative;
     margin-bottom: 36px;
   }
 `;
 
 export const EditCameraForm = styled.form`
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     position: absolute;
     right: 0;
     top: 214px;

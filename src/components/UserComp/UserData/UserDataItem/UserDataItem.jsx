@@ -180,6 +180,6 @@ UserDataItem.propTypes = {
   type: PropTypes.string,
   defaultValue: PropTypes.string,
   active: PropTypes.string,
-  setActive: PropTypes.string,
-  profile: PropTypes.string,
+  setActive: PropTypes.func,
+  profile: PropTypes.any,
 };
