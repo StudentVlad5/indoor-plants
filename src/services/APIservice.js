@@ -27,7 +27,7 @@ async function updateUserData(pathParams, body, file) {
   formData.append('location', body.location);
   formData.append('password', body.password);
   formData.append('phone', body.phone);
-  formData.append('role', body.role);
+  // formData.append('role', body.role);
   formData.append('userName', body.userName);
 
   return await axios.patch(`${BASE_URL}${pathParams}`, formData, {

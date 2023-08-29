@@ -14,12 +14,11 @@ import {
 } from './UserData.styled';
 import { useAuth } from 'hooks/useAuth';
 import { update } from 'redux/auth/operations';
-import { useTranslation } from 'react-i18next';
 
 export const UserData = () => {
   const [active, setActive] = useState('');
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   let { userIn } = useAuth();
   let profile = false;
@@ -38,14 +37,11 @@ export const UserData = () => {
     <>
       <UserDataContainer>
         <UserDataImgWrapper>
-          <UserDataImg
-            // src={userIn.avatar ? userIn.avatar : defaultUserPhoto}
-            alt="User"
-          />
+          <UserDataImg alt="User" />
           <EditCameraForm>
             <EditCameraWrapper>
               <EditPhotoLabel htmlFor="user_photo">
-                <span>{t('Edit photo')}</span>
+                <span>Edit photo</span>
               </EditPhotoLabel>
             </EditCameraWrapper>
             <EditPhotoInput
@@ -61,8 +57,7 @@ export const UserData = () => {
         <UserDataList>
           <UserDataItem
             profile={profile}
-            // label={'Name:'}
-            label={t('Name')}
+            label={'Name'}
             defaultValue={userIn.userName}
             type="text"
             name="userName"
@@ -73,8 +68,7 @@ export const UserData = () => {
 
           <UserDataItem
             profile={profile}
-            // label={'Email:'}
-            label={t('Email')}
+            label={'Email'}
             defaultValue={userIn.email}
             type="email"
             name="email"
@@ -85,8 +79,7 @@ export const UserData = () => {
 
           <UserDataItem
             profile={profile}
-            // label={'Birthday:'}
-            label={t('Birthday')}
+            label={'Birthday'}
             defaultValue={birthday || '01.01.1900'}
             type="date"
             name="birthday"
@@ -97,8 +90,7 @@ export const UserData = () => {
 
           <UserDataItem
             profile={profile}
-            // label={'Phone:'}
-            label={t('Phone')}
+            label={'Phone'}
             defaultValue={userIn.phone}
             type="tel"
             name="phone"
@@ -109,8 +101,7 @@ export const UserData = () => {
 
           <UserDataItem
             profile={profile}
-            // label={'City:'}
-            label={t('City')}
+            label={'City'}
             defaultValue={userIn.location}
             type="text"
             name="location"
