@@ -148,6 +148,23 @@ const GridContainer = styled.div`
   }
 `;
 
+const GridWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  max-width: calc(100% - 20px);
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: calc(100% - 60px);
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: calc(100% - 285px);
+  }
+`;
+
 export {
   CatalogSection,
   CatalogContainer,
@@ -160,4 +177,5 @@ export {
   FiltersContainer,
   FiltersBox,
   FiltersWrapper,
+  GridWrapper,
 };

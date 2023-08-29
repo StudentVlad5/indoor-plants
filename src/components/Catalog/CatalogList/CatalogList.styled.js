@@ -9,16 +9,13 @@ const Grid = styled.ul`
   gap: 20px;
 
   width: 100%;
-  max-width: calc(100% - 20px);
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     justify-content: space-around;
-    width: calc(100% - 60px);
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     justify-content: flex-end;
-    width: calc(100% - 285px);
   }
 `;
 

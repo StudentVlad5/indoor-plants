@@ -44,5 +44,5 @@ export function Pagination({ totalPage, changePage, page }) {
 Pagination.propTypes = {
   totalPage: PropTypes.number,
   page: PropTypes.number,
-  changePage: PropTypes.function,
+  changePage: PropTypes.func,
 };

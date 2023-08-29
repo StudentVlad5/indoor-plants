@@ -80,32 +80,29 @@ img {
   align-items: center;
   justify-content: center;
 
-  max-width: calc(100vw - 40px);
+  max-width: 50vw;
 
-  margin: 50px auto;
+  margin: 0 auto;
   padding: 6px 12px;
-  border-radius: 20px;
 
-  font-family: 'Manrope', sans-serif;
+  font-family: ${theme.fonts[0]}; //Raisonne Pro
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
 
-  background-color: rgba(245, 146, 86, 0.8);
+  background-color: transparent;
 
 
-  @media screen and (min-width: 768px) {
-    font-size: 24px;
-    border-radius: 50px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 20px;
     padding: 8px 16px;
-    max-width: calc(100vw - 64px);
   }
 
-  @media screen and (min-width: 1280px) {
-    max-width: 1280px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    max-width: 500px;
   }
 }
 
@@ -116,19 +113,20 @@ img {
 
   cursor: pointer;
 
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
+
+  color:${theme.colors.brown1};
 
   transition: all .25s ease-in;
 
   &:hover, &:focus {
-    border: 3px solid rgba(253, 247, 242, 0.3);
-    border-radius: 50%;
+    color:${theme.colors.darkGreen};
   }
 
-  @media screen and (min-width: 768px) {
-    width: 38px;
-    height: 38px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 35px;
+    height: 35px;
   }
 }
 
@@ -143,7 +141,8 @@ img {
 
 .paginate__page--active {
   pointer-events: none;
-  border-radius: 50%;
+  border: 0.5px solid ${theme.colors.brown1};
+  border-radius: 5px;
 
 }
 
@@ -192,7 +191,7 @@ img {
     display: none;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 16px;
     height: 48px;
     margin-bottom: 20px;
