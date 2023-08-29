@@ -133,3 +133,17 @@ export const ProductsArrowIcon = styled(arrow)`
     right: 0;
   }
 `;
+
+export const ItemWraper = styled.div`
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  width: 285px;
+  height: 520px;
+`;
+
+export const NameWraper = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+`;
