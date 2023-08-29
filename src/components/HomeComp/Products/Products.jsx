@@ -4,15 +4,14 @@ import {
   ProductsTitle,
   ProductsBtn,
   ProductsList,
-  // ProductsListItem,
-  // ProductsListItemDiscr,
-  // ProductsListItemDiscrText,
-  // ListItemDiscrTitle,
+  ProductsListItem,
+  ListItemDiscrTitle,
   ProductsImg,
-  // ListItemDiscrSize,
   ProductsSection,
+  ProductsListItemLink,
+  ProductsArrowIcon,
+  ProductsArrowIconBox,
 } from './Products.styled';
-// import plant from '../../../images/hero/products/plant.png';
 import { fetchData } from 'services/APIservice';
 import { Health } from '../Health/Health';
 import { Care } from '../Care/Care';
@@ -20,16 +19,18 @@ import { FeedbackComp } from '../Feedback/Feedback';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { ItemWraper, NameWraper } from 'components/Catalog/CatalogList/CatalogList.styled';
+import * as SC from '../../Catalog/Catalog.styled';
 
-export const Products = () => {
+export const Products = ({ products }) => {
+  const { BASE_URL_IMG } = window.global;
+
   const [listOfGoods, setListOfGoods] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
   const [, setError] = useState(null);
   const [searchParams] = useSearchParams();
 
-  const { BASE_URL_IMG } = window.global;
-  // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsPerPage = 4;
 
   useEffect(() => {
     async function fetchListOfGoods() {
@@ -49,96 +50,82 @@ export const Products = () => {
     }
     fetchListOfGoods();
   }, []);
-
   console.log(listOfGoods);
+
+  const handleNextSlide = () => {
+    setCurrentIndex(prevIndex =>
+      prevIndex + itemsPerPage >= products.length
+        ? 0
+        : prevIndex + itemsPerPage,
+    );
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentIndex(prevIndex =>
+      prevIndex - itemsPerPage < 0
+        ? products.length - itemsPerPage
+        : prevIndex - itemsPerPage,
+    );
+  };
+
+  const slideProducs = products.slice(currentIndex);
 
   return (
     <ProductsBox>
       <ProductsSection>
         <ProductsTitle>Discounts from 10 to 25%</ProductsTitle>
-        <ProductsBtn href="#">See all</ProductsBtn>
-
+        <ProductsBtn to="/catalog">See all</ProductsBtn>
+        {/* products.splice(0, 4) */}
         <ProductsList>
-          {listOfGoods?.length === 0 && !isLoading ? (
-            <h3>Whoops! Can&apost find anything...</h3>
-          ) : (
-            listOfGoods.splice(0, 4).map(item => (
-              // <ProductsListItem key={item._id}>
-              //   <ProductsListItemDiscr>
-              //     <ProductsImg
-              //       src={BASE_URL_IMG + item.images[0]}
-              //       alt={item.name}
-              //     />
-
-              //     <ProductsListItemDiscrText>
-              //       <ListItemDiscrTitle>{item.name}</ListItemDiscrTitle>
-              //       <ListItemDiscrSize>SIZE</ListItemDiscrSize>
-              //       {item.options.map(data => (
-              //         // <li style={{ margin: 'auto' }} key={data.title}>
-
-              //         <ListItemDiscrSize
-              //           key={data.title}
-              //           style={{ marginLeft: 'auto' }}
-              //         >
-              //           {data.title} {/* SIZE  */}
-              //         </ListItemDiscrSize>
-
-              //         //  <ListItemDiscrTitle style={{ marginLeft: 'auto' }}>
-              //         //   {Math
-              //         //     .round
-              //         //     // Number(data.price.split(',').join('.')) -
-              //         //     //   Number(data.discount.split(',').join('.')),
-              //         //     // 2,
-              //         //     ()}
-              //         //   {item.currency}
-              //         // </ListItemDiscrTitle>
-              //         // </li>
-              //       ))}
-              //     </ProductsListItemDiscrText>
-              //   </ProductsListItemDiscr>
-              // </ProductsListItem>
-
-              <ItemWraper key={item._id}>
-                <ProductsImg src={BASE_URL_IMG + item.images[0]} alt={item.name} />
-                <h4 style={{ margin: '4px auto' }}>{item.name}</h4>
-                <NameWraper>
-                  {item.options.map(data => (
-                    <li style={{ margin: 'auto' }} key={data.title}>
-                      {data.title} -{' '}
-                      122
-                      {/* {Math.round(
-                        // Number(data.price.split(',').join('.')) -
-                        //   Number(data.discount.split(',').join('.')),
-                        // 2,
-                      )} */}
-                      {item.currency}
-                    </li>
-                  ))}
-                </NameWraper>
-              </ItemWraper>
-            ))
-          )}
-
-          {/*<ProductsListItem>
-            <ProductsListItemDiscr>
-              <ProductsImg src={plant} alt="" />
-
-              <ProductsListItemDiscrText>
-                <ListItemDiscrTitle>Ficus lyrata - tree</ListItemDiscrTitle>
-                <ListItemDiscrTitle style={{ marginLeft: 'auto' }}>
-                  44$
-                </ListItemDiscrTitle>
-              </ProductsListItemDiscrText>
-
-              <ProductsListItemDiscrText>
-                <ListItemDiscrSize>SIZE</ListItemDiscrSize>
-                <ListItemDiscrSize style={{ marginLeft: 'auto' }}>
-                  L
-                </ListItemDiscrSize>
-              </ProductsListItemDiscrText>
-            </ProductsListItemDiscr>
-          </ProductsListItem> */}
+          {slideProducs.map(card => {
+            return (
+              <ProductsListItem key={card._id}>
+                <ProductsListItemLink to={`/catalog/${card._id}`}>
+                  <ProductsImg
+                    src={BASE_URL_IMG + card.images[0]}
+                    alt={card.name}
+                    width="285"
+                    height="460"
+                    loading="lazy"
+                  />
+                  <SC.CardTitle>
+                    <ListItemDiscrTitle>{card.name}</ListItemDiscrTitle>
+                    <SC.CardPrices>
+                      {card.currentPrice && (
+                        <SC.CardDiscount>
+                          {card.currentPrice}
+                          {card.currency}
+                        </SC.CardDiscount>
+                      )}
+                      {card.oldPrice && (
+                        <SC.CardPrice>
+                          {card.oldPrice}
+                          {card.currency}
+                        </SC.CardPrice>
+                      )}
+                    </SC.CardPrices>
+                  </SC.CardTitle>
+                  <SC.CardSize>
+                    <span>Size</span>
+                    <div>
+                      {card.options.map(option => {
+                        return (
+                          option.total != 0 && (
+                            <span key={option._id}>{option.title}</span>
+                          )
+                        );
+                      })}
+                    </div>
+                  </SC.CardSize>
+                </ProductsListItemLink>
+              </ProductsListItem>
+            );
+          })}
         </ProductsList>
+        <ProductsArrowIconBox>
+          <ProductsArrowIcon onClick={handlePrevSlide} />
+          <ProductsArrowIcon onClick={handleNextSlide} />
+        </ProductsArrowIconBox>
       </ProductsSection>
 
       <Health />
