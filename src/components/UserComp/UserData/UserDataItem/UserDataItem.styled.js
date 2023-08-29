@@ -99,9 +99,9 @@ const UserDataItemBtn = styled(Button)`
   transform: all 150ms linear;
   transition: all 0.25s ease-in;
 
-  &:hover svg {
-    fill: ${p =>
-      p.disabled ? `${theme.colors.darkGreen}` : `${theme.colors.brown}`};
+  &:hover svg,
+  &:focus svg {
+    fill: ${theme.colors.brown};
   }
   :disabled {
     svg {
@@ -134,10 +134,6 @@ const CheckMarkStyle = styled(CheckMark)`
   fill: ${theme.colors.white};
   transform: all 150ms linear;
   transition: all 0.25s ease-in;
-  &:hover,
-  &:focus {
-    fill: ${theme.colors.darkGreen};
-  }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 28px;
