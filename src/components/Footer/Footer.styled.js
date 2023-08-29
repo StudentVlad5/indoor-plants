@@ -107,6 +107,12 @@ export const FaqListOptions = styled.p`
   font-weight: 400;
   line-height: normal;
   padding-bottom: 5px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: rgb(154, 184, 121);
+  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     color: ${theme.colors.brown2};
@@ -206,6 +212,7 @@ export const FooterInput = styled.input`
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+  cursor: pointer;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 100%;
@@ -230,7 +237,12 @@ export const FooterInputFormBtn = styled.button`
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+  cursor: pointer;
 
+  &:hover,
+  &:focus {
+    background-color: rgb(154, 184, 121);
+  }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: block;
   }
@@ -288,6 +300,8 @@ export const FooterContactsList = styled.ul`
 `;
 
 export const FooterContactsListItem = styled.li`
+  cursor: pointer;
+
   &:not(:last-child) {
     margin-right: 9px;
     @media screen and (min-width: ${theme.breakpoints.desktop}) {
