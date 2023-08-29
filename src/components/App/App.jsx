@@ -63,7 +63,7 @@ export const App = () => {
               path="catalog/favorite"
               element={
                 <PrivateRoute
-                  redirectTo="/register"
+                  redirectTo="/signin"
                   component={<FavoritePage />}
                 />
               }
@@ -74,23 +74,20 @@ export const App = () => {
             <Route
               path="user"
               element={
-                <PrivateRoute redirectTo="/register" component={<UserPage />} />
+                <PrivateRoute redirectTo="/signin" component={<UserPage />} />
               }
             >
               <Route
                 path="profile"
                 element={
-                  <PrivateRoute
-                    redirectTo="/register"
-                    component={<UserData />}
-                  />
+                  <PrivateRoute redirectTo="/signin" component={<UserData />} />
                 }
               />
               <Route
                 path="orders"
                 element={
                   <PrivateRoute
-                    redirectTo="/register"
+                    redirectTo="/signin"
                     component={<h2>orders information</h2>}
                   />
                 }
@@ -99,7 +96,7 @@ export const App = () => {
                 path="favorites"
                 element={
                   <PrivateRoute
-                    redirectTo="/register"
+                    redirectTo="/signin"
                     component={<h2>favorites information</h2>}
                   />
                 }

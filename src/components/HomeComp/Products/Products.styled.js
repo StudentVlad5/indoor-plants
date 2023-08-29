@@ -1,6 +1,8 @@
+import styled from 'styled-components';
 import { Container } from 'components/baseStyles/CommonStyle.styled';
 import theme from 'components/baseStyles/Variables.styled';
-import styled from 'styled-components';
+import { Link, NavLink } from 'react-router-dom';
+import { ReactComponent as arrow } from 'images/svg/arrow.svg';
 
 export const ProductsBox = styled(Container)`
   padding-bottom: 0;
@@ -41,7 +43,7 @@ export const ProductsTitle = styled.h2`
   margin-bottom: 24px;
 `;
 
-export const ProductsBtn = styled.a`
+export const ProductsBtn = styled(Link)`
   display: flex;
   justify-content: flex-end;
   color: #5a6b47;
@@ -51,35 +53,53 @@ export const ProductsBtn = styled.a`
   font-weight: 600;
   line-height: normal;
   text-decoration-line: underline;
+
+  &:hover,
+  &:focus {
+    color: rgb(154, 184, 121);
+  }
 `;
 
 export const ProductsList = styled.ul`
   display: flex;
   margin-top: 24px;
+
+  overflow-x: hidden;
 `;
 
 export const ProductsListItem = styled.li`
   display: flex;
   align-items: center;
+  cursor: pointer;
+
+  list-style: none;
+  flex: 0 0 285px;
+  /* margin-right: 20px; */
 
   &:not(:last-child) {
     margin-right: 20px;
   }
 `;
 
+export const ProductsListItemLink = styled(NavLink)`
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Додайте потрібні значення для тіні */
+  }
+`;
+
 export const ProductsImg = styled.img`
   width: 285px;
   height: 400px;
-`;
+  margin-bottom: 21px;
 
-export const ProductsListItemDiscr = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const ProductsListItemDiscrText = styled.div`
-  display: flex;
-  margin-top: 21px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    margin-bottom: 25px;
+  }
 `;
 
 export const ListItemDiscrTitle = styled.h4`
@@ -96,18 +116,21 @@ export const ListItemDiscrTitle = styled.h4`
   }
 `;
 
-export const ListItemDiscrSize = styled.p`
-  display: none;
+export const ProductsArrowIconBox = styled.div`
+  position: relative;
+  top: -262px;
+`;
 
-  @media screen and (min-width: 1440px) {
-    display: block;
-    color: #8c8276;
-    text-align: center;
-    font-family: 'Raisonne Pro', sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
+export const ProductsArrowIcon = styled(arrow)`
+  cursor: pointer;
+  stroke: black;
+  &:nth-child(1) {
+    transform: scaleX(-1);
+  }
+
+  &:nth-child(2) {
+    position: absolute;
+    right: 0;
   }
 `;
 

@@ -1,7 +1,7 @@
 import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 
-export const UserDataContainer = styled.div`
+const UserDataContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +19,7 @@ export const UserDataContainer = styled.div`
   }
 `;
 
-export const UserDataImgWrapper = styled.div`
+const UserDataImgWrapper = styled.div`
   margin-bottom: 32px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -31,7 +31,7 @@ export const UserDataImgWrapper = styled.div`
   }
 `;
 
-export const EditCameraForm = styled.form`
+const EditCameraForm = styled.form`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     position: absolute;
     right: 0;
@@ -39,54 +39,39 @@ export const EditCameraForm = styled.form`
   }
 `;
 
-export const UserDataImg = styled.img`
-  width: 233px;
-  height: 233px;
+const UserDataImg = styled.img`
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 12px;
   object-fit: cover;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 8px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    margin-bottom: 0px;
-  }
 `;
 
-export const EditCameraWrapper = styled.div`
+const EditCameraWrapper = styled.div`
   display: flex;
   justify-content: baseline;
   flex-direction: row-reverse;
 `;
 
-export const EditPhotoLabel = styled.label`
+const EditPhotoLabel = styled.label`
   display: flex;
   align-items: center;
   cursor: pointer;
   padding-right: 24px;
-  font-family: 'Manrope', sans-serif;
-  font-size: 12px;
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
   font-weight: 400;
   line-height: 1.8;
   transition: all 150ms linear;
 
-  &:hover,
-  &:focus {
-  }
-
-  :hover svg {
-  }
-
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-right: 0px;
   }
 `;
 
-export const EditPhotoInput = styled.input`
+const EditPhotoInput = styled.input`
   opacity: 0;
   position: absolute;
   z-index: -1;
@@ -94,75 +79,28 @@ export const EditPhotoInput = styled.input`
   height: 0;
 `;
 
-export const UserDataList = styled.ul`
-  @media screen and (min-width: 768px) {
+const UserDataList = styled.ul`
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 16px;
     padding-bottom: 55px;
     width: 379px;
-  }
-
-  @media screen and (min-width: 768px) {
     margin-left: 32px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding-top: 0px;
     padding-bottom: 0px;
     margin-left: 16px;
   }
 `;
 
-export const UserDataFormItemWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 16px;
-  padding-right: 12px;
-
-  &:not(:last-child) {
-    margin-bottom: 8px;
-  }
-`;
-
-export const UserDataLabel = styled.label`
-  display: block;
-  font-family: 'Manrope', sans-serif;
-  font-size: 68px;
-  font-weight: 500;
-  line-height: 1.33;
-  letter-spacing: 0.04em;
-`;
-
-export const UserDataInputBtnWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const UserDataInput = styled.input`
-  box-sizing: border-box;
-  font-family: 'Manrope', sans-serif;
-  font-size: 68px;
-  font-weight: 400;
-  line-height: 1.33;
-  letter-spacing: 0.04em;
-  width: 159px;
-  height: 24px;
-  padding: 4px 18px;
-  border-radius: 40px;
-
-  :focus {
-    outline-color: transparent;
-  }
-`;
-
-export const UserDataBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border-color: transparent;
-  margin-left: 9px;
-`;
+export {
+  EditCameraForm,
+  EditCameraWrapper,
+  EditPhotoInput,
+  EditPhotoLabel,
+  UserDataContainer,
+  UserDataImg,
+  UserDataImgWrapper,
+  UserDataList,
+};

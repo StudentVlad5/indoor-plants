@@ -24,7 +24,13 @@ export const singOut = async () => {
 };
 
 export const updateUserData = async updateData => {
-  const { data } = await axios.patch('/user', updateData);
+  const perem = {};
+  for (let key in updateData) {
+    if (key != 'id') {
+      perem[key] = updateData[key];
+    }
+  }
+  const { data } = await axios.patch(`/auth/user/${updateData.id}`, perem);
   return data;
 };
 
