@@ -312,4 +312,9 @@ input::-webkit-calendar-picker-indicator:hover {
   color: ${theme.colors.white};
   background-color: ${theme.colors.green};
 }
+
+/* HEADER */
+.addHeaderBottom{
+  background-color: ${theme.colors.brown1};
+}
 `;

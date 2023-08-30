@@ -6,8 +6,15 @@ import { ProductCard } from '../components/ProductCard/ProductCard';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { cleanHeaderBottom } from 'redux/header_bottom/operation';
 
 const ProductCardPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(cleanHeaderBottom());
+  }, []);
   const routeParams = useParams();
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
