@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/indoor-plants/static/css/main.c3d5249d.css",
-    "main.js": "/indoor-plants/static/js/main.66129acb.js",
+    "main.js": "/indoor-plants/static/js/main.df5f5736.js",
     "static/js/230.52e55a53.chunk.js": "/indoor-plants/static/js/230.52e55a53.chunk.js",
     "static/js/865.23fb201b.chunk.js": "/indoor-plants/static/js/865.23fb201b.chunk.js",
     "static/js/454.34bd774c.chunk.js": "/indoor-plants/static/js/454.34bd774c.chunk.js",
@@ -44,6 +44,7 @@
     "static/media/img2.webp": "/indoor-plants/static/media/img2.3c18cad60590905826e7.webp",
     "static/media/404_indoor_plants_mobile_1x.webp": "/indoor-plants/static/media/404_indoor_plants_mobile_1x.ca0da1a06e2eb11689ec.webp",
     "static/media/quotationMarkIconDesk.svg": "/indoor-plants/static/media/quotationMarkIconDesk.b6b6a714a3ff04a6275b3e86ec9fe7ac.svg",
+    "static/media/No-image-available.webp": "/indoor-plants/static/media/No-image-available.12543cbbce5122e5ed0d.webp",
     "static/media/sun.svg": "/indoor-plants/static/media/sun.dc79817b81e9b1c9355c35a0ee60efb4.svg",
     "static/media/logout.svg": "/indoor-plants/static/media/logout.679e7d3c509259498f69b6b64831187f.svg",
     "static/media/cat.svg": "/indoor-plants/static/media/cat.06046e28cf06ab6492ef446f4d9ac95a.svg",
@@ -73,7 +74,7 @@
     "static/media/minus.svg": "/indoor-plants/static/media/minus.8853824879a4e822b91e026401b394e3.svg",
     "static/media/arrowDown.svg": "/indoor-plants/static/media/arrowDown.2124174c7a9aa922cb88bb1aa1569382.svg",
     "main.c3d5249d.css.map": "/indoor-plants/static/css/main.c3d5249d.css.map",
-    "main.66129acb.js.map": "/indoor-plants/static/js/main.66129acb.js.map",
+    "main.df5f5736.js.map": "/indoor-plants/static/js/main.df5f5736.js.map",
     "230.52e55a53.chunk.js.map": "/indoor-plants/static/js/230.52e55a53.chunk.js.map",
     "865.23fb201b.chunk.js.map": "/indoor-plants/static/js/865.23fb201b.chunk.js.map",
     "454.34bd774c.chunk.js.map": "/indoor-plants/static/js/454.34bd774c.chunk.js.map",
@@ -89,6 +90,6 @@
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.66129acb.js"
+    "static/js/main.df5f5736.js"
   ]
 }
