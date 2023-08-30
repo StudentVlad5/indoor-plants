@@ -63,11 +63,4 @@ updateUserData.propTypes = {
   formData: PropTypes.string.isRequired,
 };
 
-export {
-  fetchData,
-  // fetchNotice,
-  // fetchPetsUser,
-  // fetchPatchNotice,
-  updateUserData,
-  deleteData,
-};
+export { fetchData, updateUserData, deleteData };

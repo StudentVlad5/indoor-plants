@@ -58,7 +58,7 @@ export const Hero = () => {
           </HeroBoxText>
         </HeroBox>
       </HeroContainer>
-      
+
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError(t('Whoops, something went wrong'))}
       {products.length > 0 && !error && <Products products={products} />}

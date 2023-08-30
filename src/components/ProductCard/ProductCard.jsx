@@ -307,7 +307,6 @@ export const ProductCard = ({ product }) => {
 };
 
 ProductCard.propTypes = {
-  // product: PropTypes.any,
   product: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

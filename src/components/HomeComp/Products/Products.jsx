@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import {
   ProductsBox,
   ProductsTitle,
@@ -12,14 +14,12 @@ import {
   ProductsArrowIcon,
   ProductsArrowIconBox,
 } from './Products.styled';
+import * as SC from '../../Catalog/CatalogList/CatalogList.styled';
 import { fetchData } from 'services/APIservice';
 import { Health } from '../Health/Health';
 import { Care } from '../Care/Care';
 import { FeedbackComp } from '../Feedback/Feedback';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import * as SC from '../../Catalog/Catalog.styled';
 
 export const Products = ({ products }) => {
   const { BASE_URL_IMG } = window.global;
@@ -40,7 +40,7 @@ export const Products = ({ products }) => {
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
-        console.log(data);
+        // console.log(data);
         setListOfGoods(data);
       } catch (error) {
         setError(error);
@@ -50,7 +50,8 @@ export const Products = ({ products }) => {
     }
     fetchListOfGoods();
   }, []);
-  console.log(listOfGoods);
+
+  // console.log(listOfGoods);
 
   const handleNextSlide = () => {
     setCurrentIndex(prevIndex =>

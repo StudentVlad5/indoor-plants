@@ -1,67 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import { fetchData } from 'services/APIservice';
-import { useSearchParams } from 'react-router-dom';
-import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import {
-  CatalogListContainer,
-  ItemWraper,
-  NameWraper,
-} from './CatalogList.styled';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import * as SC from './CatalogList.styled';
 
-export const CatalogList = () => {
-  const [listOfGoods, setListOfGoods] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [, setError] = useState(null);
-  const [searchParams] = useSearchParams();
+const { BASE_URL_IMG } = window.global;
 
-  const { BASE_URL_IMG } = window.global;
-  // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-
-  useEffect(() => {
-    async function fetchListOfGoods() {
-      setIsLoading(true);
-      try {
-        const { data } = await fetchData(`/catalog?${searchParams}`);
-        if (!data) {
-          return onFetchError('Whoops, something went wrong');
-        }
-        setListOfGoods(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchListOfGoods();
-  }, []);
-
-  console.log(listOfGoods);
-
+export const CatalogList = ({ products }) => {
   return (
-    <CatalogListContainer>
-      {listOfGoods?.length === 0 && !isLoading ? (
-        <h3>Whoops! Can&apost find anything...</h3>
-      ) : (
-        listOfGoods.map(item => (
-          <ItemWraper key={item._id}>
-            <img src={BASE_URL_IMG + item.images[0]} alt={item.name} />
-            <h4 style={{ margin: '4px auto' }}>{item.name}</h4>
-            <NameWraper>
-              {item.options.map(data => (
-                <li style={{ margin: 'auto' }} key={data.title}>
-                  {data.title} -{' '}
-                  {Math.round(
-                    Number(data.price.split(',').join('.')) -
-                      Number(data.discount.split(',').join('.')),
-                    2,
+    <SC.Grid>
+      {products.map(card => {
+        return (
+          <SC.Card key={card._id}>
+            <NavLink to={`/catalog/${card._id}`}>
+              <SC.CardImage
+                src={BASE_URL_IMG + card.images[0]}
+                alt={card.name}
+                width="285"
+                height="460"
+                loading="lazy"
+              />
+              <SC.CardTitle>
+                <SC.CardName>{card.name}</SC.CardName>
+                <SC.CardPrices>
+                  {card.currentPrice && (
+                    <SC.CardDiscount>
+                      {card.currentPrice}
+                      {card.currency}
+                    </SC.CardDiscount>
                   )}
-                  {item.currency}
-                </li>
-              ))}
-            </NameWraper>
-          </ItemWraper>
-        ))
-      )}
-    </CatalogListContainer>
+                  {card.oldPrice && (
+                    <SC.CardPrice>
+                      {card.oldPrice}
+                      {card.currency}
+                    </SC.CardPrice>
+                  )}
+                </SC.CardPrices>
+              </SC.CardTitle>
+              <SC.CardSize>
+                <span>Size</span>
+                <div>
+                  {card.options.map(option => {
+                    return (
+                      option.total != 0 && (
+                        <span key={option._id}>{option.title}</span>
+                      )
+                    );
+                  })}
+                </div>
+              </SC.CardSize>
+            </NavLink>
+          </SC.Card>
+        );
+      })}
+    </SC.Grid>
   );
+};
+
+CatalogList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      oldPrice: PropTypes.number.isRequired,
+      currentPrice: PropTypes.number.isRequired,
+      currency: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      options: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string,
+          oldPrice: PropTypes.number,
+          currentPrice: PropTypes.number,
+          total: PropTypes.number,
+        }),
+      ),
+      totalQuantity: PropTypes.number,
+      typeOfPlants: PropTypes.string,
+      light: PropTypes.string,
+      petFriendly: PropTypes.string,
+      maintenance: PropTypes.string,
+      potSize: PropTypes.string,
+      waterSchedule: PropTypes.string,
+      images: PropTypes.array,
+    }),
+  ),
 };
