@@ -24,13 +24,16 @@ export const singOut = async () => {
 };
 
 export const updateUserData = async updateData => {
-  const perem = {};
-  for (let key in updateData) {
-    if (key != 'id') {
-      perem[key] = updateData[key];
-    }
-  }
-  const { data } = await axios.patch(`/auth/user/${updateData.id}`, perem);
+  const formData = new FormData();
+  updateData.avatar && formData.set('avatar', updateData.avatar);
+  updateData.email && formData.append('email', updateData.email);
+  updateData.birthday && formData.append('birthday', updateData.birthday);
+  updateData.location && formData.append('location', updateData.location);
+  updateData.phone && formData.append('phone', updateData.phone);
+
+  console.log(formData);
+
+  const { data } = await axios.patch(`/auth/user/${updateData.id}`, formData);
   return data;
 };
 
