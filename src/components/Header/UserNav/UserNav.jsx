@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectUser, getUserAvatar } from 'redux/auth/selectors';
+import NotFoundImg from '../../../images/No-image-available.webp';
 import {
   MobileAccountButton,
   AccountButton,
@@ -12,7 +13,15 @@ import {
 
 export const MobileUserNav = ({ toggleMenu }) => {
   const user = useSelector(selectUser);
-  const avatar = useSelector(getUserAvatar);
+  const userAvatar = useSelector(getUserAvatar);
+  const { BASE_URL_IMG } = window.global;
+  let avatar = NotFoundImg;
+  if (userAvatar !== '' && userAvatar !== undefined) {
+    avatar =
+      BASE_URL_IMG +
+      'avatars/' +
+      userAvatar.split('/')[userAvatar.split('/').length - 1];
+  }
 
   // const { t } = useTranslation();
 
@@ -26,7 +35,15 @@ export const MobileUserNav = ({ toggleMenu }) => {
 
 export const UserNav = () => {
   const user = useSelector(selectUser);
-  const avatar = useSelector(getUserAvatar);
+  const userAvatar = useSelector(getUserAvatar);
+  const { BASE_URL_IMG } = window.global;
+  let avatar = NotFoundImg;
+  if (userAvatar !== '' && userAvatar !== undefined) {
+    avatar =
+      BASE_URL_IMG +
+      'avatars/' +
+      userAvatar.split('/')[userAvatar.split('/').length - 1];
+  }
 
   return (
     <AccountButton to="/user">

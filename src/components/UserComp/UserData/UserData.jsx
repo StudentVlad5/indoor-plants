@@ -24,7 +24,6 @@ export const UserData = () => {
   const id = useSelector(selectId);
   const userAvatar = useSelector(getUserAvatar);
   let avatar = NotFoundImg;
-  console.log(userAvatar, 'userAvatar');
   if (userAvatar !== '' && userAvatar !== undefined) {
     avatar =
       BASE_URL_IMG +
