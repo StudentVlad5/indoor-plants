@@ -6,7 +6,6 @@ import {
   FeedbackBox1,
   FeedbackBox1Text,
   FeedbackDiscr,
-  // FeedbackSection,
   FeedbackTitle,
   FeedbackUser,
   QuotationMarkIcon,

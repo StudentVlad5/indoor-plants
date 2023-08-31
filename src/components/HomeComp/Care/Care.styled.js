@@ -1,26 +1,5 @@
-import { Section } from 'components/baseStyles/CommonStyle.styled';
 import styled from 'styled-components';
 
-export const CareSection = styled(Section)`
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: calc(100% - 20px);
-    height: 1px;
-    background: #5f4a32;
-  }
-`;
-
-export const CareBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* padding-top: 60px; */
-  /* padding-bottom: 60px; */
-`;
 
 export const CareBoxDiscr = styled.div`
   &:nth-child(1) {
