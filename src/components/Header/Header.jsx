@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const headerBottom = useSelector(headerBottomComponent);
-  console.log('headerBottom', headerBottom);
 
   useEffect(() => {
     const handleScroll = () => {
