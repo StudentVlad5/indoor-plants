@@ -1,6 +1,19 @@
 import theme from 'components/baseStyles/Variables.styled';
+import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 import styled from 'styled-components';
 
+const UserDataSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 0px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    align-items: end;
+  }
+`;
 const UserDataContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -94,6 +107,32 @@ const UserDataList = styled.ul`
   }
 `;
 
+const BtnChangePassword = styled(Button)`
+  display: flex;
+  width: 180px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  text-decoration: none;
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: normal;
+  border-radius: 5px;
+  border: 1px solid ${theme.colors.brown};
+  color: ${theme.colors.brown};
+  background-color: transparent;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.green};
+  }
+`;
 export {
   EditCameraForm,
   EditCameraWrapper,
@@ -103,4 +142,6 @@ export {
   UserDataImg,
   UserDataImgWrapper,
   UserDataList,
+  BtnChangePassword,
+  UserDataSection,
 };

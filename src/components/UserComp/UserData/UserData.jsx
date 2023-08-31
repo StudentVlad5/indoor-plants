@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import {
+  BtnChangePassword,
   EditCameraForm,
   EditCameraWrapper,
   EditPhotoInput,
@@ -11,6 +12,7 @@ import {
   UserDataImg,
   UserDataImgWrapper,
   UserDataList,
+  UserDataSection,
 } from './UserData.styled';
 import { useAuth } from 'hooks/useAuth';
 import { update } from 'redux/auth/operations';
@@ -47,7 +49,7 @@ export const UserData = () => {
     : '';
 
   return (
-    <>
+    <UserDataSection>
       <UserDataContainer>
         <UserDataImgWrapper>
           <UserDataImg alt="User" src={avatar} />
@@ -124,6 +126,7 @@ export const UserData = () => {
           />
         </UserDataList>
       </UserDataContainer>
-    </>
+      <BtnChangePassword>Change Password</BtnChangePassword>
+    </UserDataSection>
   );
 };
