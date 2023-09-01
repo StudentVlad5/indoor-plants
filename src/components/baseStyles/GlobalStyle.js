@@ -5,11 +5,11 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 body {
   /* Raisonne Pro */
-  font-family: 'Archivo', sans-serif;
-  /* font-family: 'Barlow', sans-serif; */
+  /* font-family: 'Archivo', sans-serif; */
+  font-family: 'Barlow', sans-serif;
   /* Nib Pro */
-  font-family: 'Domine', serif;
- /* font-family: 'Fraunces', serif; */
+  /* font-family: 'Domine', serif; */
+ font-family: 'Fraunces', serif;
 
   background-color:${theme.colors.fon};
   
@@ -87,7 +87,7 @@ img {
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
@@ -156,12 +156,11 @@ img {
 
   padding: 10px 15px 10px 15px;
 
-  font-family: 'Manrope', sans-serif;
+  font-family: ${theme.fonts[0]}; //Raisonne Pro
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   line-height: 1.375;
-  letter-spacing: 0.04em;
   text-align: left;
 
 
@@ -311,5 +310,33 @@ input::-webkit-calendar-picker-indicator:hover {
 .linkFolder.active {
   color: ${theme.colors.white};
   background-color: ${theme.colors.green};
+}
+
+
+//-----Range-----//
+.rc-slider {
+    background-color: ${theme.colors.fon} !important;
+    border-radius:0 !important;
+}
+
+.rc-slider-track {
+    background-color: ${theme.colors.green} !important;
+}
+
+.rc-slider-handle{
+  background-color: ${theme.colors.fon} !important;
+  border: solid 2px ${theme.colors.green} !important;
+
+  &:focus-visible{
+    box-shadow: 0 0 0 3px ${theme.colors.green2} !important;
+  }
+
+  &-dragging{
+    box-shadow: 0 0 0 5px ${theme.colors.green2} !important;
+  }
+}
+
+.rc-slider-disabled{
+  background-color:${theme.colors.fon} !important;
 }
 `;

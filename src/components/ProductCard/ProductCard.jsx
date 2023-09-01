@@ -24,6 +24,7 @@ export const ProductCard = ({ product }) => {
   const {
     _id,
     name,
+    typeOfPlants,
     oldPrice,
     currentPrice,
     currency,
@@ -65,15 +66,27 @@ export const ProductCard = ({ product }) => {
         <SC.ProductNav>
           <SC.ProductNavList>
             <SC.ProductNavItem>
-              <SC.ProductNavLink href="/">Plants</SC.ProductNavLink>
+              <SC.ProductNavLink href="/indoor-plants/">
+                Plants
+              </SC.ProductNavLink>
             </SC.ProductNavItem>
             <SC.ProductNavItem>
-              <SC.ProductNavLink href="/catalog">
+              <SC.ProductNavLink href="/indoor-plants/catalog">
                 Indoor Plants
               </SC.ProductNavLink>
             </SC.ProductNavItem>
             <SC.ProductNavItem>
-              <SC.ProductNavLink href={`/catalog/${_id}`} $primary>
+              <SC.ProductNavLink
+                href={`/indoor-plants/catalog?perPage=12&page=1&typeOfPlants=${typeOfPlants}`}
+              >
+                {typeOfPlants}
+              </SC.ProductNavLink>
+            </SC.ProductNavItem>
+            <SC.ProductNavItem>
+              <SC.ProductNavLink
+                href={`/indoor-plants/catalog/${_id}`}
+                $primary
+              >
                 {name}
               </SC.ProductNavLink>
             </SC.ProductNavItem>
@@ -307,28 +320,33 @@ export const ProductCard = ({ product }) => {
 };
 
 ProductCard.propTypes = {
-  product: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    currentPrice: PropTypes.number.isRequired,
-    oldPrice: PropTypes.number.isRequired,
-    currency: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        oldPrice: PropTypes.number,
-        currentPrice: PropTypes.number,
-        total: PropTypes.number,
-      }),
-    ),
-    totalQuantity: PropTypes.number,
-    typeOfPlants: PropTypes.string,
-    light: PropTypes.string,
-    petFriendly: PropTypes.string,
-    maintenance: PropTypes.string,
-    potSize: PropTypes.string,
-    waterSchedule: PropTypes.string,
-    images: PropTypes.arrayOf(PropTypes.string),
-  }),
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      oldPrice: PropTypes.number.isRequired,
+      currentPrice: PropTypes.number.isRequired,
+      currency: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      options: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string,
+          oldPrice: PropTypes.number,
+          currentPrice: PropTypes.number,
+          total: PropTypes.number,
+        }),
+      ),
+      totalQuantity: PropTypes.number,
+      typeOfPlants: PropTypes.string,
+      light: PropTypes.string,
+      petFriendly: PropTypes.string,
+      maintenance: PropTypes.string,
+      potSize: PropTypes.number,
+      potSizeItem: PropTypes.string,
+      hardToKill: PropTypes.string,
+      rare: PropTypes.string,
+      waterSchedule: PropTypes.string,
+      images: PropTypes.array,
+    }),
+  ),
 };

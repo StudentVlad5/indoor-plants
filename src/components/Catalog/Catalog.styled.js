@@ -42,7 +42,7 @@ const Accord = styled.div`
   display: flex;
   align-items: center;
 
-  padding: 10px;
+  /* padding: 10px; */
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     gap: 50px;
@@ -101,15 +101,17 @@ const FiltersBox = styled.div`
 
 const FiltersWrapper = styled.div`
   position: absolute;
-  top: 35px;
+  top: 25px;
   right: 0;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 
-  width: 50vw;
+  width: 38vw;
+  min-width: 200px;
   padding: 8px;
 
   background-color: ${theme.colors.fon};
@@ -119,6 +121,7 @@ const FiltersWrapper = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     top: 65px;
+    width: 340px;
     border-radius: 0;
   }
 `;

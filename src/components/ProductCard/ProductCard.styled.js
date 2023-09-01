@@ -33,6 +33,12 @@ const ProductNavItem = styled.li`
   position: relative;
   margin-right: 13px;
 
+  &:nth-child(3) {
+    & a {
+      text-transform: capitalize;
+    }
+  }
+
   &:not(:last-child)::before {
     content: ' / ';
     position: absolute;
@@ -45,7 +51,7 @@ const ProductNavLink = styled.a`
   font-family: ${theme.fonts[1]}; //'Nib Pro'
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: ${props => (props.$primary ? 500 : 400)};
   line-height: normal;
   color: ${props =>
     props.$primary ? theme.colors.green : theme.colors.green1};

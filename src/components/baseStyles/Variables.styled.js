@@ -39,8 +39,9 @@ const theme = {
     grey1: '#656970',
     white: '#ffffff',
   },
-  fonts: ['Archivo, sans-serif', 'Domine, serif'],
+  // fonts: ['Archivo, sans-serif', 'Domine, serif'],
   // fonts: ['Barlow, sans-serif', 'Fraunces, serif'],
+  fonts: ['Archivo, sans-serif', 'Fraunces, serif'],
   fontSizes: {
     small: '14px',
     medium: '18px',

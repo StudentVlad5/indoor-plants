@@ -7,7 +7,7 @@ import { persistor, store } from 'redux/store';
 import { App } from 'components/App/App';
 import { GlobalStyle } from 'components/baseStyles/GlobalStyle';
 import { I18nextProvider } from 'react-i18next';
-import i18n from './i18n';
+import i18n from './utils/i18n';
 
 window.global = {
   BASE_URL: 'http://localhost:3030/api',

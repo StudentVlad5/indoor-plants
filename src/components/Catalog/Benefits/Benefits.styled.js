@@ -35,7 +35,7 @@ const BenefitsDescription = styled.span`
   font-family: ${theme.fonts[1]}; //Nib Pro
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 166%; /* 26.56px */
 
   color: ${theme.colors.brown2};

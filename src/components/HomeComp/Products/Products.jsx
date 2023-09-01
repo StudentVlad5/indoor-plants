@@ -36,7 +36,7 @@ export const Products = ({ products }) => {
     async function fetchListOfGoods() {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(`/catalog?${searchParams}`);
+        const { data } = await fetchData(`/catalog`);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }

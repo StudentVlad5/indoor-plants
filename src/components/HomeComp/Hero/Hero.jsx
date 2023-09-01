@@ -31,7 +31,7 @@ export const Hero = () => {
     (async function getData() {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(`/catalog?${searchParams}`);
+        const { data } = await fetchData(`/catalog`);
         setProducts(data);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
