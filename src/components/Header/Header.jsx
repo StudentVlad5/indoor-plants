@@ -1,13 +1,20 @@
 import React from 'react';
 import { Navigation } from 'components/Header/Navigation/Navigation';
-import { HeaderContainer } from './Header.styled';
+import {
+  HeaderContainer,
+  HeaderSection,
+  HeaderUnderLine,
+  HeaderSectionWrap,
+} from './Header.styled';
 import { Logo } from './Elements/logo/Logo';
 import { Menu } from './Elements/menu/Menu';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { headerBottomComponent } from 'redux/header_bottom/selectors';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const headerBottom = useSelector(headerBottomComponent);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,11 +33,16 @@ export const Header = () => {
   }, []);
 
   return (
-    <HeaderContainer isScrolled={isScrolled}>
-      <Menu />
-      <Logo />
-      {/* <Language /> */}
-      <Navigation />
-    </HeaderContainer>
+    <HeaderSectionWrap isScrolled={isScrolled}>
+      <HeaderSection isScrolled={isScrolled}>
+        <HeaderContainer>
+          <Menu />
+          <Logo />
+          {/* <Language /> */}
+          <Navigation />
+        </HeaderContainer>
+        <HeaderUnderLine className={headerBottom.headerBottom} />
+      </HeaderSection>
+    </HeaderSectionWrap>
   );
 };

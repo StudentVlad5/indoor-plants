@@ -19,6 +19,7 @@ export const UserContainer = styled(Container)`
   margin: 0 auto;
   width: 100%;
   height: 100vh;
+  padding-top: 40px;
 `;
 
 export const UserDataWrapper = styled.div`

@@ -53,22 +53,6 @@ const TitleLogin = styled(Title)`
     color: ${theme.colors.brown1};
   }
 `;
-const TitleLogo = styled(Title)`
-  font-family: ${theme.fonts[0]};
-  font-weight: 700;
-  font-style: normal;
-  font-size: ${theme.fontSizes.extraXL};
-  line-height: 42px;
-  letter-spacing: 0.07em;
-  color: ${theme.colors.brown2};
-  text-decoration: none;
-  margin-bottom: 24px;
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    line-height: 48px;
-    font-size: ${theme.fontSizes.extraXXL};
-  }
-`;
 export const IconValid = styled(FaCheck)`
   display: inline-block;
   position: absolute;
@@ -254,6 +238,7 @@ const BtnContainer = styled.div`
 `;
 
 const StyledLink = styled(Link)`
+  margin-bottom: 10px;
   color: ${theme.colors.brown2};
   transition: all 0.25s ease-in;
   :hover,
@@ -279,7 +264,6 @@ export {
   FormSection,
   FormContainer,
   TitleLogin,
-  TitleLogo,
   FormLogin,
   ShowPassword,
   Input,

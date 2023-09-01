@@ -1,35 +1,9 @@
-import { Section } from 'components/baseStyles/CommonStyle.styled';
 import styled from 'styled-components';
-
-export const HelstSection = styled(Section)`
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: calc(100% - 20px);
-    height: 1px;
-    background: #5f4a32;
-  }
-`;
 
 export const HealthBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding-top: 60px; */
-  /* padding-bottom: 28px; */
-  /* position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: calc(100% - 20px);
-    height: 1px;
-    background: #5f4a32;
-  } */
 `;
 
 export const HealthBoxDiscr = styled.div`

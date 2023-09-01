@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import theme from 'components/baseStyles/Variables.styled';
 
-const Text = styled(NavLink)`
+const Text = styled(Link)`
   font-family: ${theme.fonts[0]};
   font-weight: 700;
   font-style: normal;

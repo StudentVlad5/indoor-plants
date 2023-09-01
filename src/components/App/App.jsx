@@ -21,6 +21,8 @@ const GiftsPage = lazy(() => import('pages/Gifts'));
 const CarePage = lazy(() => import('pages/Care'));
 const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
+const CheckOutPage = lazy(() => import('pages/CheckOut'));
+const ForgotPasswordPage = lazy(() => import('pages/ForgotPassword'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -57,6 +59,16 @@ export const App = () => {
               }
             />
 
+            <Route
+              path="forgot_password"
+              element={
+                <RestrictedRoute
+                  redirectTo="/user"
+                  component={<ForgotPasswordPage />}
+                />
+              }
+            />
+
             <Route path="catalog" element={<CatalogPage />} />
             <Route path="catalog/:id" element={<ProductCardPage />} />
             <Route
@@ -70,6 +82,7 @@ export const App = () => {
             />
             <Route path="gifts" element={<GiftsPage />} />
             <Route path="care" element={<CarePage />} />
+            <Route path="checkout" element={<CheckOutPage />} />
 
             <Route
               path="user"

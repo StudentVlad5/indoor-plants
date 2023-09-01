@@ -21,7 +21,6 @@ import {
   ErrBox,
   Div,
   FormSection,
-  TitleLogo,
   BtnContainer,
   Span,
 } from './RegisterForm.styled';
@@ -99,7 +98,6 @@ const RegisterForm = () => {
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
           <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
-            <TitleLogo>{'homeforest'}</TitleLogo>
             <TitleRegister>{'Register'}</TitleRegister>
             {isShown && (
               <Div>

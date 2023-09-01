@@ -14,8 +14,16 @@ import img_desktop_webp_2 from '../images/error/404_indoor_plants_desktop_2x.web
 import img_desktop_webp_3 from '../images/error/404_indoor_plants_desktop_3x.webp';
 import { NotFound } from 'components/NotFound/NotFound';
 import { ErrorContainer, ErrorImg } from 'components/NotFound/NotFound.styled';
+import { useDispatch } from 'react-redux';
+import { cleanHeaderBottom } from 'redux/header_bottom/operation';
+import { useEffect } from 'react';
 
 const NotFoundPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(cleanHeaderBottom());
+  }, []);
   return (
     <ErrorContainer>
       <SEO title="HomeForest NotFoundPage" description="Not Found Page" />

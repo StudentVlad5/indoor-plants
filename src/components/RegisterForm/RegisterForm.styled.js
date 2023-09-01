@@ -53,23 +53,6 @@ export const TitleRegister = styled(Title)`
   }
 `;
 
-export const TitleLogo = styled(Title)`
-  font-family: ${theme.fonts[0]};
-  font-weight: 700;
-  font-style: normal;
-  font-size: ${theme.fontSizes.extraXL};
-  line-height: 42px;
-  letter-spacing: 0.07em;
-  color: ${theme.colors.brown2};
-  text-decoration: none;
-  margin-bottom: 24px;
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    line-height: 48px;
-    font-size: ${theme.fontSizes.extraXXL};
-  }
-`;
-
 export const FormRegister = styled(Form)`
   position: relative;
   width: 280px;

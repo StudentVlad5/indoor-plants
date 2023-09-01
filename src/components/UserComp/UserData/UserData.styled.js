@@ -1,15 +1,33 @@
 import theme from 'components/baseStyles/Variables.styled';
+import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 import styled from 'styled-components';
 
+const UserDataSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  margin-bottom: 0px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    align-items: end;
+  }
+`;
 const UserDataContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 20px;
   margin-bottom: 0px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -94,6 +112,52 @@ const UserDataList = styled.ul`
   }
 `;
 
+const UserPasswordList = styled.ul`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-top: 16px;
+    padding-bottom: 55px;
+    width: 379px;
+    margin-left: 32px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: 16px;
+  }
+`;
+
+const BtnChangePassword = styled(Button)`
+  display: flex;
+  width: 180px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  text-decoration: none;
+  font-family: ${theme.fonts[0]};
+  font-size: ${theme.fontSizes.small};
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: normal;
+  border-radius: 5px;
+  border: 1px solid ${theme.colors.brown};
+  color: ${theme.colors.brown};
+  background-color: transparent;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.green};
+  }
+`;
 export {
   EditCameraForm,
   EditCameraWrapper,
@@ -103,4 +167,7 @@ export {
   UserDataImg,
   UserDataImgWrapper,
   UserDataList,
+  BtnChangePassword,
+  UserDataSection,
+  UserPasswordList,
 };

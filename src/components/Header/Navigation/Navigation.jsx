@@ -9,12 +9,12 @@ import {
   IconSearch,
   NavBlock,
   IconFavorite,
-  IconBasket,
   MobileContainer,
   MobileNavBlock,
   IconSearchMobile,
   IconFavoriteMobile,
 } from './Navigation.styled';
+import { Basket } from '../Basket/Basket';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -26,7 +26,7 @@ export const Navigation = () => {
         <IconSearch />
         {isLoggedIn ? <UserNav /> : <AuthNav />}
         <IconFavorite />
-        <IconBasket />
+        <Basket />
       </NavBlock>
     </Container>
   );
@@ -39,7 +39,7 @@ export const MobileNavigation = () => {
       <MobileNavBlock>
         <IconSearchMobile />
         <IconFavoriteMobile />
-        <IconBasket />
+        <Basket />
       </MobileNavBlock>
     </MobileContainer>
   );

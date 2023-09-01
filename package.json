@@ -5,9 +5,6 @@
   "homepage": "https://studentvlad5.github.io/indoor-plants/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
-    "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.3.4",
     "formik": "^2.2.9",
     "framer-motion": "^10.6.1",
@@ -73,6 +70,9 @@
     }
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.2",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/styled-components": "^5.1.26",
     "eslint": "^8.47.0",
     "eslint-plugin-react": "^7.33.2",
