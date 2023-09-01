@@ -6,7 +6,6 @@ import {
   HealthDiscr,
   HealthHeadTitle,
   HealthTitle,
-  // HelstSection,
   ImgBox,
   ReadMore,
 } from './Health.styled';

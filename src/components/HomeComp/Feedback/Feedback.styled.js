@@ -1,22 +1,8 @@
-import { Section } from 'components/baseStyles/CommonStyle.styled';
 import styled from 'styled-components';
 import { HealthDiscr, HealthTitle } from '../Health/Health.styled';
 import { ReactComponent as arrow } from 'images/svg/arrow.svg';
 import { ReactComponent as quotationMark } from 'images/svg/quotationMark.svg';
 import { ReactComponent as quotationMarkIconDesk } from 'images/svg/quotationMarkIconDesk.svg';
-
-export const FeedbackSection = styled(Section)`
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: calc(100% - 20px);
-    height: 1px;
-    background: #5f4a32;
-  }
-`;
 
 export const Feedback = styled.div`
   display: flex;
