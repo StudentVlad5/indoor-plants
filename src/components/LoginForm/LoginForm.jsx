@@ -20,7 +20,6 @@ import {
   ErrorBox,
   Div,
   TitleLogin,
-  TitleLogo,
   BtnContainer,
   Span,
 } from './LoginForm.styled';
@@ -81,7 +80,6 @@ export const LoginForm = () => {
       <FormContainer>
         <Formik validationSchema={schemas.schemasLogin}>
           <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
-            <TitleLogo>{'homeforest'}</TitleLogo>
             <TitleLogin>{'Login Page'}</TitleLogin>
             {isShown && (
               <Div>
@@ -148,7 +146,9 @@ export const LoginForm = () => {
               )}
               <BoxText>
                 <StyledLink to="/register">{'Create acount'}</StyledLink>
-                <StyledLink to="/">{'Forgot your password?'}</StyledLink>
+                <StyledLink to="/forgot_password">
+                  {'Forgot your password?'}
+                </StyledLink>
               </BoxText>
             </BtnContainer>
           </FormLogin>

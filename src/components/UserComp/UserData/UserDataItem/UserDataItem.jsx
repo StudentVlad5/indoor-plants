@@ -15,6 +15,7 @@ import {
   UserDataItemWrapper,
 } from './UserDataItem.styled';
 import PropTypes from 'prop-types';
+import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 
 export const UserDataItem = ({
   name,
@@ -31,7 +32,7 @@ export const UserDataItem = ({
   const phoneRegExp = /^\+380\d{9}$/;
   const dayToday = new Date().toLocaleDateString();
   const minDate = new Date('01.01.1950').toLocaleDateString();
-  const passwordCheck = /^[a-zA-Z0-9]{4,12}$/g;
+  const passwordCheck = /^[a-zA-Z0-9]{7,32}$/g;
   const id = useSelector(selectId);
   const dispatch = useDispatch();
 
@@ -146,6 +147,14 @@ export const UserDataItem = ({
 
       case 'password':
         setActive('password');
+        if (inputValue.length < 7) {
+          setIsError('password should contain more digits');
+          return;
+        }
+        if (inputValue.length > 32) {
+          setIsError('password should contain less digits');
+          return;
+        }
         if (!inputValue.match(passwordCheck)) {
           setIsError('please type valid password');
           return;
@@ -154,6 +163,7 @@ export const UserDataItem = ({
         setActive('');
         dispatch(update({ password: inputValue, id }));
         setInputValue('');
+        onSuccess('Password changed successfully');
         setChangePasswordShow(false);
         break;
 

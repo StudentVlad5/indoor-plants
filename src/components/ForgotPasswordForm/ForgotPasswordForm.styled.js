@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { Field, Form } from 'formik';
+import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 import theme from 'components/baseStyles/Variables.styled';
+import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 
-const FormSection = styled.section`
+export const FormSection = styled.section`
   @media screen and (max-width: ${theme.breakpoints.tablet_max}) {
     background-repeat: no-repeat;
     background-size: 620px auto;
@@ -21,18 +21,19 @@ const FormSection = styled.section`
   }
 `;
 
-const FormContainer = styled.div`
+export const FormContainer = styled.div`
   height: 100%;
   min-height: calc(100vh - 140px);
   display: flex;
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 170px;
   }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    padding-top: 80px;
+    padding-top: 44px;
     min-height: calc(100vh - 120px);
 
     background-repeat: no-repeat;
@@ -40,12 +41,10 @@ const FormContainer = styled.div`
     background-position: bottom 0 left 50%;
   }
 `;
-
-const TitleLogin = styled(Title)`
+export const TitleRegister = styled(Title)`
   margin-bottom: 40px;
   margin-top: 0;
   text-transform: uppercase;
-
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: ${theme.fontSizes.extraXL};
     font-weight: 500;
@@ -53,6 +52,34 @@ const TitleLogin = styled(Title)`
     color: ${theme.colors.brown1};
   }
 `;
+
+export const FormRegister = styled(Form)`
+  position: relative;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 44px;
+  margin: 0 auto;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 608px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 60px 0 40px 0;
+    background-color: transparent;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 618px;
+    padding: 60px 0 60px 0;
+  }
+  > div {
+    position: relative;
+  }
+`;
+
 export const IconValid = styled(FaCheck)`
   display: inline-block;
   position: absolute;
@@ -75,7 +102,7 @@ export const IconInValid = styled(FaTimes)`
   width: 20px;
   height: 20px;
   right: 6%;
-  top: 62%;
+  top: 30px;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -85,51 +112,12 @@ export const IconInValid = styled(FaTimes)`
   }
 `;
 
-const FormLogin = styled(Form)`
-  position: relative;
-  width: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 44px;
-  margin: 0 auto;
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 608px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 60px 0 40px 0;
-    background-color: transparent;
-  }
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    width: 618px;
-    padding: 60px 0 60px 0;
-  }
-  > div {
-    position: relative;
-  }
-`;
-const ShowPassword = styled.span`
-  display: inline-block;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 6%;
-  top: 62%;
-  transform: translateY(-80%);
-  color: grey;
-  cursor: pointer;
-  svg {
-    width: inherit;
-    height: inherit;
-  }
-`;
-const Input = styled(Field)`
+export const Input = styled(Field)`
   width: 280px;
   font-size: ${theme.fontSizes.small};
   line-height: 1.3;
   padding: 11px 0 12px 14px;
+  margin-bottom: 0px;
   background: ${theme.colors.blue1};
   color: ${theme.colors.brown2};
   border: none;
@@ -172,11 +160,12 @@ export const Span = styled.span`
   transition: 0.2s ease all;
 `;
 
-const Btn = styled(Button)`
+export const Btn = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
+  width: 125px;
   border-radius: 4px;
   color: ${theme.colors.brown1};
   background: ${theme.colors.green4};
@@ -199,12 +188,16 @@ const Btn = styled(Button)`
     transform: none;
     transition: none;
   }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 180px;
+  }
 `;
-const ErrorBox = styled.div`
+
+export const ErrBox = styled.div`
   position: absolute;
   white-space: nowrap;
   bottom: -5px;
-  left: 15px;
+  left: 60%;
   color: #e53e3e;
   font-family: ${theme.fonts[1]};
   font-size: ${theme.fontSizes.small};
@@ -213,16 +206,18 @@ const ErrorBox = styled.div`
   letter-spacing: 0.03em;
   margin-bottom: -16px;
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    left: 32px;
+    /* left: 32px; */
   }
 `;
 
-const Div = styled.div`
+export const Div = styled.div`
   margin-bottom: 32px;
 `;
-const BtnContainer = styled.div`
+
+export const BtnContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 12px;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
@@ -231,14 +226,14 @@ const BtnContainer = styled.div`
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 448px;
     font-size: ${theme.fontSizes.medium};
+    flex-direction: row;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 558px;
   }
 `;
 
-const StyledLink = styled(Link)`
-  margin-bottom: 10px;
+export const StyledLink = styled(Link)`
   color: ${theme.colors.brown2};
   transition: all 0.25s ease-in;
   :hover,
@@ -246,8 +241,7 @@ const StyledLink = styled(Link)`
     color: ${theme.colors.brown3};
   }
 `;
-
-const BoxText = styled.div`
+export const BoxText = styled.div`
   display: flex;
   justify-content: center;
   align-items: start;
@@ -259,18 +253,3 @@ const BoxText = styled.div`
   letter-spacing: 0.04em;
   color: ${theme.brown2};
 `;
-
-export {
-  FormSection,
-  FormContainer,
-  TitleLogin,
-  FormLogin,
-  ShowPassword,
-  Input,
-  Btn,
-  StyledLink,
-  BoxText,
-  ErrorBox,
-  Div,
-  BtnContainer,
-};

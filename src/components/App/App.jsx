@@ -22,6 +22,7 @@ const CarePage = lazy(() => import('pages/Care'));
 const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
 const CheckOutPage = lazy(() => import('pages/CheckOut'));
+const ForgotPasswordPage = lazy(() => import('pages/ForgotPassword'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,16 @@ export const App = () => {
               path="signin"
               element={
                 <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+              }
+            />
+
+            <Route
+              path="forgot_password"
+              element={
+                <RestrictedRoute
+                  redirectTo="/user"
+                  component={<ForgotPasswordPage />}
+                />
               }
             />
 

@@ -18,14 +18,25 @@ export const signIn = async credentials => {
   }
 };
 
+export const changePassword = async credentials => {
+  try {
+    const res = await axios.post('/auth/changepassword', credentials);
+    return res;
+  } catch (error) {
+    return error.message;
+  }
+};
+
 export const singOut = async () => {
   const res = await axios.post('/auth/logout');
   return res;
 };
 
 export const updateUserData = async updateData => {
+  console.log('updateData', updateData);
   const formData = new FormData();
   updateData.avatar && formData.set('avatar', updateData.avatar);
+  updateData.userName && formData.append('userName', updateData.userName);
   updateData.email && formData.append('email', updateData.email);
   updateData.birthday && formData.append('birthday', updateData.birthday);
   updateData.location && formData.append('location', updateData.location);
