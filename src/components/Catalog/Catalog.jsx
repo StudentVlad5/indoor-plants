@@ -62,6 +62,11 @@ export const Catalog = () => {
   const [showFilter, setShowFilter] = useState(false);
   const toggleFilter = () => setShowFilter(state => !state);
 
+  const handleClick = () => {
+    setShowSort(false);
+    setShowFilter(false);
+  };
+
   return (
     <SC.CatalogContainer>
       <SC.CatalogSection>
@@ -100,7 +105,7 @@ export const Catalog = () => {
             </SC.FiltersBox>
           </SC.HeadingBtnBox>
         </SC.Heading>
-        <SC.GridContainer>
+        <SC.GridContainer onClick={handleClick}>
           <SC.FiltersContainer>
             <CatalogFilter />
           </SC.FiltersContainer>

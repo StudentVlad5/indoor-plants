@@ -144,7 +144,7 @@ const GridContainer = styled.div`
   align-items: flex-start;
 
   width: 100%;
-  margin-top: 36px;
+  padding-top: 36px;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     justify-content: space-between;

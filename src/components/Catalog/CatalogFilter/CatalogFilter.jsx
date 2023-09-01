@@ -67,8 +67,8 @@ export const CatalogFilter = () => {
   const [maxPrice, setMaxPrice] = useState(
     localStorage.getItem('maxPrice') ? localStorage.getItem('maxPrice') : max,
   );
-  console.log('maxPrice:', minPrice);
-  console.log('maxPrice:', maxPrice);
+  // console.log('maxPrice:', minPrice);
+  // console.log('maxPrice:', maxPrice);
 
   const [hardToKill, setHardToKill] = useState(
     localStorage.getItem('hardToKill')
