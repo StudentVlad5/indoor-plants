@@ -12,7 +12,9 @@ const SortList = styled.ul`
   align-items: flex-start;
   gap: 4px;
 
+  width: 120px;
   padding: 15px;
+
   background-color: ${theme.colors.fon};
   border: 0.5px solid ${theme.colors.brown2};
   border-radius: 5px;
@@ -32,6 +34,9 @@ const SortItem = styled.li`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+
   color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
