@@ -4,6 +4,7 @@ import {
   HeaderContainer,
   HeaderSection,
   HeaderUnderLine,
+  HeaderSectionWrap,
 } from './Header.styled';
 import { Logo } from './Elements/logo/Logo';
 import { Menu } from './Elements/menu/Menu';
@@ -32,14 +33,16 @@ export const Header = () => {
   }, []);
 
   return (
-    <HeaderSection isScrolled={isScrolled}>
-      <HeaderContainer>
-        <Menu />
-        <Logo />
-        {/* <Language /> */}
-        <Navigation />
-      </HeaderContainer>
-      <HeaderUnderLine className={headerBottom.headerBottom} />
-    </HeaderSection>
+    <HeaderSectionWrap isScrolled={isScrolled}>
+      <HeaderSection isScrolled={isScrolled}>
+        <HeaderContainer>
+          <Menu />
+          <Logo />
+          {/* <Language /> */}
+          <Navigation />
+        </HeaderContainer>
+        <HeaderUnderLine className={headerBottom.headerBottom} />
+      </HeaderSection>
+    </HeaderSectionWrap>
   );
 };

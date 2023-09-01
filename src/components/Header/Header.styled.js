@@ -1,7 +1,34 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import { Section } from 'components/baseStyles/CommonStyle.styled';
 
-const HeaderSection = styled.div`
+const HeaderSectionWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 40px 30px 0px 30px; */
+  margin: 0 auto;
+  width: 100%;
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 10;
+  transition: background-color 0.3s ease-in-out;
+  ${({ isScrolled }) => isScrolled && `background-color: rgb(252, 249, 242);`};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    /* padding: 40px 30px 0px 30px; */
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    /* padding: 50px 120px 0px 120px;
+    max-width: ${theme.breakpoints.desktop}; */
+  }
+`;
+
+const HeaderSection = styled(Section)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,10 +36,10 @@ const HeaderSection = styled.div`
   padding: 40px 30px 0px 30px;
   margin: 0 auto;
   width: 100%;
-  position: fixed;
+  /* position: fixed;
   top: 0%;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%); */
   z-index: 10;
   transition: background-color 0.3s ease-in-out;
   ${({ isScrolled }) => isScrolled && `background-color: rgb(252, 249, 242);`};
@@ -41,4 +68,4 @@ const HeaderContainer = styled.header`
   width: 100%;
 `;
 
-export { HeaderContainer, HeaderSection, HeaderUnderLine };
+export { HeaderContainer, HeaderSection, HeaderUnderLine, HeaderSectionWrap };
