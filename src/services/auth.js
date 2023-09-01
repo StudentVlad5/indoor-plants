@@ -30,6 +30,7 @@ export const updateUserData = async updateData => {
   updateData.birthday && formData.append('birthday', updateData.birthday);
   updateData.location && formData.append('location', updateData.location);
   updateData.phone && formData.append('phone', updateData.phone);
+  updateData.password && formData.append('password', updateData.password);
 
   console.log(formData);
 

@@ -13,6 +13,7 @@ import {
   UserDataImgWrapper,
   UserDataList,
   UserDataSection,
+  UserPasswordList,
 } from './UserData.styled';
 import { useAuth } from 'hooks/useAuth';
 import { update } from 'redux/auth/operations';
@@ -22,6 +23,7 @@ import NotFoundImg from '../../../images/No-image-available.webp';
 export const UserData = () => {
   const { BASE_URL_IMG } = window.global;
   const [active, setActive] = useState('');
+  const [changePasswordShow, setChangePasswordShow] = useState(false);
   const dispatch = useDispatch();
   const id = useSelector(selectId);
   const userAvatar = useSelector(getUserAvatar);
@@ -126,7 +128,25 @@ export const UserData = () => {
           />
         </UserDataList>
       </UserDataContainer>
-      <BtnChangePassword>Change Password</BtnChangePassword>
+      <BtnChangePassword
+        onClick={() => setChangePasswordShow(!changePasswordShow)}
+      >
+        Change Password
+      </BtnChangePassword>
+      {changePasswordShow && (
+        <UserPasswordList>
+          <UserDataItem
+            profile={profile}
+            label={'New Password'}
+            type="text"
+            name="password"
+            active={active}
+            setActive={setActive}
+            id="ChangePassword"
+            password={setChangePasswordShow}
+          />
+        </UserPasswordList>
+      )}
     </UserDataSection>
   );
 };

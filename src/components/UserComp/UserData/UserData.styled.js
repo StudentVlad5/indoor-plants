@@ -8,6 +8,7 @@ const UserDataSection = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
+  width: 100%;
   margin-bottom: 0px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -18,11 +19,15 @@ const UserDataContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 20px;
   margin-bottom: 0px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -107,6 +112,26 @@ const UserDataList = styled.ul`
   }
 `;
 
+const UserPasswordList = styled.ul`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-top: 16px;
+    padding-bottom: 55px;
+    width: 379px;
+    margin-left: 32px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: 16px;
+  }
+`;
+
 const BtnChangePassword = styled(Button)`
   display: flex;
   width: 180px;
@@ -144,4 +169,5 @@ export {
   UserDataList,
   BtnChangePassword,
   UserDataSection,
+  UserPasswordList,
 };

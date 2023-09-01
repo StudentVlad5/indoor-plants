@@ -24,15 +24,18 @@ export const UserDataItem = ({
   active,
   setActive,
   profile,
+  password,
 }) => {
   const emailRegExp = /^.+@.+\..+$/;
   const cityRegex = /^[a-zA-Z\s,'-]+$/;
   const phoneRegExp = /^\+380\d{9}$/;
   const dayToday = new Date().toLocaleDateString();
   const minDate = new Date('01.01.1950').toLocaleDateString();
+  const passwordCheck = /^[a-zA-Z0-9]{4,12}$/g;
   const id = useSelector(selectId);
   const dispatch = useDispatch();
 
+  const setChangePasswordShow = password;
   const [inputValue, setInputValue] = useState(defaultValue ?? '');
   const [isError, setIsError] = useState('');
 
@@ -60,6 +63,9 @@ export const UserDataItem = ({
         setInputValue(value);
         break;
 
+      case 'password':
+        setInputValue(value);
+        break;
       default:
         return;
     }
@@ -138,6 +144,19 @@ export const UserDataItem = ({
         dispatch(update({ location: inputValue, id }));
         break;
 
+      case 'password':
+        setActive('password');
+        if (!inputValue.match(passwordCheck)) {
+          setIsError('please type valid password');
+          return;
+        }
+        setIsError('');
+        setActive('');
+        dispatch(update({ password: inputValue, id }));
+        setInputValue('');
+        setChangePasswordShow(false);
+        break;
+
       default:
         return;
     }
@@ -160,6 +179,7 @@ export const UserDataItem = ({
             type={type}
             name={name}
             id={name}
+            autoComplete="off"
           />
           {isError && active === name ? <Error>{isError}</Error> : null}
         </InputWrapper>

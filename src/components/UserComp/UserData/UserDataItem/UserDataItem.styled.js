@@ -6,18 +6,22 @@ import styled from 'styled-components';
 
 const UserDataItemWrapper = styled.li`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
+  gap: 6px;
   padding-left: 16px;
   padding-right: 12px;
 
   &:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 18px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-left: 0px;
     padding-right: 0px;
+    flex-direction: row;
+    align-items: center;
   }
 `;
 
@@ -47,8 +51,8 @@ const UserDataItemInput = styled.input`
   font-weight: 400;
   line-height: 1.33;
   letter-spacing: -0.04em;
-  width: 159px;
-  height: 24px;
+  width: 216px;
+  height: 32px;
   padding: 4px 18px;
   border-radius: 5px;
 
@@ -75,7 +79,7 @@ const Error = styled.div`
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
   position: absolute;
-  bottom: -10px;
+  bottom: -20px;
   right: 20px;
   z-index: 2;
 
