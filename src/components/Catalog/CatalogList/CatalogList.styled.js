@@ -52,12 +52,13 @@ const CardName = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
+  letter-spacing: 0.32px;
   color: ${theme.colors.green};
 `;
 
 const CardPrices = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
 `;
 
@@ -67,6 +68,7 @@ const CardDiscount = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  letter-spacing: 0.32px;
 
   color: ${theme.colors.green};
 `;
@@ -77,6 +79,7 @@ const CardPrice = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  letter-spacing: 0.32px;
   text-decoration-line: line-through;
 
   color: ${theme.colors.brown2};

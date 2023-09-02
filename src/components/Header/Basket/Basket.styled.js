@@ -36,7 +36,7 @@ export const BasketBox = styled.div`
 export const Box = styled.div`
   position: relative;
   padding-bottom: 145px;
-  
+
   &::before {
     content: '';
     position: absolute;

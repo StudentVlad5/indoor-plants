@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const CareBoxDiscr = styled.div`
   &:nth-child(1) {
     display: block;

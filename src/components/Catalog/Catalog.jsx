@@ -46,21 +46,26 @@ export const Catalog = () => {
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
-        setProducts(data);
-        setTotalPage(data.length / perPage);
+        setProducts(data.catalog);
+        setTotalPage(Math.ceil(data.total / perPage));
       } catch (error) {
         setError(error);
       } finally {
         setIsLoading(false);
       }
     })();
-  }, [t, page, perPage]);
+  }, [t, page, perPage, searchParams]);
 
   const [showSort, setShowSort] = useState(false);
   const toggleSort = () => setShowSort(state => !state);
 
   const [showFilter, setShowFilter] = useState(false);
   const toggleFilter = () => setShowFilter(state => !state);
+
+  const handleClick = () => {
+    setShowSort(false);
+    setShowFilter(false);
+  };
 
   return (
     <SC.CatalogContainer>
@@ -94,15 +99,15 @@ export const Catalog = () => {
               </SC.Accord>
               {showFilter && (
                 <SC.FiltersWrapper>
-                  <CatalogFilter products={products} />
+                  <CatalogFilter />
                 </SC.FiltersWrapper>
               )}
             </SC.FiltersBox>
           </SC.HeadingBtnBox>
         </SC.Heading>
-        <SC.GridContainer>
+        <SC.GridContainer onClick={handleClick}>
           <SC.FiltersContainer>
-            <CatalogFilter products={products} />
+            <CatalogFilter />
           </SC.FiltersContainer>
           <SC.GridWrapper>
             {isLoading ? onLoading() : onLoaded()}
@@ -145,7 +150,14 @@ Catalog.propTypes = {
       light: PropTypes.string,
       petFriendly: PropTypes.string,
       maintenance: PropTypes.string,
-      potSize: PropTypes.string,
+      potSize: PropTypes.arrayOf(
+        PropTypes.shape({
+          size: PropTypes.number,
+          potSizeItem: PropTypes.string,
+        }),
+      ),
+      hardToKill: PropTypes.string,
+      rare: PropTypes.string,
       waterSchedule: PropTypes.string,
       images: PropTypes.array,
     }),

@@ -111,6 +111,10 @@ const FilterHeading = styled.div`
   &.active ~ div {
     display: flex;
   }
+
+  & span {
+    text-transform: uppercase;
+  }
 `;
 
 const FilterInnerList = styled.div`
@@ -124,16 +128,102 @@ const FilterInnerList = styled.div`
   width: 100%;
 
   & > label {
+    position: relative;
     display: flex;
+    align-items: center;
+    font-weight: 300;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      display: inline-block;
+      flex-shrink: 0;
+      flex-grow: 0;
+
+      width: 12px;
+      height: 12px;
+      margin-right: 4px;
+
+      background-color: ${theme.colors.green};
+      border: 1px solid ${theme.colors.green};
+      border-radius: 0.25em;
+
+      user-select: none;
+    }
+
+    & input[type='checkbox']:checked + & {
+      z-index: 1;
+    }
   }
 `;
 
 const FilterInnerListItem = styled.input`
-  margin-right: 4px;
+  &[type='checkbox'] {
+    margin-right: 4px;
 
-  &:checked {
-    background-color: ${theme.colors.green};
+    /* &:checked {
+      opacity: 0;
+    } */
   }
+
+  &[type='number'] {
+    width: 50%;
+    margin: 0 5px;
+    padding: 3px;
+
+    font-weight: 300;
+
+    background-color: transparent;
+    border: 0.5px solid ${theme.colors.brown2};
+
+    &:focus-visible,
+    &:focus-within {
+      outline-color: ${theme.colors.brown2};
+    }
+  }
+
+  &[type='range'] {
+    width: 100%;
+    height: 3px;
+
+    &::-webkit-slider-thumb,
+    &::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      background: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 3px;
+      background: ${theme.colors.green5};
+    }
+  }
+
+  &::-webkit-slider-thumb {
+    position: relative;
+    height: 10px;
+    width: 10px;
+    margin-top: -7px;
+    border: 1px solid ${theme.colors.green};
+    color: ${theme.colors.green};
+    border-radius: 20px;
+    z-index: 1;
+  }
+`;
+
+const RangeWrapper = styled.div`
+  display: inline-flex;
+  justify-content: space-between;
+
+  & label {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const RangeLabel = styled.label`
+  width: 80%;
+  margin: 8px auto;
 `;
 
 const InfoBtn = styled.button`
@@ -194,4 +284,6 @@ export {
   FilterInnerListItem,
   InfoBtn,
   InfoBtnBox,
+  RangeWrapper,
+  RangeLabel,
 };

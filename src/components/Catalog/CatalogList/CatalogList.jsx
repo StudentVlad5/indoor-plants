@@ -78,7 +78,14 @@ CatalogList.propTypes = {
       light: PropTypes.string,
       petFriendly: PropTypes.string,
       maintenance: PropTypes.string,
-      potSize: PropTypes.string,
+      potSize: PropTypes.arrayOf(
+        PropTypes.shape({
+          size: PropTypes.number,
+          potSizeItem: PropTypes.string,
+        }),
+      ),
+      hardToKill: PropTypes.string,
+      rare: PropTypes.string,
       waterSchedule: PropTypes.string,
       images: PropTypes.array,
     }),

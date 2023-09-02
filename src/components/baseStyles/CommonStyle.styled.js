@@ -47,7 +47,7 @@ const Title = styled.h1`
   font-family: ${theme.fonts[0]}; //Raisonne pro
   font-size: 42px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   line-height: normal;
   color: ${theme.colors.green};
 
@@ -70,7 +70,7 @@ const Headline = styled.h2`
   font-family: ${theme.fonts[1]}; //Nib pro
   font-size: 22px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 144.5%; /* 46.24px */
   color: ${theme.colors.green};
 

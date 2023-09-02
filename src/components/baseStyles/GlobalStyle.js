@@ -8,8 +8,8 @@ body {
   font-family: 'Archivo', sans-serif;
   /* font-family: 'Barlow', sans-serif; */
   /* Nib Pro */
-  font-family: 'Domine', serif;
- /* font-family: 'Fraunces', serif; */
+  /* font-family: 'Domine', serif; */
+ font-family: 'Fraunces', serif;
 
   background-color:${theme.colors.fon};
   
@@ -87,7 +87,7 @@ img {
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
@@ -146,110 +146,6 @@ img {
 
 }
 
-
-//-----react-select-----//
-
-.react-select-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 10px 15px 10px 15px;
-
-  font-family: 'Manrope', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.375;
-  letter-spacing: 0.04em;
-  text-align: left;
-
-
-  &::placeholder {
-    color: rgba(27, 27, 27, 0.6);
-  }
-  height: 40px;
-  width: 100%;
-
-  margin-bottom: 16px;
-
-
-
-  border-radius: 40px;
-  outline: none;
-  transition: all 0.25s ease-in;
-  &:hover {
-
-  }
-
-  &:focus {
-
-  }
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    display: none;
-  }
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-size: 16px;
-    height: 48px;
-    margin-bottom: 20px;
-  }
-}
-
-.react-select__control, .react-select__control--is-focused, .react-select__control--menu-is-open {
-width: 100%;
-padding: 0!important;
-margin: 0!important;
-border: none!important;
-box-shadow: none!important;
-
-background-color: transparent!important;
-}
-
-.react-select__input-container {
-padding: 0!important;
-margin: 0!important;
-}
-
-.react-select__placeholder {
-padding: 0!important;
-margin: 0!important;
-
-
-}
-
-.react-select__indicators {
-padding: 0!important;
-margin: 0!important;
-}
-
-.react-select__menu {
-}
-
-.react-select__menu-list {
-}
-
-.react-select__option--is-focused {
-
-}
-
-.react-select__option--is-selected {
-
-}
-
-
-.react-select__input-container {
-padding: 0!important;
-margin: 0!important;
-}
-
-.react-select__value-container {
-padding: 0!important;
-margin: 0!important;
-}
-
 //-----Swiper-----//
 
 .swiper {
@@ -306,6 +202,33 @@ input::-webkit-calendar-picker-indicator:hover {
   transform: scale(1.2);
   cursor: pointer;
 }
+
+//-----Range-----//
+.rc-slider {
+    background-color: ${theme.colors.fon} !important;
+    border-radius:0 !important;
+}
+
+.rc-slider-track {
+    background-color: ${theme.colors.green} !important;
+}
+
+.rc-slider-handle{
+  background-color: ${theme.colors.fon} !important;
+  border: solid 2px ${theme.colors.green} !important;
+
+  &:focus-visible{
+    box-shadow: 0 0 0 3px ${theme.colors.green2} !important;
+  }
+
+  &-dragging{
+    box-shadow: 0 0 0 5px ${theme.colors.green2} !important;
+  }
+}
+
+.rc-slider-disabled{
+  background-color:${theme.colors.fon} !important;}
+
 
 // NAVLINK
 .linkFolder.active {

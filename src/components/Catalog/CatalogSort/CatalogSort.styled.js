@@ -3,7 +3,7 @@ import theme from 'components/baseStyles/Variables.styled';
 
 const SortList = styled.ul`
   position: absolute;
-  top: 35px;
+  top: 25px;
   right: 0;
 
   display: flex;
@@ -12,7 +12,9 @@ const SortList = styled.ul`
   align-items: flex-start;
   gap: 4px;
 
+  width: 120px;
   padding: 15px;
+
   background-color: ${theme.colors.fon};
   border: 0.5px solid ${theme.colors.brown2};
   border-radius: 5px;
@@ -32,15 +34,30 @@ const SortItem = styled.li`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  /* text-transform: uppercase; */
+
   color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 14px;
   }
 
-  &:hover,
-  &:focus {
+  &:hover label,
+  &:focus label {
     font-weight: 600;
+  }
+
+  & > input {
+    display: none;
+  }
+
+  & label {
+    font-weight: 300;
+    cursor: pointer;
+  }
+
+  & input:checked + label {
+    font-weight: 500;
   }
 `;
 

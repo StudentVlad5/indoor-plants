@@ -21,7 +21,6 @@ export const Products = ({ products }) => {
   const { BASE_URL_IMG } = window.global;
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
-
   const handleNextSlide = () => {
     setCurrentIndex(prevIndex =>
       prevIndex + itemsPerPage >= products.length
