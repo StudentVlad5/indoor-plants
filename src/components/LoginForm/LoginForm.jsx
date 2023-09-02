@@ -47,6 +47,7 @@ export const LoginForm = () => {
       }),
       hideForm(),
     );
+    setIsLoading(false);
   };
   const formik = useFormik({
     initialValues: {

@@ -46,7 +46,7 @@ export const Catalog = () => {
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
-        setProducts(data);
+        setProducts(data.catalog);
         setTotalPage(Math.ceil(data.total / perPage));
       } catch (error) {
         setError(error);

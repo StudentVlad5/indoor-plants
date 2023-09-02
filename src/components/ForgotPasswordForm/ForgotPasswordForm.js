@@ -38,6 +38,7 @@ const ForgotPasswordForm = () => {
       }),
     );
     onSuccess('password has been changed. Please check your email');
+    setIsLoading(false);
     navigate(`/signin`);
   };
 

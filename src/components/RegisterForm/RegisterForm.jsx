@@ -44,6 +44,7 @@ const RegisterForm = () => {
         location,
       }),
     );
+    setIsLoading(false);
   };
 
   const showForm = () => {
