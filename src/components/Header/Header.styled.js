@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
 import { Section } from 'components/baseStyles/CommonStyle.styled';
 
-const HeaderSectionWrap = styled.div`
+const HeaderSectionWrap = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding: 40px 30px 0px 30px; */
   margin: 0 auto;
   width: 100%;
   position: fixed;
@@ -17,15 +16,6 @@ const HeaderSectionWrap = styled.div`
   z-index: 10;
   transition: background-color 0.3s ease-in-out;
   ${({ isScrolled }) => isScrolled && `background-color: rgb(252, 249, 242);`};
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    /* padding: 40px 30px 0px 30px; */
-  }
-
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    /* padding: 50px 120px 0px 120px;
-    max-width: ${theme.breakpoints.desktop}; */
-  }
 `;
 
 const HeaderSection = styled(Section)`
@@ -36,13 +26,8 @@ const HeaderSection = styled(Section)`
   padding: 40px 30px 0px 30px;
   margin: 0 auto;
   width: 100%;
-  /* position: fixed;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%); */
   z-index: 10;
   transition: background-color 0.3s ease-in-out;
-  ${({ isScrolled }) => isScrolled && `background-color: rgb(252, 249, 242);`};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding: 40px 30px 0px 30px;
@@ -61,7 +46,7 @@ const HeaderUnderLine = styled.div`
   margin-top: 40px;
 `;
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

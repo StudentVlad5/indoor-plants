@@ -3,7 +3,7 @@ import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const MobileHeader = styled.header`
+const MobileHeader = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;

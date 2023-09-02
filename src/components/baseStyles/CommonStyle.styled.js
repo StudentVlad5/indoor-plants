@@ -7,7 +7,7 @@ const Section = styled.section`
   padding: 60px 0;
   width: 100%;
 
-  &::before {
+  /* &::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -16,7 +16,7 @@ const Section = styled.section`
     height: 1px;
     width: 100%;
     background: ${theme.colors.brown1};
-  }
+  } */
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding: 80px 0;
