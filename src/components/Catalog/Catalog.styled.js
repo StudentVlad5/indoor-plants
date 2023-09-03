@@ -165,6 +165,7 @@ const GridWrapper = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: calc(100% - 285px);
+    padding-left: 20px;
   }
 `;
 
