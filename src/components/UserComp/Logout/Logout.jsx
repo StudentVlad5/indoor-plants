@@ -20,7 +20,7 @@ export const Logout = () => {
 
   return (
     <>
-      <LogoutBtn onClick={toggleModal}>
+      <LogoutBtn onClick={toggleModal} aria-label="open log out window">
         <LogoutIconStyled className="logout_icon" />
         <LogoutBtnText>Log Out</LogoutBtnText>
       </LogoutBtn>

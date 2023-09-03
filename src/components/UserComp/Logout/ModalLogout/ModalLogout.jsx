@@ -25,13 +25,21 @@ export const ModalLogout = ({ onClose, onCloseBtn }) => {
   return (
     <ModalWrapper>
       <CloseBtnWrapper>
-        <ModalCloseBtn type="button" onClick={onCloseBtn}>
+        <ModalCloseBtn
+          type="button"
+          onClick={onCloseBtn}
+          aria-label="swich to close modal window"
+        >
           <CloseIcon />
         </ModalCloseBtn>
       </CloseBtnWrapper>
       <ModalDescription>{'Are you sure you want to exit?'}</ModalDescription>
       <ModalButtonWrapper>
-        <ModalButton type="button" onClick={handleDelete}>
+        <ModalButton
+          type="button"
+          onClick={handleDelete}
+          aria-label="submit log out"
+        >
           {'Yes'}
         </ModalButton>
         <ModalButton
@@ -40,6 +48,7 @@ export const ModalLogout = ({ onClose, onCloseBtn }) => {
           style={{
             marginLeft: '20px',
           }}
+          aria-label="not log out"
         >
           {'No'}
         </ModalButton>

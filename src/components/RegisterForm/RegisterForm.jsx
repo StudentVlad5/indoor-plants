@@ -272,8 +272,14 @@ const RegisterForm = () => {
             )}
             {!isShown && (
               <BtnContainer>
-                <Btn type="submit">{isLoading ? 'Loading' : 'Register'}</Btn>
-                <BackButton type="button" onClick={hideForm}>
+                <Btn type="submit" aria-label="submit registration">
+                  {isLoading ? 'Loading' : 'Register'}
+                </Btn>
+                <BackButton
+                  type="button"
+                  aria-label="back button"
+                  onClick={hideForm}
+                >
                   {'Back'}
                 </BackButton>
                 <BoxText>

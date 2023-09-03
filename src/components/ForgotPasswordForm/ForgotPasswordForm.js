@@ -98,7 +98,11 @@ const ForgotPasswordForm = () => {
               <Span className="floating-label">Email</Span>
             </Div>
             <BtnContainer>
-              <Btn type="submit" disabled={isValid}>
+              <Btn
+                type="submit"
+                disabled={isValid}
+                aria-label="submit to change password"
+              >
                 {isLoading ? 'Loading' : 'Change Password'}{' '}
               </Btn>
               <BoxText>

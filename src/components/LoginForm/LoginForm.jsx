@@ -137,7 +137,11 @@ export const LoginForm = () => {
             )}
             <BtnContainer>
               {isShown && (
-                <Btn type="submit" disabled={isValid}>
+                <Btn
+                  type="submit"
+                  disabled={isValid}
+                  aria-label="submit sign in"
+                >
                   {isLoading ? 'Loading' : 'Sign In'}
                 </Btn>
               )}

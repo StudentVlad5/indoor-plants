@@ -12,6 +12,7 @@ export const NotFound = () => {
         <SC.ErrorTitle>404</SC.ErrorTitle>
         <SC.ErrorDiscr>sorry, this page cannot be found</SC.ErrorDiscr>
         <SC.ErrorBtn
+          aria-label="switch to return to home page"
           onClick={() =>
             navigate(-1) !== undefined && navigate(-1) !== ''
               ? navigate(-1)
