@@ -15,7 +15,7 @@ const Grid = styled.ul`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
   }
 `;
 

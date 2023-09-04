@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import done_light from 'images/svg/done_light.svg';
 
 const Filters = styled.ul`
   display: flex;
@@ -127,44 +128,47 @@ const FilterInnerList = styled.div`
 
   width: 100%;
 
-  & > label {
-    position: relative;
+  & label {
     display: flex;
     align-items: center;
     font-weight: 300;
 
-    &::before {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      display: inline-block;
-      flex-shrink: 0;
-      flex-grow: 0;
-
-      width: 12px;
-      height: 12px;
-      margin-right: 4px;
-
-      background-color: ${theme.colors.green};
-      border: 1px solid ${theme.colors.green};
-      border-radius: 0.25em;
-
+    & > span {
+      display: inline-flex;
+      align-items: center;
       user-select: none;
-    }
 
-    & input[type='checkbox']:checked + & {
-      z-index: 1;
+      &::before {
+        content: '';
+        display: inline-block;
+        flex-shrink: 0;
+        flex-grow: 0;
+
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+
+        border: 1px solid ${theme.colors.green};
+        border-radius: 0.25em;
+      }
     }
   }
 `;
 
 const FilterInnerListItem = styled.input`
   &[type='checkbox'] {
-    margin-right: 4px;
+    /* margin-right: 4px; */
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
 
-    /* &:checked {
-      opacity: 0;
-    } */
+    &:checked + span::before {
+      border-color: ${theme.colors.green};
+      background-color: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5.00098 14L9.00098 17L18.001 6' stroke='%23374920'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
   }
 
   &[type='number'] {
@@ -197,17 +201,17 @@ const FilterInnerListItem = styled.input`
       height: 3px;
       background: ${theme.colors.green5};
     }
-  }
 
-  &::-webkit-slider-thumb {
-    position: relative;
-    height: 10px;
-    width: 10px;
-    margin-top: -7px;
-    border: 1px solid ${theme.colors.green};
-    color: ${theme.colors.green};
-    border-radius: 20px;
-    z-index: 1;
+    &::-webkit-slider-thumb {
+      position: relative;
+      height: 10px;
+      width: 10px;
+      margin-top: -7px;
+      border: 1px solid ${theme.colors.green};
+      color: ${theme.colors.green};
+      border-radius: 20px;
+      z-index: 1;
+    }
   }
 `;
 
