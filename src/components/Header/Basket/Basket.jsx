@@ -31,7 +31,7 @@ import plantGrayPot from '../../../images/basket/plant-gray-pot.png';
 
 export const Basket = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOrdered, setIsOrdered] = useState(true);
+  const [isOrdered] = useState(true); //setIsOrdered
 
   const dataArr = [
     {
@@ -77,9 +77,9 @@ export const Basket = () => {
                 <OrderItem>
                   <ListImage src={plantGrayPot} alt="Image" loading="lazy" />
                   <div>
-                    <p>Sansevieria</p>
-                    <p>L plastic grow pot</p>
-                    <p>$135</p>
+                    <p>name</p>
+                    <p>xl</p>
+                    <p>$123</p>
                   </div>
                 </OrderItem>
               </OrderList>
@@ -96,7 +96,7 @@ export const Basket = () => {
             <Box>
               <BasketBoxListTitle>Oh! your card is empty</BasketBoxListTitle>
               <BasketBoxListDiscr>
-                We recommend checking out:{' '}
+                We recommend checking out:
               </BasketBoxListDiscr>
               <List>
                 {dataArr.map((item, idx) => (

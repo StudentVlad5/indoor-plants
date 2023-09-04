@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { cleanHeaderBottom } from 'redux/header_bottom/operation';
 
-const ProductCardPage = () => {
+const ProductCardPage = ({ addToBasket }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const ProductCardPage = () => {
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError(t('Whoops, something went wrong'))}
       {Object.keys(product).length > 0 && !error && (
-        <ProductCard product={product} />
+        <ProductCard product={product} addToBasket={addToBasket} />
       )}
     </>
   );

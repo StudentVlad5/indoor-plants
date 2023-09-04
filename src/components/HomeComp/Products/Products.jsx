@@ -13,9 +13,6 @@ import {
   ProductsArrowIconBox,
 } from './Products.styled';
 import * as SC from '../../Catalog/CatalogList/CatalogList.styled';
-import { Health } from '../Health/Health';
-import { Care } from '../Care/Care';
-import { FeedbackComp } from '../Feedback/Feedback';
 
 export const Products = ({ products }) => {
   const { BASE_URL_IMG } = window.global;
@@ -44,7 +41,6 @@ export const Products = ({ products }) => {
       <ProductsSection>
         <ProductsTitle>Discounts from 10 to 25%</ProductsTitle>
         <ProductsBtn to="/catalog">See all</ProductsBtn>
-        {/* products.splice(0, 4) */}
         <ProductsList>
           {slideProducs.map(card => {
             return (
@@ -96,10 +92,6 @@ export const Products = ({ products }) => {
           <ProductsArrowIcon onClick={handleNextSlide} />
         </ProductsArrowIconBox>
       </ProductsSection>
-
-      <Health />
-      <Care />
-      <FeedbackComp />
     </ProductsBox>
   );
 };

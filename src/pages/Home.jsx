@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { SEO } from 'utils/SEO';
 import { useDispatch } from 'react-redux';
 import { cleanHeaderBottom } from 'redux/header_bottom/operation';
+import { HomeComp } from 'components/HomeComp/HomeComp/HomeComp';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const HomePage = () => {
       />
 
       <Hero />
+      <HomeComp />
     </>
   );
 };
