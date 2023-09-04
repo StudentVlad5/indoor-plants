@@ -11,6 +11,7 @@ import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
 import { UserData } from 'components/UserComp/UserData/UserData';
+import useBasket from 'components/useBasket';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -27,6 +28,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const { t } = useTranslation();
+  const { basket, addToBasket, removeProduct } = useBasket();
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -59,7 +61,10 @@ export const App = () => {
             />
 
             <Route path="catalog" element={<CatalogPage />} />
-            <Route path="catalog/:id" element={<ProductCardPage />} />
+            <Route
+              path="catalog/:id"
+              element={<ProductCardPage addToBasket={addToBasket} />}
+            />
             <Route
               path="catalog/favorite"
               element={
@@ -71,7 +76,12 @@ export const App = () => {
             />
             <Route path="gifts" element={<GiftsPage />} />
             <Route path="care" element={<CarePage />} />
-            <Route path="checkout" element={<CheckOutPage />} />
+            <Route
+              path="checkout"
+              element={
+                <CheckOutPage basket={basket} removeProduct={removeProduct} />
+              }
+            />
 
             <Route
               path="user"

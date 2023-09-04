@@ -20,7 +20,7 @@ import { ReactComponent as Sun } from 'images/svg/sun.svg';
 
 const { BASE_URL_IMG } = window.global;
 
-export const ProductCard = ({ product }) => {
+export const ProductCard = ({ product, addToBasket }) => {
   const {
     _id,
     name,
@@ -40,6 +40,7 @@ export const ProductCard = ({ product }) => {
     currentPrice: currentPrice ? currentPrice : oldPrice || 0,
     total: totalQuantity || 0,
   });
+  // console.log(optionData);
 
   const getOptionData = e => {
     e.preventDefault();
@@ -222,6 +223,17 @@ export const ProductCard = ({ product }) => {
               type="button"
               aria-label="Add to card"
               disabled={value === 0}
+              onClick={() =>
+                addToBasket({
+                  _id,
+                  name,
+                  oldPrice,
+                  currentPrice,
+                  // currency,
+                  optionData,
+                  images,
+                })
+              }
             >
               ADD to card
             </SC.TextBtn>
