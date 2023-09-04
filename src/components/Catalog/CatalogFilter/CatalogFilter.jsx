@@ -324,7 +324,7 @@ export const CatalogFilter = () => {
                     type="checkbox"
                     name="rare"
                     value={card}
-                    defaultChecked={light.includes(card)}
+                    defaultChecked={rare.includes(card)}
                     onChange={e => {
                       handleChange(e);
                     }}
