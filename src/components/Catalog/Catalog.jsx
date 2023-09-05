@@ -168,6 +168,7 @@ Catalog.propTypes = {
       rare: PropTypes.string,
       waterSchedule: PropTypes.string,
       images: PropTypes.array,
+      category: PropTypes.string,
     }),
   ),
 };

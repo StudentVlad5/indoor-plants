@@ -5,6 +5,7 @@ const SortList = styled.ul`
   position: absolute;
   top: 25px;
   right: 0;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;

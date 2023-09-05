@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import Range from 'rc-slider';
@@ -12,7 +12,6 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import * as SC from './CatalogFilter.styled';
 
 import { ReactComponent as Open } from 'images/svg/open.svg';
-import { forEach } from 'lodash';
 
 export const CatalogFilter = () => {
   const [products, setProducts] = useState([]);
@@ -101,10 +100,10 @@ export const CatalogFilter = () => {
     waterSchedule,
   ]);
 
-  // console.log('min:', min);
-  // console.log('max:', max);
-  // console.log('minPrice:', minPrice);
-  // console.log('maxPrice:', maxPrice);
+  console.log('min:', min);
+  console.log('max:', max);
+  console.log('minPrice:', minPrice);
+  console.log('maxPrice:', maxPrice);
 
   const toggleFilterItem = e => {
     e.stopPropagation();
@@ -132,8 +131,6 @@ export const CatalogFilter = () => {
     const unique = [...new Set(products.map(item => item[key]))];
     return unique.sort();
   };
-
-  getUniqueOptions('potSize');
 
   const setParams = () => {
     let params = Object.fromEntries(searchParams);
