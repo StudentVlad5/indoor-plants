@@ -1,5 +1,21 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import { IconFavorite } from 'components/Header/Navigation/Navigation.styled';
+
+const IconFav = styled(IconFavorite)`
+  cursor: pointer;
+  display: block;
+  size: 30px;
+  transition: ${theme.transition[0]};
+  & > path {
+    stroke: ${theme.colors.brown1};
+  }
+  :hover,
+  :focus {
+    transform: ${theme.scale[0]};
+    transition: ${theme.transition[0]};
+  }
+`;
 
 const Grid = styled.ul`
   display: flex;
@@ -20,6 +36,7 @@ const Grid = styled.ul`
 `;
 
 const Card = styled.li`
+  position: relative;
   & a {
     text-decoration: none;
     cursor: pointer;
@@ -106,6 +123,18 @@ const CardSize = styled.div`
     gap: 3px;
   }
 `;
+const BtnForFavorite = styled.button`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+`;
 
 export {
   Grid,
@@ -117,4 +146,6 @@ export {
   CardDiscount,
   CardPrice,
   CardSize,
+  BtnForFavorite,
+  IconFav,
 };
