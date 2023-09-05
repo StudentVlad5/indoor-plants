@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addHeaderBottom } from 'redux/header_bottom/operation';
 import CheckOut from 'components/CheckOut/Checkout';
 
-const CheckOutPage = () => {
+const CheckOutPage = ({ basket, removeProduct }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const CheckOutPage = () => {
         title="HomeForest CheckOut"
         description="CheckOut for making order"
       />
-      <CheckOut />
+      <CheckOut basket={basket} removeProduct={removeProduct} />
     </>
   );
 };

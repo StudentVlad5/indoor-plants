@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+
 import { CatalogSort } from './CatalogSort/CatalogSort';
 import { CatalogFilter } from './CatalogFilter/CatalogFilter';
 import { Benefits } from './Benefits/Benefits';
 import { CatalogList } from './CatalogList/CatalogList';
 import { Pagination } from 'utils/pagination';
-import { ReactComponent as Open } from 'images/svg/open.svg';
 import { fetchData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+
 import * as SC from './Catalog.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
+
+import { ReactComponent as Open } from 'images/svg/open.svg';
 
 let perPage = 12;
 

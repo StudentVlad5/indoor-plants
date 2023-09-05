@@ -121,7 +121,7 @@ const FiltersWrapper = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     top: 65px;
-    width: 340px;
+    width: 343px;
     border-radius: 0;
   }
 `;
@@ -165,6 +165,7 @@ const GridWrapper = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: calc(100% - 285px);
+    padding-left: 20px;
   }
 `;
 
