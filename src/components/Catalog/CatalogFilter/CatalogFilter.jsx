@@ -8,16 +8,15 @@ import 'rc-slider/assets/index.css';
 
 import { fetchData } from 'services/APIservice';
 import { addReload } from 'redux/reload/slice';
-import { reloadValue } from 'redux/reload/selectors';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import * as SC from './CatalogFilter.styled';
 
 import { ReactComponent as Open } from 'images/svg/open.svg';
+import { forEach } from 'lodash';
 
 export const CatalogFilter = () => {
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const reload = useSelector(reloadValue);
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -66,7 +65,7 @@ export const CatalogFilter = () => {
   );
 
   useEffect(() => {
-    async function getData() {
+    (async function getData() {
       try {
         const { data } = await fetchData(`/catalog`);
         if (!data) {
@@ -76,14 +75,8 @@ export const CatalogFilter = () => {
       } catch (error) {
         setError(error);
       }
-    }
-    getData();
-
-    if (reload) {
-      getData();
-      dispatch(addReload(false));
-    }
-  }, [t, dispatch, reload]);
+    })();
+  }, [t]);
 
   useEffect(() => {
     localStorage.setItem('typeOfPlants', typeOfPlants);
@@ -119,14 +112,33 @@ export const CatalogFilter = () => {
   };
 
   const getUniqueOptions = key => {
+    if (key === 'potSize') {
+      // const unique = [...new Set(products.map(item => item[key].size))];
+      const uniqueSizes = [];
+      const array = [...new Set(products.map(item => item[key]))];
+      const unique = array
+        .sort((a, b) => a.size - b.size)
+        .filter(element => {
+          const isDuplicate = uniqueSizes.includes(element.size);
+          if (!isDuplicate) {
+            uniqueSizes.push(element.size);
+            return true;
+          }
+          return false;
+        });
+      return unique;
+    }
+
     const unique = [...new Set(products.map(item => item[key]))];
     return unique.sort();
   };
 
+  getUniqueOptions('potSize');
+
   const setParams = () => {
     let params = Object.fromEntries(searchParams);
-    // console.log('params:', params);
-    // console.log('searchParams:', Object.fromEntries(searchParams));
+    console.log('params:', params);
+    console.log('searchParams:', Object.fromEntries(searchParams));
 
     if (typeOfPlants !== '') {
       params.typeOfPlants = typeOfPlants;
@@ -164,7 +176,7 @@ export const CatalogFilter = () => {
     switch (name) {
       case 'typeOfPlants':
         if (typeOfPlants.includes(value)) {
-          setTypeOfPlants(typeOfPlants.filter(item => item !== value));
+          setTypeOfPlants(typeOfPlants.filter(item !== value));
           dispatch(addReload(true));
         } else {
           setTypeOfPlants([...typeOfPlants, value]);
@@ -504,26 +516,24 @@ export const CatalogFilter = () => {
             </SC.IconBtn>
           </SC.FilterHeading>
           <SC.FilterInnerList>
-            {getUniqueOptions('potSize')
-              .sort((a, b) => a.size - b.size)
-              .map((card, i) => {
-                return (
-                  <label key={i}>
-                    <SC.FilterInnerListItem
-                      type="checkbox"
-                      name="potSize"
-                      value={card[0].size}
-                      defaultChecked={potSize === card[0].size}
-                      onChange={e => {
-                        handleChange(e);
-                      }}
-                    />
-                    <span>
-                      {card[0].size} {card[0].unit}
-                    </span>
-                  </label>
-                );
-              })}
+            {getUniqueOptions('potSize').map((card, i) => {
+              return (
+                <label key={i}>
+                  <SC.FilterInnerListItem
+                    type="checkbox"
+                    name="potSize"
+                    value={card.size}
+                    defaultChecked={potSize === card.size}
+                    onChange={e => {
+                      handleChange(e);
+                    }}
+                  />
+                  <span>
+                    {card.size} {card.unit}
+                  </span>
+                </label>
+              );
+            })}
           </SC.FilterInnerList>
         </SC.Filter>
         <SC.Filter>

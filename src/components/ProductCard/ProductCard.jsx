@@ -353,8 +353,11 @@ ProductCard.propTypes = {
       light: PropTypes.string,
       petFriendly: PropTypes.string,
       maintenance: PropTypes.string,
-      potSize: PropTypes.number,
-      potSizeItem: PropTypes.string,
+      potSize: PropTypes.shape({
+        size: PropTypes.number,
+        unit: PropTypes.string,
+        _id: PropTypes.string,
+      }),
       hardToKill: PropTypes.string,
       rare: PropTypes.string,
       waterSchedule: PropTypes.string,
