@@ -21,6 +21,50 @@ export const CatalogFilter = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  const [typeOfPlants, setTypeOfPlants] = useState(
+    localStorage.getItem('typeOfPlants')
+      ? localStorage.getItem('typeOfPlants')
+      : [],
+  );
+  const [rare, setRare] = useState(
+    localStorage.getItem('rare') ? localStorage.getItem('rare') : [],
+  );
+  const [light, setLight] = useState(
+    localStorage.getItem('light') ? localStorage.getItem('light') : [],
+  );
+  const [petFriendly, setPetFriendly] = useState(
+    localStorage.getItem('petFriendly')
+      ? localStorage.getItem('petFriendly')
+      : [],
+  );
+  const min = Math.min.apply(
+    Math,
+    products.flatMap(product => product.currentPrice),
+  );
+  const max = Math.max.apply(
+    Math,
+    products.flatMap(product => product.currentPrice),
+  );
+  const [minPrice, setMinPrice] = useState(
+    localStorage.getItem('minPrice') ? localStorage.getItem('minPrice') : '',
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    localStorage.getItem('maxPrice') ? localStorage.getItem('maxPrice') : '',
+  );
+  const [hardToKill, setHardToKill] = useState(
+    localStorage.getItem('hardToKill')
+      ? localStorage.getItem('hardToKill')
+      : [],
+  );
+  const [potSize, setPotSize] = useState(
+    localStorage.getItem('potSize') ? localStorage.getItem('potSize') : [],
+  );
+  const [waterSchedule, setWaterSchedule] = useState(
+    localStorage.getItem('waterSchedule')
+      ? localStorage.getItem('waterSchedule')
+      : [],
+  );
+
   useEffect(() => {
     async function getData() {
       try {
@@ -41,60 +85,33 @@ export const CatalogFilter = () => {
     }
   }, [t, dispatch, reload]);
 
-  const [typeOfPlants, setTypeOfPlants] = useState(
-    localStorage.getItem('typeOfPlants')
-      ? localStorage.getItem('typeOfPlants')
-      : [],
-  );
-  // console.log('typeOfPlants:', typeOfPlants);
-  // console.log('checked:', typeOfPlants.includes('flowering plant'));
+  useEffect(() => {
+    localStorage.setItem('typeOfPlants', typeOfPlants);
+    localStorage.setItem('rare', rare);
+    localStorage.setItem('light', light);
+    localStorage.setItem('petFriendly', petFriendly);
+    localStorage.setItem('minPrice', minPrice);
+    localStorage.setItem('maxPrice', maxPrice);
+    localStorage.setItem('hardToKill', hardToKill);
+    localStorage.setItem('potSize', potSize);
+    localStorage.setItem('waterSchedule', waterSchedule);
+    setParams();
+  }, [
+    typeOfPlants,
+    rare,
+    light,
+    petFriendly,
+    minPrice,
+    maxPrice,
+    hardToKill,
+    potSize,
+    waterSchedule,
+  ]);
 
-  const [rare, setRare] = useState(
-    localStorage.getItem('rare') ? localStorage.getItem('rare') : [],
-  );
-
-  const [light, setLight] = useState(
-    localStorage.getItem('light') ? localStorage.getItem('light') : [],
-  );
-
-  const [petFriendly, setPetFriendly] = useState(
-    localStorage.getItem('petFriendly')
-      ? localStorage.getItem('petFriendly')
-      : [],
-  );
-
-  const min = Math.min.apply(
-    Math,
-    products.flatMap(product => product.currentPrice),
-  );
-  const max = Math.max.apply(
-    Math,
-    products.flatMap(product => product.currentPrice),
-  );
-
-  const [minPrice, setMinPrice] = useState(
-    localStorage.getItem('minPrice') ? localStorage.getItem('minPrice') : min,
-  );
-
-  const [maxPrice, setMaxPrice] = useState(
-    localStorage.getItem('maxPrice') ? localStorage.getItem('maxPrice') : max,
-  );
-
-  const [hardToKill, setHardToKill] = useState(
-    localStorage.getItem('hardToKill')
-      ? localStorage.getItem('hardToKill')
-      : [],
-  );
-
-  const [potSize, setPotSize] = useState(
-    localStorage.getItem('potSize') ? localStorage.getItem('potSize') : [],
-  );
-
-  const [waterSchedule, setWaterSchedule] = useState(
-    localStorage.getItem('waterSchedule')
-      ? localStorage.getItem('waterSchedule')
-      : [],
-  );
+  // console.log('min:', min);
+  // console.log('max:', max);
+  // console.log('minPrice:', minPrice);
+  // console.log('maxPrice:', maxPrice);
 
   const toggleFilterItem = e => {
     e.stopPropagation();
@@ -108,8 +125,8 @@ export const CatalogFilter = () => {
 
   const setParams = () => {
     let params = Object.fromEntries(searchParams);
-    console.log('params:', params);
-    console.log('searchParams:', Object.fromEntries(searchParams));
+    // console.log('params:', params);
+    // console.log('searchParams:', Object.fromEntries(searchParams));
 
     if (typeOfPlants !== '') {
       params.typeOfPlants = typeOfPlants;
@@ -123,10 +140,10 @@ export const CatalogFilter = () => {
     if (petFriendly !== '') {
       params.petFriendly = petFriendly;
     }
-    if (minPrice !== Infinity) {
+    if (minPrice !== '') {
       params.minPrice = minPrice;
     }
-    if (maxPrice !== -Infinity) {
+    if (maxPrice !== '') {
       params.maxPrice = maxPrice;
     }
     if (hardToKill !== '') {
@@ -246,8 +263,8 @@ export const CatalogFilter = () => {
     setRare('');
     setLight('');
     setPetFriendly('');
-    setMinPrice(min);
-    setMaxPrice(max);
+    setMinPrice('');
+    setMaxPrice('');
     setHardToKill('');
     setPotSize('');
     setWaterSchedule('');
@@ -539,7 +556,7 @@ export const CatalogFilter = () => {
                     handleChange(e);
                   }}
                 />
-                <span>$</span>
+                <>$</>
               </label>
               <label>
                 To
@@ -554,7 +571,7 @@ export const CatalogFilter = () => {
                     handleChange(e);
                   }}
                 />
-                <span>$</span>
+                <>$</>
               </label>
             </SC.RangeWrapper>
             <SC.RangeLabel>
@@ -564,16 +581,16 @@ export const CatalogFilter = () => {
                 min={min}
                 max={max}
                 value={[minPrice, maxPrice]}
-                defaultValue={[minPrice, maxPrice]}
+                defaultValue={[min, max]}
                 step={1}
                 pushable={(true, 1)}
                 disabled={minPrice === 0}
-                onChange={defaultValue => {
-                  setMinPrice(defaultValue[0]);
-                  setMaxPrice(defaultValue[1]);
+                onChange={value => {
+                  setMinPrice(value[0]);
+                  setMaxPrice(value[1]);
 
-                  localStorage.setItem('minPrice', defaultValue[0]);
-                  localStorage.setItem('maxPrice', defaultValue[1]);
+                  localStorage.setItem('minPrice', value[0]);
+                  localStorage.setItem('maxPrice', value[1]);
                   setParams();
                 }}
               />

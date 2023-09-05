@@ -11,7 +11,7 @@ const Grid = styled.ul`
   width: 100%;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {

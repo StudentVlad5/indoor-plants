@@ -60,10 +60,16 @@ export const Catalog = () => {
   }, [t, page, perPage, searchParams]);
 
   const [showSort, setShowSort] = useState(false);
-  const toggleSort = () => setShowSort(state => !state);
+  const toggleSort = () => {
+    setShowSort(state => !state);
+    setShowFilter(false);
+  };
 
   const [showFilter, setShowFilter] = useState(false);
-  const toggleFilter = () => setShowFilter(state => !state);
+  const toggleFilter = () => {
+    setShowFilter(state => !state);
+    setShowSort(false);
+  };
 
   const handleClick = () => {
     setShowSort(false);
