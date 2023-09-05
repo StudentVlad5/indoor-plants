@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; //, useEffect
+import React, { useState, useEffect } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
@@ -32,6 +32,11 @@ export const ProductCard = ({ product, addToBasket }) => {
     options,
     totalQuantity,
     images,
+    light,
+    petFriendly,
+    hardToKill,
+    waterSchedule,
+    category,
   } = product;
 
   // get data from selected option
@@ -41,15 +46,23 @@ export const ProductCard = ({ product, addToBasket }) => {
     currentPrice: currentPrice ? currentPrice : oldPrice || 0,
     total: totalQuantity || 0,
   });
-  // console.log(optionData);
+  console.log('optionData', optionData);
 
   const getOptionData = e => {
     e.preventDefault();
-    const selectedOption = e.currentTarget.dataset.option;
+    const selectedOption = e.currentTarget.value;
     const selectedData = options.find(
       option => option.title === selectedOption,
     );
     setOptionData(selectedData);
+
+    console.log('e:', e.target);
+    console.log(
+      'optionData.title === option.title',
+      optionData.title === e.currentTarget.value,
+    );
+    console.log('optionData.title', optionData.title);
+    console.log('option.title', e.currentTarget.value);
   };
 
   //get selected value
@@ -72,7 +85,9 @@ export const ProductCard = ({ product, addToBasket }) => {
               </SC.ProductNavLink>
             </SC.ProductNavItem>
             <SC.ProductNavItem>
-              <SC.ProductNavLink href="/indoor-plants/catalog">
+              <SC.ProductNavLink
+                href={`/indoor-plants/catalog?perPage=12&page=1&category=${category}`}
+              >
                 Indoor Plants
               </SC.ProductNavLink>
             </SC.ProductNavItem>
@@ -195,15 +210,18 @@ export const ProductCard = ({ product, addToBasket }) => {
                 <SC.OptionsList>
                   {options.map((option, i) => {
                     return (
-                      <SC.Option
-                        key={i}
-                        type="button"
-                        aria-label={option.title}
-                        disabled={0 == option.total}
-                        onClick={e => getOptionData(e)}
-                        data-option={option.title}
-                      >
-                        {option.title}
+                      <SC.Option key={i}>
+                        <input
+                          type="radio"
+                          id={option.title}
+                          name="option"
+                          aria-label={option.title}
+                          disabled={0 == option.total}
+                          onChange={e => getOptionData(e)}
+                          value={option.title}
+                          defaultChecked={optionData.title === option.title}
+                        ></input>
+                        <span>{option.title}</span>
                       </SC.Option>
                     );
                   })}
@@ -232,24 +250,33 @@ export const ProductCard = ({ product, addToBasket }) => {
                 </SC.IconBtn>
               </SC.Quantity>
             </SC.Options>
-            <SC.TextBtn
-              type="button"
-              aria-label="Add to card"
-              disabled={value === 0}
-              onClick={() =>
-                addToBasket({
-                  _id,
-                  name,
-                  oldPrice,
-                  currentPrice,
-                  // currency,
-                  optionData,
-                  images,
-                })
-              }
-            >
-              ADD to card
-            </SC.TextBtn>
+            {optionData.title ? (
+              <SC.TextBtn
+                type="button"
+                aria-label="Add to card"
+                disabled={value === 0}
+                onClick={() =>
+                  addToBasket({
+                    _id,
+                    name,
+                    optionData,
+                    images,
+                  })
+                }
+              >
+                ADD to card
+              </SC.TextBtn>
+            ) : (
+              <>
+                <SC.TextBtn
+                  type="button"
+                  aria-label="Add to card"
+                  disabled={true}
+                >
+                  ADD to card
+                </SC.TextBtn>
+              </>
+            )}
             <SC.InfoSection>
               <SC.Accord>
                 <SC.ProductSubTitle marginBottom="0">
@@ -362,6 +389,7 @@ ProductCard.propTypes = {
       rare: PropTypes.string,
       waterSchedule: PropTypes.string,
       images: PropTypes.array,
+      category: PropTypes.string,
     }),
   ),
 };
