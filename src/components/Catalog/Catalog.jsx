@@ -60,10 +60,16 @@ export const Catalog = () => {
   }, [t, page, perPage, searchParams]);
 
   const [showSort, setShowSort] = useState(false);
-  const toggleSort = () => setShowSort(state => !state);
+  const toggleSort = () => {
+    setShowSort(state => !state);
+    setShowFilter(false);
+  };
 
   const [showFilter, setShowFilter] = useState(false);
-  const toggleFilter = () => setShowFilter(state => !state);
+  const toggleFilter = () => {
+    setShowFilter(state => !state);
+    setShowSort(false);
+  };
 
   const handleClick = () => {
     setShowSort(false);
@@ -153,16 +159,16 @@ Catalog.propTypes = {
       light: PropTypes.string,
       petFriendly: PropTypes.string,
       maintenance: PropTypes.string,
-      potSize: PropTypes.arrayOf(
-        PropTypes.shape({
-          size: PropTypes.number,
-          unit: PropTypes.string,
-        }),
-      ),
+      potSize: PropTypes.shape({
+        size: PropTypes.number,
+        unit: PropTypes.string,
+        _id: PropTypes.string,
+      }),
       hardToKill: PropTypes.string,
       rare: PropTypes.string,
       waterSchedule: PropTypes.string,
       images: PropTypes.array,
+      category: PropTypes.string,
     }),
   ),
 };

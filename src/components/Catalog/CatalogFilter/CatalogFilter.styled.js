@@ -165,7 +165,7 @@ const FilterInnerListItem = styled.input`
     &:checked + span::before {
       border-color: ${theme.colors.green};
       background-color: transparent;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5.00098 14L9.00098 17L18.001 6' stroke='%23374920'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='64' height='64' viewBox='0 0 64 64'%0Astyle='fill:%235a6b47;'%3E%3Cpath d='M27 55L6 33 9 29 26 41 55 12 59 16z'%3E%3C/path%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-size: contain;
     }

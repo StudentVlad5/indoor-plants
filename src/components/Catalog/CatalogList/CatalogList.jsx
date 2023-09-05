@@ -50,11 +50,11 @@ export const CatalogList = ({ products }) => {
         return (
           <SC.Card key={card._id}>
             <SC.BtnForFavorite onClick={handleFavoriteBtnClick(card.article)}>
-              {favorites?.includes(card.article) ? (
+              {/* {favorites.includes(card.article) ? (
                 <SC.IconFav size={30} fill={theme.colors.darkGreen} />
               ) : (
                 <SC.IconFav size={30} color={theme.colors.beige} />
-              )}
+              )} */}
             </SC.BtnForFavorite>
             <NavLink to={`/catalog/${card._id}`}>
               <SC.CardImage
@@ -123,16 +123,16 @@ CatalogList.propTypes = {
       light: PropTypes.string,
       petFriendly: PropTypes.string,
       maintenance: PropTypes.string,
-      potSize: PropTypes.objectOf(
-        PropTypes.shape({
-          size: PropTypes.number,
-          unit: PropTypes.string,
-        }),
-      ),
+      potSize: PropTypes.shape({
+        size: PropTypes.number,
+        unit: PropTypes.string,
+        _id: PropTypes.string,
+      }),
       hardToKill: PropTypes.string,
       rare: PropTypes.string,
       waterSchedule: PropTypes.string,
       images: PropTypes.array,
+      category: PropTypes.string,
     }),
   ),
 };

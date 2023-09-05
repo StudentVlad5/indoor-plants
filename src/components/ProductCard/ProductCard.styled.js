@@ -248,37 +248,63 @@ const OptionsList = styled.div`
   gap: 20px;
 `;
 
-const Option = styled.button`
-  /* width: 137px; */
-  padding: 6px 8px;
+const Option = styled.label`
+  position: relative;
 
-  font-family: ${theme.fonts[0]}; //Raisonne Pro
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: capitalize;
-  text-align: center;
+  & span {
+    padding: 6px 8px;
 
-  color: ${theme.colors.green1};
-  background-color: transparent;
+    font-family: ${theme.fonts[0]}; //Raisonne Pro
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    text-align: center;
 
-  border-radius: 10px;
-  border: 0.5px solid ${theme.colors.brown1};
-  cursor: pointer;
+    color: ${theme.colors.green1};
+    background-color: transparent;
 
-  &:hover,
-  &:focus {
-    color: #6f8d4c;
-    background-color: ${theme.colors.green5};
-    border: 1px solid ${theme.colors.green2};
+    border-radius: 10px;
+    border: 0.5px solid ${theme.colors.brown1};
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: #6f8d4c;
+      background-color: ${theme.colors.green5};
+      border: 1px solid ${theme.colors.green2};
+    }
   }
 
-  &:disabled {
-    color: ${theme.colors.brown2};
-    background-color: transparent;
-    border: 1px solid ${theme.colors.brown2};
-    cursor: default;
+  & > input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    cursor: pointer;
+
+    &:disabled + span {
+      color: ${theme.colors.brown2};
+      background-color: ${theme.colors.greyOpacity};
+      border: 1px solid ${theme.colors.brown2};
+      cursor: default;
+    }
+
+    &:checked + span,
+    &:not(:disabled):active + span {
+      color: #6f8d4c;
+      background-color: ${theme.colors.green5};
+      border: 1px solid ${theme.colors.green2};
+    }
+
+    & > input:checked {
+      color: #6f8d4c;
+      background-color: ${theme.colors.green5};
+      border: 1px solid ${theme.colors.green2};
+    }
   }
 `;
 

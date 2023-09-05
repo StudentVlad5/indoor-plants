@@ -9,6 +9,11 @@ export const CatalogSort = () => {
   );
   const [searchParams, setSearchParams] = useSearchParams();
 
+  useEffect(() => {
+    localStorage.setItem('sort', sort);
+    setParams();
+  }, [sort]);
+
   const setParams = () => {
     let params = Object.fromEntries(searchParams);
     params.sort = sort;

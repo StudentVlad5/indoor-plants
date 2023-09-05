@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import Range from 'rc-slider';
@@ -8,7 +8,6 @@ import 'rc-slider/assets/index.css';
 
 import { fetchData } from 'services/APIservice';
 import { addReload } from 'redux/reload/slice';
-import { reloadValue } from 'redux/reload/selectors';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import * as SC from './CatalogFilter.styled';
 
@@ -17,12 +16,55 @@ import { ReactComponent as Open } from 'images/svg/open.svg';
 export const CatalogFilter = () => {
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const reload = useSelector(reloadValue);
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  const [typeOfPlants, setTypeOfPlants] = useState(
+    localStorage.getItem('typeOfPlants')
+      ? localStorage.getItem('typeOfPlants')
+      : [],
+  );
+  const [rare, setRare] = useState(
+    localStorage.getItem('rare') ? localStorage.getItem('rare') : [],
+  );
+  const [light, setLight] = useState(
+    localStorage.getItem('light') ? localStorage.getItem('light') : [],
+  );
+  const [petFriendly, setPetFriendly] = useState(
+    localStorage.getItem('petFriendly')
+      ? localStorage.getItem('petFriendly')
+      : [],
+  );
+  const min = Math.min.apply(
+    Math,
+    products.flatMap(product => product.currentPrice),
+  );
+  const max = Math.max.apply(
+    Math,
+    products.flatMap(product => product.currentPrice),
+  );
+  const [minPrice, setMinPrice] = useState(
+    localStorage.getItem('minPrice') ? localStorage.getItem('minPrice') : '',
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    localStorage.getItem('maxPrice') ? localStorage.getItem('maxPrice') : '',
+  );
+  const [hardToKill, setHardToKill] = useState(
+    localStorage.getItem('hardToKill')
+      ? localStorage.getItem('hardToKill')
+      : [],
+  );
+  const [potSize, setPotSize] = useState(
+    localStorage.getItem('potSize') ? localStorage.getItem('potSize') : [],
+  );
+  const [waterSchedule, setWaterSchedule] = useState(
+    localStorage.getItem('waterSchedule')
+      ? localStorage.getItem('waterSchedule')
+      : [],
+  );
+
   useEffect(() => {
-    async function getData() {
+    (async function getData() {
       try {
         const { data } = await fetchData(`/catalog`);
         if (!data) {
@@ -32,69 +74,36 @@ export const CatalogFilter = () => {
       } catch (error) {
         setError(error);
       }
-    }
-    getData();
+    })();
+  }, [t]);
 
-    if (reload) {
-      getData();
-      dispatch(addReload(false));
-    }
-  }, [t, dispatch, reload]);
+  useEffect(() => {
+    localStorage.setItem('typeOfPlants', typeOfPlants);
+    localStorage.setItem('rare', rare);
+    localStorage.setItem('light', light);
+    localStorage.setItem('petFriendly', petFriendly);
+    localStorage.setItem('minPrice', minPrice);
+    localStorage.setItem('maxPrice', maxPrice);
+    localStorage.setItem('hardToKill', hardToKill);
+    localStorage.setItem('potSize', potSize);
+    localStorage.setItem('waterSchedule', waterSchedule);
+    setParams();
+  }, [
+    typeOfPlants,
+    rare,
+    light,
+    petFriendly,
+    minPrice,
+    maxPrice,
+    hardToKill,
+    potSize,
+    waterSchedule,
+  ]);
 
-  const [typeOfPlants, setTypeOfPlants] = useState(
-    localStorage.getItem('typeOfPlants')
-      ? localStorage.getItem('typeOfPlants')
-      : [],
-  );
-  // console.log('typeOfPlants:', typeOfPlants);
-  // console.log('checked:', typeOfPlants.includes('flowering plant'));
-
-  const [rare, setRare] = useState(
-    localStorage.getItem('rare') ? localStorage.getItem('rare') : [],
-  );
-
-  const [light, setLight] = useState(
-    localStorage.getItem('light') ? localStorage.getItem('light') : [],
-  );
-
-  const [petFriendly, setPetFriendly] = useState(
-    localStorage.getItem('petFriendly')
-      ? localStorage.getItem('petFriendly')
-      : [],
-  );
-
-  const min = Math.min.apply(
-    Math,
-    products.flatMap(product => product.currentPrice),
-  );
-  const max = Math.max.apply(
-    Math,
-    products.flatMap(product => product.currentPrice),
-  );
-
-  const [minPrice, setMinPrice] = useState(
-    localStorage.getItem('minPrice') ? localStorage.getItem('minPrice') : min,
-  );
-
-  const [maxPrice, setMaxPrice] = useState(
-    localStorage.getItem('maxPrice') ? localStorage.getItem('maxPrice') : max,
-  );
-
-  const [hardToKill, setHardToKill] = useState(
-    localStorage.getItem('hardToKill')
-      ? localStorage.getItem('hardToKill')
-      : [],
-  );
-
-  const [potSize, setPotSize] = useState(
-    localStorage.getItem('potSize') ? localStorage.getItem('potSize') : [],
-  );
-
-  const [waterSchedule, setWaterSchedule] = useState(
-    localStorage.getItem('waterSchedule')
-      ? localStorage.getItem('waterSchedule')
-      : [],
-  );
+  console.log('min:', min);
+  console.log('max:', max);
+  console.log('minPrice:', minPrice);
+  console.log('maxPrice:', maxPrice);
 
   const toggleFilterItem = e => {
     e.stopPropagation();
@@ -102,6 +111,23 @@ export const CatalogFilter = () => {
   };
 
   const getUniqueOptions = key => {
+    if (key === 'potSize') {
+      // const unique = [...new Set(products.map(item => item[key].size))];
+      const uniqueSizes = [];
+      const array = [...new Set(products.map(item => item[key]))];
+      const unique = array
+        .sort((a, b) => a.size - b.size)
+        .filter(element => {
+          const isDuplicate = uniqueSizes.includes(element.size);
+          if (!isDuplicate) {
+            uniqueSizes.push(element.size);
+            return true;
+          }
+          return false;
+        });
+      return unique;
+    }
+
     const unique = [...new Set(products.map(item => item[key]))];
     return unique.sort();
   };
@@ -123,10 +149,10 @@ export const CatalogFilter = () => {
     if (petFriendly !== '') {
       params.petFriendly = petFriendly;
     }
-    if (minPrice !== Infinity) {
+    if (minPrice !== '') {
       params.minPrice = minPrice;
     }
-    if (maxPrice !== -Infinity) {
+    if (maxPrice !== '') {
       params.maxPrice = maxPrice;
     }
     if (hardToKill !== '') {
@@ -147,7 +173,7 @@ export const CatalogFilter = () => {
     switch (name) {
       case 'typeOfPlants':
         if (typeOfPlants.includes(value)) {
-          setTypeOfPlants(typeOfPlants.filter(item => item !== value));
+          setTypeOfPlants(typeOfPlants.filter(item !== value));
           dispatch(addReload(true));
         } else {
           setTypeOfPlants([...typeOfPlants, value]);
@@ -246,8 +272,8 @@ export const CatalogFilter = () => {
     setRare('');
     setLight('');
     setPetFriendly('');
-    setMinPrice(min);
-    setMaxPrice(max);
+    setMinPrice('');
+    setMaxPrice('');
     setHardToKill('');
     setPotSize('');
     setWaterSchedule('');
@@ -487,24 +513,24 @@ export const CatalogFilter = () => {
             </SC.IconBtn>
           </SC.FilterHeading>
           <SC.FilterInnerList>
-            {getUniqueOptions('potSize')
-              .sort((a, b) => a.size - b.size)
-              .map((card, i) => {
-                return (
-                  <label key={i}>
-                    <SC.FilterInnerListItem
-                      type="checkbox"
-                      name="potSize"
-                      // value={card[0].size}
-                      // defaultChecked={potSize === card[0].size}
-                      onChange={e => {
-                        handleChange(e);
-                      }}
-                    />
-                    <span>{/* {card[0].size} {card[0].unit} */}</span>
-                  </label>
-                );
-              })}
+            {getUniqueOptions('potSize').map((card, i) => {
+              return (
+                <label key={i}>
+                  <SC.FilterInnerListItem
+                    type="checkbox"
+                    name="potSize"
+                    value={card.size}
+                    defaultChecked={potSize === card.size}
+                    onChange={e => {
+                      handleChange(e);
+                    }}
+                  />
+                  <span>
+                    {card.size} {card.unit}
+                  </span>
+                </label>
+              );
+            })}
           </SC.FilterInnerList>
         </SC.Filter>
         <SC.Filter>
@@ -537,7 +563,7 @@ export const CatalogFilter = () => {
                     handleChange(e);
                   }}
                 />
-                <span>$</span>
+                <>$</>
               </label>
               <label>
                 To
@@ -552,7 +578,7 @@ export const CatalogFilter = () => {
                     handleChange(e);
                   }}
                 />
-                <span>$</span>
+                <>$</>
               </label>
             </SC.RangeWrapper>
             <SC.RangeLabel>
@@ -562,16 +588,16 @@ export const CatalogFilter = () => {
                 min={min}
                 max={max}
                 value={[minPrice, maxPrice]}
-                defaultValue={[minPrice, maxPrice]}
+                defaultValue={[min, max]}
                 step={1}
                 pushable={(true, 1)}
                 disabled={minPrice === 0}
-                onChange={defaultValue => {
-                  setMinPrice(defaultValue[0]);
-                  setMaxPrice(defaultValue[1]);
+                onChange={value => {
+                  setMinPrice(value[0]);
+                  setMaxPrice(value[1]);
 
-                  localStorage.setItem('minPrice', defaultValue[0]);
-                  localStorage.setItem('maxPrice', defaultValue[1]);
+                  localStorage.setItem('minPrice', value[0]);
+                  localStorage.setItem('maxPrice', value[1]);
                   setParams();
                 }}
               />
