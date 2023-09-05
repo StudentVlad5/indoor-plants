@@ -495,15 +495,13 @@ export const CatalogFilter = () => {
                     <SC.FilterInnerListItem
                       type="checkbox"
                       name="potSize"
-                      value={card[0].size}
-                      defaultChecked={potSize === card[0].size}
+                      // value={card[0].size}
+                      // defaultChecked={potSize === card[0].size}
                       onChange={e => {
                         handleChange(e);
                       }}
                     />
-                    <span>
-                      {card[0].size} {card[0].unit}
-                    </span>
+                    <span>{/* {card[0].size} {card[0].unit} */}</span>
                   </label>
                 );
               })}

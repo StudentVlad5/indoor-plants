@@ -12,6 +12,7 @@ import { onSuccess, onInfo } from 'components/helpers/Messages/NotifyMessages';
 const { BASE_URL_IMG } = window.global;
 
 export const CatalogList = ({ products }) => {
+  console.log(products);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(getUser).favorites;
   let favorites;
@@ -122,10 +123,10 @@ CatalogList.propTypes = {
       light: PropTypes.string,
       petFriendly: PropTypes.string,
       maintenance: PropTypes.string,
-      potSize: PropTypes.arrayOf(
+      potSize: PropTypes.objectOf(
         PropTypes.shape({
           size: PropTypes.number,
-          potSizeItem: PropTypes.string,
+          unit: PropTypes.string,
         }),
       ),
       hardToKill: PropTypes.string,

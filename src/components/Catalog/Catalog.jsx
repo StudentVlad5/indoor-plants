@@ -156,7 +156,7 @@ Catalog.propTypes = {
       potSize: PropTypes.arrayOf(
         PropTypes.shape({
           size: PropTypes.number,
-          potSizeItem: PropTypes.string,
+          unit: PropTypes.string,
         }),
       ),
       hardToKill: PropTypes.string,
