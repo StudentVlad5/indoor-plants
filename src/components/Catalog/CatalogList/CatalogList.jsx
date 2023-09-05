@@ -1,22 +1,21 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { addReload } from 'redux/reload/slice';
 import { addFavorite, removeFavorite } from 'redux/auth/operations';
-import {
-  selectFavorites,
-  selectId,
-  selectIsLoggedIn,
-} from 'redux/auth/selectors';
+import { getUser, selectId, selectIsLoggedIn } from 'redux/auth/selectors';
 import * as SC from './CatalogList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import theme from 'components/baseStyles/Variables.styled';
-import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
+import { onSuccess, onInfo } from 'components/helpers/Messages/NotifyMessages';
 
 const { BASE_URL_IMG } = window.global;
 
 export const CatalogList = ({ products }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const favorites = useSelector(selectFavorites);
+  const user = useSelector(getUser).favorites;
+  let favorites;
+  user ? (favorites = user.map(item => +item)) : (favorites = []);
   const _id = useSelector(selectId); //isLoggedIn
   const routeParams = useParams();
   const dispatch = useDispatch();
@@ -50,7 +49,7 @@ export const CatalogList = ({ products }) => {
         return (
           <SC.Card key={card._id}>
             <SC.BtnForFavorite onClick={handleFavoriteBtnClick(card.article)}>
-              {favorites.includes(card.article) ? (
+              {favorites?.includes(card.article) ? (
                 <SC.IconFav size={30} fill={theme.colors.darkGreen} />
               ) : (
                 <SC.IconFav size={30} color={theme.colors.beige} />
