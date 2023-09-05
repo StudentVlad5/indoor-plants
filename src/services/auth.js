@@ -56,7 +56,7 @@ export const refreshUserToken = async () => {
 
 export const addToFavorite = async id => {
   try {
-    await axios.post(`/notices/favorites/${id}`);
+    await axios.post(`/auth/favorites/${id}`);
     return id;
   } catch (error) {
     return error.message;
@@ -65,7 +65,7 @@ export const addToFavorite = async id => {
 
 export const removeFromFavorite = async id => {
   try {
-    await axios.delete(`/notices/favorites/${id}`);
+    await axios.delete(`/auth/favorites/${id}`);
     return id;
   } catch (error) {
     return error.message;
