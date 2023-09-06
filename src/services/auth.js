@@ -33,7 +33,6 @@ export const singOut = async () => {
 };
 
 export const updateUserData = async updateData => {
-  console.log('updateData', updateData);
   const formData = new FormData();
   updateData.avatar && formData.set('avatar', updateData.avatar);
   updateData.userName && formData.append('userName', updateData.userName);
@@ -42,8 +41,6 @@ export const updateUserData = async updateData => {
   updateData.location && formData.append('location', updateData.location);
   updateData.phone && formData.append('phone', updateData.phone);
   updateData.password && formData.append('password', updateData.password);
-
-  console.log(formData);
 
   const { data } = await axios.patch(`/auth/user/${updateData.id}`, formData);
   return data;

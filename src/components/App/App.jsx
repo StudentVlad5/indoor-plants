@@ -120,7 +120,7 @@ export const App = () => {
                 element={
                   <PrivateRoute
                     redirectTo="/signin"
-                    component={<h2>favorites information</h2>}
+                    component={<FavoritePage />}
                   />
                 }
               />
