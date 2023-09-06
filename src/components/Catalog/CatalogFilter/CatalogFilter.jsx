@@ -100,10 +100,10 @@ export const CatalogFilter = () => {
     waterSchedule,
   ]);
 
-  console.log('min:', min);
-  console.log('max:', max);
-  console.log('minPrice:', minPrice);
-  console.log('maxPrice:', maxPrice);
+  // console.log('min:', min);
+  // console.log('max:', max);
+  // console.log('minPrice:', minPrice);
+  // console.log('maxPrice:', maxPrice);
 
   const toggleFilterItem = e => {
     e.stopPropagation();
@@ -134,8 +134,8 @@ export const CatalogFilter = () => {
 
   const setParams = () => {
     let params = Object.fromEntries(searchParams);
-    console.log('params:', params);
-    console.log('searchParams:', Object.fromEntries(searchParams));
+    // console.log('params:', params);
+    // console.log('searchParams:', Object.fromEntries(searchParams));
 
     if (typeOfPlants !== '') {
       params.typeOfPlants = typeOfPlants;
