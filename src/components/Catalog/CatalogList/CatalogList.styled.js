@@ -49,6 +49,7 @@ const Card = styled.li`
 const CardImage = styled.img`
   width: 214px;
   height: 300px;
+  margin: 0 auto;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 285px;
@@ -128,8 +129,8 @@ const CardSize = styled.div`
 `;
 const BtnForFavorite = styled.button`
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  right: 10px;
 
   display: flex;
   justify-content: center;

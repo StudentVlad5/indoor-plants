@@ -154,9 +154,10 @@ img {
 }
 
 .swiper-slide {
+  height:auto !important;
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: ${theme.colors.fon};
 
   /* Center slide text vertically */
   display: flex;
@@ -173,11 +174,11 @@ img {
 }
 
 .swiper-button-next::after {
-
+color:${theme.colors.green} !important;
 }
 
 .swiper-button-prev::after {
-
+color:${theme.colors.green} !important;
 }
 
 .swiper-pagination-bullet-active.swiper-pagination-bullet{
@@ -189,7 +190,9 @@ img {
 .swiper-button-prev,
 .swiper-button-next,
 .swiper-pagination-bullet {
-  transform: scale(1.1);
+  top: var(--swiper-navigation-sides-offset,10px) !important;
+  bottom:var(--swiper-navigation-sides-offset,10px) !important;
+  /* transform: scale(1.1); */
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -230,13 +233,13 @@ input::-webkit-calendar-picker-indicator:hover {
   background-color:${theme.colors.fon} !important;}
 
 
-// NAVLINK
+//-----NavLink-----//
 .linkFolder.active {
   color: ${theme.colors.white};
   background-color: ${theme.colors.green};
 }
 
-/* HEADER */
+//-----Header-----//
 .addHeaderBottom{
   background-color: ${theme.colors.brown1};
 }
