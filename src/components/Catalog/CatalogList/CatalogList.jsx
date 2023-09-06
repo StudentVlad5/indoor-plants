@@ -50,11 +50,11 @@ export const CatalogList = ({ products }) => {
         return (
           <SC.Card key={card._id}>
             <SC.BtnForFavorite onClick={handleFavoriteBtnClick(card.article)}>
-              {/* {favorites.includes(card.article) ? (
+              {favorites.includes(card.article) ? (
                 <SC.IconFav size={30} fill={theme.colors.darkGreen} />
               ) : (
                 <SC.IconFav size={30} color={theme.colors.beige} />
-              )} */}
+              )}
             </SC.BtnForFavorite>
             <NavLink to={`/catalog/${card._id}`}>
               <SC.CardImage
