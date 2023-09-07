@@ -55,7 +55,7 @@ export const CatalogList = ({ products }) => {
                 <SC.IconFav size={30} color={theme.colors.beige} />
               )}
             </SC.BtnForFavorite>
-            <NavLink to={`/catalog/${card._id}`} target="_blank">
+            <NavLink to={`/catalog/${card._id}`}>
               <SC.CardImage
                 src={BASE_URL_IMG + card.images[0]}
                 alt={card.name}
