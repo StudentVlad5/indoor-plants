@@ -12,7 +12,7 @@ import { onSuccess, onInfo } from 'components/helpers/Messages/NotifyMessages';
 const { BASE_URL_IMG } = window.global;
 
 export const CatalogList = ({ products }) => {
-  console.log(products);
+  // console.log(products);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(getUser).favorites;
   let favorites;

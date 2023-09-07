@@ -88,35 +88,54 @@ const ProductGallery = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 50%;
   }
-
-  /* & .swiper-slide {
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
-  }  */
 `;
 
 const ControlsList = styled.ul`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 24px;
 
   height: 100%;
-  max-height: 600px;
+  max-height: 700px;
+
+  transition: ${theme.transition};
+
+  & svg {
+    stroke: ${theme.colors.greyOpacity};
+
+    &:hover,
+    &:focus {
+      stroke: ${theme.colors.green};
+    }
+
+    &.disabled {
+      cursor: default;
+    }
+  }
 `;
 
 const ControlsItem = styled.li`
   & > img {
     width: 80px;
-    height: auto;
+    height: 80px;
     border-radius: 80px;
   }
+`;
+
+const ProductImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+
+  height: 823px;
 `;
 
 const ProductImage = styled.img`
   width: 437px;
   height: auto;
-  margin-bottom: 16px;
+  margin: auto 0;
 `;
 
 const DeliveryInfo = styled.ul`
@@ -268,6 +287,7 @@ const Option = styled.label`
     border-radius: 10px;
     border: 0.5px solid ${theme.colors.brown1};
     cursor: pointer;
+    transition: ${theme.transition};
 
     &:hover,
     &:focus {
@@ -285,6 +305,7 @@ const Option = styled.label`
     z-index: -1;
     opacity: 0;
     cursor: pointer;
+    transition: ${theme.transition};
 
     &:disabled + span {
       color: ${theme.colors.brown2};
@@ -371,6 +392,7 @@ const TextBtn = styled.button`
   border-radius: 10px;
 
   cursor: pointer;
+  transition: ${theme.transition};
 
   &:hover,
   &:focus {
@@ -461,6 +483,7 @@ export {
   ProductNavLink,
   ProductContent,
   ProductGallery,
+  ProductImageWrapper,
   ProductImage,
   ControlsList,
   ControlsItem,
