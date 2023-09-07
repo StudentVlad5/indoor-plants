@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import { CatalogList } from '../Catalog/CatalogList/CatalogList';
-// import { Pagination } from 'utils/pagination';
+import { Pagination } from 'utils/pagination';
 import { getFavorites } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
@@ -23,7 +23,6 @@ export const Favorites = () => {
   const [page, setPages] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const id = useSelector(selectId);
-
   const { t } = useTranslation();
 
   const setPage = toPage => {
@@ -31,6 +30,12 @@ export const Favorites = () => {
     setPages(toPage);
     setSearchParams(searchParams);
   };
+
+  useEffect(() => {
+    if (page === 1) {
+      setSearchParams({ page: 1, perPage });
+    }
+  }, []);
 
   useEffect(() => {
     if (!page || !perPage) {
@@ -41,12 +46,15 @@ export const Favorites = () => {
 
     (async function getData() {
       setIsLoading(true);
+      console.log('searchParams', searchParams);
       try {
-        const { data } = await getFavorites(`/auth/catalog/${id}`);
+        const { data } = await getFavorites(
+          `/auth/catalog/${id}?${searchParams}`,
+        );
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
-        setProducts(data);
+        setProducts(data.data);
         setTotalPage(Math.ceil(data.total / perPage));
       } catch (error) {
         setError(error);
@@ -66,11 +74,11 @@ export const Favorites = () => {
             {products.length > 0 && !error && (
               <CatalogList products={products} />
             )}
-            {/* <Pagination
+            <Pagination
               totalPage={totalPage}
               changePage={setPage}
               page={page}
-            /> */}
+            />
           </SC.GridWrapper>
         </SC.GridContainer>
       </SC.CatalogSection>

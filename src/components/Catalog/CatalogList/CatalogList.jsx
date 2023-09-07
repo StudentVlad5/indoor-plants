@@ -12,7 +12,6 @@ import { onSuccess, onInfo } from 'components/helpers/Messages/NotifyMessages';
 const { BASE_URL_IMG } = window.global;
 
 export const CatalogList = ({ products }) => {
-  // console.log(products);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(getUser).favorites;
   let favorites;
@@ -56,7 +55,7 @@ export const CatalogList = ({ products }) => {
                 <SC.IconFav size={30} color={theme.colors.beige} />
               )}
             </SC.BtnForFavorite>
-            <NavLink to={`/catalog/${card._id}`}>
+            <NavLink to={`/catalog/${card._id}`} target="_blank">
               <SC.CardImage
                 src={BASE_URL_IMG + card.images[0]}
                 alt={card.name}
