@@ -18,7 +18,8 @@ export const UserSection = styled(Section)`
 export const UserContainer = styled(Container)`
   margin: 0 auto;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   padding-top: 40px;
 `;
 
