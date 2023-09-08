@@ -1,13 +1,15 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { addReload } from 'redux/reload/slice';
 import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { getUser, selectId, selectIsLoggedIn } from 'redux/auth/selectors';
-import * as SC from './CatalogList.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import theme from 'components/baseStyles/Variables.styled';
 import { onSuccess, onInfo } from 'components/helpers/Messages/NotifyMessages';
+
+import theme from 'components/baseStyles/Variables.styled';
+import * as SC from './CatalogList.styled';
 
 const { BASE_URL_IMG } = window.global;
 
@@ -55,7 +57,7 @@ export const CatalogList = ({ products }) => {
                 <SC.IconFav size={30} color={theme.colors.beige} />
               )}
             </SC.BtnForFavorite>
-            <NavLink to={`/catalog/${card._id}`} target="_blank">
+            <NavLink to={`/catalog/${card._id}`}>
               <SC.CardImage
                 src={BASE_URL_IMG + card.images[0]}
                 alt={card.name}
