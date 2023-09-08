@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; //, useEffect
+import React, { useState } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
 import * as SC from './ProductCard.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
@@ -35,14 +35,17 @@ export const ProductCard = ({ product, addToBasket }) => {
     category,
   } = product;
 
-  // get data from selected option
-  const [optionData, setOptionData] = useState({
+  const init = {
     title: null,
     oldPrice: oldPrice ? oldPrice : currentPrice || 0,
     currentPrice: currentPrice ? currentPrice : oldPrice || 0,
     total: totalQuantity || 0,
-  });
-  // console.log('optionData', optionData);
+    quantity: 1,
+  };
+
+  // get data from selected option
+  const [optionData, setOptionData] = useState(init);
+  console.log('optionData', optionData);
 
   const getOptionData = e => {
     e.preventDefault();
@@ -50,15 +53,13 @@ export const ProductCard = ({ product, addToBasket }) => {
     const selectedData = options.find(
       option => option.title === selectedOption,
     );
+    selectedData.quantity = optionData.quantity;
     setOptionData(selectedData);
 
     // console.log('e:', e.target);
     // console.log('optionData.title', optionData.title);
     // console.log('option.title', e.currentTarget.value);
   };
-
-  //get selected value
-  const [value, setValue] = useState(1);
 
   //change images
   const [indxImg, setIndxImg] = useState(0);
@@ -253,17 +254,27 @@ export const ProductCard = ({ product, addToBasket }) => {
                 <SC.IconBtn
                   type="button"
                   aria-label="minus"
-                  onClick={() => setValue(value - 1)}
-                  disabled={value <= 0}
+                  onClick={() => {
+                    setOptionData(prevState => ({
+                      ...prevState,
+                      quantity: prevState.quantity - 1,
+                    }));
+                  }}
+                  disabled={optionData.quantity <= 0}
                 >
                   <Minus />
                 </SC.IconBtn>
-                <span>{value}</span>
+                <span>{optionData.quantity}</span>
                 <SC.IconBtn
                   type="button"
                   aria-label="plus"
-                  onClick={() => setValue(value + 1)}
-                  disabled={value >= optionData.total}
+                  onClick={() => {
+                    setOptionData(prevState => ({
+                      ...prevState,
+                      quantity: prevState.quantity + 1,
+                    }));
+                  }}
+                  disabled={optionData.quantity >= optionData.total}
                 >
                   <Plus />
                 </SC.IconBtn>
@@ -273,15 +284,16 @@ export const ProductCard = ({ product, addToBasket }) => {
               <SC.TextBtn
                 type="button"
                 aria-label="Add to card"
-                disabled={value === 0}
-                onClick={() =>
+                disabled={optionData.quantity === 0}
+                onClick={() => {
                   addToBasket({
                     _id,
                     name,
                     optionData,
                     images,
-                  })
-                }
+                  });
+                  setOptionData(init);
+                }}
               >
                 ADD to card
               </SC.TextBtn>

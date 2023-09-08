@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from 'react'; //
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
 import { SEO } from 'utils/SEO';
 import { fetchData } from '../services/APIservice';
 import { ProductCard } from '../components/ProductCard/ProductCard';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { cleanHeaderBottom } from 'redux/header_bottom/operation';
 
 const ProductCardPage = ({ addToBasket }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(cleanHeaderBottom());
-  }, []);
-  const routeParams = useParams();
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const routeParams = useParams();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -41,6 +39,10 @@ const ProductCardPage = ({ addToBasket }) => {
       getData();
     }
   }, [routeParams.id, t]);
+
+  useEffect(() => {
+    dispatch(cleanHeaderBottom());
+  }, []);
 
   return (
     <>
