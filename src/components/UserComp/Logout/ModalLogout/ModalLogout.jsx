@@ -58,6 +58,6 @@ export const ModalLogout = ({ onClose, onCloseBtn }) => {
 };
 
 ModalLogout.propTypes = {
-  onClose: PropTypes.function,
-  onCloseBtn: PropTypes.function,
+  onClose: PropTypes.func,
+  onCloseBtn: PropTypes.func,
 };

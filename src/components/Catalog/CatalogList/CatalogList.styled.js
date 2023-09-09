@@ -1,5 +1,24 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import { IconFavorite } from 'components/Header/Navigation/Navigation.styled';
+
+const IconFav = styled(IconFavorite)`
+  display: block;
+  size: 30px;
+
+  transition: ${theme.transition[0]};
+  cursor: pointer;
+
+  & > path {
+    stroke: ${theme.colors.brown1};
+  }
+
+  &:hover,
+  &:focus {
+    transform: ${theme.scale[0]};
+    transition: ${theme.transition[0]};
+  }
+`;
 
 const Grid = styled.ul`
   display: flex;
@@ -11,7 +30,7 @@ const Grid = styled.ul`
   width: 100%;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -20,6 +39,7 @@ const Grid = styled.ul`
 `;
 
 const Card = styled.li`
+  position: relative;
   & a {
     text-decoration: none;
     cursor: pointer;
@@ -29,6 +49,7 @@ const Card = styled.li`
 const CardImage = styled.img`
   width: 214px;
   height: 300px;
+  margin: 0 auto;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 285px;
@@ -106,6 +127,21 @@ const CardSize = styled.div`
     gap: 3px;
   }
 `;
+const BtnForFavorite = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border: none;
+  background: transparent;
+`;
 
 export {
   Grid,
@@ -117,4 +153,6 @@ export {
   CardDiscount,
   CardPrice,
   CardSize,
+  BtnForFavorite,
+  IconFav,
 };

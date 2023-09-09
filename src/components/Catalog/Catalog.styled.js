@@ -120,8 +120,8 @@ const FiltersWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 2px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    top: 65px;
-    width: 343px;
+    top: 59px;
+    width: 341px;
     border-radius: 0;
   }
 `;

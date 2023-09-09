@@ -19,7 +19,6 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     reload: reloadSlice.reducer,
-    card: cardReducer,
     modal: modalReducer,
     headerBottom: headerBottomReducer,
     basket: basketReducer,

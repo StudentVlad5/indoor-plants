@@ -37,6 +37,7 @@ const theme = {
     redLight: '#FFE8E9',
     grey: '#717171',
     grey1: '#656970',
+    greyOpacity: 'rgba(113, 113, 113, 0.1)',
     white: '#ffffff',
   },
   // fonts: ['Archivo, sans-serif', 'Domine, serif'],

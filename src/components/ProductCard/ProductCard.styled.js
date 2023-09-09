@@ -88,35 +88,54 @@ const ProductGallery = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 50%;
   }
-
-  /* & .swiper-slide {
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
-  }  */
 `;
 
 const ControlsList = styled.ul`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 24px;
 
   height: 100%;
-  max-height: 600px;
+  max-height: 700px;
+
+  transition: ${theme.transition};
+
+  & svg {
+    stroke: ${theme.colors.greyOpacity};
+
+    &:hover,
+    &:focus {
+      stroke: ${theme.colors.green};
+    }
+
+    &.disabled {
+      cursor: default;
+    }
+  }
 `;
 
 const ControlsItem = styled.li`
   & > img {
     width: 80px;
-    height: auto;
+    height: 80px;
     border-radius: 80px;
   }
+`;
+
+const ProductImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+
+  height: 823px;
 `;
 
 const ProductImage = styled.img`
   width: 437px;
   height: auto;
-  margin-bottom: 16px;
+  margin: auto 0;
 `;
 
 const DeliveryInfo = styled.ul`
@@ -248,37 +267,65 @@ const OptionsList = styled.div`
   gap: 20px;
 `;
 
-const Option = styled.button`
-  /* width: 137px; */
-  padding: 6px 8px;
+const Option = styled.label`
+  position: relative;
 
-  font-family: ${theme.fonts[0]}; //Raisonne Pro
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: capitalize;
-  text-align: center;
+  & span {
+    padding: 6px 8px;
 
-  color: ${theme.colors.green1};
-  background-color: transparent;
+    font-family: ${theme.fonts[0]}; //Raisonne Pro
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    text-align: center;
 
-  border-radius: 10px;
-  border: 0.5px solid ${theme.colors.brown1};
-  cursor: pointer;
+    color: ${theme.colors.green1};
+    background-color: transparent;
 
-  &:hover,
-  &:focus {
-    color: #6f8d4c;
-    background-color: ${theme.colors.green5};
-    border: 1px solid ${theme.colors.green2};
+    border-radius: 10px;
+    border: 0.5px solid ${theme.colors.brown1};
+    cursor: pointer;
+    transition: ${theme.transition};
+
+    &:hover,
+    &:focus {
+      color: #6f8d4c;
+      background-color: ${theme.colors.green5};
+      border: 1px solid ${theme.colors.green2};
+    }
   }
 
-  &:disabled {
-    color: ${theme.colors.brown2};
-    background-color: transparent;
-    border: 1px solid ${theme.colors.brown2};
-    cursor: default;
+  & > input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    cursor: pointer;
+    transition: ${theme.transition};
+
+    &:disabled + span {
+      color: ${theme.colors.brown2};
+      background-color: ${theme.colors.greyOpacity};
+      border: 1px solid ${theme.colors.brown2};
+      cursor: default;
+    }
+
+    &:checked + span,
+    &:not(:disabled):active + span {
+      color: #6f8d4c;
+      background-color: ${theme.colors.green5};
+      border: 1px solid ${theme.colors.green2};
+    }
+
+    & > input:checked {
+      color: #6f8d4c;
+      background-color: ${theme.colors.green5};
+      border: 1px solid ${theme.colors.green2};
+    }
   }
 `;
 
@@ -345,6 +392,7 @@ const TextBtn = styled.button`
   border-radius: 10px;
 
   cursor: pointer;
+  transition: ${theme.transition};
 
   &:hover,
   &:focus {
@@ -435,6 +483,7 @@ export {
   ProductNavLink,
   ProductContent,
   ProductGallery,
+  ProductImageWrapper,
   ProductImage,
   ControlsList,
   ControlsItem,

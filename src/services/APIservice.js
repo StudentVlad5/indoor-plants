@@ -50,6 +50,17 @@ async function deleteData(pathParams) {
   });
 }
 
+async function getFavorites(pathParams) {
+  const formData = new FormData();
+  return axios.post(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
@@ -63,4 +74,9 @@ updateUserData.propTypes = {
   formData: PropTypes.string.isRequired,
 };
 
-export { fetchData, updateUserData, deleteData };
+getFavorites.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  formData: PropTypes.string.isRequired,
+};
+
+export { fetchData, updateUserData, deleteData, getFavorites };

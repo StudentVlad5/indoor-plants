@@ -1,13 +1,9 @@
 import React, { useState } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-// import 'swiper/css';
 import * as SC from './ProductCard.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { ReactComponent as Car } from 'images/svg/shipping.svg';
 import { ReactComponent as Done } from 'images/svg/done.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
@@ -36,6 +32,11 @@ export const ProductCard = ({ product }) => {
     options,
     totalQuantity,
     images,
+    light,
+    petFriendly,
+    hardToKill,
+    waterSchedule,
+    category,
   } = product;
 
   const dispatch = useDispatch();
@@ -53,21 +54,30 @@ export const ProductCard = ({ product }) => {
     console.log('Added success: ', product);
   };
 
-  // get data from selected option
-  const [optionData, setOptionData] = useState({
+  const init = {
     title: null,
     oldPrice: oldPrice ? oldPrice : currentPrice || 0,
     currentPrice: currentPrice ? currentPrice : oldPrice || 0,
     total: totalQuantity || 0,
-  });
+    quantity: 1,
+  };
+
+  // get data from selected option
+  const [optionData, setOptionData] = useState(init);
+  console.log('optionData', optionData);
 
   const getOptionData = e => {
     e.preventDefault();
-    const selectedOption = e.currentTarget.dataset.option;
+    const selectedOption = e.currentTarget.value;
     const selectedData = options.find(
       option => option.title === selectedOption,
     );
+    selectedData.quantity = optionData.quantity;
     setOptionData(selectedData);
+
+    // console.log('e:', e.target);
+    // console.log('optionData.title', optionData.title);
+    // console.log('option.title', e.currentTarget.value);
   };
 
   //get selected value
@@ -93,6 +103,36 @@ export const ProductCard = ({ product }) => {
       const newValue = quantity + 1;
       setValue(newValue);
       dispatch(setQuantity({ quantityData, quantity: newValue }));
+    }}
+  //change images
+  const [indxImg, setIndxImg] = useState(0);
+
+  const slides = 6;
+  const [indxSlideImg, setIndxSlideImg] = useState(0);
+  const [slideImages, setSlideImg] = useState(images.slice(0, slides));
+
+  const handleChangeImg = e => {
+    const currentIndx = e.target.id;
+    setIndxImg(currentIndx);
+  };
+
+  const handleScrollImg = e => {
+    const type = e.target.dataset.controls;
+    switch (type) {
+      case 'up':
+        setIndxSlideImg(prevState =>
+          prevState - slides < 0 ? images.length - slides : prevState - slides,
+        );
+        setSlideImg(images.slice(0, slides));
+        break;
+      case 'down':
+        setIndxSlideImg(prevState =>
+          prevState + slides >= images.length ? 0 : prevState + slides,
+        );
+        setSlideImg(images.slice(images.length - slides, images.length));
+        break;
+      default:
+        break;
     }
   };
 
@@ -113,7 +153,9 @@ export const ProductCard = ({ product }) => {
               </SC.ProductNavLink>
             </SC.ProductNavItem>
             <SC.ProductNavItem>
-              <SC.ProductNavLink href="/indoor-plants/catalog">
+              <SC.ProductNavLink
+                href={`/indoor-plants/catalog?perPage=12&page=1&category=${category}`}
+              >
                 Indoor Plants
               </SC.ProductNavLink>
             </SC.ProductNavItem>
@@ -136,54 +178,49 @@ export const ProductCard = ({ product }) => {
         </SC.ProductNav>
         <SC.ProductContent>
           <SC.ProductGallery>
-            {/* <Swiper
-              direction={'vertical'}
-              modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-              // spaceBetween={47}
-              slidesPerView={6}
-              navigation
-              pagination={{ clickable: true }}
-              mousewheel={true}
-              keyboard={true}
-              loop={true}
-              loopPreventsSliding={true}
-              loopedSlides={1}
-              scrollbar={{ draggable: true }}
-            >
-              <SwiperSlide>
-                <img src={img1} alt="Image 1" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img2} alt="Image 2" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img3} alt="Image 3" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img4} alt="Image 4" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img5} alt="Image 5" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={img6} alt="Image 6" />
-              </SwiperSlide>
-            </Swiper> */}
-
             <SC.ControlsList>
-              {images?.map((img, i) => {
+              {images.length > slides && indxSlideImg !== 0 && (
+                <FiChevronUp
+                  data-controls="up"
+                  size={36}
+                  onClick={e => {
+                    handleScrollImg(e);
+                  }}
+                />
+              )}
+              {slideImages?.map((img, i) => {
                 return (
-                  <SC.ControlsItem key={i}>
-                    <img src={BASE_URL_IMG + img} alt="Image" loading="lazy" />
+                  <SC.ControlsItem
+                    key={i}
+                    onClick={e => {
+                      handleChangeImg(e);
+                    }}
+                  >
+                    <img
+                      src={BASE_URL_IMG + img}
+                      alt="Image"
+                      loading="lazy"
+                      id={i}
+                    />
                   </SC.ControlsItem>
                 );
               })}
+              {images.length > slides &&
+                indxSlideImg !== slideImages.length && (
+                  <FiChevronDown
+                    data-controls="down"
+                    size={36}
+                    onClick={e => {
+                      handleScrollImg(e);
+                    }}
+                  />
+                )}
             </SC.ControlsList>
-            <div>
+            <SC.ProductImageWrapper>
               <SC.ProductImage
                 width={347}
                 height={600}
-                src={BASE_URL_IMG + images[0]}
+                src={BASE_URL_IMG + images[indxImg]}
                 alt="Product image"
                 loading="lazy"
               />
@@ -202,7 +239,7 @@ export const ProductCard = ({ product }) => {
                   </p>
                 </SC.DeliveryInfoItem>
               </SC.DeliveryInfo>
-            </div>
+            </SC.ProductImageWrapper>
           </SC.ProductGallery>
           <SC.ProductInfo>
             <div>
@@ -236,15 +273,18 @@ export const ProductCard = ({ product }) => {
                 <SC.OptionsList>
                   {options.map((option, i) => {
                     return (
-                      <SC.Option
-                        key={i}
-                        type="button"
-                        aria-label={option.title}
-                        disabled={0 == option.total}
-                        onClick={e => getOptionData(e)}
-                        data-option={option.title}
-                      >
-                        {option.title}
+                      <SC.Option key={i}>
+                        <input
+                          type="radio"
+                          id={option.title}
+                          name="option"
+                          aria-label={option.title}
+                          disabled={0 == option.total}
+                          onChange={e => getOptionData(e)}
+                          value={option.title}
+                          defaultChecked={optionData.title === option.title}
+                        ></input>
+                        <span>{option.title}</span>
                       </SC.Option>
                     );
                   })}
@@ -257,39 +297,77 @@ export const ProductCard = ({ product }) => {
                 <SC.IconBtn
                   type="button"
                   aria-label="minus"
-                  onClick={handleDecrease}
-                  disabled={quantity <= 0}
+                  onClick={() => {
+                    setOptionData(prevState => ({
+                      ...prevState,
+                      quantity: prevState.quantity - 1,
+                    }));
+                  }}
+                  disabled={optionData.quantity <= 0}
                 >
                   <Minus />
                 </SC.IconBtn>
-                <span>{quantity}</span>
+                <span>{optionData.quantity}</span>
                 <SC.IconBtn
                   type="button"
                   aria-label="plus"
-                  onClick={handleIncrease}
-                  disabled={quantity >= optionData.total}
+                  onClick={() => {
+                    setOptionData(prevState => ({
+                      ...prevState,
+                      quantity: prevState.quantity + 1,
+                    }));
+                  }}
+                  disabled={optionData.quantity >= optionData.total}
                 >
                   <Plus />
                 </SC.IconBtn>
               </SC.Quantity>
             </SC.Options>
-            <SC.TextBtn
-              type="button"
-              aria-label="Add to card"
-              disabled={quantity === 0}
-              onClick={() => {
-                const productToAdd = {
-                  _id,
-                  name,
-                  optionData,
-                  quantity,
-                  images,
-                };
-                addToBasketHandler(productToAdd);
-              }}
-            >
-              ADD to card
-            </SC.TextBtn>
+{/* //             <SC.TextBtn
+//               type="button"
+//               aria-label="Add to card"
+//               disabled={quantity === 0}
+//               onClick={() => {
+//                 const productToAdd = {
+//                   _id,
+//                   name,
+//                   optionData,
+//                   quantity,
+//                   images,
+//                 };
+//                 addToBasketHandler(productToAdd);
+//               }}
+//             >
+//               ADD to card
+//             </SC.TextBtn> */}
+            {optionData.title ? (
+              <SC.TextBtn
+                type="button"
+                aria-label="Add to card"
+                disabled={optionData.quantity === 0}
+                onClick={() => {
+                  addToBasket({
+                    _id,
+                    name,
+                    optionData,
+                    images,
+                  });
+                  setOptionData(init);
+                }}
+              >
+                ADD to card
+              </SC.TextBtn>
+            ) : (
+              <>
+                <SC.TextBtn
+                  type="button"
+                  aria-label="Add to card"
+                  disabled={true}
+                >
+                  ADD to card
+                </SC.TextBtn>
+              </>
+            )}
             <SC.InfoSection>
               <SC.Accord>
                 <SC.ProductSubTitle marginBottom="0">
@@ -308,30 +386,65 @@ export const ProductCard = ({ product }) => {
                 <SC.AccordCareList>
                   <SC.AccordCareItem>
                     <Sun width={24} height={24} />
-                    <span>
-                      Put it in a place where the sun`s rays pierce through some
-                      cover, e.g. a curtain or a tree outside the window
-                    </span>
+                    {light === 'bright and direct light' ? (
+                      <span>
+                        Put it in such a place where it is bright and the sun`s
+                        rays penetrate directly to it
+                      </span>
+                    ) : (
+                      <span>
+                        Put it in a place where the sun`s rays pierce through
+                        some cover, e.g. a curtain or a tree outside the window
+                      </span>
+                    )}
                   </SC.AccordCareItem>
                   <SC.AccordCareItem>
                     <Oil width={24} height={24} />
-                    <span>
-                      Wait until half of the substrate in the pot is dry before
-                      watering again
-                    </span>
+                    {waterSchedule === 'often' && (
+                      <span>
+                        Do not wait until half of the substrate in the pot dries
+                        out before watering again, and water often
+                      </span>
+                    )}
+                    {waterSchedule === 'average' && (
+                      <span>
+                        Wait until half of the substrate in the pot is dry
+                        before watering again
+                      </span>
+                    )}
+                    {waterSchedule === 'seldom' && (
+                      <span>
+                        Wait for the substrate in the pot to dry before watering
+                        again
+                      </span>
+                    )}
                   </SC.AccordCareItem>
                   <SC.AccordCareItem>
                     <Evenodd width={24} height={24} />
-                    <span>
-                      It tolerates home humidity well and you don`t have to
-                      worry about it
-                    </span>
+                    {hardToKill === 'easy to care' ? (
+                      <span>
+                        It tolerates home humidity well and you don`t have to
+                        worry about it
+                      </span>
+                    ) : (
+                      <span>
+                        Sometimes you need to worry about it and check the
+                        humidity in your home
+                      </span>
+                    )}
                   </SC.AccordCareItem>
                   <SC.AccordCareItem>
                     <Cat width={24} height={24} />
-                    <span>
-                      Keep away from pets - nibbling on leaves can harm pets
-                    </span>
+                    {petFriendly === 'not pet friendly' ? (
+                      <span>
+                        Keep away from pets - nibbling on leaves can harm pets
+                      </span>
+                    ) : (
+                      <span>
+                        You can keep it near pets - gnawing on the leaves cannot
+                        harm pets
+                      </span>
+                    )}
                   </SC.AccordCareItem>
                 </SC.AccordCareList>
               )}
@@ -393,12 +506,16 @@ ProductCard.propTypes = {
       light: PropTypes.string,
       petFriendly: PropTypes.string,
       maintenance: PropTypes.string,
-      potSize: PropTypes.number,
-      potSizeItem: PropTypes.string,
+      potSize: PropTypes.shape({
+        size: PropTypes.number,
+        unit: PropTypes.string,
+        _id: PropTypes.string,
+      }),
       hardToKill: PropTypes.string,
       rare: PropTypes.string,
       waterSchedule: PropTypes.string,
       images: PropTypes.array,
+      category: PropTypes.string,
     }),
   ),
 };
