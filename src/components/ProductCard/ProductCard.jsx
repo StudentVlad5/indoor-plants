@@ -13,10 +13,14 @@ import { ReactComponent as Cat } from 'images/svg/cat.svg';
 import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToBasket } from 'redux/basket/operations';
+import { setQuantity } from 'redux/basket/slice';
+import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 
 const { BASE_URL_IMG } = window.global;
 
-export const ProductCard = ({ product, addToBasket }) => {
+export const ProductCard = ({ product }) => {
   const {
     _id,
     name,
@@ -35,12 +39,27 @@ export const ProductCard = ({ product, addToBasket }) => {
     category,
   } = product;
 
+  const dispatch = useDispatch();
+
   const init = {
     title: null,
     oldPrice: oldPrice ? oldPrice : currentPrice || 0,
     currentPrice: currentPrice ? currentPrice : oldPrice || 0,
     total: totalQuantity || 0,
     quantity: 1,
+  };
+
+  const addToBasketHandler = product => {
+    const updatedProduct = {
+      ...product,
+      optionData: {
+        ...product.optionData,
+        quantity: product.optionData.quantity,
+      },
+    };
+    dispatch(addToBasket(updatedProduct));
+    onSuccess('Added');
+    console.log('Added success: ', product);
   };
 
   // get data from selected option
@@ -61,6 +80,31 @@ export const ProductCard = ({ product, addToBasket }) => {
     // console.log('option.title', e.currentTarget.value);
   };
 
+  //get selected value
+  const [value, setValue] = useState(1);
+  const quantity = useSelector(state => {
+    const item = state.basket.basketItems.find(
+      item => item.optionData._id === optionData._id,
+    );
+    return item ? item.optionData.quantity : value;
+  });
+
+  const quantityData = optionData._id;
+  const handleDecrease = () => {
+    if (quantity > 1) {
+      const newValue = quantity - 1;
+      setValue(newValue);
+      dispatch(setQuantity({ quantityData, quantity: newValue }));
+    }
+  };
+
+  const handleIncrease = () => {
+    if (quantity < optionData.total) {
+      const newValue = quantity + 1;
+      setValue(newValue);
+      dispatch(setQuantity({ quantityData, quantity: newValue }));
+    }
+  };
   //change images
   const [indxImg, setIndxImg] = useState(0);
 
@@ -280,18 +324,37 @@ export const ProductCard = ({ product, addToBasket }) => {
                 </SC.IconBtn>
               </SC.Quantity>
             </SC.Options>
+            {/* //             <SC.TextBtn
+//               type="button"
+//               aria-label="Add to card"
+//               disabled={quantity === 0}
+//               onClick={() => {
+//                 const productToAdd = {
+//                   _id,
+//                   name,
+//                   optionData,
+//                   quantity,
+//                   images,
+//                 };
+//                 addToBasketHandler(productToAdd);
+//               }}
+//             >
+//               ADD to card
+//             </SC.TextBtn> */}
             {optionData.title ? (
               <SC.TextBtn
                 type="button"
                 aria-label="Add to card"
                 disabled={optionData.quantity === 0}
                 onClick={() => {
-                  addToBasket({
+                  const productToAdd = {
                     _id,
                     name,
                     optionData,
+                    quantity,
                     images,
-                  });
+                  };
+                  addToBasketHandler(productToAdd);
                   setOptionData(init);
                 }}
               >

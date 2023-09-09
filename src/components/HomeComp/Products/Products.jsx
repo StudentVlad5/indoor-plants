@@ -17,32 +17,39 @@ import * as SC from '../../Catalog/CatalogList/CatalogList.styled';
 export const Products = ({ products }) => {
   const { BASE_URL_IMG } = window.global;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 4;
+
   const handleNextSlide = () => {
     setCurrentIndex(prevIndex =>
-      prevIndex + itemsPerPage >= products.length
-        ? 0
-        : prevIndex + itemsPerPage,
+      prevIndex + 1 >= products.length ? 0 : prevIndex + 1,
     );
   };
 
   const handlePrevSlide = () => {
     setCurrentIndex(prevIndex =>
-      prevIndex - itemsPerPage < 0
-        ? products.length - itemsPerPage
-        : prevIndex - itemsPerPage,
+      prevIndex - 1 < 0 ? products.length - 1 : prevIndex - 1,
     );
   };
 
   const slideProducs = products.slice(currentIndex);
 
+  // const handleNextSlide = () => {
+  //   setCurrentIndex(prevIndex => (prevIndex + 1) % products.length);
+  // };
+
+  // const handlePrevSlide = () => {
+  //   setCurrentIndex(prevIndex =>
+  //     prevIndex - 1 < 0 ? products.length - 1 : prevIndex - 1
+  //   );
+  // };
   return (
     <ProductsBox>
       <ProductsSection>
         <ProductsTitle>Discounts from 10 to 25%</ProductsTitle>
         <ProductsBtn to="/catalog">See all</ProductsBtn>
+        {/* currentIndex={currentIndex} */}
         <ProductsList>
           {slideProducs.map(card => {
+            // {products.map(card => {
             return (
               <ProductsListItem key={card._id}>
                 <ProductsListItemLink to={`/catalog/${card._id}`}>

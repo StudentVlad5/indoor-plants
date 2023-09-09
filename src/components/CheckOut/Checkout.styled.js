@@ -6,39 +6,42 @@ import { IconClose } from 'components/Footer/ModalTeam/ModalTeam.styled';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 import { ReactComponent as done } from 'images/svg/done.svg';
 import { ReactComponent as shippingFast } from 'images/svg/shipping-fast.svg';
+import { Quantity } from 'components/ProductCard/ProductCard.styled';
 
-export const FormSection = styled.section`
-  @media screen and (max-width: ${theme.breakpoints.tablet_max}) {
+export const FormSection = styled(Section)`
+  /* @media screen and (max-width: ${theme.breakpoints.tablet_max}) {
     background-repeat: no-repeat;
     background-size: 620px auto;
     background-position: bottom -250px left 30%;
   }
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
+  @media screen and (min-width: ${theme.breakpoints
+    .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     background-repeat: no-repeat;
     background-size: 1396px auto;
     background-position: bottom -130px left 50%;
-  }
+  } */
 `;
 
-export const FormContainer = styled.div`
-  height: 100%;
+export const FormContainer = styled(Container)`
+  /* height: 100%;
   min-height: calc(100vh - 140px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  position: relative;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 170px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding-top: 80px;
-    min-height: calc(100vh - 120px);
+    /* min-height: calc(100vh - 120px);
 
     background-repeat: no-repeat;
     background-size: 1280px auto;
-    background-position: bottom 0 left 50%;
+    background-position: bottom 0 left 50%; */
   }
 `;
 
@@ -116,21 +119,13 @@ export const BasketContainer = styled(Container)`
 `;
 
 export const BasketCompBox = styled.div`
-  /* padding-top: 67px; */
   position: relative;
-  /* &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    height: 1px;
-    width: 100%;
-    background: ${theme.colors.brown1};
-  } */
 `;
 
 export const BoxForData = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
 `;
 
 export const BasketCompTitle = styled.h2`
@@ -156,14 +151,26 @@ export const BasketCompIconClose = styled(IconClose)`
 `;
 
 export const BasketCompList = styled.ul`
-  position: relative;
+  /* display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative; */
 `;
 
 export const BasketCompItem = styled.li`
   display: flex;
+  position: relative;
   background-color: ${theme.colors.green6};
   width: 600px;
   height: 140px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &:last-child{
+    margin-bottom: 261px;
+  }
 `;
 
 export const BoxForDiscrData = styled.div`
@@ -208,8 +215,8 @@ export const DiscrDataListItemTitle = styled.h4`
 
 export const DiscrDataListItemTitlePrice = styled(DiscrDataListItemTitle)`
   position: absolute;
-  right: 10px;
   font-size: 14px;
+  right: 10px;
 `;
 
 export const DiscrDataListItemInfoTitle = styled.p`
@@ -238,11 +245,19 @@ export const BtnItem = styled.p`
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+  cursor: pointer;
 `;
 
 export const BasketCompImg = styled.img`
   width: 107px;
   height: 140px;
+`;
+
+export const QuantityCheckOut = styled(Quantity)`
+  border-radius: 0;
+  border: none;
+  position: absolute;
+  left: 58px;
 `;
 
 // PaymentBox
@@ -252,6 +267,9 @@ export const PaymentBox = styled.div`
   width: 500px;
   height: 140px;
   padding: 8px 8px 8px 26px;
+  position: absolute;
+  top: 148px;
+  right: 120px;
 `;
 
 export const PaymentTotalTitle = styled.h4`
@@ -263,6 +281,11 @@ export const PaymentTotalTitle = styled.h4`
   line-height: normal;
   letter-spacing: 0.32px;
   margin-bottom: 11px;
+`;
+
+export const PaymentBoxOrder = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PaymentTotalList = styled.ul``;
@@ -308,6 +331,7 @@ export const PaymentBtn = styled.button`
   padding: 15px 215px;
   margin-top: 22px;
   margin-bottom: 24px;
+  cursor: pointer;
 
   color: ${theme.colors.brown2};
   font-family: 'Barlow', sans-serif;
@@ -341,4 +365,16 @@ export const Done = styled(done)`
 
 export const ShippingFast = styled(shippingFast)`
   margin-right: 14px;
+`;
+
+export const AuthCheckOutBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const AuthCheckOutBox2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

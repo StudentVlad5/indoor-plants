@@ -6,6 +6,7 @@ import { ReactComponent as arrow } from 'images/svg/arrow.svg';
 
 export const ProductsBox = styled(Container)`
   padding-bottom: 0;
+  /* overflow-x: hidden; */
 
   @media screen and (min-width: 1440px) {
     padding-bottom: 0;
@@ -65,16 +66,22 @@ export const ProductsList = styled.ul`
   margin-top: 24px;
 
   overflow-x: hidden;
+
+  /* display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-${(props) => props.currentIndex * 250}px); */
 `;
 
 export const ProductsListItem = styled.li`
   display: flex;
   align-items: center;
   cursor: pointer;
-
   list-style: none;
   flex: 0 0 285px;
-  /* margin-right: 20px; */
+  height: 496px;
 
   &:not(:last-child) {
     margin-right: 20px;
