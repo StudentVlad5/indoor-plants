@@ -11,7 +11,7 @@ export const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 10000px;
   background-color: ${theme.colors.grey};
   opacity: 0.4;
   z-index: 1000;

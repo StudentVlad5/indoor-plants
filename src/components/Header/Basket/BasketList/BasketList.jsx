@@ -29,47 +29,24 @@ export const BasketList = ({ _id, name, optionData, images, quantity }) => {
     dispatch(removeProduct({ _id, size }));
   };
 
-  // const [value, setValue] = useState(optionData.quantity);
   const initialPrice = optionData.currentPrice * optionData.quantity;
-  // const [, setPrice] = useState(initialPrice);
-  // const quantityData = optionData._id;
+  const [price, setPrice] = useState(initialPrice);
 
   const handleDecrease = () => {
-    // if (quantity > 1) {
-      // const newValue = quantity - 1;
-      // setValue(newValue);
-      // const newPrice = newValue * optionData.currentPrice;
-      // setPrice(newPrice);
-      // // dispatch(setQuantity({ quantityData, quantity: newValue }));
-      // dispatch(setQuantity({ _id, optionData, quantity: newValue }));
-    
-    // }
-
     if (optionData.quantity > 1) {
       const newValue = optionData.quantity - 1;
-      // setValue(newValue);
-      // const newPrice = newValue * optionData.currentPrice;
-      // setPrice(newPrice);
-      dispatch(setQuantity({ _id, quantity: newValue }));
+      const newPrice = newValue * optionData.currentPrice;
+      setPrice(newPrice);
+      dispatch(setQuantity({ _id, optionData, quantity: newValue }));
     }
   };
 
   const handleIncrease = () => {
-    // if (quantity < optionData.total) {
-      // const newValue = quantity + 1;
-      // setValue(newValue);
-      // const newPrice = newValue * optionData.currentPrice;
-      // setPrice(newPrice);
-      // // dispatch(setQuantity({ quantityData, quantity: newValue }));
-      // dispatch(setQuantity({ _id, optionData, quantity: newValue }));
-      
-    // }
     if (optionData.quantity < optionData.total) {
       const newValue = optionData.quantity + 1;
-      // setValue(newValue);
-      // const newPrice = newValue * optionData.currentPrice;
-      // setPrice(newPrice);
-      dispatch(setQuantity({ _id, quantity: newValue }));
+      const newPrice = newValue * optionData.currentPrice;
+      setPrice(newPrice);
+      dispatch(setQuantity({ _id, optionData, quantity: newValue }));
     }
   };
 

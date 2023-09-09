@@ -41,25 +41,25 @@ export const ProductCard = ({ product }) => {
 
   const dispatch = useDispatch();
 
-  const addToBasketHandler = product => {
-    const updatedProduct = {
-      ...product,
-      optionData: {
-        ...product.optionData,
-        quantity: product.quantity,
-      },
-    };
-    dispatch(addToBasket(updatedProduct));
-    onSuccess('Added');
-    console.log('Added success: ', product);
-  };
-
   const init = {
     title: null,
     oldPrice: oldPrice ? oldPrice : currentPrice || 0,
     currentPrice: currentPrice ? currentPrice : oldPrice || 0,
     total: totalQuantity || 0,
     quantity: 1,
+  };
+
+  const addToBasketHandler = product => {
+    const updatedProduct = {
+      ...product,
+      optionData: {
+        ...product.optionData,
+        quantity: product.optionData.quantity,
+      },
+    };
+    dispatch(addToBasket(updatedProduct));
+    onSuccess('Added');
+    console.log('Added success: ', product);
   };
 
   // get data from selected option
@@ -88,7 +88,7 @@ export const ProductCard = ({ product }) => {
     );
     return item ? item.optionData.quantity : value;
   });
-  
+
   const quantityData = optionData._id;
   const handleDecrease = () => {
     if (quantity > 1) {
@@ -103,7 +103,8 @@ export const ProductCard = ({ product }) => {
       const newValue = quantity + 1;
       setValue(newValue);
       dispatch(setQuantity({ quantityData, quantity: newValue }));
-    }}
+    }
+  };
   //change images
   const [indxImg, setIndxImg] = useState(0);
 
@@ -323,7 +324,7 @@ export const ProductCard = ({ product }) => {
                 </SC.IconBtn>
               </SC.Quantity>
             </SC.Options>
-{/* //             <SC.TextBtn
+            {/* //             <SC.TextBtn
 //               type="button"
 //               aria-label="Add to card"
 //               disabled={quantity === 0}
@@ -346,12 +347,14 @@ export const ProductCard = ({ product }) => {
                 aria-label="Add to card"
                 disabled={optionData.quantity === 0}
                 onClick={() => {
-                  addToBasket({
+                  const productToAdd = {
                     _id,
                     name,
                     optionData,
+                    quantity,
                     images,
-                  });
+                  };
+                  addToBasketHandler(productToAdd);
                   setOptionData(init);
                 }}
               >

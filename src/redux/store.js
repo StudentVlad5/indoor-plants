@@ -6,7 +6,6 @@ import storage from 'redux-persist/lib/storage';
 import { modalReducer } from './modal/slice';
 import { headerBottomReducer } from './header_bottom/slice';
 import { basketReducer } from './basket/slice';
-import { cardReducer } from './card/slice';
 
 // Persisting token and role fields from auth slice to localstorage
 const authPersistConfig = {

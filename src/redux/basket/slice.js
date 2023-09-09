@@ -16,14 +16,14 @@ export const basketSlice = createSlice({
   reducers: {
     setQuantity: (state, action) => {
       const { _id, optionData, quantity } = action.payload;
-      const item = state.basketItems.find(item => item._id === _id);
-      // const item = state.basketItems.find(
-      //   item => item.optionData._id === optionData._id,
-      // );
+      // const item = state.basketItems.find(item => item._id === _id);
+      const item = state.basketItems.find(
+        item => item.optionData._id === optionData._id,
+      );
     
       if (item) {
-        item.quantity = quantity;
-        // item.optionData.quantity = quantity;
+        // item.quantity = quantity;
+        item.optionData.quantity = quantity;
         functionTotalAmount(state);
         functionDiscountAmount(state);
         functionPaymentAmount(state);

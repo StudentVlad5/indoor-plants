@@ -167,6 +167,10 @@ export const BasketCompItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 20px;
   }
+
+  &:last-child{
+    margin-bottom: 261px;
+  }
 `;
 
 export const BoxForDiscrData = styled.div`
@@ -367,7 +371,6 @@ export const AuthCheckOutBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 261px;
 `;
 
 export const AuthCheckOutBox2 = styled.div`
