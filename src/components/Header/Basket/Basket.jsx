@@ -16,22 +16,27 @@ import {
   Overlay,
   Box,
   OrderBtn,
-  OrderItem,
   TotalDiscr,
   TotalTitle,
   TotalTitleBox,
-  OrderList,
   OrderBox,
+  OrderList,
+  TotalTitlePrice,
+  ProgressBarBox,
+  ProgressBarTitle,
+  ProgressBar,
 } from './Basket.styled';
 import { NavLink } from 'react-router-dom';
 import groupPlants from '../../../images/basket/group-plants.png';
 import peaceLily from '../../../images/basket/peace-lily.png';
 import philodendron from '../../../images/basket/philodendron.png';
 import plantGrayPot from '../../../images/basket/plant-gray-pot.png';
+import { useSelector } from 'react-redux';
+import { selectBasket, selectTotalPayment } from 'redux/basket/selectors';
+import { BasketList } from './BasketList/BasketList';
 
 export const Basket = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOrdered] = useState(true); //setIsOrdered
 
   const dataArr = [
     {
@@ -55,6 +60,8 @@ export const Basket = () => {
       link: '/gifts',
     },
   ];
+  const basket = useSelector(selectBasket);
+  const totalPayment = useSelector(selectTotalPayment).toFixed(2);
 
   return (
     <>
@@ -68,23 +75,40 @@ export const Basket = () => {
         </BasketBoxTitle>
 
         <BasketBoxList>
-          {isOrdered ? (
+          {basket.length !== 0 ? (
             <OrderBox>
-              <p style={{ marginBottom: 36 }}>
-                You’re $15 away from Free Shipping!
-              </p>
+              {totalPayment < 150 ? (
+                <>
+                  <ProgressBarTitle>
+                    You’re ${(150 - totalPayment).toFixed(2)} away from Free
+                    Shipping!
+                  </ProgressBarTitle>
+                  <ProgressBarBox>
+                    <ProgressBar
+                    style={{
+                      width: `${(totalPayment / 150) * 100}%`,
+                    }}
+                    ></ProgressBar>
+                  </ProgressBarBox>
+                </>
+              ) : (
+                <ProgressBarTitle>Great! You have free shipping!</ProgressBarTitle>
+              )}
+
               <OrderList>
-                <OrderItem>
-                  <ListImage src={plantGrayPot} alt="Image" loading="lazy" />
-                  <div>
-                    <p>name</p>
-                    <p>xl</p>
-                    <p>$123</p>
-                  </div>
-                </OrderItem>
+                {basket.map((product, idx) => (
+                  <BasketList
+                    key={`${idx}${product._id}`}
+                    {...{ ...product, index: idx }}
+                  />
+                ))}
               </OrderList>
               <TotalTitleBox>
-                <TotalTitle>Sansevieria</TotalTitle>
+                <div style={{ position: 'relative' }}>
+                  <TotalTitle>Total</TotalTitle>
+                  <TotalTitlePrice>{totalPayment}</TotalTitlePrice>
+                </div>
+
                 <TotalDiscr>
                   Separate shipping is applicable to the majority of items. Once
                   an order is placed, it cannot be cancelled.

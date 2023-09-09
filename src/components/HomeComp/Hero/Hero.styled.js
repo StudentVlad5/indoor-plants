@@ -7,6 +7,7 @@ export const HeroContainer = styled.div`
   flex-direction: column;
   -webkit-box-pack: center;
   justify-content: center;
+  align-items: center;
   padding: 0;
   position: relative;
 `;
@@ -14,7 +15,7 @@ export const HeroContainer = styled.div`
 export const Img = styled.img`
   display: block;
   height: auto;
-  max-width: 100%;
+  width: 100%;
 
   &:nth-child(1) {
     @media screen and (min-width: 1440px) {
@@ -50,7 +51,7 @@ export const HeroBox = styled.div`
     width: 530px;
     height: 100%;
     padding: 306px 112px;
-    margin-left: 360px;
+    margin-left: -126px;
   }
 `;
 

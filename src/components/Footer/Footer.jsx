@@ -78,14 +78,13 @@ export const Footer = () => {
     },
   ];
 
-  const [isVisible, setIsVisible] = useState(null);
+  const [isOpen, setIsOpen] = useState({});
 
-  const visibleOptions = idx => {
-    if (isVisible === idx) {
-      setIsVisible(null);
-    } else {
-      setIsVisible(idx);
-    }
+  const toggleVisibility = idx => {
+    setIsOpen(prevState => ({
+      ...prevState,
+      [idx]: !prevState[idx],
+    }));
   };
 
   return (
@@ -96,12 +95,12 @@ export const Footer = () => {
             <FooterFaqListItem key={idx}>
               <FaqListBoxText>
                 <FooterFaqListTitle>{item.title}</FooterFaqListTitle>
-                <ArrowBox onClick={() => visibleOptions(idx)}>
-                  <ArrowDown />
+                <ArrowBox onClick={() => toggleVisibility(idx)}>
+                  {isOpen[idx] ? <ArrowDown /> : <ArrowDown />}
                 </ArrowBox>
               </FaqListBoxText>
 
-              {isVisible === idx && (
+              {isOpen[idx] && (
                 <FaqListOptionsBox>
                   {item.options.map((options, el) => (
                     <FaqListOptions key={el}>{options}</FaqListOptions>

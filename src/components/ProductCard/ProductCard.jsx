@@ -17,10 +17,14 @@ import { ReactComponent as Cat } from 'images/svg/cat.svg';
 import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToBasket } from 'redux/basket/operations';
+import { setQuantity } from 'redux/basket/slice';
+import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 
 const { BASE_URL_IMG } = window.global;
 
-export const ProductCard = ({ product, addToBasket }) => {
+export const ProductCard = ({ product }) => {
   const {
     _id,
     name,
@@ -34,6 +38,21 @@ export const ProductCard = ({ product, addToBasket }) => {
     images,
   } = product;
 
+  const dispatch = useDispatch();
+
+  const addToBasketHandler = product => {
+    const updatedProduct = {
+      ...product,
+      optionData: {
+        ...product.optionData,
+        quantity: product.quantity,
+      },
+    };
+    dispatch(addToBasket(updatedProduct));
+    onSuccess('Added');
+    console.log('Added success: ', product);
+  };
+
   // get data from selected option
   const [optionData, setOptionData] = useState({
     title: null,
@@ -41,7 +60,6 @@ export const ProductCard = ({ product, addToBasket }) => {
     currentPrice: currentPrice ? currentPrice : oldPrice || 0,
     total: totalQuantity || 0,
   });
-  // console.log(optionData);
 
   const getOptionData = e => {
     e.preventDefault();
@@ -54,6 +72,29 @@ export const ProductCard = ({ product, addToBasket }) => {
 
   //get selected value
   const [value, setValue] = useState(1);
+  const quantity = useSelector(state => {
+    const item = state.basket.basketItems.find(
+      item => item.optionData._id === optionData._id,
+    );
+    return item ? item.optionData.quantity : value;
+  });
+  
+  const quantityData = optionData._id;
+  const handleDecrease = () => {
+    if (quantity > 1) {
+      const newValue = quantity - 1;
+      setValue(newValue);
+      dispatch(setQuantity({ quantityData, quantity: newValue }));
+    }
+  };
+
+  const handleIncrease = () => {
+    if (quantity < optionData.total) {
+      const newValue = quantity + 1;
+      setValue(newValue);
+      dispatch(setQuantity({ quantityData, quantity: newValue }));
+    }
+  };
 
   // open details for the info section
   const [showCareDetails, setCareShowDetails] = useState(false);
@@ -216,17 +257,17 @@ export const ProductCard = ({ product, addToBasket }) => {
                 <SC.IconBtn
                   type="button"
                   aria-label="minus"
-                  onClick={() => setValue(value - 1)}
-                  disabled={value <= 0}
+                  onClick={handleDecrease}
+                  disabled={quantity <= 0}
                 >
                   <Minus />
                 </SC.IconBtn>
-                <span>{value}</span>
+                <span>{quantity}</span>
                 <SC.IconBtn
                   type="button"
                   aria-label="plus"
-                  onClick={() => setValue(value + 1)}
-                  disabled={value >= optionData.total}
+                  onClick={handleIncrease}
+                  disabled={quantity >= optionData.total}
                 >
                   <Plus />
                 </SC.IconBtn>
@@ -235,18 +276,17 @@ export const ProductCard = ({ product, addToBasket }) => {
             <SC.TextBtn
               type="button"
               aria-label="Add to card"
-              disabled={value === 0}
-              onClick={() =>
-                addToBasket({
+              disabled={quantity === 0}
+              onClick={() => {
+                const productToAdd = {
                   _id,
                   name,
-                  oldPrice,
-                  currentPrice,
-                  // currency,
                   optionData,
+                  quantity,
                   images,
-                })
-              }
+                };
+                addToBasketHandler(productToAdd);
+              }}
             >
               ADD to card
             </SC.TextBtn>

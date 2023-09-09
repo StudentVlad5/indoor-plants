@@ -2,6 +2,9 @@ import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 import { IconClose } from '../MobileMenu/MobileMenu.styled';
 import { Link } from 'react-router-dom';
+import { QuantityCheckOut } from 'components/CheckOut/Checkout.styled';
+import { ReactComponent as Minus } from 'images/svg/minus.svg';
+import { ReactComponent as Plus } from 'images/svg/plus.svg';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -92,7 +95,10 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 64px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding: 0 64px;
+  }
 `;
 
 export const ListItem = styled.li`
@@ -162,9 +168,10 @@ export const OrderBtn = styled(Link)`
 `;
 
 export const OrderList = styled.ul`
+  max-height: 425px;
+  overflow-y: auto;
   position: relative;
   padding-top: 10px;
-  padding-bottom: 232px;
 
   &::before {
     content: '';
@@ -174,31 +181,84 @@ export const OrderList = styled.ul`
     height: 1px;
     background: ${theme.colors.brown2};
   }
+`;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background: ${theme.colors.brown2};
+export const OrderItem = styled.li`
+  display: flex;
+  position: relative;
+  &:not(:last-child) {
+    margin-bottom: 10px;
   }
 `;
 
-export const OrderItem = styled.li``;
+export const DiscrBoxDiv = styled.div`
+  display: flex;
+  margin-left: 20px;
+`;
+
+export const DiscrBox = styled.div`
+  /* display: flex; */
+`;
+
+export const DiscrBoxForText = styled.div`
+  display: flex;
+`;
+
+export const DiscrBoxTilte = styled.p`
+  color: ${theme.colors.fon};
+  font-family: 'Fraunces', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+
+  &:nth-child(2) {
+    position: absolute;
+    right: 0;
+  }
+`;
+
+export const DiscrBoxSize = styled.p`
+  margin-top: 4px;
+  color: ${theme.colors.fon};
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 16.8px */
+`;
+
+export const DiscrBoxBtn = styled.button`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
+  border-color: transparent;
+  border: 0;
+  text-transform: uppercase;
+  color: ${theme.colors.fon};
+  text-align: center;
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 16.8px */
+  padding: 0;
+`;
 
 export const TotalTitleBox = styled.div`
-  /* position: absolute; */
-  /* bottom: -365px; */
+  position: absolute;
+  top: 480px;
 
-  /* &::before {
+  &::before {
     content: '';
     position: absolute;
     top: 0;
     width: 100%;
     height: 1px;
     background: ${theme.colors.brown2};
-  } */
+  }
 `;
 
 export const TotalTitle = styled.p`
@@ -223,4 +283,78 @@ export const TotalDiscr = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
+`;
+export const TotalTitlePrice = styled.p`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  color: ${theme.colors.fon};
+  font-family: 'Fraunces', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+`;
+
+export const QuantityCheckOutList = styled.ul`
+  display: flex;
+  position: absolute;
+  bottom: 0;
+`;
+
+export const DiscrDataListItemBasket = styled.li``;
+
+export const QuantityCheckOutBasket = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 19px;
+  width: 95px;
+
+  border-radius: 10px;
+  border: 0.5px solid ${theme.colors.fon};
+
+  & span {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    color: ${theme.colors.fon};
+  }
+`;
+
+export const BasketIconMinus = styled(Minus)`
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+`;
+
+export const BasketIconPlus = styled(Plus)`
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+`;
+
+export const ProgressBarBox = styled.div`
+  background-color: #e5fbcc;
+  border-radius: 10px;
+  margin-bottom: 24px;
+`;
+
+export const ProgressBar = styled.div`
+  background-color: #58990d;
+  border-radius: 10px;
+  height: 8px;
+`;
+export const ProgressBarTitle = styled.p`
+  color: ${theme.colors.fon};
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 16.8px */
+  margin-bottom: 12px;
 `;
