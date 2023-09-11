@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[30],{8030:function(e,n,r){r.r(n);var t=r(2791),s=r(4116),a=r(9434),o=r(456),i=r(3329);n.default=function(){var e=(0,a.I0)();return(0,t.useEffect)((function(){e((0,o.T)())}),[]),(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(s.H,{title:"HomeForest Care",description:"Care of your plants"}),(0,i.jsx)("h3",{children:"CarePage"})]})}}}]);
-//# sourceMappingURL=30.b652bd25.chunk.js.map
