@@ -96,17 +96,21 @@ const Delivery = () => {
 
   function o(city) {
     const options = [];
-    const list = [...listOfDepartment];
-    list
-      .filter(key => key.Description.toLowerCase().includes(city.toLowerCase()))
-      .forEach(key => {
-        const obj = {};
-        if (key.Description) {
-          obj.value = key.Description;
-          obj.label = key.Description;
-          options.push(obj);
-        }
-      });
+    if (listOfDepartment) {
+      const list = [...listOfDepartment];
+      list
+        .filter(key =>
+          key.Description.toLowerCase().includes(city.toLowerCase()),
+        )
+        .forEach(key => {
+          const obj = {};
+          if (key.Description) {
+            obj.value = key.Description;
+            obj.label = key.Description;
+            options.push(obj);
+          }
+        });
+    }
     return options;
   }
   return (
