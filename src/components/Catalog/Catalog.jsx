@@ -108,7 +108,7 @@ export const Catalog = () => {
               </SC.Accord>
               {showFilter && (
                 <SC.FiltersWrapper>
-                  <CatalogFilter />
+                  <CatalogFilter onClear={toggleFilter} />
                 </SC.FiltersWrapper>
               )}
             </SC.FiltersBox>
