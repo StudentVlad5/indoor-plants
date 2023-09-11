@@ -2,7 +2,6 @@ import React from 'react';
 import { Navigation } from 'components/Header/Navigation/Navigation';
 import {
   HeaderContainer,
-  HeaderSection,
   HeaderUnderLine,
   HeaderSectionWrap,
 } from './Header.styled';
@@ -34,15 +33,13 @@ export const Header = () => {
 
   return (
     <HeaderSectionWrap isScrolled={isScrolled}>
-      <HeaderSection>
-        <HeaderContainer>
-          <Menu />
-          <Logo />
-          {/* <Language /> */}
-          <Navigation />
-        </HeaderContainer>
-        <HeaderUnderLine className={headerBottom.headerBottom} />
-      </HeaderSection>
+      <HeaderContainer>
+        <Menu />
+        <Logo />
+        {/* <Language /> */}
+        <Navigation />
+      </HeaderContainer>
+      <HeaderUnderLine className={headerBottom.headerBottom} />
     </HeaderSectionWrap>
   );
 };

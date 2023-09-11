@@ -1,5 +1,8 @@
 import React, { useState } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
+
+import { saveToStorage } from 'services/localStorService';
+
 import * as SC from './ProductCard.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
@@ -64,7 +67,7 @@ export const ProductCard = ({ product }) => {
 
   // get data from selected option
   const [optionData, setOptionData] = useState(init);
-  console.log('optionData', optionData);
+  // console.log('optionData', optionData);
 
   const getOptionData = e => {
     e.preventDefault();
@@ -74,10 +77,6 @@ export const ProductCard = ({ product }) => {
     );
     selectedData.quantity = optionData.quantity;
     setOptionData(selectedData);
-
-    // console.log('e:', e.target);
-    // console.log('optionData.title', optionData.title);
-    // console.log('option.title', e.currentTarget.value);
   };
 
   //get selected value
@@ -142,6 +141,9 @@ export const ProductCard = ({ product }) => {
   const toggleCareDetails = () => setCareShowDetails(state => !state);
   const [showIncludedDetails, setShowIncludedDetails] = useState(false);
   const toggleIncludedDetails = () => setShowIncludedDetails(state => !state);
+
+  // save to LS type Of Plants
+  saveToStorage('typeOfPlants', [typeOfPlants]);
 
   return (
     <SC.ProductCardContainer>
