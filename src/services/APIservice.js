@@ -61,6 +61,28 @@ async function getFavorites(pathParams) {
   });
 }
 
+async function getListOfCities(pathParams, body) {
+  // const formData = new FormData();
+  // formData.append("filter", body.filter);
+  return await axios.post(`${BASE_URL}${pathParams}`, body, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
+async function getListOfDepartments(pathParams, body) {
+  return await axios.post(`${BASE_URL}${pathParams}`, body, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
@@ -79,4 +101,21 @@ getFavorites.propTypes = {
   formData: PropTypes.string.isRequired,
 };
 
-export { fetchData, updateUserData, deleteData, getFavorites };
+getListOfCities.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+};
+
+getListOfDepartments.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+};
+
+export {
+  fetchData,
+  updateUserData,
+  deleteData,
+  getFavorites,
+  getListOfCities,
+  getListOfDepartments,
+};

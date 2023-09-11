@@ -76,6 +76,11 @@ const changePasswordSchema = Yup.object().shape({
     .required('Require field'),
 });
 
+const checkDepartmentNP = Yup.object().shape({
+  city: Yup.string().min(3).max(80).required('Require field'),
+  department: Yup.string().min(3).max(180).required('Require field'),
+});
+
 // const noticeSchemaFirst = Yup.object().shape({
 //   category: Yup.string().required('Category is Required!'),
 //   typeofpet: Yup.string().required('Type of Pet is Required!'),
@@ -177,6 +182,7 @@ const schemas = {
   registerSchema,
   schemasLogin,
   changePasswordSchema,
+  checkDepartmentNP,
 };
 
 export default schemas;

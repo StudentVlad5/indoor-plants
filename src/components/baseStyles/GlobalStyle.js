@@ -243,4 +243,53 @@ input::-webkit-calendar-picker-indicator:hover {
 .addHeaderBottom{
   background-color: ${theme.colors.brown1};
 }
+
+/* Select container */
+.select__value-container {
+  width: 280px;
+  font-size: ${theme.fontSizes.small};
+  line-height: 1.3;
+  padding: 11px 0 12px 14px;
+  background: ${theme.colors.blue1};
+  color: ${theme.colors.brown2};
+  border: none;
+  transition: all 0.25s ease-in;
+  &:focus,
+  &:hover {
+    border-color: ${theme.colors.darkGreen};
+    color: ${theme.colors.darkGreen};
+    outline: none;
+  }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 448px;
+    font-size: ${theme.fontSizes.medium};
+    padding: 14px 0 13px 32px;
+  }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 558px;
+  }
+  &::placeholder {
+    text-transform: uppercase;
+  }
+  &:focus ~ .floating-label,
+  &:not([value=""]):not(:focus):invalid ~ .floating-label,
+  &:not([value=""]):not(:focus):valid ~ .floating-label {
+    top: -15px;
+    left: 20px;
+    font-size: 11px;
+    opacity: 1;
+}
+}
+.select__indicators{
+  background: ${theme.colors.blue1};
+  color: ${theme.colors.brown2};
+  border: none;
+  transition: all 0.25s ease-in;
+  &:focus,
+  &:hover {
+    border-color: ${theme.colors.darkGreen};
+    color: ${theme.colors.darkGreen};
+    outline: none;
+  }
+}
 `;

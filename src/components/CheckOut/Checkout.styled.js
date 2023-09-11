@@ -14,7 +14,8 @@ export const FormSection = styled.section`
     background-position: bottom -250px left 30%;
   }
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
     background-repeat: no-repeat;
     background-size: 1396px auto;
     background-position: bottom -130px left 50%;
@@ -116,16 +117,7 @@ export const BasketContainer = styled(Container)`
 `;
 
 export const BasketCompBox = styled.div`
-  /* padding-top: 67px; */
   position: relative;
-  /* &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    height: 1px;
-    width: 100%;
-    background: ${theme.colors.brown1};
-  } */
 `;
 
 export const BoxForData = styled.div`
