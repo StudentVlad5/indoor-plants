@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Nav } from 'components/Header/Nav/Nav';
 import { AuthNav } from 'components/Header/AuthNav/AuthNav';
 import { UserNav } from 'components/Header/UserNav/UserNav';
+import { Basket } from '../Basket/Basket';
+import { Search } from 'components/Search/Search';
 
 import {
   Container,
@@ -15,17 +18,27 @@ import {
   IconSearchMobile,
   IconFavoriteMobile,
 } from './Navigation.styled';
-import { Basket } from '../Basket/Basket';
-import { Link } from 'react-router-dom';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const [showSearchForm, setShowSearchForm] = useState(false);
+  const toggleSearchForm = () => {
+    setShowSearchForm(state => !state);
+  };
+  const closeSearchForm = () => {
+    setShowSearchForm(false);
+  };
 
   return (
     <Container>
       <Nav />
       <NavBlock>
-        <IconSearch />
+        {!showSearchForm && (
+          <IconSearch onClick={toggleSearchForm} aria-label="Search" />
+        )}
+        {showSearchForm && <Search onClose={closeSearchForm} />}
+
         {isLoggedIn ? <UserNav /> : <AuthNav />}
 
         {isLoggedIn ? (
@@ -50,11 +63,23 @@ export const Navigation = () => {
 };
 
 export const MobileNavigation = () => {
+  const [showSearchForm, setShowSearchForm] = useState(false);
+  const toggleSearchForm = () => {
+    setShowSearchForm(state => !state);
+  };
+  const closeSearchForm = () => {
+    setShowSearchForm(false);
+  };
+
   return (
     <MobileContainer>
       <Nav />
       <MobileNavBlock>
-        <IconSearchMobile />
+        {!showSearchForm && (
+          <IconSearchMobile onClick={toggleSearchForm} aria-label="Search" />
+        )}
+        {showSearchForm && <Search onClose={closeSearchForm} />}
+
         <IconFavoriteMobile />
         <Basket />
       </MobileNavBlock>
