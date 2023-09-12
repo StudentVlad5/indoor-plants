@@ -116,7 +116,7 @@ export const Catalog = () => {
         </SC.Heading>
         <SC.GridContainer onClick={handleClick}>
           <SC.FiltersContainer>
-            <CatalogFilter />
+            <CatalogFilter onClear={toggleFilter} />
           </SC.FiltersContainer>
           <SC.GridWrapper>
             {isLoading ? onLoading() : onLoaded()}
