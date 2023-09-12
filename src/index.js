@@ -9,14 +9,14 @@ import { GlobalStyle } from 'components/baseStyles/GlobalStyle';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
-window.global = {
-  BASE_URL: 'http://localhost:3030/api',
-  BASE_URL_IMG: 'http://localhost:3030/uploads/',
-};
 // window.global = {
-//   BASE_URL: 'https://indoor-plants-backend.studentvlad5.repl.co/api',
-//   BASE_URL_IMG: 'https://indoor-plants-backend.studentvlad5.repl.co/uploads/',
+//   BASE_URL: 'http://localhost:3030/api',
+//   BASE_URL_IMG: 'http://localhost:3030/uploads/',
 // };
+window.global = {
+  BASE_URL: 'https://indoor-plants-backend.studentvlad5.repl.co/api',
+  BASE_URL_IMG: 'https://indoor-plants-backend.studentvlad5.repl.co/uploads/',
+};
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

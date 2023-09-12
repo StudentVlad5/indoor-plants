@@ -65,9 +65,7 @@ export const Basket = () => {
 
   return (
     <>
-      <div style={{ width: '24px', height: '24px' }}>
-        <IconBasket onClick={() => setIsOpen(!isOpen)} />
-      </div>
+      <IconBasket onClick={() => setIsOpen(!isOpen)} />
       <Overlay isOpen={isOpen} onClick={() => setIsOpen(false)} />
 
       <BasketBox open={isOpen}>

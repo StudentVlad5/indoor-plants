@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
-import { Container } from 'components/baseStyles/CommonStyle.styled';
+import { Section } from 'components/baseStyles/CommonStyle.styled';
 
 const HeaderSectionWrap = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* margin: 0 auto; */
+  margin: 0 auto;
   width: 100%;
   position: fixed;
   top: 0%;
@@ -18,6 +18,26 @@ const HeaderSectionWrap = styled.header`
   ${({ isScrolled }) => isScrolled && `background-color: rgb(252, 249, 242);`};
 `;
 
+const HeaderSection = styled(Section)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 30px 0px 30px;
+  margin: 0 auto;
+  width: 100%;
+  z-index: 10;
+  transition: background-color 0.3s ease-in-out;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding: 40px 30px 0px 30px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding: 50px 120px 0px 120px;
+    max-width: ${theme.breakpoints.desktop};
+  }
+`;
 const HeaderUnderLine = styled.div`
   display: block;
   margin: auto;
@@ -26,16 +46,11 @@ const HeaderUnderLine = styled.div`
   margin-top: 40px;
 `;
 
-const HeaderContainer = styled(Container)`
+const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 40px 30px 0px 30px;
-
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    padding: 50px 120px 0px 120px;
-  }
 `;
 
-export { HeaderContainer, HeaderUnderLine, HeaderSectionWrap };
+export { HeaderContainer, HeaderSection, HeaderUnderLine, HeaderSectionWrap };
