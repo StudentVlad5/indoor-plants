@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[406],{7406:function(t,e,n){n.r(e);var s=n(2791),i=n(4116),r=n(9434),f=n(456),c=n(3329);e.default=function(){var t=(0,r.I0)();return(0,s.useEffect)((function(){t((0,f.T)())}),[]),(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(i.H,{title:"HomeForest Gifts",description:"Gifts"}),(0,c.jsx)("h3",{children:"GiftsPage"})]})}}}]);
-//# sourceMappingURL=406.0dd20778.chunk.js.map
