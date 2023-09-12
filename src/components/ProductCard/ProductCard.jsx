@@ -1,12 +1,5 @@
 import React, { useState } from 'react'; //, useEffect
-import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import { addToBasket } from 'redux/basket/operations';
-import { setQuantity } from 'redux/basket/slice';
-import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
-import { saveToStorage } from 'services/localStorService';
-
 import * as SC from './ProductCard.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
@@ -20,6 +13,10 @@ import { ReactComponent as Cat } from 'images/svg/cat.svg';
 import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToBasket } from 'redux/basket/operations';
+import { setQuantity } from 'redux/basket/slice';
+import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 
 const { BASE_URL_IMG } = window.global;
 
@@ -67,7 +64,7 @@ export const ProductCard = ({ product }) => {
 
   // get data from selected option
   const [optionData, setOptionData] = useState(init);
-  // console.log('optionData', optionData);
+  console.log('optionData', optionData);
 
   const getOptionData = e => {
     e.preventDefault();
@@ -145,9 +142,6 @@ export const ProductCard = ({ product }) => {
   const toggleCareDetails = () => setCareShowDetails(state => !state);
   const [showIncludedDetails, setShowIncludedDetails] = useState(false);
   const toggleIncludedDetails = () => setShowIncludedDetails(state => !state);
-
-  // save to LS type Of Plants
-  saveToStorage('typeOfPlants', [typeOfPlants]);
 
   return (
     <SC.ProductCardContainer>
