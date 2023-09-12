@@ -21,15 +21,18 @@ const SearchResult = styled.div`
   z-index: 40;
 
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 44px);
 
-  background-color: ${theme.colors.fon};
-  border: 0.5px solid rgb(140, 130, 118);
+  background-color: ${theme.colors.white};
+  border: 0.5px solid ${theme.colors.greyOpacity};
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     top: 60px;
     width: 1000px;
     height: 500px;
+
+    background-color: ${theme.colors.fon};
+    border: 0.5px solid ${theme.colors.brown2};
   }
 `;
 
@@ -201,6 +204,7 @@ const Category = styled.ul`
   margin-bottom: auto;
 
   & a {
+    font-size: 12px;
     text-decoration: none;
     text-transform: capitalize;
     color: ${theme.colors.green};
@@ -212,6 +216,10 @@ const Category = styled.ul`
     &:hover,
     &:focus {
       color: ${theme.colors.brown1};
+    }
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      font-size: 16px;
     }
   }
 `;
@@ -233,12 +241,12 @@ const ButtonClose = styled.button`
 
   background-color: transparent;
   border: none;
-  transition: ${theme.transition[0]};
+
   cursor: pointer;
 
   &:hover,
   &:focus {
-    outline: 2px solid ${theme.colors.brown1};
+    outline: none;
     border: none;
   }
 `;
@@ -249,6 +257,12 @@ const IconClose = styled(iconClose)`
   & > path {
     stroke: ${theme.colors.brown1};
     fill: ${theme.colors.brown1};
+
+    &:hover,
+    &:focus {
+      stroke: ${theme.colors.brown};
+      fill: ${theme.colors.brown};
+    }
   }
 `;
 

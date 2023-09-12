@@ -87,7 +87,7 @@ export const Search = () => {
               </SC.ButtonClear>
             )}
             <SearchResult
-              closeModal={toggleSearchForm}
+              onClose={toggleSearchForm}
               searchQuery={searchQuery}
             />
           </SC.FormContainer>

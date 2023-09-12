@@ -14,7 +14,7 @@ import { MdEast } from 'react-icons/md';
 
 const { BASE_URL_IMG } = window.global;
 
-export const SearchResult = ({ closeModal }) => {
+export const SearchResult = ({ onClose }) => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [total, setTotal] = useState([]);
@@ -75,8 +75,8 @@ export const SearchResult = ({ closeModal }) => {
     <SC.SearchResult>
       <SC.ButtonClose
         type="button"
-        onClick={closeModal}
-        aria-label="Close modal"
+        onClick={onClose}
+        aria-label="Close search result"
       >
         <SC.IconClose />
       </SC.ButtonClose>
@@ -167,5 +167,5 @@ export const SearchResult = ({ closeModal }) => {
 };
 
 SearchResult.propTypes = {
-  closeModal: PropTypes.func,
+  onClose: PropTypes.func,
 };

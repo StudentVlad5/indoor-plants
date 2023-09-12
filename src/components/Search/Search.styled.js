@@ -12,12 +12,18 @@ const Overlay = styled.div`
   width: 100%;
   height: 100vh;
 
-  background-color: ${theme.colors.grey};
-  opacity: 0.4;
+  background-color: ${theme.colors.white};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    background-color: ${theme.colors.grey};
+    opacity: 0.4;
+  }
 `;
 
 const FormContainer = styled.form`
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 40;
 
   width: 100%;
@@ -26,7 +32,31 @@ const FormContainer = styled.form`
   background-color: ${theme.colors.fon};
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    position: relative;
     width: 250px;
+  }
+`;
+
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 40px;
+  padding: 10px 40px;
+
+  color: ${theme.colors.grey};
+  background-color: ${theme.colors.white};
+  border: 0.5px solid ${theme.colors.greyOpacity};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    height: 44px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    background-color: transparent;
+    border: 0.5px solid ${theme.colors.brown2};
   }
 `;
 
@@ -39,37 +69,18 @@ const Input = styled.input`
   font-weight: 500;
   font-size: 16px;
   line-height: 1.375;
-  align-items: center;
   letter-spacing: 0.04em;
 
   color: ${theme.colors.brown2};
-  background-color: ${theme.colors.fon};
+  background-color: ${theme.colors.white};
 
   &:focus,
   &:hover {
     border-right: 2px solid ${theme.colors.green};
   }
-`;
-
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100%;
-  height: 40px;
-  padding: 10px 30px;
-
-  color: ${theme.colors.grey};
-  background-color: transparent;
-  border: 0.5px solid ${theme.colors.brown2};
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    height: 44px;
-    padding: 10px 30px 10px 30px;
-  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    background-color: ${theme.colors.fon};
   }
 `;
 
@@ -95,28 +106,28 @@ const ButtonSearch = styled.button`
 
   &:hover,
   &:focus {
-    outline: 2px solid ${theme.colors.brown1};
+    outline: none;
     border: none;
   }
 `;
 
 const IconSearch = styled(iconSearch)`
-  display: none;
+  display: flex;
+  justify-content: center;
+
   size: 24px;
-  transition: ${theme.transition[0]};
 
   cursor: pointer;
   & > path {
     stroke: ${theme.colors.brown1};
+
+    &:hover,
+    &:focus {
+      stroke: ${theme.colors.brown};
+    }
   }
-  &:hover,
-  &:focus {
-    transform: ${theme.scale[0]};
-    transition: ${theme.transition[0]};
-  }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    display: flex;
-    justify-content: center;
     width: 100%;
   }
 `;
@@ -128,11 +139,11 @@ const IconClose = styled(iconClose)`
   cursor: pointer;
   & > path {
     stroke: ${theme.colors.brown1};
-  }
-  &:hover,
-  &:focus {
-    transform: ${theme.scale[0]};
-    transition: ${theme.transition[0]};
+
+    &:hover,
+    &:focus {
+      stroke: ${theme.colors.brown};
+    }
   }
 `;
 
@@ -158,7 +169,7 @@ const ButtonClear = styled.button`
 
   &:hover,
   &:focus {
-    outline: 2px solid ${theme.colors.brown1};
+    outline: none;
     border: none;
   }
 `;
