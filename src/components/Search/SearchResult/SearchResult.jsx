@@ -10,6 +10,8 @@ import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import * as SC from './SearchResult.styled';
 import { Subtitle } from 'components/baseStyles/CommonStyle.styled';
 
+import { MdEast } from 'react-icons/md';
+
 const { BASE_URL_IMG } = window.global;
 
 export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
@@ -87,7 +89,6 @@ export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
                           )}
                         </SC.CardPricesSearch>
                         <SC.CardSizeSearch>
-                          <span>Size</span>
                           <div>
                             {card.options.map(option => {
                               return (
@@ -105,19 +106,32 @@ export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
               })}
             </SC.Products>
           )}
-          <SC.LinkToCatalog to={`/catalog`}>See more</SC.LinkToCatalog>
+          <SC.LinkToCatalog to={`/catalog?page=1&perPage=12`}>
+            See more
+          </SC.LinkToCatalog>
         </SC.InnerLeftWrapper>
         <SC.InnerRightWrapper>
           <Subtitle>Type of plants</Subtitle>
           <SC.Category>
             {getUniqueOptions('typeOfPlants').map((card, i) => {
               return (
-                <NavLink key={i} to={`/catalog/?typeOfPlants=${card}`}>
-                  <span>{card}</span>
-                </NavLink>
+                <div key={i}>
+                  <NavLink to={`/catalog?page=1&perPage=12&category=plants`}>
+                    Indoor Plants /
+                  </NavLink>
+                  <NavLink
+                    to={`/catalog?page=1&perPage=12&typeOfPlants=${card}`}
+                  >
+                    <span> {card}</span>
+                  </NavLink>
+                </div>
               );
             })}
           </SC.Category>
+          <SC.LinkToGifts to={`/gifts`}>
+            <span>Our ideas for gifts</span>
+            <MdEast size={18} />
+          </SC.LinkToGifts>
         </SC.InnerRightWrapper>
       </SC.Wrapper>
     </SC.SearchResult>
