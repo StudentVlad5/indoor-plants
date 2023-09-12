@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import {
+  Card,
+  CardDiscount,
+  CardImage,
+  CardName,
+  CardPrice,
+  CardPrices,
+  CardSize,
+  CardTitle,
+} from 'components/Catalog/CatalogList/CatalogList.styled';
+
 import { ReactComponent as iconClose } from 'images/svg/icon_close.svg';
 
 const SearchResult = styled.div`
@@ -24,7 +35,16 @@ const Products = styled.div`
   padding: 20px;
 `;
 
-const Category = styled.div`
+const CardSearch = styled(Card);
+const CardDiscountSearch = styled(CardDiscount);
+const CardImageSearch = styled(CardImage);
+const CardNameSearch = styled(CardName);
+const CardPriceSearch = styled(CardPrice);
+const CardPricesSearch = styled(CardPrices);
+const CardSizeSearch = styled(CardSize);
+const CardTitleSearch = styled(CardTitle);
+
+const Category = styled.ul`
   width: 32%;
   padding: 30px;
   background-color: ${theme.colors.greyOpacity};
@@ -67,4 +87,19 @@ const IconClose = styled(iconClose)`
   }
 `;
 
-export { SearchResult, Wrapper, Products, Category, ButtonClose, IconClose };
+export {
+  SearchResult,
+  Wrapper,
+  Products,
+  Category,
+  CardSearch,
+  CardDiscountSearch,
+  CardImageSearch,
+  CardNameSearch,
+  CardPriceSearch,
+  CardPricesSearch,
+  CardSizeSearch,
+  CardTitleSearch,
+  ButtonClose,
+  IconClose,
+};

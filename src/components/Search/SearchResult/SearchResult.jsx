@@ -8,16 +8,6 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 
 import * as SC from './SearchResult.styled';
-import {
-  Card,
-  CardDiscount,
-  CardImage,
-  CardName,
-  CardPrice,
-  CardPrices,
-  CardSize,
-  CardTitle,
-} from 'components/Catalog/CatalogList/CatalogList.styled';
 import { Subtitle } from 'components/baseStyles/CommonStyle.styled';
 
 const { BASE_URL_IMG } = window.global;
@@ -49,7 +39,7 @@ export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
     })();
   }, [t, searchParams]);
 
-  let productsSlice = products.slice(0, 5);
+  let productsSlice = products.slice(0, 4);
 
   const getUniqueOptions = key => {
     const unique = [...new Set(products.map(item => item[key]))];
@@ -72,33 +62,33 @@ export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
           <SC.Products>
             {productsSlice.map(card => {
               return (
-                <Card key={card._id}>
+                <SC.CardSearch key={card._id}>
                   <NavLink to={`/catalog/${card._id}`}>
-                    <CardImage
+                    <SC.CardImageSearch
                       src={BASE_URL_IMG + card.images[0]}
                       alt={card.name}
                       width="285"
                       height="460"
                       loading="lazy"
                     />
-                    <CardTitle>
-                      <CardName>{card.name}</CardName>
-                      <CardPrices>
+                    <SC.CardTitleSearch>
+                      <SC.CardNameSearch>{card.name}</SC.CardNameSearch>
+                      <SC.CardPricesSearch>
                         {card.currentPrice && (
-                          <CardDiscount>
+                          <SC.CardDiscountSearch>
                             {card.currentPrice}
                             {card.currency}
-                          </CardDiscount>
+                          </SC.CardDiscountSearch>
                         )}
                         {card.oldPrice && (
-                          <CardPrice>
+                          <SC.CardPriceSearch>
                             {card.oldPrice}
                             {card.currency}
-                          </CardPrice>
+                          </SC.CardPriceSearch>
                         )}
-                      </CardPrices>
-                    </CardTitle>
-                    <CardSize>
+                      </SC.CardPricesSearch>
+                    </SC.CardTitleSearch>
+                    <SC.CardSizeSearch>
                       <span>Size</span>
                       <div>
                         {card.options.map(option => {
@@ -109,9 +99,9 @@ export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
                           );
                         })}
                       </div>
-                    </CardSize>
+                    </SC.CardSizeSearch>
                   </NavLink>
-                </Card>
+                </SC.CardSearch>
               );
             })}
           </SC.Products>
