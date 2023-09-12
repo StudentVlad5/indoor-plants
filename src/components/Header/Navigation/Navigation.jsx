@@ -1,9 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Nav } from 'components/Header/Nav/Nav';
 import { AuthNav } from 'components/Header/AuthNav/AuthNav';
 import { UserNav } from 'components/Header/UserNav/UserNav';
+import { Basket } from '../Basket/Basket';
+import { Search } from 'components/Search/Search';
 
 import {
   Container,
@@ -15,8 +19,6 @@ import {
   IconSearchMobile,
   IconFavoriteMobile,
 } from './Navigation.styled';
-import { Basket } from '../Basket/Basket';
-import { Link } from 'react-router-dom';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -25,7 +27,8 @@ export const Navigation = () => {
     <Container>
       <Nav />
       <NavBlock>
-        <IconSearch />
+        {/* <IconSearch /> */}
+        <Search />
         {isLoggedIn ? <UserNav /> : <AuthNav />}
 
         {isLoggedIn ? (
