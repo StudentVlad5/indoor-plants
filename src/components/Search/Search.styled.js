@@ -33,8 +33,6 @@ const FormContainer = styled.form`
 const Input = styled.input`
   all: unset;
   width: 100%;
-  padding-right: 5px;
-  margin-right: 10px;
 
   font-family: ${theme.fonts[0]};
   font-style: normal;
@@ -60,7 +58,7 @@ const Label = styled.label`
 
   width: 100%;
   height: 40px;
-  padding: 10px;
+  padding: 10px 30px;
 
   color: ${theme.colors.grey};
   background-color: transparent;
@@ -68,14 +66,12 @@ const Label = styled.label`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     height: 44px;
-    padding: 10px 30px 10px 10px;
+    padding: 10px 30px 10px 30px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
   }
 `;
-
-const Result = styled.div``;
 
 const ButtonSearch = styled.button`
   position: absolute;
@@ -140,13 +136,40 @@ const IconClose = styled(iconClose)`
   }
 `;
 
+const ButtonClear = styled.button`
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+
+  background-color: transparent;
+  border: none;
+  transition: ${theme.transition[0]};
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    outline: 2px solid ${theme.colors.brown1};
+    border: none;
+  }
+`;
+
 export {
   Overlay,
   FormContainer,
   Input,
   Label,
-  Result,
   ButtonSearch,
   IconSearch,
   IconClose,
+  ButtonClear,
 };

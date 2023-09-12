@@ -16,14 +16,21 @@ import { ReactComponent as iconClose } from 'images/svg/icon_close.svg';
 
 const SearchResult = styled.div`
   position: absolute;
-  top: 60px;
+  top: 40px;
   right: 0;
   z-index: 40;
 
-  width: 1000px;
-  height: 500px;
+  width: 100%;
+  height: 100vh;
 
   background-color: ${theme.colors.fon};
+  border: 0.5px solid rgb(140, 130, 118);
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    top: 60px;
+    width: 1000px;
+    height: 500px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -62,6 +69,7 @@ const Products = styled.ul`
   gap: 40px;
 
   width: 100%;
+  margin-bottom: auto;
 `;
 const LinkToGifts = styled(NavLink)`
   display: flex;
@@ -181,7 +189,7 @@ const CardTitleSearch = styled(CardTitle)`
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
-  max-width: 200px;
+  width: 150px;
 `;
 
 const Category = styled.ul`

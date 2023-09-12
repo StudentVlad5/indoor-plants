@@ -74,6 +74,18 @@ export const Search = () => {
             <SC.ButtonSearch>
               <SC.IconSearch onClick={toggleSearchForm} aria-label="Search" />
             </SC.ButtonSearch>
+            {searchQuery !== '' && (
+              <SC.ButtonClear
+                type="button"
+                onClick={e => {
+                  setParams('');
+                  setSearchQuery('');
+                }}
+                aria-label="Clear search"
+              >
+                <SC.IconClose />
+              </SC.ButtonClear>
+            )}
             <SearchResult
               closeModal={toggleSearchForm}
               searchQuery={searchQuery}

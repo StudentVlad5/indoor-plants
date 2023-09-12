@@ -14,34 +14,60 @@ import { MdEast } from 'react-icons/md';
 
 const { BASE_URL_IMG } = window.global;
 
-export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
+export const SearchResult = ({ closeModal }) => {
   const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [total, setTotal] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  //   console.log('products:', products);
+  //   console.log('category:', category);
+
+  const [searchParams] = useSearchParams(); //, setSearchParams
 
   const { t } = useTranslation();
 
   useEffect(() => {
-    (async function getData() {
-      setIsLoading(true);
-      try {
-        const { data } = await fetchData(`/catalog`);
-        setProducts(data);
-        if (!data) {
-          return onFetchError(t('Whoops, something went wrong'));
+    if (searchParams.get('search') !== null) {
+      (async function getData() {
+        setIsLoading(true);
+        try {
+          const { data } = await fetchData(`/catalog?${searchParams}`);
+          setProducts(data.catalog);
+          setCategory(data.category);
+          setTotal(data.total);
+          if (!data) {
+            return onFetchError(t('Whoops, something went wrong'));
+          }
+        } catch (error) {
+          setError(error);
+        } finally {
+          setIsLoading(false);
         }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [t]);
+      })();
+    } else {
+      (async function getData() {
+        setIsLoading(true);
+        try {
+          const { data } = await fetchData(`/catalog`);
+          setProducts(data);
+          setCategory(data);
+          setTotal(data.length);
+          if (!data) {
+            return onFetchError(t('Whoops, something went wrong'));
+          }
+        } catch (error) {
+          setError(error);
+        } finally {
+          setIsLoading(false);
+        }
+      })();
+    }
+  }, [t, searchParams]);
 
   const getUniqueOptions = key => {
-    const unique = [...new Set(products?.map(item => item[key]))];
+    const unique = [...new Set(category?.map(item => item[key]))];
     return unique.sort();
   };
 
@@ -49,7 +75,7 @@ export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
     <SC.SearchResult>
       <SC.ButtonClose
         type="button"
-        onClick={toggleSearchForm}
+        onClick={closeModal}
         aria-label="Close modal"
       >
         <SC.IconClose />
@@ -106,9 +132,11 @@ export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
               })}
             </SC.Products>
           )}
-          <SC.LinkToCatalog to={`/catalog?page=1&perPage=12`}>
-            See more
-          </SC.LinkToCatalog>
+          {total > 4 && (
+            <SC.LinkToCatalog to={`/catalog?page=1&perPage=12`}>
+              See more
+            </SC.LinkToCatalog>
+          )}
         </SC.InnerLeftWrapper>
         <SC.InnerRightWrapper>
           <Subtitle>Type of plants</Subtitle>
@@ -139,6 +167,5 @@ export const SearchResult = ({ toggleSearchForm, searchQuery }) => {
 };
 
 SearchResult.propTypes = {
-  searchQuery: PropTypes.string,
-  toggleSearchForm: PropTypes.func,
+  closeModal: PropTypes.func,
 };
