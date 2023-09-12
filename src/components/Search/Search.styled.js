@@ -22,7 +22,6 @@ const FormContainer = styled.form`
 
   width: 100%;
   margin-left: auto;
-  margin-top: 200px;
 
   background-color: ${theme.colors.fon};
 
@@ -123,7 +122,6 @@ const IconSearch = styled(iconSearch)`
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 200px;
   }
 `;
 
