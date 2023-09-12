@@ -19,7 +19,6 @@ export const MobileMenu = ({ toggleMenu }) => {
         <Text to="/" onClick={toggleMenu}>
           homeforest
         </Text>
-        ;
       </MobileHeader>
 
       {isLoggedIn ? (

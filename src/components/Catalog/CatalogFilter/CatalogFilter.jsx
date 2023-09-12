@@ -19,6 +19,7 @@ import { ReactComponent as Open } from 'images/svg/open.svg';
 export const CatalogFilter = ({ onClear }) => {
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [, setError] = useState(null); //error
 
   // const reload = useSelector(reloadValue);
   const dispatch = useDispatch();
@@ -195,7 +196,7 @@ export const CatalogFilter = ({ onClear }) => {
         break;
       case 'rare':
         if (rare.includes(value)) {
-          setRare(rare.filter(item => item => item !== value));
+          setRare(rare.filter(item => item !== value));
           // dispatch(addReload(true));
         } else {
           setRare([...rare, value]);
@@ -206,7 +207,7 @@ export const CatalogFilter = ({ onClear }) => {
         break;
       case 'light':
         if (light.includes(value)) {
-          setLight(light.filter(item => item => item !== value));
+          setLight(light.filter(item => item !== value));
           // dispatch(addReload(true));
         } else {
           setLight([...light, value]);
@@ -217,7 +218,7 @@ export const CatalogFilter = ({ onClear }) => {
         break;
       case 'petFriendly':
         if (petFriendly.includes(value)) {
-          setPetFriendly(petFriendly.filter(item => item => item !== value));
+          setPetFriendly(petFriendly.filter(item => item !== value));
           // dispatch(addReload(true));
         } else {
           setPetFriendly([...petFriendly, value]);
@@ -240,7 +241,7 @@ export const CatalogFilter = ({ onClear }) => {
         break;
       case 'hardToKill':
         if (hardToKill.includes(value)) {
-          setHardToKill(hardToKill.filter(item => item => item !== value));
+          setHardToKill(hardToKill.filter(item => item !== value));
           // dispatch(addReload(true));
         } else {
           setHardToKill([...hardToKill, value]);
@@ -251,7 +252,7 @@ export const CatalogFilter = ({ onClear }) => {
         break;
       case 'potSize':
         if (potSize.includes(value)) {
-          setPotSize(potSize.filter(item => item => item !== value));
+          setPotSize(potSize.filter(item => item !== value));
           // dispatch(addReload(true));
         } else {
           setPotSize([...potSize, value]);
@@ -262,9 +263,7 @@ export const CatalogFilter = ({ onClear }) => {
         break;
       case 'waterSchedule':
         if (waterSchedule.includes(value)) {
-          setWaterSchedule(
-            waterSchedule.filter(item => item => item !== value),
-          );
+          setWaterSchedule(waterSchedule.filter(item => item !== value));
           // dispatch(addReload(true));
         } else {
           setWaterSchedule([...waterSchedule, value]);

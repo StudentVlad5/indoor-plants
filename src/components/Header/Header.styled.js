@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
-import { Section } from 'components/baseStyles/CommonStyle.styled';
+import { Section, Container } from 'components/baseStyles/CommonStyle.styled';
 
 const HeaderSectionWrap = styled.header`
   display: flex;
@@ -46,11 +46,16 @@ const HeaderUnderLine = styled.div`
   margin-top: 40px;
 `;
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 40px 30px 0px 30px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding: 50px 120px 0px 120px;
+  }
 `;
 
 export { HeaderContainer, HeaderSection, HeaderUnderLine, HeaderSectionWrap };
