@@ -4,7 +4,7 @@ import theme from 'components/baseStyles/Variables.styled';
 const Section = styled.section`
   position: relative;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 129px 0 60px 0;
   width: 100%;
 
   /* &::before {
@@ -19,11 +19,11 @@ const Section = styled.section`
   } */
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding: 80px 0;
+    padding: 129px 0 80px 0;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    padding: 120px 0;
+    padding: 139px 0 120px 0;
     max-width: ${theme.breakpoints.desktop};
   }
 `;

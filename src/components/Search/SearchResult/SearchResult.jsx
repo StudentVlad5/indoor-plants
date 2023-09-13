@@ -18,15 +18,12 @@ import { MdEast } from 'react-icons/md';
 const BASE_URL_IMG =
   'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
 
-export const SearchResult = ({ onClose }) => {
+export const SearchResult = ({ onClose, toggleMobileMenu }) => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [total, setTotal] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  //   console.log('products:', products);
-  //   console.log('category:', category);
 
   const [searchParams] = useSearchParams(); //, setSearchParams
   const { t } = useTranslation();
@@ -84,7 +81,7 @@ export const SearchResult = ({ onClose }) => {
         <SC.IconClose />
       </SC.ButtonClose>
       <SC.Wrapper>
-        <SC.InnerLeftWrapper>
+        <SC.InnerLeftWrapper onClick={toggleMobileMenu}>
           <Subtitle>recommend</Subtitle>
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError(t('Whoops, something went wrong'))}
@@ -92,7 +89,7 @@ export const SearchResult = ({ onClose }) => {
             <SC.Products>
               {products.slice(0, 4).map(card => {
                 return (
-                  <SC.CardSearch key={card._id}>
+                  <SC.CardSearch key={card._id} onClick={onClose}>
                     <NavLink to={`/catalog/${card._id}`}>
                       <SC.CardImageSearch
                         src={BASE_URL_IMG + card.images[0]}
@@ -136,12 +133,15 @@ export const SearchResult = ({ onClose }) => {
             </SC.Products>
           )}
           {total > 4 && (
-            <SC.LinkToCatalog to={`/catalog?page=1&perPage=12`}>
+            <SC.LinkToCatalog
+              to={`/catalog?page=1&perPage=12`}
+              onClick={onClose}
+            >
               See more
             </SC.LinkToCatalog>
           )}
         </SC.InnerLeftWrapper>
-        <SC.InnerRightWrapper>
+        <SC.InnerRightWrapper onClick={toggleMobileMenu}>
           <Subtitle>Type of plants</Subtitle>
           <SC.Category>
             {getUniqueOptions('typeOfPlants').map((card, i) => {
@@ -174,4 +174,5 @@ export const SearchResult = ({ onClose }) => {
 
 SearchResult.propTypes = {
   onClose: PropTypes.func,
+  toggleMobileMenu: PropTypes.func,
 };

@@ -6,17 +6,12 @@ import PropTypes from 'prop-types';
 import { SearchResult } from './SearchResult/SearchResult';
 import * as SC from './Search.styled';
 
-export const Search = ({ onClose }) => {
+export const Search = ({ onClose, toggleMobileMenu }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get('search') ? searchParams.get('search') : '',
   );
   const { t } = useTranslation();
-
-  // const [showSearchForm, setShowSearchForm] = useState(false);
-  // const toggleSearchForm = () => {
-  //   setShowSearchForm(state => !state);
-  // };
 
   const setParams = search => {
     const params = getParams();
@@ -35,15 +30,6 @@ export const Search = ({ onClose }) => {
   };
 
   return (
-    // <>
-    //   {!showSearchForm && (
-    //     <SC.IconSearch
-    //       data-modal="search"
-    //       onClick={toggleSearchForm}
-    //       aria-label="Search"
-    //     />
-    //   )}
-    //   {showSearchForm && (
     <>
       <SC.Overlay onClick={onClose}></SC.Overlay>
       <SC.FormContainer
@@ -87,14 +73,17 @@ export const Search = ({ onClose }) => {
             <SC.IconClose />
           </SC.ButtonClear>
         )}
-        <SearchResult onClose={onClose} searchQuery={searchQuery} />
+        <SearchResult
+          onClose={onClose}
+          searchQuery={searchQuery}
+          toggleMobileMenu={toggleMobileMenu}
+        />
       </SC.FormContainer>
     </>
-    //   )}
-    // </>
   );
 };
 
 Search.propTypes = {
   onClose: PropTypes.func,
+  toggleMobileMenu: PropTypes.func,
 };
