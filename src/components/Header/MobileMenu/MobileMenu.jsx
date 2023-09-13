@@ -26,7 +26,7 @@ export const MobileMenu = ({ toggleMenu }) => {
       ) : (
         <MobileAuthNav toggleMenu={toggleMenu} />
       )}
-      <MobileNavigation />
+      <MobileNavigation toggleMobileMenu={toggleMenu} />
       <MobileNav toggleMenu={toggleMenu} />
     </>
   );

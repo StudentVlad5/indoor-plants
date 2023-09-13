@@ -62,13 +62,10 @@ export const Navigation = () => {
   );
 };
 
-export const MobileNavigation = () => {
+export const MobileNavigation = ({ toggleMobileMenu }) => {
   const [showSearchForm, setShowSearchForm] = useState(false);
   const toggleSearchForm = () => {
     setShowSearchForm(state => !state);
-  };
-  const closeSearchForm = () => {
-    setShowSearchForm(false);
   };
 
   return (
@@ -78,7 +75,12 @@ export const MobileNavigation = () => {
         {!showSearchForm && (
           <IconSearchMobile onClick={toggleSearchForm} aria-label="Search" />
         )}
-        {showSearchForm && <Search onClose={closeSearchForm} />}
+        {showSearchForm && (
+          <Search
+            onClose={toggleSearchForm}
+            toggleMobileMenu={toggleMobileMenu}
+          />
+        )}
 
         <IconFavoriteMobile />
         <Basket />
