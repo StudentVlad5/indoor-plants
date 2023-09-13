@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux'; //, useSelector
+// import { useDispatch, useSelector } from 'react-redux'; //
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
@@ -22,7 +22,7 @@ export const CatalogFilter = ({ onClear }) => {
   const [, setError] = useState(null); //error
 
   // const reload = useSelector(reloadValue);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const [typeOfPlants, setTypeOfPlants] = useState(
@@ -267,7 +267,7 @@ export const CatalogFilter = ({ onClear }) => {
           // dispatch(addReload(true));
         } else {
           setWaterSchedule([...waterSchedule, value]);
-          dispatch(addReload(true));
+          // dispatch(addReload(true));
           saveToStorage('waterSchedule', waterSchedule);
           setParams();
         }

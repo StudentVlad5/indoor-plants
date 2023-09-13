@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { SEO } from 'utils/SEO';
 import { useDispatch } from 'react-redux';
 import { cleanHeaderBottom } from 'redux/header_bottom/operation';
-import { Search } from 'components/Search/Search';
 import {
   Container,
   Section,
@@ -22,7 +21,6 @@ const GiftsPage = () => {
       <Section>
         <Container>
           <Title>GiftsPage</Title>
-          <Search />
         </Container>
       </Section>
     </>

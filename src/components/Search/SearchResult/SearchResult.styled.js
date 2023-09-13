@@ -48,8 +48,12 @@ const InnerLeftWrapper = styled.div`
   justify-content: space-between;
   gap: 20px;
 
-  width: 65%;
+  width: 55%;
   padding: 30px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 65%;
+  }
 `;
 
 const InnerRightWrapper = styled.div`
@@ -59,10 +63,14 @@ const InnerRightWrapper = styled.div`
   align-items: flex-start;
   gap: 20px;
 
-  width: 35%;
+  width: 45%;
   padding: 30px;
 
   background-color: ${theme.colors.greyOpacity};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 35%;
+  }
 `;
 
 const Products = styled.ul`

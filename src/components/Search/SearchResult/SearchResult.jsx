@@ -6,13 +6,17 @@ import PropTypes from 'prop-types';
 import { fetchData } from 'services/APIservice';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
+import { saveToStorage } from 'services/localStorService';
 
 import * as SC from './SearchResult.styled';
 import { Subtitle } from 'components/baseStyles/CommonStyle.styled';
 
 import { MdEast } from 'react-icons/md';
 
-const { BASE_URL_IMG } = window.global;
+// const { BASE_URL_IMG } = window.global;
+// const BASE_URL_IMG = 'http://localhost:3030/uploads/';
+const BASE_URL_IMG =
+  'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
 
 export const SearchResult = ({ onClose }) => {
   const [products, setProducts] = useState([]);
@@ -25,7 +29,6 @@ export const SearchResult = ({ onClose }) => {
   //   console.log('category:', category);
 
   const [searchParams] = useSearchParams(); //, setSearchParams
-
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -143,12 +146,15 @@ export const SearchResult = ({ onClose }) => {
           <SC.Category>
             {getUniqueOptions('typeOfPlants').map((card, i) => {
               return (
-                <div key={i}>
+                <div key={i} onClick={onClose}>
                   <NavLink to={`/catalog?page=1&perPage=12&category=plants`}>
                     Indoor Plants /
                   </NavLink>
                   <NavLink
                     to={`/catalog?page=1&perPage=12&typeOfPlants=${card}`}
+                    onClick={e => {
+                      saveToStorage('typeOfPlants', card);
+                    }}
                   >
                     <span> {card}</span>
                   </NavLink>
@@ -156,7 +162,7 @@ export const SearchResult = ({ onClose }) => {
               );
             })}
           </SC.Category>
-          <SC.LinkToGifts to={`/gifts`}>
+          <SC.LinkToGifts to={`/gifts`} onClick={onClose}>
             <span>Our ideas for gifts</span>
             <MdEast size={18} />
           </SC.LinkToGifts>
