@@ -21,8 +21,9 @@ import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
 
 // const { BASE_URL_IMG } = window.global;
-const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-// const BASE_URL_IMG = 'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
+// const BASE_URL_IMG = 'http://localhost:3030/uploads/';
+const BASE_URL_IMG =
+  'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
 
 export const ProductCard = ({ product }) => {
   const {
