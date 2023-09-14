@@ -25,6 +25,7 @@ import {
   ProgressBarBox,
   ProgressBarTitle,
   ProgressBar,
+  BasketCount,
 } from './Basket.styled';
 import { NavLink } from 'react-router-dom';
 import groupPlants from '../../../images/basket/group-plants.png';
@@ -66,6 +67,7 @@ export const Basket = () => {
   return (
     <>
       <IconBasket onClick={() => setIsOpen(!isOpen)} />
+      {basket.length > 0 && <BasketCount onClick={() => setIsOpen(!isOpen)}>{basket.length}</BasketCount>}
       <Overlay isOpen={isOpen} onClick={() => setIsOpen(false)} />
 
       <BasketBox open={isOpen}>
@@ -115,7 +117,9 @@ export const Basket = () => {
                   Separate shipping is applicable to the majority of items. Once
                   an order is placed, it cannot be cancelled.
                 </TotalDiscr>
-                <OrderBtn to="/checkout">checkout</OrderBtn>
+                <OrderBtn to="/checkout" onClick={() => setIsOpen(!isOpen)}>
+                  checkout
+                </OrderBtn>
               </TotalTitleBox>
             </OrderBox>
           ) : (

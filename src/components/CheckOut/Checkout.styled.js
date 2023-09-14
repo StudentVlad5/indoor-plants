@@ -8,28 +8,9 @@ import { ReactComponent as done } from 'images/svg/done.svg';
 import { ReactComponent as shippingFast } from 'images/svg/shipping-fast.svg';
 import { Quantity } from 'components/ProductCard/ProductCard.styled';
 
-export const FormSection = styled(Section)`
-  /* @media screen and (max-width: ${theme.breakpoints.tablet_max}) {
-    background-repeat: no-repeat;
-    background-size: 620px auto;
-    background-position: bottom -250px left 30%;
-  }
-
-  @media screen and (min-width: ${theme.breakpoints
-    .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
-    background-repeat: no-repeat;
-    background-size: 1396px auto;
-    background-position: bottom -130px left 50%;
-  } */
-`;
+export const FormSection = styled(Section)``;
 
 export const FormContainer = styled(Container)`
-  /* height: 100%;
-  min-height: calc(100vh - 140px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   position: relative;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -37,11 +18,6 @@ export const FormContainer = styled(Container)`
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding-top: 80px;
-    /* min-height: calc(100vh - 120px);
-
-    background-repeat: no-repeat;
-    background-size: 1280px auto;
-    background-position: bottom 0 left 50%; */
   }
 `;
 
@@ -378,3 +354,163 @@ export const AuthCheckOutBox2 = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+// Delivery
+
+export const Delivery = styled.div``;
+
+export const DeliveryInfoBox = styled.div``;
+
+export const DeliveryInfoBoxTitle = styled.h2`
+  color: rgb(95, 74, 50);
+  margin-bottom: 20px;
+
+  font-family: 'Fraunces', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const DeliveryBlock = styled.div`
+  width: 754px;
+`;
+
+export const DeliveryBlockOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DeliveryBlockOptionsLable = styled.label`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+
+  border: 1px solid #000;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  & input[type='radio'] {
+    display: none;
+  }
+
+  background-color: ${props =>
+    props.isSelected ? 'rgba(0, 0, 0, 0.1)' : 'transparent'};
+`;
+
+export const DeliveryBlockOptionsInput = styled.input``;
+
+export const DeliveryForm = styled.form`
+  display: flex;
+  margin-top: 20px;
+  width: 925px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const DeliveryFormInput = styled.input`
+  /* padding: 15px 222px 15px 15px; */
+  border: 1px solid #c6cdd3;
+  padding-left: 15px;
+  width: 394px;
+  height: 60px;
+  border-color: transparent;
+  border-radius: 10px;
+  background: ${theme.colors.blue3};
+`;
+
+export const DeliveryFormUser = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const DeliveryFormLable = styled.label`
+  &:nth-child(1) {
+    margin-right: 40px;
+    margin-bottom: 10px;
+  }
+
+  &:nth-child(2) {
+    margin-bottom: 10px;
+  }
+
+  &:nth-child(3) {
+    margin-right: 40px;
+    margin-bottom: 10px;
+  }
+
+  &:nth-child(5) {
+    margin-bottom: 10px;
+  }
+
+  &:nth-child(7) {
+    margin-right: 40px;
+  }
+`;
+
+export const DeliveryFormBtn = styled.button`
+  border-radius: 10px;
+  border: 1px solid rgb(140, 130, 118);
+  background-color: transparent;
+  padding: 15px 46px;
+  margin-top: 22px;
+  margin-bottom: 24px;
+  cursor: pointer;
+  color: ${theme.colors.brown1};
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+`;
+
+export const DeliveryFormBtnFinish = styled(DeliveryFormBtn)`
+  background: ${theme.colors.green4};
+`;
+
+export const PaymentBlockOptionsLable = styled.label`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+
+  border: 1px solid #000;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  & input[type='radio'] {
+    display: none;
+  }
+
+  background-color: ${props =>
+    props.isSelected ? 'rgba(0, 0, 0, 0.1)' : 'transparent'};
+`;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
+// export const Delivery = styled.div``;
