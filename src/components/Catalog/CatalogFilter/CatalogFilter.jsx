@@ -123,6 +123,21 @@ export const CatalogFilter = ({ onClear }) => {
     e.currentTarget.classList.toggle('active');
   };
 
+  const toggleChecked = e => {
+    // e.preventDefault();
+    const perem = document.querySelector(
+      `label[data-key="${e.currentTarget.dataset.input}"]`,
+    );
+
+    if (perem.classList.contains('active_label')) {
+      perem.classList.remove('active_label');
+      e.currentTarget.removeAttribute('checked');
+    } else {
+      perem.classList.add('active_label');
+      e.currentTarget.setAttribute('checked', 'true');
+    }
+  };
+
   const getUniqueOptions = key => {
     if (key === 'potSize') {
       const uniqueSizes = [];
@@ -182,6 +197,7 @@ export const CatalogFilter = ({ onClear }) => {
 
   const handleChange = e => {
     const { name, value } = e.target;
+    toggleChecked(e);
     switch (name) {
       case 'typeOfPlants':
         if (typeOfPlants.includes(value)) {
@@ -300,6 +316,8 @@ export const CatalogFilter = ({ onClear }) => {
     saveToStorage('waterSchedule', []);
     setSearchParams({ page: 1, perPage: 12 });
     // dispatch(addReload(true));
+    const listOfLabel = document.querySelectorAll('.active_label');
+    listOfLabel.forEach(item => item.classList.remove('active_label'));
     onClear();
   };
 
@@ -324,11 +342,12 @@ export const CatalogFilter = ({ onClear }) => {
           <SC.FilterInnerList>
             {getUniqueOptions('typeOfPlants').map((card, i) => {
               return (
-                <label key={i}>
+                <label key={i} data-key={card}>
                   <SC.FilterInnerListItem
                     type="checkbox"
                     name="typeOfPlants"
                     value={card}
+                    data-input={card}
                     defaultChecked={typeOfPlants.includes(card)}
                     onChange={e => {
                       handleChange(e);
@@ -358,11 +377,12 @@ export const CatalogFilter = ({ onClear }) => {
           <SC.FilterInnerList>
             {getUniqueOptions('rare').map((card, i) => {
               return (
-                <label key={i}>
+                <label key={i} data-key={card}>
                   <SC.FilterInnerListItem
                     type="checkbox"
                     name="rare"
                     value={card}
+                    data-input={card}
                     defaultChecked={rare.includes(card)}
                     onChange={e => {
                       handleChange(e);
@@ -392,11 +412,12 @@ export const CatalogFilter = ({ onClear }) => {
           <SC.FilterInnerList>
             {getUniqueOptions('petFriendly').map((card, i) => {
               return (
-                <label key={i}>
+                <label key={i} data-key={card}>
                   <SC.FilterInnerListItem
                     type="checkbox"
                     name="petFriendly"
                     value={card}
+                    data-input={card}
                     defaultChecked={petFriendly.includes(card)}
                     onChange={e => {
                       handleChange(e);
@@ -426,11 +447,12 @@ export const CatalogFilter = ({ onClear }) => {
           <SC.FilterInnerList>
             {getUniqueOptions('hardToKill').map((card, i) => {
               return (
-                <label key={i}>
+                <label key={i} data-key={card}>
                   <SC.FilterInnerListItem
                     type="checkbox"
                     name="hardToKill"
                     value={card}
+                    data-input={card}
                     defaultChecked={hardToKill.includes(card)}
                     onChange={e => {
                       handleChange(e);
@@ -460,11 +482,12 @@ export const CatalogFilter = ({ onClear }) => {
           <SC.FilterInnerList>
             {getUniqueOptions('light').map((card, i) => {
               return (
-                <label key={i}>
+                <label key={i} data-key={card}>
                   <SC.FilterInnerListItem
                     type="checkbox"
                     name="light"
                     value={card}
+                    data-input={card}
                     defaultChecked={light.includes(card)}
                     onChange={e => {
                       handleChange(e);
@@ -494,11 +517,12 @@ export const CatalogFilter = ({ onClear }) => {
           <SC.FilterInnerList>
             {getUniqueOptions('waterSchedule').map((card, i) => {
               return (
-                <label key={i}>
+                <label key={i} data-key={card}>
                   <SC.FilterInnerListItem
                     type="checkbox"
                     name="waterSchedule"
                     value={card}
+                    data-input={card}
                     defaultChecked={waterSchedule.includes(card)}
                     onChange={e => {
                       handleChange(e);
@@ -528,11 +552,12 @@ export const CatalogFilter = ({ onClear }) => {
           <SC.FilterInnerList>
             {getUniqueOptions('potSize').map((card, i) => {
               return (
-                <label key={i}>
+                <label key={i} data-key={card}>
                   <SC.FilterInnerListItem
                     type="checkbox"
                     name="potSize"
                     value={card.size}
+                    data-input={card}
                     defaultChecked={potSize === card.size}
                     onChange={e => {
                       handleChange(e);
