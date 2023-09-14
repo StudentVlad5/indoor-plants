@@ -15,10 +15,10 @@ import {
 import * as SC from '../../Catalog/CatalogList/CatalogList.styled';
 
 export const Products = ({ products }) => {
-  // const { BASE_URL_IMG } = window.global;
+  const { BASE_URL_IMG } = window.global;
   // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-  const BASE_URL_IMG =
-    'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
+  // const BASE_URL_IMG =
+  //   'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

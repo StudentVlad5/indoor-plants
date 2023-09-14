@@ -20,8 +20,8 @@ import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
 
-// const { BASE_URL_IMG } = window.global;
-const BASE_URL_IMG = 'http://localhost:3030/uploads/';
+const { BASE_URL_IMG } = window.global;
+// const BASE_URL_IMG = 'http://localhost:3030/uploads/';
 // const BASE_URL_IMG = 'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
 
 export const ProductCard = ({ product }) => {
@@ -93,22 +93,6 @@ export const ProductCard = ({ product }) => {
     return item ? item.optionData.quantity : value;
   });
 
-  const quantityData = optionData._id;
-  const handleDecrease = () => {
-    if (quantity > 1) {
-      const newValue = quantity - 1;
-      setValue(newValue);
-      dispatch(setQuantity({ quantityData, quantity: newValue }));
-    }
-  };
-
-  const handleIncrease = () => {
-    if (quantity < optionData.total) {
-      const newValue = quantity + 1;
-      setValue(newValue);
-      dispatch(setQuantity({ quantityData, quantity: newValue }));
-    }
-  };
   //change images
   const [indxImg, setIndxImg] = useState(0);
 
@@ -148,7 +132,7 @@ export const ProductCard = ({ product }) => {
   const toggleIncludedDetails = () => setShowIncludedDetails(state => !state);
 
   // save to LS type Of Plants
-  saveToStorage('typeOfPlants', [typeOfPlants]);
+  const saveToStorage = () => saveToStorage('typeOfPlants', [typeOfPlants]);
 
   return (
     <SC.ProductCardContainer>
@@ -170,6 +154,7 @@ export const ProductCard = ({ product }) => {
             <SC.ProductNavItem>
               <SC.ProductNavLink
                 href={`/indoor-plants/catalog?perPage=12&page=1&typeOfPlants=${typeOfPlants}`}
+                onClick={saveToStorage}
               >
                 {typeOfPlants}
               </SC.ProductNavLink>
@@ -252,7 +237,7 @@ export const ProductCard = ({ product }) => {
           <SC.ProductInfo>
             <div>
               <SC.Heading>
-                <Headline> {name}</Headline>
+                <SC.Name> {name}</SC.Name>
                 {currentPrice ? (
                   <SC.Prices>
                     <SC.Discount>
