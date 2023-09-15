@@ -70,27 +70,6 @@ export const UserAboutWrapper = styled.div`
   }
 `;
 
-export const TopContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-`;
-
-export const MyPetContainer = styled.div`
-  display: flex;
-  width: 80%;
-  border-bottom: none;
-
-  @media (max-width: 400px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  @media screen and (min-width: 768px) {
-    border-bottom: 2px solid ${props => props.theme.orangeLight};
-  }
-`;
-
 export const UserTitle = styled(Title)`
   padding-left: 8px;
   padding-right: 8px;

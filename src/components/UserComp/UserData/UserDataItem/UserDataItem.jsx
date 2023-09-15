@@ -30,8 +30,8 @@ export const UserDataItem = ({
   const emailRegExp = /^.+@.+\..+$/;
   const cityRegex = /^[a-zA-Z\s,'-]+$/;
   const phoneRegExp = /^\+380\d{9}$/;
-  const dayToday = new Date().toLocaleDateString();
-  const minDate = new Date('01.01.1950').toLocaleDateString();
+  const dayToday = Date.now();
+  const minDate = new Date('01.01.1950');
   const passwordCheck = /^[a-zA-Z0-9]{7,32}$/g;
   const id = useSelector(selectId);
   const dispatch = useDispatch();
@@ -101,12 +101,12 @@ export const UserDataItem = ({
 
       case 'birthday':
         setActive('birthday');
-        if (inputValue > dayToday) {
-          setIsError('date must be current');
+        if (new Date(inputValue) > dayToday) {
+          setIsError('date is incorrect');
           return;
         }
-        if (inputValue < minDate) {
-          setIsError('date must be current');
+        if (new Date(inputValue) < minDate) {
+          setIsError('date is incorrect');
           return;
         }
         setIsError('');
