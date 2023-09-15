@@ -28,6 +28,16 @@ const IdeasItem = styled.li`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     gap: 24px;
   }
+
+  & img {
+    width: 150px;
+    height: auto;
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      width: 285px;
+      height: 400px;
+    }
+  }
 `;
 
 const Link = styled(NavLink)`
