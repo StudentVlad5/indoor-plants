@@ -54,44 +54,4 @@ const Background = styled.div`
   }
 `;
 
-const LinkBtn = styled(NavLink)`
-  /* width: 100%; */
-  padding: 10px 25px;
-
-  font-family: ${theme.fonts[0]}; //Raisonne Pro
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: uppercase;
-  text-decoration: none;
-
-  color: ${theme.colors.fon};
-
-  background-color: ${theme.colors.green};
-
-  border: 0.5px solid ${theme.colors.green};
-  border-radius: 5px;
-
-  cursor: pointer;
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-size: 14px;
-    padding: 10px 55px;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: ${theme.colors.green2};
-    border: 0.5px solid ${theme.colors.green2};
-  }
-
-  &:disabled {
-    color: ${theme.colors.brown1};
-    background-color: ${theme.colors.green4};
-    border: 0.5px solid ${theme.colors.green4};
-    cursor: default;
-  }
-`;
-
-export { HeadingSection, ImageContainer, Background, LinkBtn };
+export { HeadingSection, ImageContainer, Background };

@@ -1,6 +1,8 @@
 import React from 'react';
-import * as SC from './Heading.styled';
+
 import { Title } from 'components/baseStyles/CommonStyle.styled';
+import { LinkBtn } from '../Gifts.styled';
+import * as SC from './Heading.styled';
 
 import mobImage_png from 'images/gifts/mob.png';
 import mobImage_png_2x from 'images/gifts/mob@2x.png';
@@ -39,7 +41,7 @@ export const GiftsHeading = () => {
         </picture>
         <SC.Background>
           <Title>Gifts</Title>
-          <SC.LinkBtn to={`/catalog?page=1&perPage=12`}>Shop now</SC.LinkBtn>
+          <LinkBtn to={`/catalog?page=1&perPage=12`}>Shop now</LinkBtn>
         </SC.Background>
       </SC.ImageContainer>
     </SC.HeadingSection>
