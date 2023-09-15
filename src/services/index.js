@@ -2,8 +2,8 @@ import axios from 'axios';
 import { refreshUser } from 'redux/auth/operations';
 import { store } from 'redux/store';
 
-const BASE_URL = 'http://localhost:3030/api';
-// const BASE_URL = 'https://indoor-plants-backend.studentvlad5.repl.co/api';
+// const BASE_URL = "http://localhost:3030/api";
+const BASE_URL = 'https://indoor-plants-backend.studentvlad5.repl.co/api';
 
 axios.defaults.baseURL = BASE_URL;
 

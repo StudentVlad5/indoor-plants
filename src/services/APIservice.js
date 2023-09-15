@@ -64,8 +64,15 @@ async function getFavorites(pathParams) {
 }
 
 async function getListOfCities(pathParams, body) {
-  // const formData = new FormData();
-  // formData.append("filter", body.filter);
+  return await axios.post(`${BASE_URL}${pathParams}`, body, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+async function getListOfCitiesUP(pathParams, body) {
   return await axios.post(`${BASE_URL}${pathParams}`, body, {
     headers: {
       'Content-Type': 'application/json',
@@ -76,6 +83,16 @@ async function getListOfCities(pathParams, body) {
 }
 
 async function getListOfDepartments(pathParams, body) {
+  return await axios.post(`${BASE_URL}${pathParams}`, body, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
+async function getListOfDepartmentsUP(pathParams, body) {
   return await axios.post(`${BASE_URL}${pathParams}`, body, {
     headers: {
       'Content-Type': 'application/json',
@@ -108,7 +125,17 @@ getListOfCities.propTypes = {
   body: PropTypes.string.isRequired,
 };
 
+getListOfCitiesUP.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+};
+
 getListOfDepartments.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+};
+
+getListOfDepartmentsUP.propTypes = {
   pathParams: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
 };
@@ -120,4 +147,6 @@ export {
   getFavorites,
   getListOfCities,
   getListOfDepartments,
+  getListOfCitiesUP,
+  getListOfDepartmentsUP,
 };
