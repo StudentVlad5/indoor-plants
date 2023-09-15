@@ -3,11 +3,7 @@ import { useEffect } from 'react';
 import { SEO } from 'utils/SEO';
 import { useDispatch } from 'react-redux';
 import { cleanHeaderBottom } from 'redux/header_bottom/operation';
-import {
-  Container,
-  Section,
-  Title,
-} from 'components/baseStyles/CommonStyle.styled';
+import { Gifts } from 'components/Gifts/Gifts';
 
 const GiftsPage = () => {
   const dispatch = useDispatch();
@@ -18,11 +14,7 @@ const GiftsPage = () => {
   return (
     <>
       <SEO title="HomeForest Gifts" description="Gifts" />
-      <Section>
-        <Container>
-          <Title>GiftsPage</Title>
-        </Container>
-      </Section>
+      <Gifts />
     </>
   );
 };
