@@ -22,6 +22,23 @@ const Heading = styled.div`
   width: 100%;
 `;
 
+const HeadlineShop = styled.h2`
+  font-family: ${theme.fonts[1]}; //Nib pro
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 144%; /* 51.84px */
+  color: ${theme.colors.green};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 36px;
+  }
+`;
+
 const HeadingBtnBox = styled.div`
   display: flex;
   gap: 18px;
@@ -173,6 +190,7 @@ export {
   CatalogSection,
   CatalogContainer,
   Heading,
+  HeadlineShop,
   HeadingBtnBox,
   SortBox,
   Accord,

@@ -219,6 +219,16 @@ const Heading = styled.div`
   border-bottom: 1px solid ${theme.colors.brown1};
 `;
 
+const Name = styled.h2`
+  font-family: ${theme.fonts[1]}; //Nib Pro
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  color: ${theme.colors.green1};
+`;
+
 const Prices = styled.ul`
   display: flex;
   align-items: center;
@@ -491,6 +501,7 @@ export {
   DeliveryInfoItem,
   ProductInfo,
   Heading,
+  Name,
   Prices,
   Discount,
   Price,
