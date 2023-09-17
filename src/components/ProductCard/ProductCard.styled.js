@@ -57,6 +57,7 @@ const ProductNavLink = styled.a`
     props.$primary ? theme.colors.green : theme.colors.green1};
 
   text-decoration: none;
+  text-transform: capitalize;
 
   &:hover,
   &:focus {

@@ -14,9 +14,9 @@ export const SharedLayout = () => {
         <Main>
           <Outlet />
         </Main>
-        <Footer />
-        <ScrollTop />
       </Suspense>
+      <Footer />
+      <ScrollTop />
     </>
   );
 };

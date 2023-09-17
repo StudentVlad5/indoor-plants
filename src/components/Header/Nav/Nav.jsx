@@ -12,13 +12,13 @@ export const MobileNav = ({ toggleMenu }) => {
 
   return (
     <MobileNavList>
-      <NavItem to={`/?${searchParams}`} onClick={toggleMenu}>
+      <NavItem to={`/`} onClick={toggleMenu}>
         {t('About Us')}
       </NavItem>
-      <NavItem to={`/catalog?${searchParams}`} onClick={toggleMenu}>
+      <NavItem to={`/catalog/plants?${searchParams}`} onClick={toggleMenu}>
         {t('Shop')}
       </NavItem>
-      <NavItem to={`/gifts?${searchParams}`} onClick={toggleMenu}>
+      <NavItem to={`/gifts`} onClick={toggleMenu}>
         {t('Gifts')}
       </NavItem>
       <NavItem to="/care" onClick={toggleMenu}>

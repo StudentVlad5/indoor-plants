@@ -11,10 +11,10 @@ import { onSuccess, onInfo } from 'components/helpers/Messages/NotifyMessages';
 import theme from 'components/baseStyles/Variables.styled';
 import * as SC from './CatalogList.styled';
 
-const { BASE_URL_IMG } = window.global;
+// const { BASE_URL_IMG } = window.global;
 // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-// const BASE_URL_IMG =
-//   'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
+const BASE_URL_IMG =
+  'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
 
 export const CatalogList = ({ products }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -60,7 +60,7 @@ export const CatalogList = ({ products }) => {
                 <SC.IconFav size={30} color={theme.colors.beige} />
               )}
             </SC.BtnForFavorite>
-            <NavLink to={`/catalog/${card._id}`}>
+            <NavLink to={`/catalog/byid/${card._id}`}>
               <SC.CardImage
                 src={BASE_URL_IMG + card.images[0]}
                 alt={card.name}
@@ -70,20 +70,31 @@ export const CatalogList = ({ products }) => {
               />
               <SC.CardTitle>
                 <SC.CardName>{card.name}</SC.CardName>
-                <SC.CardPrices>
-                  {card.currentPrice && (
-                    <SC.CardDiscount>
-                      {card.currentPrice}
-                      {card.currency}
-                    </SC.CardDiscount>
-                  )}
-                  {card.oldPrice && (
-                    <SC.CardPrice>
-                      {card.oldPrice}
-                      {card.currency}
-                    </SC.CardPrice>
-                  )}
-                </SC.CardPrices>
+                {card.discount !== 0 ? (
+                  <SC.CardPrices>
+                    {card.currentPrice && (
+                      <SC.CardDiscount>
+                        {card.currentPrice}
+                        {card.currency}
+                      </SC.CardDiscount>
+                    )}
+                    {card.oldPrice && (
+                      <SC.CardPrice>
+                        {card.oldPrice}
+                        {card.currency}
+                      </SC.CardPrice>
+                    )}
+                  </SC.CardPrices>
+                ) : (
+                  <SC.CardPrices>
+                    {card.currentPrice && (
+                      <SC.CardDiscount>
+                        {card.currentPrice}
+                        {card.currency}
+                      </SC.CardDiscount>
+                    )}
+                  </SC.CardPrices>
+                )}
               </SC.CardTitle>
               <SC.CardSize>
                 <span>Size</span>

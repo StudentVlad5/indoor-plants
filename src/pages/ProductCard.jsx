@@ -23,7 +23,7 @@ const ProductCardPage = ({ addToBasket }) => {
     async function getData() {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(`/catalog/${routeParams.id}`);
+        const { data } = await fetchData(`/catalog/byid/${routeParams.id}`);
         setProduct(data);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));

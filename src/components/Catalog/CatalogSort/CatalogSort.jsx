@@ -15,9 +15,8 @@ export const CatalogSort = () => {
   }, [sort]);
 
   const setParams = () => {
-    let params = Object.fromEntries(searchParams);
-    params.sort = sort;
-    setSearchParams(params);
+    searchParams.set('sort', sort);
+    setSearchParams(searchParams);
   };
 
   const handleClick = type => {

@@ -5,7 +5,7 @@ export const Main = styled.main`
   height: 100%;
 
   @media screen and (min-width: 1440px) {
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 530px);
     height: 100%;
   }
 `;
