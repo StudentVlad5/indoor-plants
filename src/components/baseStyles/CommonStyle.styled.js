@@ -45,11 +45,15 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-family: ${theme.fonts[0]}; //Raisonne pro
-  font-size: 42px;
+  font-size: 36px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: ${theme.colors.green};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 42px;
+  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 48px;
@@ -72,6 +76,8 @@ const Headline = styled.h2`
   font-style: normal;
   font-weight: 400;
   line-height: 144.5%; /* 46.24px */
+  letter-spacing: 0.64px;
+
   color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {

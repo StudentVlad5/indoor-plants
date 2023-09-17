@@ -8,12 +8,20 @@ import {
   EditCameraWrapper,
   EditPhotoInput,
   EditPhotoLabel,
+  ProfileContainer,
+  ProfileSpanName,
+  ProfileSpanValues,
   UserDataContainer,
   UserDataImg,
   UserDataImgWrapper,
   UserDataList,
   UserDataSection,
   UserPasswordList,
+  PensilStyle,
+  BtnSave,
+  BtnCancel,
+  TitleArticle,
+  BtnContainer,
 } from './UserData.styled';
 import { useAuth } from 'hooks/useAuth';
 import { update } from 'redux/auth/operations';
@@ -22,6 +30,7 @@ import NotFoundImg from '../../../images/No-image-available.webp';
 
 export const UserData = () => {
   const { BASE_URL_IMG } = window.global;
+  const [editProfileSettings, setEditProfileSettings] = useState(false);
   const [active, setActive] = useState('');
   const [changePasswordShow, setChangePasswordShow] = useState(false);
   const dispatch = useDispatch();
@@ -53,6 +62,7 @@ export const UserData = () => {
   return (
     <UserDataSection>
       <UserDataContainer>
+        <TitleArticle>Photo</TitleArticle>
         <UserDataImgWrapper>
           <UserDataImg alt="User" src={avatar} />
           <EditCameraForm>
@@ -71,63 +81,89 @@ export const UserData = () => {
           </EditCameraForm>
         </UserDataImgWrapper>
 
-        <UserDataList>
-          <UserDataItem
-            profile={profile}
-            label={'Name'}
-            defaultValue={userIn.userName}
-            type="text"
-            name="userName"
-            active={active}
-            setActive={setActive}
-            id="name"
-          />
+        {!editProfileSettings && (
+          <>
+            <TitleArticle>Profile</TitleArticle>
+            <ProfileContainer>
+              <PensilStyle onClick={() => setEditProfileSettings(true)} />
+              <ProfileSpanName>{userIn.userName}</ProfileSpanName>
+              <ProfileSpanValues>{userIn.email}</ProfileSpanValues>
+              <ProfileSpanValues>{birthday}</ProfileSpanValues>
+              <ProfileSpanValues>{userIn.phone}</ProfileSpanValues>
+              <ProfileSpanValues>{userIn.location}</ProfileSpanValues>
+            </ProfileContainer>
+          </>
+        )}
+        {editProfileSettings && (
+          <>
+            <UserDataList>
+              <UserDataItem
+                profile={profile}
+                label={'Name'}
+                defaultValue={userIn.userName}
+                type="text"
+                name="userName"
+                active={active}
+                setActive={setActive}
+                id="name"
+              />
 
-          <UserDataItem
-            profile={profile}
-            label={'Email'}
-            defaultValue={userIn.email}
-            type="email"
-            name="email"
-            active={active}
-            setActive={setActive}
-            id="email"
-          />
+              <UserDataItem
+                profile={profile}
+                label={'Email'}
+                defaultValue={userIn.email}
+                type="email"
+                name="email"
+                active={active}
+                setActive={setActive}
+                id="email"
+              />
 
-          <UserDataItem
-            profile={profile}
-            label={'Birthday'}
-            defaultValue={birthday || '01.01.1900'}
-            type="date"
-            name="birthday"
-            active={active}
-            setActive={setActive}
-            id="birthday"
-          />
+              <UserDataItem
+                profile={profile}
+                label={'Birthday'}
+                defaultValue={birthday || '01.01.1900'}
+                type="date"
+                name="birthday"
+                active={active}
+                setActive={setActive}
+                id="birthday"
+              />
 
-          <UserDataItem
-            profile={profile}
-            label={'Phone'}
-            defaultValue={userIn.phone}
-            type="tel"
-            name="phone"
-            active={active}
-            setActive={setActive}
-            id="phone"
-          />
+              <UserDataItem
+                profile={profile}
+                label={'Phone'}
+                defaultValue={userIn.phone}
+                type="tel"
+                name="phone"
+                active={active}
+                setActive={setActive}
+                id="phone"
+              />
 
-          <UserDataItem
-            profile={profile}
-            label={'City'}
-            defaultValue={userIn.location}
-            type="text"
-            name="location"
-            active={active}
-            setActive={setActive}
-            id="city"
-          />
-        </UserDataList>
+              <UserDataItem
+                profile={profile}
+                label={'City'}
+                defaultValue={userIn.location}
+                type="text"
+                name="location"
+                active={active}
+                setActive={setActive}
+                id="city"
+              />
+            </UserDataList>
+            <BtnContainer>
+              <BtnCancel onClick={() => setEditProfileSettings(false)}>
+                CANCEL
+              </BtnCancel>
+              <BtnSave onClick={() => setEditProfileSettings(false)}>
+                SAVE
+              </BtnSave>
+            </BtnContainer>
+          </>
+        )}
       </UserDataContainer>
+      <TitleArticle>Change Password</TitleArticle>
       <BtnChangePassword
         onClick={() => setChangePasswordShow(!changePasswordShow)}
       >

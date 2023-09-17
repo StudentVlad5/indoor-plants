@@ -3,23 +3,10 @@ import { Field, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
-import { Title } from 'components/baseStyles/CommonStyle.styled';
+import { Section, Title } from 'components/baseStyles/CommonStyle.styled';
 import theme from 'components/baseStyles/Variables.styled';
 
-const FormSection = styled.section`
-  @media screen and (max-width: ${theme.breakpoints.tablet_max}) {
-    background-repeat: no-repeat;
-    background-size: 620px auto;
-    background-position: bottom -250px left 30%;
-  }
-
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
-    background-repeat: no-repeat;
-    background-size: 1396px auto;
-    background-position: bottom -130px left 50%;
-  }
-`;
+const FormSection = styled(Section)``;
 
 const FormContainer = styled.div`
   height: 100%;

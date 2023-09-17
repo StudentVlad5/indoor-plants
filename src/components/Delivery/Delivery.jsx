@@ -9,13 +9,19 @@ import {
   Btn,
   SelectInput,
 } from './Delivery.styled';
-import { getListOfCities, getListOfDepartments } from 'services/APIservice';
+import {
+  getListOfCities,
+  getListOfDepartments,
+  getListOfCitiesUP,
+  getListOfDepartmentsUP,
+} from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
+import { number } from 'yup';
 
 const Delivery = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [cityName, setSityName] = useState('');
-  const [checkSityName, setCheckSityName] = useState('');
+  const [cityName, setCityName] = useState('');
+  const [checkCityName, setCheckCityName] = useState('');
   const [listOfCities, setListOfSities] = useState([]);
 
   const [departmentName, setDepartmentName] = useState('');
@@ -23,9 +29,19 @@ const Delivery = () => {
   const [checkCityRef, setCheckCityRef] = useState('');
   const [listOfDepartment, setListOfDepartment] = useState([]);
 
+  const [cityNameUP, setCityNameUP] = useState('');
+  const [checkCityNameUP, setCheckCityNameUP] = useState('');
+  const [listOfCitiesUP, setListOfSitiesUP] = useState([]);
+
+  const [departmentNameUP, setDepartmentNameUP] = useState('');
+  const [cityIDUP, setCityIDUP] = useState('');
+  const [checkCityIDUP, setCheckCityIDUP] = useState('');
+  const [listOfDepartmentUP, setListOfDepartmentUP] = useState([]);
+
+  //  get cities for Nova Poshta
   useEffect(() => {
     async function getData(cityName) {
-      setCheckSityName(cityName);
+      setCheckCityName(cityName);
       setIsLoading(true);
       try {
         const { data } = await getListOfCities('/cities', { filter: cityName });
@@ -39,18 +55,47 @@ const Delivery = () => {
         setIsLoading(false);
       }
     }
-    if (checkSityName !== cityName && cityName.length > 2) {
+    if (checkCityName !== cityName && cityName.length > 2) {
       getData(cityName);
     }
-  }, [cityName, checkSityName]);
+  }, [cityName, checkCityName]);
 
-  const departmentCity = listOfCities.filter(
-    key => key.Description === checkSityName,
-  )[0];
+  //  get cities for Ukr Poshta
+  useEffect(() => {
+    async function getData(cityNameUP) {
+      setCheckCityNameUP(cityNameUP);
+      setIsLoading(true);
+      try {
+        const { data } = await getListOfCitiesUP('/cities/up', {
+          filter: cityNameUP,
+        });
+        setListOfSitiesUP(data);
+        if (!data) {
+          return alert('Whoops, something went wrong');
+        }
+      } catch (error) {
+        alert(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    if (checkCityNameUP !== cityNameUP && cityNameUP.length > 2) {
+      getData(cityNameUP);
+    }
+  }, [cityNameUP, checkCityNameUP]);
+
+  let departmentCity;
+
+  if (listOfCities) {
+    departmentCity = listOfCities.filter(
+      key => key.Description === checkCityName,
+    )[0];
+  }
   if (departmentCity && departmentCity.Ref !== cityRef) {
     setCityRef(departmentCity.Ref);
   }
 
+  // get departments for Nova Poshta
   useEffect(() => {
     async function getData() {
       setCheckCityRef(cityRef);
@@ -74,7 +119,37 @@ const Delivery = () => {
     }
   }, [cityRef, checkCityRef]);
 
-  function options(city) {
+  // get departments for Ukr Poshta
+  useEffect(() => {
+    async function getData() {
+      setCityIDUP(checkCityNameUP);
+      setIsLoading(true);
+      try {
+        const { data } = await getListOfDepartmentsUP('/departments/up', {
+          filter: checkCityNameUP,
+        });
+        setListOfDepartmentUP(data);
+        if (!data) {
+          return alert('Whoops, something went wrong');
+        }
+      } catch (error) {
+        alert(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    if (
+      Number(checkCityNameUP) &&
+      checkCityNameUP !== '' &&
+      checkCityNameUP !== undefined
+    ) {
+      getData();
+    }
+  }, [checkCityNameUP]);
+
+  // options for Nova Poshta
+
+  function optionsNP(city) {
     const options = [];
     const list = [...listOfCities];
     list
@@ -94,7 +169,7 @@ const Delivery = () => {
     return options;
   }
 
-  function o(city) {
+  function oNP(city) {
     const options = [];
     if (listOfDepartment) {
       const list = [...listOfDepartment];
@@ -113,6 +188,52 @@ const Delivery = () => {
     }
     return options;
   }
+
+  // options for UKR Poshta
+
+  function optionsUP(city) {
+    const options = [];
+    if (
+      listOfCitiesUP !== '' &&
+      listOfCitiesUP !== undefined &&
+      Array.isArray(listOfCitiesUP)
+    ) {
+      const list = [...listOfCitiesUP];
+      list
+        .filter(key => key.CITY_UA.toLowerCase().includes(city.toLowerCase()))
+        .forEach(key => {
+          const obj = {};
+          if (key.CITY_UA) {
+            obj.value = key.CITY_ID;
+            obj.label = key.CITY_UA + ` ` + key.REGION_UA + ` область`;
+            options.push(obj);
+          }
+        });
+    }
+
+    return options;
+  }
+
+  function oUP(city) {
+    const options = [];
+    if (listOfDepartmentUP) {
+      const list = [...listOfDepartmentUP];
+      list
+        .filter(key => key.IS_SECURITY === '0')
+        .forEach(key => {
+          const obj = {};
+          if (key.ID) {
+            obj.value =
+              key.PO_SHORT + ' ' + key.ADDRESS + ' код відділення: ' + key.ID;
+            obj.label =
+              key.PO_SHORT + ' ' + key.ADDRESS + ' код відділення: ' + key.ID;
+            options.push(obj);
+          }
+        });
+    }
+    return options;
+  }
+
   return (
     <FormSection>
       <FormContainer>
@@ -121,13 +242,13 @@ const Delivery = () => {
         <Div>
           <SelectInput
             name="cityName"
-            type="submit"
+            type="text"
             className="basic-single"
             classNamePrefix="select"
-            onInputChange={e => setSityName(e)}
+            onInputChange={e => setCityName(e)}
             onChange={e => {
               if (e?.value) {
-                setSityName(e.value);
+                setCityName(e.value);
               }
             }}
             defaultValue={cityName}
@@ -135,11 +256,9 @@ const Delivery = () => {
             isClearable={true}
             isSearchable={true}
             validate={schemas.checkDepartmentNP.city}
-            options={options(cityName)}
-            placeholder={cityName === '' ? 'Select city please...' : cityName}
+            options={optionsNP(cityName)}
+            placeholder="Select city please..."
           />
-          {/* <BtnContainer><Btn type="submit"  aria-label="submit">Submit</Btn>
-                                   </BtnContainer>  */}
         </Div>
         <Div>
           <SelectInput
@@ -153,7 +272,7 @@ const Delivery = () => {
             isClearable={true}
             isSearchable={true}
             validate={schemas.checkDepartmentNP.department}
-            options={o(departmentName)}
+            options={oNP(departmentName)}
             placeholder={
               departmentName === ''
                 ? 'Select department please...'
@@ -161,6 +280,49 @@ const Delivery = () => {
             }
           />
         </Div>
+
+        <TitleDelivery>{'UKR Poshta departments'}</TitleDelivery>
+        <Div>
+          <SelectInput
+            name="cityNameUP"
+            type="text"
+            className="basic-single"
+            classNamePrefix="select"
+            onInputChange={e => setCityNameUP(e)}
+            onChange={e => {
+              if (e?.value) {
+                setCityNameUP(e.value);
+              }
+            }}
+            defaultValue={cityNameUP}
+            isDisabled={false}
+            isClearable={true}
+            isSearchable={true}
+            options={optionsUP(cityNameUP)}
+            placeholder="Select city please..."
+          />
+        </Div>
+        <Div>
+          <SelectInput
+            name="departmentNameUP"
+            type="text"
+            className="basic-single"
+            classNamePrefix="select"
+            onInputChange={e => setDepartmentNameUP(e)}
+            defaultValue={departmentNameUP}
+            isDisabled={typeof +checkCityNameUP !== 'number'}
+            isClearable={true}
+            isSearchable={true}
+            validate={schemas.checkDepartmentNP.department}
+            options={oUP(departmentNameUP)}
+            placeholder={
+              departmentNameUP === ''
+                ? 'Select department please...'
+                : departmentNameUP
+            }
+          />
+        </Div>
+
         {isLoading ? onLoading() : onLoaded()}
       </FormContainer>
     </FormSection>

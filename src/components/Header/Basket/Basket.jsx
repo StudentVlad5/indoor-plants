@@ -68,6 +68,7 @@ export const Basket = () => {
     <>
       <IconBasket onClick={() => setIsOpen(!isOpen)} />
       {basket.length > 0 && <BasketCount onClick={() => setIsOpen(!isOpen)}>{basket.length}</BasketCount>}
+
       <Overlay isOpen={isOpen} onClick={() => setIsOpen(false)} />
 
       <BasketBox open={isOpen}>

@@ -1,5 +1,11 @@
 import React, { useState } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToBasket } from 'redux/basket/operations';
+import { setQuantity } from 'redux/basket/slice';
+import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
+import { saveToStorage } from 'services/localStorService';
+
 import * as SC from './ProductCard.styled';
 import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
@@ -13,12 +19,10 @@ import { ReactComponent as Cat } from 'images/svg/cat.svg';
 import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToBasket } from 'redux/basket/operations';
-import { setQuantity } from 'redux/basket/slice';
-import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 
 const { BASE_URL_IMG } = window.global;
+// const BASE_URL_IMG = 'http://localhost:3030/uploads/';
+// const BASE_URL_IMG = 'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
 
 export const ProductCard = ({ product }) => {
   const {
@@ -64,7 +68,7 @@ export const ProductCard = ({ product }) => {
 
   // get data from selected option
   const [optionData, setOptionData] = useState(init);
-  console.log('optionData', optionData);
+  // console.log('optionData', optionData);
 
   const getOptionData = e => {
     e.preventDefault();
@@ -89,22 +93,6 @@ export const ProductCard = ({ product }) => {
     return item ? item.optionData.quantity : value;
   });
 
-  const quantityData = optionData._id;
-  const handleDecrease = () => {
-    if (quantity > 1) {
-      const newValue = quantity - 1;
-      setValue(newValue);
-      dispatch(setQuantity({ quantityData, quantity: newValue }));
-    }
-  };
-
-  const handleIncrease = () => {
-    if (quantity < optionData.total) {
-      const newValue = quantity + 1;
-      setValue(newValue);
-      dispatch(setQuantity({ quantityData, quantity: newValue }));
-    }
-  };
   //change images
   const [indxImg, setIndxImg] = useState(0);
 
@@ -143,6 +131,9 @@ export const ProductCard = ({ product }) => {
   const [showIncludedDetails, setShowIncludedDetails] = useState(false);
   const toggleIncludedDetails = () => setShowIncludedDetails(state => !state);
 
+  // save to LS type Of Plants
+  const saveToStorage = () => saveToStorage('typeOfPlants', [typeOfPlants]);
+
   return (
     <SC.ProductCardContainer>
       <SC.ProductCardSection>
@@ -163,6 +154,7 @@ export const ProductCard = ({ product }) => {
             <SC.ProductNavItem>
               <SC.ProductNavLink
                 href={`/indoor-plants/catalog?perPage=12&page=1&typeOfPlants=${typeOfPlants}`}
+                onClick={saveToStorage}
               >
                 {typeOfPlants}
               </SC.ProductNavLink>
@@ -245,7 +237,7 @@ export const ProductCard = ({ product }) => {
           <SC.ProductInfo>
             <div>
               <SC.Heading>
-                <Headline> {name}</Headline>
+                <SC.Name> {name}</SC.Name>
                 {currentPrice ? (
                   <SC.Prices>
                     <SC.Discount>

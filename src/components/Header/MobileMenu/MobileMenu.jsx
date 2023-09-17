@@ -19,7 +19,6 @@ export const MobileMenu = ({ toggleMenu }) => {
         <Text to="/" onClick={toggleMenu}>
           homeforest
         </Text>
-        ;
       </MobileHeader>
 
       {isLoggedIn ? (
@@ -27,7 +26,7 @@ export const MobileMenu = ({ toggleMenu }) => {
       ) : (
         <MobileAuthNav toggleMenu={toggleMenu} />
       )}
-      <MobileNavigation />
+      <MobileNavigation toggleMobileMenu={toggleMenu} />
       <MobileNav toggleMenu={toggleMenu} />
     </>
   );

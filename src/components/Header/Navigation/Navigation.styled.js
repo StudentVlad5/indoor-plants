@@ -50,7 +50,7 @@ const IconBasket = styled(iconBasket)`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  width: 100%;
+  /* width: 100%; */
   size: 24px;
   transition: ${theme.transition[0]};
   & > path {

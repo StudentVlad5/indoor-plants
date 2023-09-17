@@ -80,7 +80,7 @@ export const Catalog = () => {
     <SC.CatalogContainer>
       <SC.CatalogSection>
         <SC.Heading>
-          <Headline>Indoor Plants</Headline>
+          <SC.HeadlineShop>Indoor Plants</SC.HeadlineShop>
           <SC.HeadingBtnBox>
             <SC.SortBox>
               <SC.Accord onClick={toggleSort}>
@@ -116,7 +116,7 @@ export const Catalog = () => {
         </SC.Heading>
         <SC.GridContainer onClick={handleClick}>
           <SC.FiltersContainer>
-            <CatalogFilter />
+            <CatalogFilter onClear={toggleFilter} />
           </SC.FiltersContainer>
           <SC.GridWrapper>
             {isLoading ? onLoading() : onLoaded()}
