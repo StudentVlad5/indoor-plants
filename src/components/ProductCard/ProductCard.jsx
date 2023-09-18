@@ -2,12 +2,10 @@ import React, { useState } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from 'redux/basket/operations';
-import { setQuantity } from 'redux/basket/slice';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { saveToStorage } from 'services/localStorService';
 
 import * as SC from './ProductCard.styled';
-import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { ReactComponent as Car } from 'images/svg/shipping.svg';
@@ -19,10 +17,12 @@ import { ReactComponent as Cat } from 'images/svg/cat.svg';
 import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
+import noImg from 'images/No-image-available.webp';
 
-const { BASE_URL_IMG } = window.global;
+// const { BASE_URL_IMG } = window.global;
 // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-// const BASE_URL_IMG = 'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
+const BASE_URL_IMG =
+  'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
 
 export const ProductCard = ({ product }) => {
   const {
@@ -31,6 +31,7 @@ export const ProductCard = ({ product }) => {
     typeOfPlants,
     oldPrice,
     currentPrice,
+    discount,
     currency,
     description,
     options,
@@ -78,10 +79,6 @@ export const ProductCard = ({ product }) => {
     );
     selectedData.quantity = optionData.quantity;
     setOptionData(selectedData);
-
-    // console.log('e:', e.target);
-    // console.log('optionData.title', optionData.title);
-    // console.log('option.title', e.currentTarget.value);
   };
 
   //get selected value
@@ -131,42 +128,54 @@ export const ProductCard = ({ product }) => {
   const [showIncludedDetails, setShowIncludedDetails] = useState(false);
   const toggleIncludedDetails = () => setShowIncludedDetails(state => !state);
 
-  // save to LS type Of Plants
-  const saveToStorage = () => saveToStorage('typeOfPlants', [typeOfPlants]);
-
   return (
     <SC.ProductCardContainer>
       <SC.ProductCardSection>
         <SC.ProductNav>
           <SC.ProductNavList>
             <SC.ProductNavItem>
-              <SC.ProductNavLink href="/indoor-plants/">
-                Plants
+              <SC.ProductNavLink href="/indoor-plants/catalog?perPage=12&page=1">
+                Shop
               </SC.ProductNavLink>
             </SC.ProductNavItem>
             <SC.ProductNavItem>
               <SC.ProductNavLink
-                href={`/indoor-plants/catalog?perPage=12&page=1&category=${category}`}
+                href={`/indoor-plants/catalog/${category}?perPage=12&page=1&`}
               >
-                Indoor Plants
+                {category}
               </SC.ProductNavLink>
             </SC.ProductNavItem>
-            <SC.ProductNavItem>
-              <SC.ProductNavLink
-                href={`/indoor-plants/catalog?perPage=12&page=1&typeOfPlants=${typeOfPlants}`}
-                onClick={saveToStorage}
-              >
-                {typeOfPlants}
-              </SC.ProductNavLink>
-            </SC.ProductNavItem>
-            <SC.ProductNavItem>
-              <SC.ProductNavLink
-                href={`/indoor-plants/catalog/${_id}`}
-                $primary
-              >
-                {name}
-              </SC.ProductNavLink>
-            </SC.ProductNavItem>
+            {category === 'plants' ? (
+              <>
+                <SC.ProductNavItem>
+                  <SC.ProductNavLink
+                    href={`/indoor-plants/catalog/plants?perPage=12&page=1&typeOfPlants=${typeOfPlants}`}
+                    onClick={() =>
+                      saveToStorage('typeOfPlants', [typeOfPlants])
+                    }
+                  >
+                    {typeOfPlants}
+                  </SC.ProductNavLink>
+                </SC.ProductNavItem>
+                <SC.ProductNavItem>
+                  <SC.ProductNavLink
+                    href={`/indoor-plants/catalog/byid/${_id}`}
+                    $primary
+                  >
+                    {name}
+                  </SC.ProductNavLink>
+                </SC.ProductNavItem>
+              </>
+            ) : (
+              <SC.ProductNavItem>
+                <SC.ProductNavLink
+                  href={`/indoor-plants/catalog/byid/${_id}`}
+                  $primary
+                >
+                  {name}
+                </SC.ProductNavLink>
+              </SC.ProductNavItem>
+            )}
           </SC.ProductNavList>
         </SC.ProductNav>
         <SC.ProductContent>
@@ -210,13 +219,23 @@ export const ProductCard = ({ product }) => {
                 )}
             </SC.ControlsList>
             <SC.ProductImageWrapper>
-              <SC.ProductImage
-                width={347}
-                height={600}
-                src={BASE_URL_IMG + images[indxImg]}
-                alt="Product image"
-                loading="lazy"
-              />
+              {images.length !== 0 ? (
+                <SC.ProductImage
+                  width={347}
+                  height={600}
+                  src={BASE_URL_IMG + images[indxImg]}
+                  alt="Product image"
+                  loading="lazy"
+                />
+              ) : (
+                <SC.ProductImage
+                  width={347}
+                  height={600}
+                  src={noImg}
+                  alt="Default image"
+                  loading="lazy"
+                />
+              )}
               <SC.DeliveryInfo>
                 <SC.DeliveryInfoItem>
                   <Car width={32} height={32} />
@@ -238,7 +257,7 @@ export const ProductCard = ({ product }) => {
             <div>
               <SC.Heading>
                 <SC.Name> {name}</SC.Name>
-                {currentPrice ? (
+                {discount !== 0 ? (
                   <SC.Prices>
                     <SC.Discount>
                       {optionData.currentPrice}
@@ -252,7 +271,7 @@ export const ProductCard = ({ product }) => {
                 ) : (
                   <SC.Prices>
                     <SC.Discount>
-                      {optionData.oldPrice}
+                      {optionData.currentPrice}
                       {currency}
                     </SC.Discount>
                   </SC.Prices>
@@ -316,23 +335,6 @@ export const ProductCard = ({ product }) => {
                 </SC.IconBtn>
               </SC.Quantity>
             </SC.Options>
-            {/* //             <SC.TextBtn
-//               type="button"
-//               aria-label="Add to card"
-//               disabled={quantity === 0}
-//               onClick={() => {
-//                 const productToAdd = {
-//                   _id,
-//                   name,
-//                   optionData,
-//                   quantity,
-//                   images,
-//                 };
-//                 addToBasketHandler(productToAdd);
-//               }}
-//             >
-//               ADD to card
-//             </SC.TextBtn> */}
             {optionData.title ? (
               <SC.TextBtn
                 type="button"
@@ -363,115 +365,181 @@ export const ProductCard = ({ product }) => {
                 </SC.TextBtn>
               </>
             )}
-            <SC.InfoSection>
-              <SC.Accord>
-                <SC.ProductSubTitle marginBottom="0">
-                  Care and Maintenance
-                </SC.ProductSubTitle>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open description"
-                  aria-expanded="false"
-                  onClick={toggleCareDetails}
-                >
-                  <Open />
-                </SC.IconBtn>
-              </SC.Accord>
-              {showCareDetails && (
-                <SC.AccordCareList>
-                  <SC.AccordCareItem>
-                    <Sun width={24} height={24} />
-                    {light === 'bright and direct light' ? (
+            {category === 'plants' ? (
+              <SC.InfoSection>
+                <SC.Accord>
+                  <SC.ProductSubTitle marginBottom="0">
+                    Care and Maintenance
+                  </SC.ProductSubTitle>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open description"
+                    aria-expanded="false"
+                    onClick={toggleCareDetails}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.Accord>
+                {showCareDetails && (
+                  <SC.AccordCareList>
+                    <SC.AccordCareItem>
+                      <Sun width={24} height={24} />
+                      {light === 'bright and direct light' ? (
+                        <span>
+                          Put it in such a place where it is bright and the
+                          sun`s rays penetrate directly to it
+                        </span>
+                      ) : (
+                        <span>
+                          Put it in a place where the sun`s rays pierce through
+                          some cover, e.g. a curtain or a tree outside the
+                          window
+                        </span>
+                      )}
+                    </SC.AccordCareItem>
+                    <SC.AccordCareItem>
+                      <Oil width={24} height={24} />
+                      {waterSchedule === 'often' && (
+                        <span>
+                          Do not wait until half of the substrate in the pot
+                          dries out before watering again, and water often
+                        </span>
+                      )}
+                      {waterSchedule === 'average' && (
+                        <span>
+                          Wait until half of the substrate in the pot is dry
+                          before watering again
+                        </span>
+                      )}
+                      {waterSchedule === 'seldom' && (
+                        <span>
+                          Wait for the substrate in the pot to dry before
+                          watering again
+                        </span>
+                      )}
+                    </SC.AccordCareItem>
+                    <SC.AccordCareItem>
+                      <Evenodd width={24} height={24} />
+                      {hardToKill === 'easy to care' ? (
+                        <span>
+                          It tolerates home humidity well and you don`t have to
+                          worry about it
+                        </span>
+                      ) : (
+                        <span>
+                          Sometimes you need to worry about it and check the
+                          humidity in your home
+                        </span>
+                      )}
+                    </SC.AccordCareItem>
+                    <SC.AccordCareItem>
+                      <Cat width={24} height={24} />
+                      {petFriendly === 'not pet friendly' ? (
+                        <span>
+                          Keep away from pets - nibbling on leaves can harm pets
+                        </span>
+                      ) : (
+                        <span>
+                          You can keep it near pets - gnawing on the leaves
+                          cannot harm pets
+                        </span>
+                      )}
+                    </SC.AccordCareItem>
+                  </SC.AccordCareList>
+                )}
+              </SC.InfoSection>
+            ) : (
+              <SC.InfoSection>
+                <SC.Accord>
+                  <SC.ProductSubTitle marginBottom="0">
+                    Design
+                  </SC.ProductSubTitle>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open description"
+                    aria-expanded="false"
+                    onClick={toggleCareDetails}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.Accord>
+                {showCareDetails && (
+                  <SC.AccordCareList>
+                    <SC.AccordCareItem>
                       <span>
-                        Put it in such a place where it is bright and the sun`s
-                        rays penetrate directly to it
+                        The gold standard of gifting, a Homeforest gift card is
+                        a sure-fire way to make someone feel special, not to
+                        mention stylish. Just choose any amount up to $200, send
+                        by mail, and the recipient can redeem it for whatever he
+                        or she wishes.
                       </span>
-                    ) : (
+                    </SC.AccordCareItem>
+                  </SC.AccordCareList>
+                )}
+              </SC.InfoSection>
+            )}
+            {category === 'plants' ? (
+              <SC.InfoSection>
+                <SC.Accord>
+                  <SC.ProductSubTitle marginBottom="0">
+                    What’s included
+                  </SC.ProductSubTitle>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open description"
+                    aria-expanded="false"
+                    onClick={toggleIncludedDetails}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.Accord>
+                {showIncludedDetails && (
+                  <SC.AccordIncludedList>
+                    <SC.AccordIncludedItem>
+                      Healthy plant pre-potted with premium soil
+                    </SC.AccordIncludedItem>
+                    <SC.AccordIncludedItem>
+                      Ecopots pot and saucer
+                    </SC.AccordIncludedItem>
+                    <SC.AccordIncludedItem>
+                      All the tips and tricks for expert-level care
+                    </SC.AccordIncludedItem>
+                  </SC.AccordIncludedList>
+                )}
+              </SC.InfoSection>
+            ) : (
+              <SC.InfoSection>
+                <SC.Accord>
+                  <SC.ProductSubTitle marginBottom="0">
+                    Details
+                  </SC.ProductSubTitle>
+                  <SC.IconBtn
+                    type="button"
+                    aria-label="switch to open description"
+                    aria-expanded="false"
+                    onClick={toggleIncludedDetails}
+                  >
+                    <Open />
+                  </SC.IconBtn>
+                </SC.Accord>
+                {showIncludedDetails && (
+                  <SC.AccordCareList>
+                    <SC.AccordCareItem>
                       <span>
-                        Put it in a place where the sun`s rays pierce through
-                        some cover, e.g. a curtain or a tree outside the window
+                        This gift card will not expire. Redeemable at any
+                        Homeforest freestanding store in Ukraine. It should be
+                        presented at the time of purchase. May not be redeemed
+                        for cash or replaced if lost or stolen, except where
+                        required by law. Treat card like cash. Homeforest is not
+                        responsible for unauthorized use of card. Use of this
+                        card constitutes acceptance of these terms and
+                        conditions.
                       </span>
-                    )}
-                  </SC.AccordCareItem>
-                  <SC.AccordCareItem>
-                    <Oil width={24} height={24} />
-                    {waterSchedule === 'often' && (
-                      <span>
-                        Do not wait until half of the substrate in the pot dries
-                        out before watering again, and water often
-                      </span>
-                    )}
-                    {waterSchedule === 'average' && (
-                      <span>
-                        Wait until half of the substrate in the pot is dry
-                        before watering again
-                      </span>
-                    )}
-                    {waterSchedule === 'seldom' && (
-                      <span>
-                        Wait for the substrate in the pot to dry before watering
-                        again
-                      </span>
-                    )}
-                  </SC.AccordCareItem>
-                  <SC.AccordCareItem>
-                    <Evenodd width={24} height={24} />
-                    {hardToKill === 'easy to care' ? (
-                      <span>
-                        It tolerates home humidity well and you don`t have to
-                        worry about it
-                      </span>
-                    ) : (
-                      <span>
-                        Sometimes you need to worry about it and check the
-                        humidity in your home
-                      </span>
-                    )}
-                  </SC.AccordCareItem>
-                  <SC.AccordCareItem>
-                    <Cat width={24} height={24} />
-                    {petFriendly === 'not pet friendly' ? (
-                      <span>
-                        Keep away from pets - nibbling on leaves can harm pets
-                      </span>
-                    ) : (
-                      <span>
-                        You can keep it near pets - gnawing on the leaves cannot
-                        harm pets
-                      </span>
-                    )}
-                  </SC.AccordCareItem>
-                </SC.AccordCareList>
-              )}
-            </SC.InfoSection>
-            <SC.InfoSection>
-              <SC.Accord>
-                <SC.ProductSubTitle marginBottom="0">
-                  What’s included
-                </SC.ProductSubTitle>
-                <SC.IconBtn
-                  type="button"
-                  aria-label="switch to open description"
-                  aria-expanded="false"
-                  onClick={toggleIncludedDetails}
-                >
-                  <Open />
-                </SC.IconBtn>
-              </SC.Accord>
-              {showIncludedDetails && (
-                <SC.AccordIncludedList>
-                  <SC.AccordIncludedItem>
-                    Healthy plant pre-potted with premium soil
-                  </SC.AccordIncludedItem>
-                  <SC.AccordIncludedItem>
-                    Ecopots pot and saucer
-                  </SC.AccordIncludedItem>
-                  <SC.AccordIncludedItem>
-                    All the tips and tricks for expert-level care
-                  </SC.AccordIncludedItem>
-                </SC.AccordIncludedList>
-              )}
-            </SC.InfoSection>
+                    </SC.AccordCareItem>
+                  </SC.AccordCareList>
+                )}
+              </SC.InfoSection>
+            )}
           </SC.ProductInfo>
         </SC.ProductContent>
       </SC.ProductCardSection>

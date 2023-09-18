@@ -31,8 +31,8 @@ export const Hero = () => {
     (async function getData() {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(`/catalog`);
-        setProducts(data);
+        const { data } = await fetchData(`/catalog/plants`);
+        setProducts(data.catalog);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }

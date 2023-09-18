@@ -20,6 +20,10 @@ const Heading = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  & > a {
+    text-decoration: none;
+  }
 `;
 
 const HeadlineShop = styled.h2`
@@ -28,6 +32,7 @@ const HeadlineShop = styled.h2`
   font-style: normal;
   font-weight: 400;
   line-height: 144%; /* 51.84px */
+  text-transform: capitalize;
   color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -128,7 +133,8 @@ const FiltersWrapper = styled.div`
   gap: 16px;
 
   width: 38vw;
-  min-width: 200px;
+  min-width: 150px;
+  max-width: 200px;
   padding: 8px;
 
   background-color: ${theme.colors.fon};
@@ -139,6 +145,7 @@ const FiltersWrapper = styled.div`
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     top: 59px;
     width: 341px;
+    max-width: 341px;
     border-radius: 0;
   }
 `;
@@ -147,11 +154,46 @@ const FiltersContainer = styled.div`
   display: none;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    position: relative;
+    position: sticky;
+    top: 150px;
     display: inline-flex;
     flex-direction: column;
     gap: 36px;
     width: 285px;
+  }
+`;
+
+const SelectedFilters = styled.div`
+  display: inline-flex;
+  gap: 8px;
+
+  margin-top: 10px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    margin-left: 290px;
+  }
+
+  & label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+
+    padding: 6px;
+
+    font-family: ${theme.fonts[1]}; //Nib pro
+    font-size: 10px;
+    line-height: normal;
+    color: ${theme.colors.darkGreen};
+
+    border-radius: 20px;
+    background: ${theme.colors.greyOpacity};
+
+    & svg {
+      width: 10px;
+      height: 10px;
+    }
   }
 `;
 
@@ -161,7 +203,7 @@ const GridContainer = styled.div`
   align-items: flex-start;
 
   width: 100%;
-  padding-top: 36px;
+  padding-top: 16px;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     justify-content: space-between;
@@ -192,6 +234,7 @@ export {
   Heading,
   HeadlineShop,
   HeadingBtnBox,
+  SelectedFilters,
   SortBox,
   Accord,
   IconBtn,

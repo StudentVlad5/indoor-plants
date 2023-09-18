@@ -4,6 +4,7 @@ import theme from 'components/baseStyles/Variables.styled';
 import { InnerLeftWrapper, InnerRightWrapper } from '../Gifts.styled';
 
 const InnerLeft = styled(InnerLeftWrapper)`
+  align-items: center;
   padding: 0;
 `;
 

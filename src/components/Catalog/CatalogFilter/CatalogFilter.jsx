@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux'; //
+import { useSearchParams, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
@@ -9,20 +8,18 @@ import 'rc-slider/assets/index.css';
 
 import { fetchData } from 'services/APIservice';
 import { getFromStorage, saveToStorage } from 'services/localStorService';
-// import { addReload } from 'redux/reload/slice';
-// import { reloadValue } from 'redux/reload/selectors';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import * as SC from './CatalogFilter.styled';
 
 import { ReactComponent as Open } from 'images/svg/open.svg';
 
-export const CatalogFilter = ({ onClear }) => {
+export const CatalogFilter = ({ onSelected, filters }) => {
   const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState('plants');
   const [searchParams, setSearchParams] = useSearchParams();
+  const routeParams = useParams();
   const [, setError] = useState(null); //error
 
-  // const reload = useSelector(reloadValue);
-  // const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const [typeOfPlants, setTypeOfPlants] = useState(
@@ -61,40 +58,27 @@ export const CatalogFilter = ({ onClear }) => {
     getFromStorage('waterSchedule') ? getFromStorage('waterSchedule') : [],
   );
 
+  // get all filter elements
   useEffect(() => {
     (async function getData() {
       try {
-        const { data } = await fetchData(`/catalog`);
+        const { data } = await fetchData(`/catalog/${category}`);
+        getActiveLabel();
+        document
+          .querySelector(`div[data-key="typeOfPlants"]`)
+          .classList.add('active'); // default open filter
+        setCategory(routeParams.category);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
-        setProducts(data);
+        setProducts(data.catalog);
       } catch (error) {
         setError(error);
       }
     })();
   }, [t]);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     try {
-  //       const { data } = await fetchData(`/catalog`);
-  //       if (!data) {
-  //         return onFetchError(t('Whoops, something went wrong'));
-  //       }
-  //       setProducts(data);
-  //     } catch (error) {
-  //       setError(error);
-  //     }
-  //   }
-  //   getData();
-
-  //   if (reload) {
-  //     getData();
-  //     dispatch(addReload(false));
-  //   }
-  // }, [t, dispatch, reload]);
-
+  // save to local stor selected filter elements
   useEffect(() => {
     saveToStorage('typeOfPlants', typeOfPlants);
     saveToStorage('rare', rare);
@@ -118,6 +102,32 @@ export const CatalogFilter = ({ onClear }) => {
     waterSchedule,
   ]);
 
+  // get selected filter elements after refresh
+  const handleActiveLabel = key => {
+    const selectedFilters = getFromStorage(key);
+    if (selectedFilters) {
+      selectedFilters.forEach(item => {
+        const checkboxes = document.querySelectorAll(
+          `label[data-key="${item}"]`,
+        );
+        checkboxes?.forEach(checkbox => checkbox.classList.add('active_label'));
+        onSelected(selectedFilters);
+      });
+    }
+  };
+
+  const getActiveLabel = () => {
+    handleActiveLabel('typeOfPlants');
+    handleActiveLabel('rare');
+    handleActiveLabel('light');
+    handleActiveLabel('petFriendly');
+    handleActiveLabel('minPrice');
+    handleActiveLabel('maxPrice');
+    handleActiveLabel('hardToKill');
+    handleActiveLabel('potSize');
+    handleActiveLabel('waterSchedule');
+  };
+
   const toggleFilterItem = e => {
     e.stopPropagation();
     e.currentTarget.classList.toggle('active');
@@ -125,23 +135,28 @@ export const CatalogFilter = ({ onClear }) => {
 
   const toggleChecked = e => {
     // e.preventDefault();
-    const perem = document.querySelector(
+    const checked = document.querySelectorAll(
       `label[data-key="${e.currentTarget.dataset.input}"]`,
     );
-
-    if (perem.classList.contains('active_label')) {
-      perem.classList.remove('active_label');
-      e.currentTarget.removeAttribute('checked');
-    } else {
-      perem.classList.add('active_label');
-      e.currentTarget.setAttribute('checked', 'true');
-    }
+    checked.forEach(check => {
+      if (check.classList.contains('active_label')) {
+        check.classList.remove('active_label');
+        e.currentTarget.removeAttribute('checked');
+      } else {
+        check.classList.add('active_label');
+        e.currentTarget.setAttribute('checked', 'true');
+      }
+    });
   };
 
   const getUniqueOptions = key => {
     if (key === 'potSize') {
       const uniqueSizes = [];
-      const array = [...new Set(products.map(item => item[key]))];
+      const array = [
+        ...new Set(
+          products.map(item => item[key]).filter(item => item !== undefined),
+        ),
+      ];
       const unique = array
         .sort((a, b) => a.size - b.size)
         .filter(element => {
@@ -155,14 +170,16 @@ export const CatalogFilter = ({ onClear }) => {
       return unique;
     }
 
-    const unique = [...new Set(products.map(item => item[key]))];
+    const unique = [
+      ...new Set(
+        products.map(item => item[key]).filter(item => item !== undefined),
+      ),
+    ];
     return unique.sort();
   };
 
   const setParams = () => {
     let params = Object.fromEntries(searchParams);
-    // console.log('params:', params);
-    // console.log('searchParams:', Object.fromEntries(searchParams));
 
     if (typeOfPlants !== '') {
       params.typeOfPlants = typeOfPlants;
@@ -202,10 +219,8 @@ export const CatalogFilter = ({ onClear }) => {
       case 'typeOfPlants':
         if (typeOfPlants.includes(value)) {
           setTypeOfPlants(typeOfPlants.filter(item => item !== value));
-          // dispatch(addReload(true));
         } else {
           setTypeOfPlants([...typeOfPlants, value]);
-          // dispatch(addReload(true));
           saveToStorage('typeOfPlants', JSON.stringify(typeOfPlants));
           setParams();
         }
@@ -213,10 +228,8 @@ export const CatalogFilter = ({ onClear }) => {
       case 'rare':
         if (rare.includes(value)) {
           setRare(rare.filter(item => item !== value));
-          // dispatch(addReload(true));
         } else {
           setRare([...rare, value]);
-          // dispatch(addReload(true));
           saveToStorage('rare', rare);
           setParams();
         }
@@ -224,10 +237,8 @@ export const CatalogFilter = ({ onClear }) => {
       case 'light':
         if (light.includes(value)) {
           setLight(light.filter(item => item !== value));
-          // dispatch(addReload(true));
         } else {
           setLight([...light, value]);
-          // dispatch(addReload(true));
           saveToStorage('light', light);
           setParams();
         }
@@ -235,33 +246,27 @@ export const CatalogFilter = ({ onClear }) => {
       case 'petFriendly':
         if (petFriendly.includes(value)) {
           setPetFriendly(petFriendly.filter(item => item !== value));
-          // dispatch(addReload(true));
         } else {
           setPetFriendly([...petFriendly, value]);
-          // dispatch(addReload(true));
           saveToStorage('petFriendly', petFriendly);
           setParams();
         }
         break;
       case 'minPrice':
         setMinPrice(value);
-        // dispatch(addReload(true));
         saveToStorage('minPrice', value);
         setParams();
         break;
       case 'maxPrice':
         setMaxPrice(value);
-        // dispatch(addReload(true));
         saveToStorage('maxPrice', value);
         setParams();
         break;
       case 'hardToKill':
         if (hardToKill.includes(value)) {
           setHardToKill(hardToKill.filter(item => item !== value));
-          // dispatch(addReload(true));
         } else {
           setHardToKill([...hardToKill, value]);
-          // dispatch(addReload(true));
           saveToStorage('hardToKill', hardToKill);
           setParams();
         }
@@ -269,10 +274,8 @@ export const CatalogFilter = ({ onClear }) => {
       case 'potSize':
         if (potSize.includes(value)) {
           setPotSize(potSize.filter(item => item !== value));
-          // dispatch(addReload(true));
         } else {
           setPotSize([...potSize, value]);
-          // dispatch(addReload(true));
           saveToStorage('potSize', potSize);
           setParams();
         }
@@ -280,10 +283,8 @@ export const CatalogFilter = ({ onClear }) => {
       case 'waterSchedule':
         if (waterSchedule.includes(value)) {
           setWaterSchedule(waterSchedule.filter(item => item !== value));
-          // dispatch(addReload(true));
         } else {
           setWaterSchedule([...waterSchedule, value]);
-          // dispatch(addReload(true));
           saveToStorage('waterSchedule', waterSchedule);
           setParams();
         }
@@ -315,10 +316,10 @@ export const CatalogFilter = ({ onClear }) => {
     saveToStorage('potSize', []);
     saveToStorage('waterSchedule', []);
     setSearchParams({ page: 1, perPage: 12 });
-    // dispatch(addReload(true));
+    onSelected([]);
+
     const listOfLabel = document.querySelectorAll('.active_label');
     listOfLabel.forEach(item => item.classList.remove('active_label'));
-    onClear();
   };
 
   return (
@@ -326,6 +327,7 @@ export const CatalogFilter = ({ onClear }) => {
       <SC.Filters>
         <SC.Filter>
           <SC.FilterHeading
+            data-key="typeOfPlants"
             onClick={e => {
               toggleFilterItem(e);
             }}
@@ -361,6 +363,7 @@ export const CatalogFilter = ({ onClear }) => {
         </SC.Filter>
         <SC.Filter>
           <SC.FilterHeading
+            data-key="rare"
             onClick={e => {
               toggleFilterItem(e);
             }}
@@ -396,6 +399,7 @@ export const CatalogFilter = ({ onClear }) => {
         </SC.Filter>
         <SC.Filter>
           <SC.FilterHeading
+            data-key="petFriendly"
             onClick={e => {
               toggleFilterItem(e);
             }}
@@ -431,6 +435,7 @@ export const CatalogFilter = ({ onClear }) => {
         </SC.Filter>
         <SC.Filter>
           <SC.FilterHeading
+            data-key="hardToKill"
             onClick={e => {
               toggleFilterItem(e);
             }}
@@ -466,6 +471,7 @@ export const CatalogFilter = ({ onClear }) => {
         </SC.Filter>
         <SC.Filter>
           <SC.FilterHeading
+            data-key="light"
             onClick={e => {
               toggleFilterItem(e);
             }}
@@ -501,6 +507,7 @@ export const CatalogFilter = ({ onClear }) => {
         </SC.Filter>
         <SC.Filter>
           <SC.FilterHeading
+            data-key="waterSchedule"
             onClick={e => {
               toggleFilterItem(e);
             }}
@@ -536,6 +543,7 @@ export const CatalogFilter = ({ onClear }) => {
         </SC.Filter>
         <SC.Filter>
           <SC.FilterHeading
+            data-key="potSize"
             onClick={e => {
               toggleFilterItem(e);
             }}
@@ -573,6 +581,7 @@ export const CatalogFilter = ({ onClear }) => {
         </SC.Filter>
         <SC.Filter>
           <SC.FilterHeading
+            data-key="price"
             onClick={e => {
               toggleFilterItem(e);
             }}
@@ -633,7 +642,6 @@ export const CatalogFilter = ({ onClear }) => {
                 onChange={value => {
                   setMinPrice(value[0]);
                   setMaxPrice(value[1]);
-
                   saveToStorage('minPrice', value[0]);
                   saveToStorage('maxPrice', value[1]);
                   setParams();
@@ -646,14 +654,15 @@ export const CatalogFilter = ({ onClear }) => {
       <SC.FilterBtn type="button" onClick={handleClearAllFilters}>
         {t('CLEAR ALL')}
       </SC.FilterBtn>
-      <SC.InfoBtnBox>
+      {/* <SC.InfoBtnBox>
         <SC.InfoBtn type="button">{t('SIZE GUIDE')}</SC.InfoBtn>
         <SC.InfoBtn type="button">{t('ABOUT OUR SHIPPING')}</SC.InfoBtn>
-      </SC.InfoBtnBox>
+      </SC.InfoBtnBox> */}
     </>
   );
 };
 
 CatalogFilter.propTypes = {
-  onClear: PropTypes.func,
+  onSelected: PropTypes.func,
+  filters: PropTypes.array,
 };
