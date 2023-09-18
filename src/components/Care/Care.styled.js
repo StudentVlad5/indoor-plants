@@ -4,7 +4,8 @@ import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 const CareSection = styled(Section)`
   padding-top: 122px;
-
+  display: flex;
+  flex-direction: row;
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 154px;
   }
