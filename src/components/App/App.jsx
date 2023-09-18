@@ -71,7 +71,8 @@ export const App = () => {
             />
 
             <Route path="catalog" element={<CatalogPage />} />
-            <Route path="catalog/:id" element={<ProductCardPage />} />
+            <Route path="catalog/:category" element={<CatalogPage />} />
+            <Route path="catalog/byid/:id" element={<ProductCardPage />} />
             <Route
               path="catalog/favorite"
               element={

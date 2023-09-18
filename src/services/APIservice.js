@@ -2,7 +2,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // const { BASE_URL } = window.global;
-// const BASE_URL = 'http://localhost:3030/api';
+// const BASE_URL = "http://localhost:3030/api";
 const BASE_URL = 'https://indoor-plants-backend.studentvlad5.repl.co/api';
 
 // pathParams
@@ -102,6 +102,16 @@ async function getListOfDepartmentsUP(pathParams, body) {
   });
 }
 
+async function getCareList(pathParams) {
+  return await axios.get(`${BASE_URL}${pathParams}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
@@ -140,6 +150,10 @@ getListOfDepartmentsUP.propTypes = {
   body: PropTypes.string.isRequired,
 };
 
+getCareList.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+};
+
 export {
   fetchData,
   updateUserData,
@@ -149,4 +163,5 @@ export {
   getListOfDepartments,
   getListOfCitiesUP,
   getListOfDepartmentsUP,
+  getCareList,
 };

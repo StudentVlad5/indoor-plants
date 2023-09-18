@@ -35,7 +35,7 @@ export const SearchResult = ({ onClose, toggleMobileMenu }) => {
         try {
           const { data } = await fetchData(`/catalog?${searchParams}`);
           setProducts(data.catalog);
-          setCategory(data.category);
+          setCategory(data.group);
           setTotal(data.total);
           if (!data) {
             return onFetchError(t('Whoops, something went wrong'));

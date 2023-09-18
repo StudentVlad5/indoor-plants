@@ -1,6 +1,6 @@
 import React from 'react';
 import * as SC from './Gifts.styled';
-import { Container, Title } from 'components/baseStyles/CommonStyle.styled';
+import { Container } from 'components/baseStyles/CommonStyle.styled';
 import { GiftsHeading } from './Heading/Heading';
 import { Ideas } from './Ideas/Ideas';
 import { GiftCard } from './GiftCard/GiftCard';

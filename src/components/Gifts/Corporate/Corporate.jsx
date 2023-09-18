@@ -43,7 +43,7 @@ export const Corporate = () => {
             clients, or simply recognize your team’s hard work—with the gift
             that keeps on growing!
           </Description>
-          <LinkBtn>Shop gift card</LinkBtn>
+          <LinkBtn to={`/catalog/cards`}>Shop gift card</LinkBtn>
         </SC.InnerRight>
       </GiftsInnerContainer>
     </GiftsSection>

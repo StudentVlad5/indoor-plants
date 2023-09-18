@@ -40,6 +40,14 @@ const Grid = styled.ul`
 
 const Card = styled.li`
   position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
   & a {
     text-decoration: none;
     cursor: pointer;
@@ -48,12 +56,13 @@ const Card = styled.li`
 
 const CardImage = styled.img`
   width: 214px;
-  height: 300px;
+  /* height: 300px; */
+  height: auto;
   margin: 0 auto;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 285px;
-    height: 460px;
+    /* height: 460px; */
   }
 `;
 
