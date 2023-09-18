@@ -10,9 +10,10 @@ import {
 } from '../Gifts.styled';
 import * as SC from './GiftCard.styled';
 
-import green_light from 'images/gifts/card_left.png';
-import green_dark from 'images/gifts/card_right.png';
-import card from 'images/gifts/gift_card.png';
+import card_png from 'images/gifts/card.png';
+import card_webp from 'images/gifts/card.webp';
+import card_png_2x from 'images/gifts/card@2x.png';
+import card_webp_2x from 'images/gifts/card@2x.webp';
 
 export const GiftCard = () => {
   return (
@@ -27,22 +28,23 @@ export const GiftCard = () => {
             possibilities to your friends and loved ones. Buy now and make
             someone`s day!
           </Description>
-          <LinkBtn>Shop gift card</LinkBtn>
+          <LinkBtn to={`/catalog/cards`}>Shop gift card</LinkBtn>
         </SC.InnerLeft>
         <SC.InnerRight>
-          <img src={green_light} width={590} height={370} alt="light green" />
-          <img src={green_dark} width={590} height={370} alt="dark green" />
-          <SC.Card>
-            {/* <span>Gift Card</span>
-            <span>homeforest</span>
-            <span>Bring the beauty of nature into your home</span> */}
-            <img
-              src={card}
-              width={460}
-              height={300}
-              alt="gift card with logo and plant"
+          <picture>
+            <source
+              srcSet={`${card_webp} 1x, ${card_webp_2x} 2x`}
+              type="image/webp"
             />
-          </SC.Card>
+            <img
+              src={card_png}
+              srcSet={`${card_png} 590w, ${card_png_2x} 1180w`}
+              width={590}
+              height={370}
+              alt="gift card with logo and plant"
+              loading="lazy"
+            />
+          </picture>
         </SC.InnerRight>
       </GiftsInnerContainer>
     </GiftsSection>
