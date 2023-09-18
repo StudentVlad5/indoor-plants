@@ -19,6 +19,7 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import * as SC from './Catalog.styled';
 import { ReactComponent as Open } from 'images/svg/open.svg';
 import { ReactComponent as Close } from 'images/svg/icon_close.svg';
+import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
 let perPage = 12;
 
@@ -33,7 +34,6 @@ export const Catalog = () => {
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const routeParams = useParams();
-  console.log('Catalog ~ routeParams:', routeParams);
   const [category, setCategory] = useState(
     routeParams.category ? routeParams.category : 'plants',
   );
@@ -189,6 +189,9 @@ export const Catalog = () => {
               changePage={setPage}
               page={page}
             />
+            {products.length === 0 && !isLoading && !error && (
+              <Headline>Nothing found for these parameters...</Headline>
+            )}
           </SC.GridWrapper>
         </SC.GridContainer>
       </SC.CatalogSection>
