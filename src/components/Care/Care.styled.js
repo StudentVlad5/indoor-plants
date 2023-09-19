@@ -5,9 +5,10 @@ import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 const CareSection = styled(Section)`
   padding-top: 122px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 154px;
+    flex-direction: row;
   }
 `;
 
@@ -16,6 +17,14 @@ const CareContainer = styled(Container)`
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  &:first-child {
+    height: 30vh;
+  }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    &:first-child {
+      height: 100vh;
+    }
+  }
 `;
 const ListContainer = styled.div`
   margin: 0 auto;
@@ -37,34 +46,67 @@ const CareUl = styled.ul`
   gap: 4px;
   position: relative;
   width: 100%;
+  padding: 30px;
+  margin-bottom: 20px;
+  background-color: ${theme.colors.green6};
 `;
 
 const CareLi = styled.li`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: baseline;
   margin: 8px 0px;
   width: 100%;
+  &:first-child {
+    margin-bottom: 24px;
+  }
 `;
 
 const CareSpanTitle = styled.span`
-  font-size: ${theme.fontSizes.extra};
-  color: ${theme.colors.darkGreen};
+  color: ${theme.colors.green1};
+  font-family: ${theme.fonts[0]};
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+`;
+
+const CareSpanName = styled.span`
+  color: ${theme.colors.green};
+  font-family: ${theme.fonts[0]};
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+`;
+const CareSpanValue = styled.span`
+  color: ${theme.colors.brown1};
   font-family: ${theme.fonts[1]};
-  font-weight: 500px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;
 
 const CareSpan = styled.span`
-  font-size: ${theme.fontSizes.large};
-  color: ${theme.colors.brown};
+  color: ${theme.colors.brown1};
   font-family: ${theme.fonts[1]};
-  font-weight: 400px;
-  padding-left: 40px;
-`;
-
-const CareP = styled.p`
-  font-size: ${theme.fontSizes.large};
-  color: ${theme.colors.brown};
-  font-family: ${theme.fonts[1]};
-  font-weight: 400px;
-  padding-left: 40px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;
 
 const List = styled.ul`
@@ -72,7 +114,7 @@ const List = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 10px 0;
+  padding: 20px 20px;
   width: 100%;
 `;
 
@@ -132,7 +174,8 @@ export {
   List,
   ListItem,
   TitleHeading,
-  CareP,
   CareSpan,
   ListContainer,
+  CareSpanName,
+  CareSpanValue,
 };
