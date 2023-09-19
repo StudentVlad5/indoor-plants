@@ -73,6 +73,7 @@ export const Care = () => {
 
   const handleChoicePlant = e => {
     e.preventDefault;
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     let plantForSearch = [];
     plantForSearch = products?.map(item => {
       for (let i = 0; i < item.common?.length; i++) {
