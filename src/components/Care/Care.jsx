@@ -14,6 +14,7 @@ import {
   CareSpan,
   CareLi,
   CareUl,
+  ListContainer,
 } from './Care.styled';
 
 export const Care = () => {
@@ -90,7 +91,7 @@ export const Care = () => {
   return (
     <CareSection>
       <CareContainer>
-        <div>
+        <ListContainer>
           {products &&
             alphabet.map(item => (
               <List key={item}>
@@ -110,63 +111,65 @@ export const Care = () => {
                   })}
               </List>
             ))}
-        </div>
+        </ListContainer>
         {isLoading ? onLoading() : onLoaded()}
       </CareContainer>
       <CareContainer>
-        {plant &&
-          plant.map(plant => (
-            <CareUl key={plant.id}>
-              <CareLi>
-                <CareSpanTitle style={{ fontWeight: '700' }}>
-                  Common names:{' '}
-                </CareSpanTitle>
-                <CareP style={{ fontWeight: '700' }}>
-                  {plant.common.join(', ')}
-                </CareP>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Category: </CareSpanTitle>
-                <CareSpan>{plant.category}</CareSpan>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Family: </CareSpanTitle>
-                <CareSpan>{plant.family}</CareSpan>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Latin name: </CareSpanTitle>
-                <CareP>{plant.latin}</CareP>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Origin: </CareSpanTitle>
-                <CareSpan>{plant.origin}</CareSpan>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Ideal light: </CareSpanTitle>
-                <CareSpan>{plant.ideallight}</CareSpan>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Tolerated light: </CareSpanTitle>
-                <CareP>{plant.toleratedlight}</CareP>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Watering: </CareSpanTitle>
-                <CareP>{plant.watering}</CareP>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Temp max °C: </CareSpanTitle>
-                <CareSpan>{plant.tempmax.celsius}</CareSpan>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Temp min °C: </CareSpanTitle>
-                <CareSpan>{plant.tempmin.celsius}</CareSpan>
-              </CareLi>
-              <CareLi>
-                <CareSpanTitle>Use: </CareSpanTitle>
-                <CareSpan>{plant.use.join(', ')}</CareSpan>
-              </CareLi>
-            </CareUl>
-          ))}
+        <ListContainer>
+          {plant &&
+            plant.map(plant => (
+              <CareUl key={plant.id}>
+                <CareLi>
+                  <CareSpanTitle style={{ fontWeight: '700' }}>
+                    Common names:{' '}
+                  </CareSpanTitle>
+                  <CareP style={{ fontWeight: '700' }}>
+                    {plant.common.join(', ')}
+                  </CareP>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Category: </CareSpanTitle>
+                  <CareSpan>{plant.category}</CareSpan>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Family: </CareSpanTitle>
+                  <CareSpan>{plant.family}</CareSpan>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Latin name: </CareSpanTitle>
+                  <CareP>{plant.latin}</CareP>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Origin: </CareSpanTitle>
+                  <CareSpan>{plant.origin}</CareSpan>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Ideal light: </CareSpanTitle>
+                  <CareSpan>{plant.ideallight}</CareSpan>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Tolerated light: </CareSpanTitle>
+                  <CareP>{plant.toleratedlight}</CareP>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Watering: </CareSpanTitle>
+                  <CareP>{plant.watering}</CareP>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Temp max °C: </CareSpanTitle>
+                  <CareSpan>{plant.tempmax.celsius}</CareSpan>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Temp min °C: </CareSpanTitle>
+                  <CareSpan>{plant.tempmin.celsius}</CareSpan>
+                </CareLi>
+                <CareLi>
+                  <CareSpanTitle>Use: </CareSpanTitle>
+                  <CareSpan>{plant.use.join(', ')}</CareSpan>
+                </CareLi>
+              </CareUl>
+            ))}
+        </ListContainer>
       </CareContainer>
     </CareSection>
   );

@@ -15,10 +15,22 @@ const CareContainer = styled(Container)`
   margin: 0 auto;
   width: 100%;
   height: 100vh;
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scroll-behavior: smooth;
+  overflow: hidden;
 `;
+const ListContainer = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  box-sizing: content-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 const CareUl = styled.ul`
   display: flex;
   flex-direction: column;
@@ -122,4 +134,5 @@ export {
   TitleHeading,
   CareP,
   CareSpan,
+  ListContainer,
 };
