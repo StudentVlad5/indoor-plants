@@ -11,17 +11,15 @@ import { onSuccess, onInfo } from 'components/helpers/Messages/NotifyMessages';
 import theme from 'components/baseStyles/Variables.styled';
 import * as SC from './CatalogList.styled';
 
-// const { BASE_URL_IMG } = window.global;
-// const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-const BASE_URL_IMG =
-  'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
-
 export const CatalogList = ({ products }) => {
+  const { BASE_URL_IMG } = window.global;
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(getUser).favorites;
   let favorites;
   user ? (favorites = user.map(item => +item)) : (favorites = []);
   const _id = useSelector(selectId); //isLoggedIn
+
   const routeParams = useParams();
   const dispatch = useDispatch();
 

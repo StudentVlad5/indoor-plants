@@ -15,7 +15,7 @@ export const MobileNav = ({ toggleMenu }) => {
       <NavItem to={`/`} onClick={toggleMenu}>
         {t('About Us')}
       </NavItem>
-      <NavItem to={`/catalog/plants?${searchParams}`} onClick={toggleMenu}>
+      <NavItem to={`/catalog/plants`} onClick={toggleMenu}>
         {t('Shop')}
       </NavItem>
       <NavItem to={`/gifts`} onClick={toggleMenu}>

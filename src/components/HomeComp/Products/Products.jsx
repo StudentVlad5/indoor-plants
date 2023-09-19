@@ -56,7 +56,7 @@ export const Products = ({ products }) => {
             // {products.map(card => {
             return (
               <ProductsListItem key={card._id}>
-                <ProductsListItemLink to={`/catalog/${card._id}`}>
+                <ProductsListItemLink to={`/catalog/byid/${card._id}`}>
                   <ProductsImg
                     src={BASE_URL_IMG + card.images[0]}
                     alt={card.name}
