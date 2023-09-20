@@ -87,11 +87,16 @@ export const App = () => {
             <Route path="checkout" element={<CheckOutPage />} />
 
             <Route path="addition" element={<AdditionPage />}>
+              <Route
+                path="about_company"
+                element={<h4>About our company</h4>}
+              />
               <Route path="faq" element={<h4>FAQ</h4>} />
               <Route path="blogs" element={<h4>BLOGS</h4>} />
               <Route path="shipping" element={<h4>Shipping & Handling</h4>} />
               <Route path="garantee" element={<h4>Garantee</h4>} />
               <Route path="course" element={<h4>Free Online Course</h4>} />
+              <Route path="contact" element={<h4>Contact Us</h4>} />
               <Route
                 path="rewards_program"
                 element={<h4>Rewards Program</h4>}

@@ -21,6 +21,9 @@ export const Addition = () => {
         <AdditionDataWrapper>
           <FolderWrapper>
             <AdditionTitle as="h2">Magazin:</AdditionTitle>
+            <LinkFolder className="linkFolder" to={`/addition/about_company`}>
+              About company
+            </LinkFolder>
             <LinkFolder className="linkFolder" to={`/addition/faq`}>
               FAQ
             </LinkFolder>
@@ -38,6 +41,9 @@ export const Addition = () => {
             </LinkFolder>
             <LinkFolder className="linkFolder" to={`/addition/rewards_program`}>
               Rewards Program
+            </LinkFolder>
+            <LinkFolder className="linkFolder" to={`/addition/contact`}>
+              Contact Us
             </LinkFolder>
           </FolderWrapper>
           <AdditionAboutWrapper>
