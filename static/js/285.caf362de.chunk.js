@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[285],{285:function(e,t,o){o.r(t);var r=o(2791),n=o(1297),s=o(4116),i=o(9434),a=o(456),c=o(3329);t.default=function(){var e=(0,i.I0)();return window.scrollTo({top:0,left:0,behavior:"smooth"}),(0,r.useEffect)((function(){e((0,a.X)({headerBottom:"addHeaderBottom"}))}),[]),(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(s.H,{title:"HomeForest Register",description:"Register your account"}),(0,c.jsx)(n.Z,{})]})}}}]);
+//# sourceMappingURL=285.caf362de.chunk.js.map
