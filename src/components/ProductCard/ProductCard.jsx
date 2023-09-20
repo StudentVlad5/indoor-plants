@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from 'redux/basket/operations';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
-import { saveToStorage } from 'services/localStorService';
+import { saveToStorage, getFromStorage } from 'services/localStorService';
 
 import * as SC from './ProductCard.styled';
 
@@ -19,12 +19,9 @@ import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
 import noImg from 'images/No-image-available.webp';
 
-// const { BASE_URL_IMG } = window.global;
-// const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-const BASE_URL_IMG =
-  'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
-
 export const ProductCard = ({ product }) => {
+  const { BASE_URL_IMG } = window.global;
+
   const {
     _id,
     name,
@@ -149,7 +146,10 @@ export const ProductCard = ({ product }) => {
                   <SC.ProductNavLink
                     href={`/indoor-plants/catalog/plants?perPage=12&page=1&typeOfPlants=${typeOfPlants}`}
                     onClick={() =>
-                      saveToStorage('typeOfPlants', [typeOfPlants])
+                      saveToStorage('filters', {
+                        ...getFromStorage('filters'),
+                        ['typeOfPlants']: [typeOfPlants],
+                      })
                     }
                   >
                     {typeOfPlants}
