@@ -518,7 +518,7 @@ export const CatalogFilter = () => {
                   disabled={filters.minPrice === 0}
                   placeholder={min}
                   onChange={e => {
-                    setFilters({ ...filters, ['minPrice']: e.target.value });
+                    // setFilters({ ...filters, ['minPrice']: e.target.value });
                     handleChange(e);
                   }}
                 />
@@ -533,7 +533,7 @@ export const CatalogFilter = () => {
                   disabled={filters.maxPrice === 0}
                   placeholder={max}
                   onChange={e => {
-                    setFilters({ ...filters, ['maxPrice']: e.target.value });
+                    // setFilters({ ...filters, ['maxPrice']: e.target.value });
                     handleChange(e);
                   }}
                 />

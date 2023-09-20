@@ -132,18 +132,25 @@ export const Catalog = () => {
       const arr = [key, value];
 
       if (arr[1].length !== 0) {
-        if (arr[0] === 'minPrice') {
-          saveToStorage('filters', { ...LS, ['minPrice']: '' });
-          setFilters(prevState => ({ ...prevState, ['minPrice']: '' }));
-        } else if (arr[0] === 'maxPrice') {
-          saveToStorage('filters', { ...LS, ['maxPrice']: '' });
-          setFilters(prevState => ({ ...prevState, ['maxPrice']: '' }));
-        } else {
+        if (Array.isArray(arr[1])) {
           const index = arr[1].findIndex(item => item === deletedFilter);
           if (index > -1) {
             arr[1].splice(index, 1);
-            saveToStorage('filters', { ...LS, [arr[0]]: newFilters });
-            setFilters(prevState => ({ ...prevState, [arr[0]]: newFilters }));
+            saveToStorage('filters', { ...LS, [arr[0]]: arr[1] });
+            setFilters(prevState => ({ ...prevState, [arr[0]]: arr[1] }));
+            setParams();
+          }
+        }
+        if (!Array.isArray(arr[1])) {
+          if (arr[0] == 'minPrice') {
+            saveToStorage('filters', { ...LS, ['minPrice']: '' });
+            setFilters(prevState => ({ ...prevState, ['minPrice']: '' }));
+            setParams();
+          }
+          if (arr[0] == 'maxPrice') {
+            saveToStorage('filters', { ...LS, ['maxPrice']: '' });
+            setFilters(prevState => ({ ...prevState, ['maxPrice']: '' }));
+            setParams();
           }
         }
       }
