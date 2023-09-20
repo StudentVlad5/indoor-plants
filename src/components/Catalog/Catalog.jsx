@@ -48,9 +48,7 @@ export const Catalog = () => {
     routeParams.category ? routeParams.category : 'plants',
   ); //, setCategory
   const [selectedFilter, setSelectedFilter] = useState([]);
-  const [filters, setFilters] = useState(
-    getFromStorage('filters') ? getFromStorage('filters') : initialState,
-  );
+  const [filters, setFilters] = useState(initialState);
   const { t } = useTranslation();
 
   const setPage = toPage => {
@@ -87,7 +85,14 @@ export const Catalog = () => {
     })();
   }, [t, page, perPage, searchParams]);
 
-  useEffect(() => {}, [selectedFilter]);
+  useEffect(() => {
+    setFilters(getFromStorage('filters'));
+    setParams();
+
+    if (selectedFilter.length === 0) {
+      setParams();
+    }
+  }, [selectedFilter]);
 
   const [showSort, setShowSort] = useState(false);
   const toggleSort = () => {
@@ -202,7 +207,7 @@ export const Catalog = () => {
         <SC.Heading>
           <div>
             <a
-              href={`/indoor-plants/catalog`}
+              href={`/indoor-plants/catalog?perPage=12&page=1`}
               onClick={() => removeLocalStor()}
             >
               <SC.HeadlineShop>Shop / </SC.HeadlineShop>
