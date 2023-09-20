@@ -39,7 +39,10 @@ export const Discr = () => {
       <HealthList>
         {imgArr.map((image, idx) => (
           <HealthListItem style={{ cursor: 'pointer' }} key={idx}>
-            <Link to={titleArr[1].links[idx]}>
+            <Link
+              style={{ textDecoration: 'none' }}
+              to={titleArr[1].links[idx]}
+            >
               <img src={image} alt={titleArr[0].name[idx]} />
               <HealthImgDiscr>{titleArr[0].name[idx]}</HealthImgDiscr>
             </Link>
