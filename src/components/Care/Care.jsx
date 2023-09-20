@@ -28,12 +28,14 @@ import { ReactComponent as Temp_min } from '../../images/svg/care/temp_min.svg';
 import { ReactComponent as Tolereted_light } from '../../images/svg/care/tolereted_light.svg';
 import { ReactComponent as Use } from '../../images/svg/care/use.svg';
 import { ReactComponent as Watering } from '../../images/svg/care/watering.svg';
+import { Search } from './Search/Search';
 
 export const Care = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState(false);
   const [plant, setPlant] = useState(false);
   const [, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const alphabet = [
     'a',
@@ -104,6 +106,7 @@ export const Care = () => {
   return (
     <CareSection>
       <CareContainer>
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <ListContainer>
           {products &&
             alphabet.map(item => (
@@ -111,7 +114,10 @@ export const Care = () => {
                 <ListItem>{item.toUpperCase()}</ListItem>
                 {arraOfNames &&
                   uniqArr.map((it, index) => {
-                    if (it?.slice(0, 1).toLowerCase() === item)
+                    if (
+                      it?.slice(0, 1).toLowerCase() === item &&
+                      it?.includes(searchQuery)
+                    )
                       return (
                         <TitleHeading
                           style={{ cursor: 'pointer' }}
