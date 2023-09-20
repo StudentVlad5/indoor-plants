@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 
 import Range from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -518,8 +517,9 @@ export const CatalogFilter = () => {
                   disabled={filters.minPrice === 0}
                   placeholder={min}
                   onChange={e => {
-                    // setFilters({ ...filters, ['minPrice']: e.target.value });
-                    handleChange(e);
+                    setFilters({ ...filters, ['minPrice']: e.target.value });
+                    setParams();
+                    // handleChange(e);
                   }}
                 />
                 <>$</>
@@ -533,8 +533,9 @@ export const CatalogFilter = () => {
                   disabled={filters.maxPrice === 0}
                   placeholder={max}
                   onChange={e => {
-                    // setFilters({ ...filters, ['maxPrice']: e.target.value });
-                    handleChange(e);
+                    setFilters({ ...filters, ['maxPrice']: e.target.value });
+                    setParams();
+                    // handleChange(e);
                   }}
                 />
                 <>$</>
