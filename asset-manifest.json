@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/indoor-plants/static/css/main.17654e45.css",
-    "main.js": "/indoor-plants/static/js/main.4ab0a564.js",
-    "static/js/826.4b021ed1.chunk.js": "/indoor-plants/static/js/826.4b021ed1.chunk.js",
+    "main.js": "/indoor-plants/static/js/main.ff360bff.js",
+    "static/js/826.09c88849.chunk.js": "/indoor-plants/static/js/826.09c88849.chunk.js",
     "static/js/865.23f02c1e.chunk.js": "/indoor-plants/static/js/865.23f02c1e.chunk.js",
     "static/css/573.40e2d9e2.chunk.css": "/indoor-plants/static/css/573.40e2d9e2.chunk.css",
-    "static/js/573.8d1a74ef.chunk.js": "/indoor-plants/static/js/573.8d1a74ef.chunk.js",
-    "static/js/596.3cdcdbb7.chunk.js": "/indoor-plants/static/js/596.3cdcdbb7.chunk.js",
-    "static/js/978.ba37a8c4.chunk.js": "/indoor-plants/static/js/978.ba37a8c4.chunk.js",
+    "static/js/573.a0fc04be.chunk.js": "/indoor-plants/static/js/573.a0fc04be.chunk.js",
+    "static/js/596.74326833.chunk.js": "/indoor-plants/static/js/596.74326833.chunk.js",
+    "static/js/978.0524513c.chunk.js": "/indoor-plants/static/js/978.0524513c.chunk.js",
     "static/js/904.14f5421c.chunk.js": "/indoor-plants/static/js/904.14f5421c.chunk.js",
     "static/js/694.c2df0dd4.chunk.js": "/indoor-plants/static/js/694.c2df0dd4.chunk.js",
     "static/js/285.caf362de.chunk.js": "/indoor-plants/static/js/285.caf362de.chunk.js",
@@ -115,13 +115,13 @@
     "static/media/arrowDown.svg": "/indoor-plants/static/media/arrowDown.2124174c7a9aa922cb88bb1aa1569382.svg",
     "static/media/done_light.svg": "/indoor-plants/static/media/done_light.2b616f9c56944b89a5ba7b5814f2240a.svg",
     "main.17654e45.css.map": "/indoor-plants/static/css/main.17654e45.css.map",
-    "main.4ab0a564.js.map": "/indoor-plants/static/js/main.4ab0a564.js.map",
-    "826.4b021ed1.chunk.js.map": "/indoor-plants/static/js/826.4b021ed1.chunk.js.map",
+    "main.ff360bff.js.map": "/indoor-plants/static/js/main.ff360bff.js.map",
+    "826.09c88849.chunk.js.map": "/indoor-plants/static/js/826.09c88849.chunk.js.map",
     "865.23f02c1e.chunk.js.map": "/indoor-plants/static/js/865.23f02c1e.chunk.js.map",
     "573.40e2d9e2.chunk.css.map": "/indoor-plants/static/css/573.40e2d9e2.chunk.css.map",
-    "573.8d1a74ef.chunk.js.map": "/indoor-plants/static/js/573.8d1a74ef.chunk.js.map",
-    "596.3cdcdbb7.chunk.js.map": "/indoor-plants/static/js/596.3cdcdbb7.chunk.js.map",
-    "978.ba37a8c4.chunk.js.map": "/indoor-plants/static/js/978.ba37a8c4.chunk.js.map",
+    "573.a0fc04be.chunk.js.map": "/indoor-plants/static/js/573.a0fc04be.chunk.js.map",
+    "596.74326833.chunk.js.map": "/indoor-plants/static/js/596.74326833.chunk.js.map",
+    "978.0524513c.chunk.js.map": "/indoor-plants/static/js/978.0524513c.chunk.js.map",
     "904.14f5421c.chunk.js.map": "/indoor-plants/static/js/904.14f5421c.chunk.js.map",
     "694.c2df0dd4.chunk.js.map": "/indoor-plants/static/js/694.c2df0dd4.chunk.js.map",
     "285.caf362de.chunk.js.map": "/indoor-plants/static/js/285.caf362de.chunk.js.map",
@@ -136,6 +136,6 @@
   },
   "entrypoints": [
     "static/css/main.17654e45.css",
-    "static/js/main.4ab0a564.js"
+    "static/js/main.ff360bff.js"
   ]
 }
