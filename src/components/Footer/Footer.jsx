@@ -78,7 +78,7 @@ export const Footer = () => {
         `/catalog?perPage=12&page=1`,
         `/care`,
         `/addition/blogs`,
-        `//addition/course`,
+        `/addition/course`,
       ],
     },
     {
