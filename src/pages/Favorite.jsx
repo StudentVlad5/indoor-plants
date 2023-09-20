@@ -7,6 +7,7 @@ import { Favorites } from 'components/Favorites/Favorites';
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
   useEffect(() => {
     dispatch(

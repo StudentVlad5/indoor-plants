@@ -33,7 +33,7 @@ export const Catalog = () => {
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const routeParams = useParams();
-  console.log('Catalog ~ routeParams:', routeParams);
+  // console.log('Catalog ~ routeParams:', routeParams);
   const [category, setCategory] = useState(
     routeParams.category ? routeParams.category : 'plants',
   );

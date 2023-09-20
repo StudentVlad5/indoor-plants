@@ -51,7 +51,6 @@ export const UserData = () => {
     const data = {};
     data['avatar'] = e.target.files[0];
     data['id'] = id;
-    console.log('data', data);
     dispatch(update(data));
   };
 

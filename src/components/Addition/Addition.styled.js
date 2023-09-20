@@ -18,7 +18,7 @@ export const AdditionSection = styled(Section)`
 export const AdditionContainer = styled(Container)`
   margin: 0 auto;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   height: 100%;
   padding-top: 40px;
 `;
@@ -111,6 +111,7 @@ export const LinkFolder = styled(NavLink)`
   color: ${theme.colors.brown};
   background-color: transparent;
   cursor: pointer;
+  transition: ${theme.transition};
   &:hover,
   &:focus {
     color: ${theme.colors.white};

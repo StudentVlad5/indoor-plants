@@ -8,6 +8,8 @@ import { Gifts } from 'components/Gifts/Gifts';
 const GiftsPage = () => {
   const dispatch = useDispatch();
 
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   useEffect(() => {
     dispatch(cleanHeaderBottom());
   }, []);

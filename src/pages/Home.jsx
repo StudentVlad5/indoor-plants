@@ -9,6 +9,8 @@ import { HomeComp } from 'components/HomeComp/HomeComp/HomeComp';
 const HomePage = () => {
   const dispatch = useDispatch();
 
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   useEffect(() => {
     dispatch(cleanHeaderBottom());
   }, []);

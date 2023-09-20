@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HealthBox = styled.div`
@@ -68,7 +69,7 @@ export const HealthDiscr = styled.p`
   }
 `;
 
-export const ReadMore = styled.a`
+export const ReadMore = styled(Link)`
   color: #5f4a32;
   font-family: 'Nib Pro';
   font-size: 16px;

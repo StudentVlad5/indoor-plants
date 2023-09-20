@@ -20,6 +20,8 @@ import img_desktop_webp_3 from '../images/error/404_indoor_plants_desktop_3x.web
 const NotFoundPage = () => {
   const dispatch = useDispatch();
 
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   useEffect(() => {
     dispatch(cleanHeaderBottom());
   }, []);

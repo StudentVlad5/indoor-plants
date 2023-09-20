@@ -21,7 +21,7 @@ export const Care = () => {
           repot your plants. Here are some tips on how and when to do it best.
         </HealthDiscr>
 
-        <ReadMore href="#">Read more</ReadMore>
+        <ReadMore to={'/addition/blogs'}>Read more</ReadMore>
         <CareImgBox>
           <CareImg src={youngWoman} alt="" />
         </CareImgBox>
@@ -39,7 +39,7 @@ export const Care = () => {
               best.
             </HealthDiscr>
 
-            <ReadMore href="#">Read more</ReadMore>
+            <ReadMore to={'/addition/blogs'}>Read more</ReadMore>
           </CareBoxText>
         </div>
         <CareImgBox>

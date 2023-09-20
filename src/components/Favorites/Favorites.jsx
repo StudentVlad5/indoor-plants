@@ -46,7 +46,6 @@ export const Favorites = () => {
 
     (async function getData() {
       setIsLoading(true);
-      console.log('searchParams', searchParams);
       try {
         const { data } = await getFavorites(
           `/auth/catalog/${id}?${searchParams}`,

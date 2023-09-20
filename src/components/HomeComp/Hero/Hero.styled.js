@@ -1,3 +1,4 @@
+import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 
 export const HeroSection = styled.section``;
@@ -103,8 +104,16 @@ export const HeroBtn = styled.button`
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: ${theme.transition};
 
   @media screen and (min-width: 1440px) {
     padding: 10px 75px;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.green};
+    background-color: ${theme.colors.white};
   }
 `;

@@ -64,12 +64,10 @@ export const ProductCard = ({ product }) => {
     };
     dispatch(addToBasket(updatedProduct));
     onSuccess('Added');
-    console.log('Added success: ', product);
   };
 
   // get data from selected option
   const [optionData, setOptionData] = useState(init);
-  // console.log('optionData', optionData);
 
   const getOptionData = e => {
     e.preventDefault();
