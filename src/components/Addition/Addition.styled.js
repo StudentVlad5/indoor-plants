@@ -7,7 +7,7 @@ import {
 } from 'components/baseStyles/CommonStyle.styled';
 import { NavLink } from 'react-router-dom';
 
-export const UserSection = styled(Section)`
+export const AdditionSection = styled(Section)`
   padding-top: 122px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -15,7 +15,7 @@ export const UserSection = styled(Section)`
   }
 `;
 
-export const UserContainer = styled(Container)`
+export const AdditionContainer = styled(Container)`
   margin: 0 auto;
   width: 100%;
   /* min-height: 100vh; */
@@ -23,7 +23,7 @@ export const UserContainer = styled(Container)`
   padding-top: 40px;
 `;
 
-export const UserDataWrapper = styled.div`
+export const AdditionDataWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -54,7 +54,7 @@ export const FolderWrapper = styled.div`
   }
 `;
 
-export const UserAboutWrapper = styled.div`
+export const AdditionAboutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,7 +70,7 @@ export const UserAboutWrapper = styled.div`
   }
 `;
 
-export const UserTitle = styled(Title)`
+export const AdditionTitle = styled(Title)`
   padding-left: 8px;
   padding-right: 8px;
   padding-bottom: 0px;

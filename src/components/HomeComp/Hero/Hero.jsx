@@ -14,7 +14,7 @@ import hero from '../../../images/hero/hero1.png';
 import heroDesk from '../../../images/hero/heroDesk.png';
 import { Products } from '../Products/Products';
 import { useTranslation } from 'react-i18next';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchData } from 'services/APIservice';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
@@ -54,7 +54,9 @@ export const Hero = () => {
           <HeroBoxText>
             <HeroTitle>Indoor Plants</HeroTitle>
             <HeroDiscr>bring the beauty of nature into your home</HeroDiscr>
-            <HeroBtn type="button">Shop now</HeroBtn>
+            <Link to={'/catalog?perPage=12&page=1'}>
+              <HeroBtn type="button">Shop now</HeroBtn>
+            </Link>
           </HeroBoxText>
         </HeroBox>
       </HeroContainer>

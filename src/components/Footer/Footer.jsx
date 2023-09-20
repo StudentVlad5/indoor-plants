@@ -36,6 +36,7 @@ import {
   // Description,
   // TeamModalBtn,
 } from './Footer.styled';
+import { Link } from 'react-router-dom';
 // import { ModalTeam } from './ModalTeam/ModalTeam';
 
 export const Footer = () => {
@@ -58,6 +59,12 @@ export const Footer = () => {
     {
       title: 'Customer Service',
       options: ['FAQ', 'Shipping & Handling', '30-Day Garantee', 'Contact Us'],
+      links: [
+        `/addition/faq`,
+        `/addition/shipping`,
+        `/addition/garantee`,
+        `/addition/contact`,
+      ],
     },
     {
       title: 'Resources',
@@ -67,14 +74,32 @@ export const Footer = () => {
         'Blog',
         'Free Online Course',
       ],
+      links: [
+        `/catalog?perPage=12&page=1`,
+        `/care`,
+        `/addition/blogs`,
+        `/addition/course`,
+      ],
     },
     {
       title: 'my homeforest 🌿',
       options: ['My Account', 'Workshops', 'Rewards Program', 'Track My Order'],
+      links: [
+        `/user/profile`,
+        `/addition`,
+        `/addition/rewards_program`,
+        `/user/orders`,
+      ],
     },
     {
       title: 'explore',
       options: ['Our Story', 'Locations', 'Careers', 'Corporate Gifting'],
+      links: [
+        `/addition/about_company`,
+        `/addition/about_company`,
+        `/addition/about_company`,
+        `/gifts`,
+      ],
     },
   ];
 
@@ -102,8 +127,10 @@ export const Footer = () => {
 
               {isOpen[idx] && (
                 <FaqListOptionsBox>
-                  {item.options.map((options, el) => (
-                    <FaqListOptions key={el}>{options}</FaqListOptions>
+                  {item.links.map((it, el) => (
+                    <Link style={{ textDecoration: 'none' }} key={el} to={it}>
+                      <FaqListOptions>{item.options[el]}</FaqListOptions>
+                    </Link>
                   ))}
                 </FaqListOptionsBox>
               )}
@@ -119,8 +146,10 @@ export const Footer = () => {
               </FaqListBoxText>
 
               <FaqListOptionsBox>
-                {item.options.map((options, el) => (
-                  <FaqListOptions key={el}>{options}</FaqListOptions>
+                {item.links.map((it, el) => (
+                  <Link style={{ textDecoration: 'none' }} key={el} to={it}>
+                    <FaqListOptions>{item.options[el]}</FaqListOptions>
+                  </Link>
                 ))}
               </FaqListOptionsBox>
             </FooterFaqListItem>

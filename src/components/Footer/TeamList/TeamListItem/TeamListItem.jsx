@@ -11,16 +11,16 @@ import // Item,
 export const TeamListItem = ({ developer }) => {
   const { _id, name, email, telegram, linkedin, github, imageUrl } = developer;
   const hrefEmail = `mailto:${email}`;
-  console.log(
-    _id,
-    name,
-    email,
-    telegram,
-    linkedin,
-    github,
-    imageUrl,
-    hrefEmail,
-  );
+  // console.log(
+  //   _id,
+  //   name,
+  //   email,
+  //   telegram,
+  //   linkedin,
+  //   github,
+  //   imageUrl,
+  //   hrefEmail,
+  // );
   return (
     <></>
     // <Item key={_id}>

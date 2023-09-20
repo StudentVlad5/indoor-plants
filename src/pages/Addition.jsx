@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 import { SEO } from 'utils/SEO';
 import { useDispatch } from 'react-redux';
 import { cleanHeaderBottom } from 'redux/header_bottom/operation';
-import { Care } from '../components/Care/Care';
+import { Addition } from 'components/Addition/Addition';
 
-const CarePage = () => {
+const AdditionPage = () => {
   const dispatch = useDispatch();
 
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -16,10 +16,13 @@ const CarePage = () => {
 
   return (
     <>
-      <SEO title="HomeForest Care" description="Care of your plants" />
-      <Care />
+      <SEO
+        title="HomeForest Addition"
+        description="Addition Blogs Deliveries"
+      />
+      <Addition />
     </>
   );
 };
 
-export default CarePage;
+export default AdditionPage;

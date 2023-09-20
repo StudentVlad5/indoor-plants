@@ -28,7 +28,7 @@ export const Health = () => {
               and heart rate.
             </HealthDiscr>
 
-            <ReadMore href="#">Read more</ReadMore>
+            <ReadMore to={'/addition/blogs'}>Read more</ReadMore>
             <ImgBox>
               <img src={woman} alt="" />
             </ImgBox>
@@ -48,7 +48,7 @@ export const Health = () => {
                 pressure and heart rate.
               </HealthDiscr>
 
-              <ReadMore href="#">Read more</ReadMore>
+              <ReadMore to={'/addition/blogs'}>Read more</ReadMore>
             </BoxText>
           </HealthBoxDiscr>
         </HealthBox>

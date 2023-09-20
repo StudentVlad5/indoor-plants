@@ -8,6 +8,8 @@ import CheckOut from 'components/CheckOut/Checkout';
 const CheckOutPage = () => {
   const dispatch = useDispatch();
 
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   useEffect(() => {
     dispatch(
       addHeaderBottom({
