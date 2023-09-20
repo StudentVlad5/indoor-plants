@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from 'redux/basket/operations';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
-import { saveToStorage } from 'services/localStorService';
+import { saveToStorage, getFromStorage } from 'services/localStorService';
 
 import * as SC from './ProductCard.styled';
 
@@ -148,7 +148,10 @@ export const ProductCard = ({ product }) => {
                   <SC.ProductNavLink
                     href={`/indoor-plants/catalog/plants?perPage=12&page=1&typeOfPlants=${typeOfPlants}`}
                     onClick={() =>
-                      saveToStorage('typeOfPlants', [typeOfPlants])
+                      saveToStorage('filters', {
+                        ...getFromStorage('filters'),
+                        ['typeOfPlants']: [typeOfPlants],
+                      })
                     }
                   >
                     {typeOfPlants}
