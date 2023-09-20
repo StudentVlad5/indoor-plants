@@ -11,6 +11,7 @@ import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
 import { UserData } from 'components/UserComp/UserData/UserData';
+import AdditionPage from 'pages/Addition';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -84,6 +85,18 @@ export const App = () => {
             <Route path="gifts" element={<GiftsPage />} />
             <Route path="care" element={<CarePage />} />
             <Route path="checkout" element={<CheckOutPage />} />
+
+            <Route path="addition" element={<AdditionPage />}>
+              <Route path="faq" element={<h4>FAQ</h4>} />
+              <Route path="blogs" element={<h4>BLOGS</h4>} />
+              <Route path="shipping" element={<h4>Shipping & Handling</h4>} />
+              <Route path="garantee" element={<h4>Garantee</h4>} />
+              <Route path="course" element={<h4>Free Online Course</h4>} />
+              <Route
+                path="rewards_program"
+                element={<h4>Rewards Program</h4>}
+              />
+            </Route>
 
             <Route
               path="user"
