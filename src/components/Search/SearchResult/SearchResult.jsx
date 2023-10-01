@@ -12,10 +12,9 @@ import * as SC from './SearchResult.styled';
 import { Subtitle } from 'components/baseStyles/CommonStyle.styled';
 
 import { MdEast } from 'react-icons/md';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 export const SearchResult = ({ onClose, toggleMobileMenu }) => {
-  const { BASE_URL_IMG } = window.global;
-
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [total, setTotal] = useState([]);

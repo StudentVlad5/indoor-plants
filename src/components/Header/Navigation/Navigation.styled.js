@@ -64,6 +64,23 @@ const IconBasket = styled(iconBasket)`
   }
 `;
 
+const NumberOfItemInBasket = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border-color: ${theme.colors.darkGreen};
+  background-color: ${theme.colors.darkGreen};
+  color: ${theme.colors.white};
+  font-size: ${theme.fontSizes.extrasmall};
+  width: 16px;
+  height: 16px;
+
+  position: absolute;
+  top: -14px;
+  left: 6px;
+`;
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -135,6 +152,7 @@ export {
   IconSearch,
   IconFavorite,
   IconBasket,
+  NumberOfItemInBasket,
   MobileContainer,
   MobileNavBlock,
   IconSearchMobile,

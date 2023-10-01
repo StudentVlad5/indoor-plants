@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { IconBasket } from '../Navigation/Navigation.styled';
+import {
+  IconBasket,
+  NumberOfItemInBasket,
+} from '../Navigation/Navigation.styled';
 import {
   BasketIconClose,
   BasketBox,
@@ -32,7 +35,11 @@ import peaceLily from '../../../images/basket/peace-lily.png';
 import philodendron from '../../../images/basket/philodendron.png';
 import plantGrayPot from '../../../images/basket/plant-gray-pot.png';
 import { useSelector } from 'react-redux';
-import { selectBasket, selectTotalPayment } from 'redux/basket/selectors';
+import {
+  selectBasket,
+  selectTotalPayment,
+  selectTotalAmount,
+} from 'redux/basket/selectors';
 import { BasketList } from './BasketList/BasketList';
 
 export const Basket = () => {
@@ -65,7 +72,10 @@ export const Basket = () => {
 
   return (
     <>
-      <div style={{ width: '24px', height: '24px' }}>
+      <div style={{ width: '24px', height: '24px', position: 'relative' }}>
+        {basket.length > 0 && (
+          <NumberOfItemInBasket>{basket.length}</NumberOfItemInBasket>
+        )}
         <IconBasket onClick={() => setIsOpen(!isOpen)} />
       </div>
       <Overlay isOpen={isOpen} onClick={() => setIsOpen(false)} />

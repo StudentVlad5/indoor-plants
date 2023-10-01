@@ -21,11 +21,9 @@ import { useDispatch } from 'react-redux';
 import { removeProduct } from 'redux/basket/operations';
 import { setQuantity } from 'redux/basket/slice';
 import { onSuccess } from '../helpers/Messages/NotifyMessages';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 export const CustomCheckOut = ({ _id, name, optionData, images, quantity }) => {
-  // console.log('IDDDD--', _id, name, oldPrice, currentPrice, optionData, images);
-  const { BASE_URL_IMG } = window.global;
-
   const dispatch = useDispatch();
 
   const removeProductHandler = (_id, size) => {

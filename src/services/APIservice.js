@@ -1,9 +1,6 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
-// const { BASE_URL } = window.global;
-// const BASE_URL = "http://localhost:3030/api";
-const BASE_URL = 'https://indoor-plants-backend.studentvlad5.repl.co/api';
+import { BASE_URL } from 'BASE_CONST/Base-const';
 
 // pathParams
 async function fetchData(pathParams) {

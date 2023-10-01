@@ -18,10 +18,9 @@ import { ReactComponent as Evenodd } from 'images/svg/evenodd.svg';
 import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
 import noImg from 'images/No-image-available.webp';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 export const ProductCard = ({ product }) => {
-  const { BASE_URL_IMG } = window.global;
-
   const {
     _id,
     name,

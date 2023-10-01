@@ -8,12 +8,11 @@ import {
   IconUser,
   AvatarUser,
 } from './UserNav.styled';
-// import { useTranslation } from 'react-i18next';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 export const MobileUserNav = ({ toggleMenu }) => {
   const user = useSelector(selectUser);
   const userAvatar = useSelector(getUserAvatar);
-  const { BASE_URL_IMG } = window.global;
   let avatar;
   if (userAvatar !== '' && userAvatar !== undefined) {
     avatar =
@@ -35,7 +34,6 @@ export const MobileUserNav = ({ toggleMenu }) => {
 export const UserNav = () => {
   const user = useSelector(selectUser);
   const userAvatar = useSelector(getUserAvatar);
-  const { BASE_URL_IMG } = window.global;
   let avatar;
   if (userAvatar !== '' && userAvatar !== undefined) {
     avatar =

@@ -7,13 +7,12 @@ import { addReload } from 'redux/reload/slice';
 import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { getUser, selectId, selectIsLoggedIn } from 'redux/auth/selectors';
 import { onSuccess, onInfo } from 'components/helpers/Messages/NotifyMessages';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 import theme from 'components/baseStyles/Variables.styled';
 import * as SC from './CatalogList.styled';
 
 export const CatalogList = ({ products }) => {
-  const { BASE_URL_IMG } = window.global;
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(getUser).favorites;
   let favorites;
