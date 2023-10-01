@@ -69,7 +69,7 @@ export const Basket = () => {
   ];
   const basket = useSelector(selectBasket);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
-
+  // document.querySelector('body').style.overflow = "hidden";
   return (
     <>
       <div style={{ width: '24px', height: '24px', position: 'relative' }}>

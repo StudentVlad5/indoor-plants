@@ -11,7 +11,7 @@ import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
 import { UserData } from 'components/UserComp/UserData/UserData';
-import AdditionPage from 'pages/Addition';
+import Step1 from 'components/CheckOut/Step1/Step1';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -24,6 +24,7 @@ const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
 const CheckOutPage = lazy(() => import('pages/CheckOut'));
 const ForgotPasswordPage = lazy(() => import('pages/ForgotPassword'));
+const AdditionPage = lazy(() => import('pages/Addition'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -84,7 +85,12 @@ export const App = () => {
             />
             <Route path="gifts" element={<GiftsPage />} />
             <Route path="care" element={<CarePage />} />
-            <Route path="checkout" element={<CheckOutPage />} />
+
+            <Route path="checkout" element={<CheckOutPage />}>
+              <Route path="step1" element={<Step1 />} />
+              <Route path="step2" element={<h2>Delivery</h2>} />
+              <Route path="step3" element={<h2>Submit</h2>} />
+            </Route>
 
             <Route path="addition" element={<AdditionPage />}>
               <Route

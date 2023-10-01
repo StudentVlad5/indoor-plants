@@ -63,9 +63,10 @@ export const TotalPrice = () => {
             <PaymentTotalTitle>Payment</PaymentTotalTitle>
             <PaymentTotalTitlePrice>${totalPayment}</PaymentTotalTitlePrice>
           </PaymentTotalListItem>
+          <PaymentTotalListItem>
+            <PaymentBtn>checkout</PaymentBtn>
+          </PaymentTotalListItem>
         </PaymentTotalList>
-
-        <PaymentBtn>checkout</PaymentBtn>
 
         <DeliverBox>
           <DeliverBoxItem>
