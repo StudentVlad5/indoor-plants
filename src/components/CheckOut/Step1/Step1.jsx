@@ -22,11 +22,12 @@ const Step1 = () => {
   const auth = useSelector(getUser);
   // const { t } = useTranslation();
   const basket = useSelector(selectBasket);
-
+  console.log(auth._id);
+  console.log(basket.length > 0);
   return (
     <FormContainer>
       <BasketCompTitle>Basket</BasketCompTitle>
-      {basket.length !== 0 ? (
+      {auth._id && basket.length > 0 ? (
         <div>
           <BasketCompList>
             {basket.map((product, idx) => (
@@ -39,6 +40,14 @@ const Step1 = () => {
 
           <TotalPrice />
         </div>
+      ) : !auth._id ? (
+        <AuthCheckOutBox>
+          <TitleCheckOut>Do not see selected products?</TitleCheckOut>
+          <TextCheckOut>Make sure you’re signed into your account</TextCheckOut>
+          <Link to="/signin" style={{ textDecoration: 'none' }}>
+            <Btn>SIGN IN</Btn>
+          </Link>
+        </AuthCheckOutBox>
       ) : (
         <AuthCheckOutBox2>
           <TitleCheckOut>YOUR Basket is empty</TitleCheckOut>
@@ -47,16 +56,6 @@ const Step1 = () => {
             <Btn>SHOP</Btn>
           </Link>
         </AuthCheckOutBox2>
-      )}
-
-      {!auth._id && (
-        <AuthCheckOutBox>
-          <TitleCheckOut>Do not see selected products?</TitleCheckOut>
-          <TextCheckOut>Make sure you’re signed into your account</TextCheckOut>
-          <Link to="/signin" style={{ textDecoration: 'none' }}>
-            <Btn>SIGN IN</Btn>
-          </Link>
-        </AuthCheckOutBox>
       )}
     </FormContainer>
   );

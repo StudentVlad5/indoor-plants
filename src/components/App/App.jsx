@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import Step1 from 'components/CheckOut/Step1/Step1';
+import Step2 from 'components/CheckOut/Step2/Step2';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -88,7 +89,7 @@ export const App = () => {
 
             <Route path="checkout" element={<CheckOutPage />}>
               <Route path="step1" element={<Step1 />} />
-              <Route path="step2" element={<h2>Delivery</h2>} />
+              <Route path="step2" element={<Step2 />} />
               <Route path="step3" element={<h2>Submit</h2>} />
             </Route>
 
