@@ -9,8 +9,6 @@ export const FormContainer = styled.div`
   align-items: center;
 `;
 
-export const Div = styled.div`
-  margin-bottom: 32px;
-`;
+export const Div = styled.div``;
 
 export const SelectInput = styled(Select)``;

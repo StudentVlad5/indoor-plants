@@ -8,6 +8,8 @@ import {
   Input,
   DeliveryBtn,
   PostContainer,
+  TextAreaLabel,
+  TextArea,
 } from './Step2.styled';
 import DeliveryNP from 'components/Delivery/DeliveryNP';
 import DeliveryUP from 'components/Delivery/DeliveryUP';
@@ -21,6 +23,7 @@ const Step2 = () => {
 
   const [department, setDepartment] = useState(false);
   const [courier, setСourier] = useState(false);
+  const [postAdress, setPostAdress] = useState(false);
 
   const handleChangeDelivery = e => {
     switch (e.target.value) {
@@ -59,6 +62,7 @@ const Step2 = () => {
     }
   };
 
+  console.log(postAdress, 'postAdress');
   return (
     <FormContainer>
       <form>
@@ -76,7 +80,13 @@ const Step2 = () => {
               Nova Poshta
             </Label>
             {novaPoshta && (
-              <div style={{ paddingLeft: '30px' }}>
+              <div
+                style={{
+                  paddingLeft: '30px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
                 <SubLabel>
                   <Input
                     type="radio"
@@ -87,9 +97,7 @@ const Step2 = () => {
                   />
                   To department
                 </SubLabel>
-                <br />
                 <DeliveryNP novaPoshta={novaPoshta} department={department} />
-                <br />
                 <SubLabel>
                   <Input
                     type="radio"
@@ -100,6 +108,17 @@ const Step2 = () => {
                   />
                   Сourier
                 </SubLabel>
+                {novaPoshta && courier && (
+                  <TextAreaLabel>
+                    Edit your post adress:
+                    <TextArea
+                      name="postAdress"
+                      rows={4}
+                      cols={40}
+                      onChange={e => setPostAdress(e.target.value)}
+                    />
+                  </TextAreaLabel>
+                )}
               </div>
             )}
             <br />
@@ -125,9 +144,7 @@ const Step2 = () => {
                   />
                   To department
                 </SubLabel>
-                <br />
                 <DeliveryUP ukrPoshta={ukrPoshta} department={department} />
-                <br />
               </div>
             )}
             <br />
@@ -139,8 +156,19 @@ const Step2 = () => {
                 checked={other}
                 onChange={e => handleChangeDelivery(e)}
               />
-              Other way
+              Other Delivery Service
             </Label>
+            {other && (
+              <TextAreaLabel>
+                Add your Delivery service:
+                <TextArea
+                  name="postAdress"
+                  rows={4}
+                  cols={40}
+                  onChange={e => setPostAdress(e.target.value)}
+                />
+              </TextAreaLabel>
+            )}
           </div>
         </PostContainer>
         <DeliveryBtn type="submit">Choose way of delivery</DeliveryBtn>

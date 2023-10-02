@@ -35,6 +35,22 @@ export const SubLabel = styled.label`
   font-size: ${theme.fontSizes.small};
   cursor: pointer;
 `;
+export const TextAreaLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  line-height: 32px;
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.brown1};
+  cursor: pointer;
+`;
+export const TextArea = styled.textarea`
+  font-size: ${theme.fontSizes.small};
+  font-family: ${theme.fonts[0]};
+  color: ${theme.colors.green};
+  background-color: ${theme.colors.white};
+  opacity: 0.5;
+  border: 2px solid ${theme.colors.brown};
+`;
 
 export const Input = styled.input`
   appearance: none;

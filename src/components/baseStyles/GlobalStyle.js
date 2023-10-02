@@ -299,4 +299,17 @@ input::-webkit-calendar-picker-indicator:hover {
       background-repeat: no-repeat;
       background-size: contain;
 }
+.select__value-container{
+  background-color: ${theme.colors.white};
+  color: ${theme.colors.darkGreen};
+}
+.select__control>.select__placeholder{
+  color: ${theme.colors.darkGreen};
+  font-size: ${theme.fontSizes.small};
+}
+.select__control>.select__value-container {
+  color: ${theme.colors.darkGreen};
+  font-size: ${theme.fontSizes.small};
+  font-family: ${theme.fonts[0]};
+}
 `;
