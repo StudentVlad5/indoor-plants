@@ -30,6 +30,40 @@ const Heading = styled.div`
   }
 `;
 
+const SearchResults = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+
+  margin-top: 15px;
+  margin-left: 30px;
+
+  font-family: ${theme.fonts[0]}; //Raisonne Pro
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${theme.colors.brown};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+    margin-left: 300px;
+  }
+
+  & > span {
+    color: ${theme.colors.brown2};
+  }
+
+  & svg {
+    width: 14px;
+    height: 14px;
+  }
+`;
+
 const HeadlineShop = styled.h2`
   font-family: ${theme.fonts[1]}; //Nib pro
   font-size: 26px;
@@ -236,6 +270,7 @@ export {
   CatalogSection,
   CatalogContainer,
   Heading,
+  SearchResults,
   HeadlineShop,
   HeadingBtnBox,
   SelectedFilters,

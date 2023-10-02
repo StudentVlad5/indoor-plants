@@ -19,7 +19,7 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import * as SC from './Catalog.styled';
 import { ReactComponent as Open } from 'images/svg/open.svg';
 import { ReactComponent as Close } from 'images/svg/icon_close.svg';
-import { Headline } from 'components/baseStyles/CommonStyle.styled';
+import { Headline, Subtitle } from 'components/baseStyles/CommonStyle.styled';
 
 let perPage = 12;
 const initialState = {
@@ -49,6 +49,7 @@ export const Catalog = () => {
   ); //, setCategory
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [filters, setFilters] = useState(initialState);
+  const [search, setSearch] = useState('');
   const { t } = useTranslation();
 
   const setPage = toPage => {
@@ -87,12 +88,13 @@ export const Catalog = () => {
 
   useEffect(() => {
     setFilters(getFromStorage('filters'));
+    setSearch(searchParams.get('search'));
     setParams();
 
     if (selectedFilter.length === 0) {
       setParams();
     }
-  }, [selectedFilter]);
+  }, [selectedFilter, search]);
 
   const [showSort, setShowSort] = useState(false);
   const toggleSort = () => {
@@ -254,6 +256,18 @@ export const Catalog = () => {
             </SC.HeadingBtnBox>
           )}
         </SC.Heading>
+        {search && (
+          <SC.SearchResults>
+            <span>Search results:</span> {search}
+            <Close
+              data-key="search"
+              onClick={() => {
+                setSearch('');
+                searchParams.delete('search');
+              }}
+            />
+          </SC.SearchResults>
+        )}
         <SC.SelectedFilters>
           {selectedFilter.map((filter, i) => {
             return (
