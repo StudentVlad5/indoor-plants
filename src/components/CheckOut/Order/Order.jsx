@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Delivery,
   DeliveryInfoBox,
@@ -20,25 +20,42 @@ import {
   DeliveryBlockOptionsTitleDiscr,
   UkrPoshtaIcon,
   NovaPoshtaIcon,
+  PoshtaBox,
+  DeliveryBlockOptionsBoxLable,
+  PoshtaBoxTitle,
+  BoxPost,
+  PaymentOptionBox,
+  LIQPAY,
+  Wallet,
+  PaymentFormBtn,
+  PaymentFormBtnFinish,
+  PaymentFormBtnBox,
+  DeliveryBlockOptionsBtn,
+  PaymentBlockOptionsLable,
+  PaymentBlockOptionsInput,
 } from './Order.styled';
 import { Container } from 'components/baseStyles/CommonStyle.styled';
 import { selectBasket } from 'redux/basket/selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BasketCompTitle, ShippingFast } from '../Checkout.styled';
+import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
+import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
+import { addOrder } from 'redux/order/operations';
+import { getUser } from 'redux/auth/selectors';
+import { useAuth } from 'hooks/useAuth';
 
 export const Order = () => {
   const basket = useSelector(selectBasket);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState('');
   const [selectedOption, setSelectedOption] = useState(null);
-  const [selectedOption1, setSelectedOption1] = useState(null);
-  const [showPaymentInfo, setShowPaymentnfo] = useState(false);
   const [order, setOrder] = useState([]);
-  const [showMenu, setShowMenu] = useState(false);
 
-  const handlePaymentOptionChange = event => {
-    setSelectedPaymentOption(event.target.value);
-    setShowPaymentnfo(event.target.value === 'Visa/Mastercard');
-  };
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState('');
+  const dispatch = useDispatch();
+  const auth = useSelector(getUser);
+  let { userIn } = useAuth();
+  // const orderRedux = useSelector(state => state.orders);
 
   const showDeliveryInfoBlock = () => {
     const deliveryBlock = document.getElementById('deliveryBlock');
@@ -88,42 +105,117 @@ export const Order = () => {
     addressTitle.style.display = 'block';
   };
 
+  const handleOptionClick = index => {
+    const selectedDeliveryOption = deliveryOptions[index].label;
+    setSelectedOption(index);
+    setFormData({
+      ...formData,
+      selectedDeliveryOption,
+    });
+
+    setFormDataAuth({
+      ...formDataAuth,
+      selectedDeliveryOption,
+    });
+  };
+
+  const handlePaymentOptionClick = index => {
+    const selectedPaymentOptionData = paymentOptions[index].label;
+    setSelectedPaymentOption(index);
+    setFormData({
+      ...formData,
+      selectedPaymentOption: selectedPaymentOptionData,
+    });
+    setFormDataAuth({
+      ...formDataAuth,
+      selectedPaymentOption: selectedPaymentOptionData,
+    });
+  };
+
   const deliveryOptions = [
     { value: 'Нова Пошта', label: 'Нова Пошта' },
     { value: 'Укр Пошта', label: 'Укр Пошта' },
     { value: "Доставка кур'єром", label: "Доставка кур'єром" },
   ];
 
+  const paymentOptions = [
+    { value: 'Card', label: 'Card' },
+    { value: 'On Department', label: 'onDepartment' },
+  ];
+
+  const [formData, setFormData] = useState({
+    name: '',
+    surname: '',
+    company: '',
+    email: '',
+    phone: '',
+    address1: '',
+    address2: '',
+    town: '',
+    state: '',
+    zipCode: '',
+  });
+
+  const [formDataAuth, setFormDataAuth] = useState({});
   const handleAddOrder = e => {
     e.preventDefault();
-    const selectedDeliveryOption = deliveryOptions[selectedOption].label;
+    // const selectedDeliveryOption = deliveryOptions[selectedOption].label;
+    // const selectedPaymentOptionData =
+    //   paymentOptions[selectedPaymentOption].label;
 
-    const newOrder = {
-      basket: basket,
-      deliveryMethod: selectedDeliveryOption,
-      name: document.getElementById('name').value,
-      surname: document.getElementById('surname').value,
-      company: document.getElementById('company').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      address1: document.getElementById('address1').value,
-      address2: document.getElementById('address2').value,
-      city: document.getElementById('city').value,
-      state: document.getElementById('state').value,
-      zipCode: document.getElementById('zipCode').value,
-      paymentMethod: selectedPaymentOption,
-    };
-    setOrder([...order, newOrder]);
-    console.log(newOrder);
+    if (auth._id) {
+      const newOrderAuth = {
+        ...formDataAuth,
+        basket: basket,
+        cityDelivery: selectedCity,
+        department: selectedDepartment,
+        name: userIn.userName,
+        email: userIn.phone,
+        email: userIn.email,
+        address1: userIn.location,
+      };
+
+      dispatch(addOrder(newOrderAuth));
+      setOrder([...order, newOrderAuth]);
+      localStorage.setItem('formData', JSON.stringify(newOrderAuth));
+      console.log(newOrderAuth);
+    } else {
+      const newOrder = {
+        ...formData,
+        basket: basket,
+        cityDelivery: selectedCity,
+        // deliveryMethod: selectedDeliveryOption,
+        department: selectedDepartment,
+        // paymentMethod: selectedPaymentOptionData,
+      };
+
+      dispatch(addOrder(newOrder));
+      setOrder([...order, newOrder]);
+      localStorage.setItem('formData', JSON.stringify(newOrder));
+      console.log(newOrder);
+    }
   };
 
-  const handleOptionClick = index => {
-    setSelectedOption(index);
-    setShowMenu(true);
+  const restoreFormDataFromLocalStorage = () => {
+    const savedFormData = localStorage.getItem('formData');
+    if (savedFormData) {
+      setFormData(JSON.parse(savedFormData));
+    }
   };
 
-  const handleOptionClickLableCard = index => {
-    setSelectedOption1(index);
+  useEffect(() => {
+    restoreFormDataFromLocalStorage();
+  }, []);
+
+  const handleInputChange = e => {
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+    setFormData({
+      ...formData,
+      [inputName]: inputValue,
+    });
+
+    localStorage.setItem('formData', JSON.stringify(formData));
   };
 
   return (
@@ -142,58 +234,95 @@ export const Order = () => {
             {/* deliveryBlock */}
             <DeliveryBlock id="deliveryBlock">
               <DeliveryBlockOptions>
-                <DeliveryBlockOptionsLable onClick={() => handleOptionClick(0)}>
-                  <DeliveryBlockOptionsInput type="radio" name="delivery" />
-                  <NovaPoshtaIcon />
+                <DeliveryBlockOptionsBoxLable>
+                  <DeliveryBlockOptionsLable
+                    onClick={() => handleOptionClick(0)}
+                    onChange={handleInputChange}
+                  >
+                    <DeliveryBlockOptionsInput type="radio" name="delivery" />
+                    <NovaPoshtaIcon />
 
-                  <DeliveryBlockOptionsLableBox>
-                    <DeliveryBlockOptionsTitle>
-                      Нова Пошта
-                    </DeliveryBlockOptionsTitle>
-                    <DeliveryBlockOptionsTitleDiscr>
-                      Cash upon delivery, card payment Visa, Master Card
-                    </DeliveryBlockOptionsTitleDiscr>
-                  </DeliveryBlockOptionsLableBox>
+                    <DeliveryBlockOptionsLableBox>
+                      <DeliveryBlockOptionsTitle>
+                        Нова Пошта
+                      </DeliveryBlockOptionsTitle>
+                      <DeliveryBlockOptionsTitleDiscr>
+                        Cash upon delivery, card payment Visa, Master Card
+                      </DeliveryBlockOptionsTitleDiscr>
+                    </DeliveryBlockOptionsLableBox>
+                  </DeliveryBlockOptionsLable>
 
-                  {showMenu && selectedOption !== null && (
-                    <div>
-                      <p>екст: {deliveryOptions[selectedOption].label}</p>
-                      <p>ттекст: {deliveryOptions[selectedOption].value}</p>
-                    </div>
+                  {selectedOption === 0 && (
+                    <BoxPost>
+                      <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
+
+                      <PoshtaBox>
+                        <NovaPoshta
+                          setSelectedCity={setSelectedCity}
+                          setSelectedDepartment={setSelectedDepartment}
+                        />
+                      </PoshtaBox>
+                    </BoxPost>
                   )}
-                </DeliveryBlockOptionsLable>
+                </DeliveryBlockOptionsBoxLable>
 
-                <DeliveryBlockOptionsLable onClick={() => handleOptionClick(1)}>
-                  <DeliveryBlockOptionsInput type="radio" name="delivery" />
-                  <UkrPoshtaIcon />
+                <DeliveryBlockOptionsBoxLable>
+                  <DeliveryBlockOptionsLable
+                    onClick={() => handleOptionClick(1)}
+                    onChange={handleInputChange}
+                  >
+                    <DeliveryBlockOptionsInput type="radio" name="delivery" />
+                    <UkrPoshtaIcon />
 
-                  <DeliveryBlockOptionsLableBox>
-                    <DeliveryBlockOptionsTitle>
-                      Укр Пошта
-                    </DeliveryBlockOptionsTitle>
-                    <DeliveryBlockOptionsTitleDiscr>
-                      Cash upon delivery, card payment Visa, Master Card
-                    </DeliveryBlockOptionsTitleDiscr>
-                  </DeliveryBlockOptionsLableBox>
-                </DeliveryBlockOptionsLable>
+                    <DeliveryBlockOptionsLableBox>
+                      <DeliveryBlockOptionsTitle>
+                        Укр Пошта
+                      </DeliveryBlockOptionsTitle>
+                      <DeliveryBlockOptionsTitleDiscr>
+                        Cash upon delivery, card payment Visa, Master Card
+                      </DeliveryBlockOptionsTitleDiscr>
+                    </DeliveryBlockOptionsLableBox>
+                  </DeliveryBlockOptionsLable>
 
-                <DeliveryBlockOptionsLable onClick={() => handleOptionClick(2)}>
-                  <DeliveryBlockOptionsInput type="radio" name="delivery" />
-                  <ShippingFast style={{ width: 55 }} />
-                  <DeliveryBlockOptionsLableBox>
-                    <DeliveryBlockOptionsTitle>
-                      Доставка кур&#39;єром
-                    </DeliveryBlockOptionsTitle>
-                    <DeliveryBlockOptionsTitleDiscr>
-                      Cash upon delivery, card payment Visa, Master Card
-                    </DeliveryBlockOptionsTitleDiscr>
-                  </DeliveryBlockOptionsLableBox>
-                </DeliveryBlockOptionsLable>
+                  {selectedOption === 1 && (
+                    <BoxPost>
+                      <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
+
+                      <PoshtaBox>
+                        <UkrPoshta
+                          setSelectedCity={setSelectedCity}
+                          setSelectedDepartment={setSelectedDepartment}
+                        />
+                      </PoshtaBox>
+                    </BoxPost>
+                  )}
+                </DeliveryBlockOptionsBoxLable>
+
+                <DeliveryBlockOptionsBoxLable>
+                  <DeliveryBlockOptionsLable
+                    onClick={() => handleOptionClick(2)}
+                    onChange={handleInputChange}
+                  >
+                    <DeliveryBlockOptionsInput type="radio" name="delivery" />
+                    <ShippingFast style={{ width: 55 }} />
+                    <DeliveryBlockOptionsLableBox>
+                      <DeliveryBlockOptionsTitle>
+                        Доставка кур&#39;єром
+                      </DeliveryBlockOptionsTitle>
+                      <DeliveryBlockOptionsTitleDiscr>
+                        Cash upon delivery, card payment Visa, Master Card
+                      </DeliveryBlockOptionsTitleDiscr>
+                    </DeliveryBlockOptionsLableBox>
+                  </DeliveryBlockOptionsLable>
+                </DeliveryBlockOptionsBoxLable>
+
+                <DeliveryBlockOptionsBtn
+                  type="button"
+                  onClick={showDeliveryInfoBlock}
+                >
+                  Next
+                </DeliveryBlockOptionsBtn>
               </DeliveryBlockOptions>
-
-              <DeliveryFormBtn type="button" onClick={showDeliveryInfoBlock}>
-                Next
-              </DeliveryFormBtn>
             </DeliveryBlock>
           </DeliveryInfoBox>
 
@@ -203,105 +332,139 @@ export const Order = () => {
               id="deliveryInfoBlock"
               style={{ display: 'none', position: 'relative' }}
             >
-              <DeliveryForm>
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>First name</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="George"
-                  />
-                </DeliveryFormLable>
+              {auth._id ? (
+                <div>
+                  <p>{userIn.userName}</p>
+                  <p>{userIn.phone}</p>
+                  <p>{userIn.email}</p>
+                  <p>{userIn.location}</p>
+                </div>
+              ) : (
+                <DeliveryForm>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>First name</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      required
+                      placeholder="George"
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>Last name</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="text"
-                    id="surname"
-                    name="surname"
-                    required
-                    placeholder="Washington"
-                  />
-                </DeliveryFormLable>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>Last name</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="text"
+                      id="surname"
+                      name="surname"
+                      value={formData.surname}
+                      required
+                      placeholder="Washington"
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>Company</DeliveryFormLableText>
-                  <DeliveryFormInput type="text" id="company" name="company" />
-                </DeliveryFormLable>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>Company</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="text"
+                      id="company"
+                      value={formData.company}
+                      name="company"
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>Address 1</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="text"
-                    id="address1"
-                    name="address1"
-                    required
-                  />
-                </DeliveryFormLable>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>Address 1</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="text"
+                      id="address1"
+                      value={formData.address1}
+                      name="address1"
+                      required
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>Address 2</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="text"
-                    id="address2"
-                    name="address2"
-                  />
-                </DeliveryFormLable>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>Address 2</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="text"
+                      id="address2"
+                      name="address2"
+                      value={formData.address2}
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>City</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="text"
-                    id="city"
-                    name="city"
-                    required
-                  />
-                </DeliveryFormLable>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>City</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="text"
+                      id="town"
+                      name="town"
+                      value={formData.town}
+                      required
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>State</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="text"
-                    id="state"
-                    name="state"
-                    required
-                  />
-                </DeliveryFormLable>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>State</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="text"
+                      id="state"
+                      name="state"
+                      value={formData.state}
+                      required
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>Zip code</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="text"
-                    id="zipCode"
-                    name="zipCode"
-                    required
-                  />
-                </DeliveryFormLable>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>Zip code</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="text"
+                      id="zipCode"
+                      name="zipCode"
+                      value={formData.zipCode}
+                      required
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>Phone</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    placeholder="Phone"
-                  />
-                </DeliveryFormLable>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>Phone</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      required
+                      placeholder="Phone"
+                    />
+                  </DeliveryFormLable>
 
-                <DeliveryFormLable>
-                  <DeliveryFormLableText>Email</DeliveryFormLableText>
-                  <DeliveryFormInput
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="george.washington@gmail.com"
-                  />
-                </DeliveryFormLable>
-              </DeliveryForm>
+                  <DeliveryFormLable>
+                    <DeliveryFormLableText>Email</DeliveryFormLableText>
+                    <DeliveryFormInput
+                      onChange={handleInputChange}
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      required
+                      placeholder="george.washington@gmail.com"
+                    />
+                  </DeliveryFormLable>
+                </DeliveryForm>
+              )}
+
               <DeliveryFormBtn type="button" onClick={goBackToDelivery}>
                 Back
               </DeliveryFormBtn>
@@ -314,10 +477,12 @@ export const Order = () => {
 
           {/* Payment */}
           <div id="paymentBlock" style={{ display: 'none' }}>
-            <DeliveryBlockOptions>
-              <DeliveryBlockOptionsLable onClick={() => handleOptionClick(3)}>
-                <DeliveryBlockOptionsInput type="radio" name="delivery" />
-                <UkrPoshtaIcon />
+            <PaymentOptionBox>
+              <PaymentBlockOptionsLable
+                onClick={() => handlePaymentOptionClick(0)}
+              >
+                <PaymentBlockOptionsInput type="radio" name="payment" />
+                <LIQPAY />
 
                 <DeliveryBlockOptionsLableBox>
                   <DeliveryBlockOptionsTitle>
@@ -327,11 +492,17 @@ export const Order = () => {
                     Visa, Master Card, Apple Pay, Google Pay
                   </DeliveryBlockOptionsTitleDiscr>
                 </DeliveryBlockOptionsLableBox>
-              </DeliveryBlockOptionsLable>
+              </PaymentBlockOptionsLable>
+            </PaymentOptionBox>
 
-              <DeliveryBlockOptionsLable onClick={() => handleOptionClick(4)}>
-                <DeliveryBlockOptionsInput type="radio" name="delivery" />
-                <ShippingFast style={{ width: 55 }} />
+            <PaymentOptionBox>
+              <PaymentBlockOptionsLable
+                onClick={() => handlePaymentOptionClick(1)}
+                onChange={handleInputChange}
+              >
+                <PaymentBlockOptionsInput type="radio" name="payment" />
+                <Wallet style={{ width: 65 }} />
+
                 <DeliveryBlockOptionsLableBox>
                   <DeliveryBlockOptionsTitle>
                     Cash upon delivery
@@ -340,15 +511,17 @@ export const Order = () => {
                     Only on delivery by courier Meest
                   </DeliveryBlockOptionsTitleDiscr>
                 </DeliveryBlockOptionsLableBox>
-              </DeliveryBlockOptionsLable>
-            </DeliveryBlockOptions>
+              </PaymentBlockOptionsLable>
+            </PaymentOptionBox>
 
-            <DeliveryFormBtn type="button" onClick={goBackToDeliveryInfo}>
-              Back
-            </DeliveryFormBtn>
-            <DeliveryFormBtnFinish type="submit" onClick={handleAddOrder}>
-              Total
-            </DeliveryFormBtnFinish>
+            <PaymentFormBtnBox>
+              <PaymentFormBtn type="button" onClick={goBackToDeliveryInfo}>
+                Back
+              </PaymentFormBtn>
+              <PaymentFormBtnFinish type="submit" onClick={handleAddOrder}>
+                Total
+              </PaymentFormBtnFinish>
+            </PaymentFormBtnBox>
           </div>
         </Delivery>
       </Container>

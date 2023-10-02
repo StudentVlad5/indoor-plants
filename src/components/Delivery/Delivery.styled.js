@@ -1,23 +1,9 @@
-import { Section, Title } from 'components/baseStyles/CommonStyle.styled';
-import theme from 'components/baseStyles/Variables.styled';
-import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 import styled from 'styled-components';
 import Select from 'react-select';
+import { Section, Title } from 'components/baseStyles/CommonStyle.styled';
+import theme from 'components/baseStyles/Variables.styled';
 
-export const FormSection = styled(Section)`
-  @media screen and (max-width: ${theme.breakpoints.tablet_max}) {
-    background-repeat: no-repeat;
-    background-size: 620px auto;
-    background-position: bottom -250px left 30%;
-  }
-
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: ${theme.breakpoints.desktop_max}) {
-    background-repeat: no-repeat;
-    background-size: 1396px auto;
-    background-position: bottom -130px left 50%;
-  }
-`;
+export const FormSection = styled(Section)``;
 
 export const FormContainer = styled.div`
   height: 100%;
@@ -39,8 +25,19 @@ export const TitleDelivery = styled(Title)`
     color: ${theme.colors.brown1};
   }
 `;
+
 export const Div = styled.div`
   margin-bottom: 32px;
 `;
 
-export const SelectInput = styled(Select)``;
+export const SelectInput = styled(Select)`
+  background-color: transparent;
+  border-radius: 10px;
+  width: 285px;
+  border: 0.5px solid var(--store-brown-2, #8c8276);
+
+  &:nth-child(2) {
+    margin-right: 22px;
+    /* width: 893px; */
+  }
+`;
