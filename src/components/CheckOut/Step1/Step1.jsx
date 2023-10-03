@@ -7,7 +7,7 @@ import {
   TitleCheckOut,
   TextCheckOut,
   Btn,
-  BasketCompTitle,
+  Legend,
   AuthCheckOutBox,
   AuthCheckOutBox2,
   BasketCompList,
@@ -26,37 +26,41 @@ const Step1 = () => {
   console.log(basket.length > 0);
   return (
     <FormContainer>
-      <BasketCompTitle>Basket</BasketCompTitle>
-      {auth._id && basket.length > 0 ? (
-        <div>
-          <BasketCompList>
-            {basket.map((product, idx) => (
-              <CustomCheckOut
-                key={`${idx}${product._id}`}
-                {...{ ...product, index: idx }}
-              />
-            ))}
-          </BasketCompList>
+      <div>
+        <Legend>Basket</Legend>
+        {auth._id && basket.length > 0 ? (
+          <div>
+            <BasketCompList>
+              {basket.map((product, idx) => (
+                <CustomCheckOut
+                  key={`${idx}${product._id}`}
+                  {...{ ...product, index: idx }}
+                />
+              ))}
+            </BasketCompList>
 
-          <TotalPrice />
-        </div>
-      ) : !auth._id ? (
-        <AuthCheckOutBox>
-          <TitleCheckOut>Do not see selected products?</TitleCheckOut>
-          <TextCheckOut>Make sure you’re signed into your account</TextCheckOut>
-          <Link to="/signin" style={{ textDecoration: 'none' }}>
-            <Btn>SIGN IN</Btn>
-          </Link>
-        </AuthCheckOutBox>
-      ) : (
-        <AuthCheckOutBox2>
-          <TitleCheckOut>YOUR Basket is empty</TitleCheckOut>
-          <TextCheckOut>Please add an item to checkout</TextCheckOut>
-          <Link to="/catalog" style={{ textDecoration: 'none' }}>
-            <Btn>SHOP</Btn>
-          </Link>
-        </AuthCheckOutBox2>
-      )}
+            <TotalPrice />
+          </div>
+        ) : !auth._id ? (
+          <AuthCheckOutBox>
+            <TitleCheckOut>Do not see selected products?</TitleCheckOut>
+            <TextCheckOut>
+              Make sure you’re signed into your account
+            </TextCheckOut>
+            <Link to="/signin" style={{ textDecoration: 'none' }}>
+              <Btn>SIGN IN</Btn>
+            </Link>
+          </AuthCheckOutBox>
+        ) : (
+          <AuthCheckOutBox2>
+            <TitleCheckOut>YOUR Basket is empty</TitleCheckOut>
+            <TextCheckOut>Please add an item to checkout</TextCheckOut>
+            <Link to="/catalog" style={{ textDecoration: 'none' }}>
+              <Btn>SHOP</Btn>
+            </Link>
+          </AuthCheckOutBox2>
+        )}
+      </div>
     </FormContainer>
   );
 };

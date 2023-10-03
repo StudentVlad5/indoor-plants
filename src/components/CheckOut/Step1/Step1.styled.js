@@ -9,25 +9,10 @@ import { ReactComponent as shippingFast } from 'images/svg/shipping-fast.svg';
 import { Quantity } from 'components/ProductCard/ProductCard.styled';
 
 export const FormContainer = styled(Container)`
-  /* height: 100%;
-  min-height: calc(100vh - 140px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   position: relative;
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding-top: 170px;
-  }
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    padding-top: 80px;
-    /* min-height: calc(100vh - 120px);
-
-    background-repeat: no-repeat;
-    background-size: 1280px auto;
-    background-position: bottom 0 left 50%; */
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const TitleCheckOut = styled(Title)`
@@ -113,16 +98,17 @@ export const BoxForData = styled.div`
   position: relative;
 `;
 
-export const BasketCompTitle = styled.h2`
+export const Legend = styled.legend`
   margin-bottom: 40px;
-  color: ${theme.colors.brown1};
-
-  font-family: 'Barlow', sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  margin-top: 0;
   text-transform: uppercase;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes.extraXL};
+    font-weight: 500;
+    margin-bottom: 32px;
+    color: ${theme.colors.brown1};
+  }
 `;
 
 export const BasketCompIconClose = styled(IconClose)`
