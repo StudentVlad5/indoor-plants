@@ -6,7 +6,9 @@ import storage from 'redux-persist/lib/storage';
 import { modalReducer } from './modal/slice';
 import { headerBottomReducer } from './header_bottom/slice';
 import { basketReducer } from './basket/slice';
-import { orderReducer } from './order/slice';
+
+import { deliveryReducer } from './delivery/slice';
+import { paymentReducer } from './payment/slice';
 
 // Persisting token and role fields from auth slice to localstorage
 const authPersistConfig = {
@@ -22,7 +24,8 @@ export const store = configureStore({
     modal: modalReducer,
     headerBottom: headerBottomReducer,
     basket: basketReducer,
-    orders: orderReducer,
+    delivery: deliveryReducer,
+    payment: paymentReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

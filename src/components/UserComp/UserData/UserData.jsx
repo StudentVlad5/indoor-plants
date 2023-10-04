@@ -27,9 +27,9 @@ import { useAuth } from 'hooks/useAuth';
 import { update } from 'redux/auth/operations';
 import { selectId, getUserAvatar } from 'redux/auth/selectors';
 import NotFoundImg from '../../../images/No-image-available.webp';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 export const UserData = () => {
-  const { BASE_URL_IMG } = window.global;
   const [editProfileSettings, setEditProfileSettings] = useState(false);
   const [active, setActive] = useState('');
   const [changePasswordShow, setChangePasswordShow] = useState(false);
@@ -51,7 +51,6 @@ export const UserData = () => {
     const data = {};
     data['avatar'] = e.target.files[0];
     data['id'] = id;
-    console.log('data', data);
     dispatch(update(data));
   };
 

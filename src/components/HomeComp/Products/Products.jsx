@@ -13,13 +13,9 @@ import {
   ProductsArrowIconBox,
 } from './Products.styled';
 import * as SC from '../../Catalog/CatalogList/CatalogList.styled';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 export const Products = ({ products }) => {
-  const { BASE_URL_IMG } = window.global;
-  // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-  // const BASE_URL_IMG =
-  //   'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNextSlide = () => {
@@ -56,7 +52,7 @@ export const Products = ({ products }) => {
             // {products.map(card => {
             return (
               <ProductsListItem key={card._id}>
-                <ProductsListItemLink to={`/catalog/${card._id}`}>
+                <ProductsListItemLink to={`/catalog/byid/${card._id}`}>
                   <ProductsImg
                     src={BASE_URL_IMG + card.images[0]}
                     alt={card.name}

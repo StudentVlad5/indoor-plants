@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import Select from 'react-select';
-import { Section, Title } from 'components/baseStyles/CommonStyle.styled';
+import { Title } from 'components/baseStyles/CommonStyle.styled';
 import theme from 'components/baseStyles/Variables.styled';
-
-export const FormSection = styled(Section)``;
 
 export const FormContainer = styled.div`
   height: 100%;
@@ -26,9 +24,7 @@ export const TitleDelivery = styled(Title)`
   }
 `;
 
-export const Div = styled.div`
-  margin-bottom: 32px;
-`;
+export const Div = styled.div``;
 
 export const SelectInput = styled(Select)`
   background-color: transparent;

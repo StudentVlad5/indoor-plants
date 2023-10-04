@@ -21,8 +21,46 @@ const Heading = styled.div`
   align-items: center;
   width: 100%;
 
-  & > a {
+  & > div {
+    display: inline-flex;
+  }
+
+  & a {
     text-decoration: none;
+  }
+`;
+
+const SearchResults = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+
+  margin-top: 15px;
+  margin-left: 30px;
+
+  font-family: ${theme.fonts[0]}; //Raisonne Pro
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${theme.colors.brown};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+    margin-left: 300px;
+  }
+
+  & > span {
+    color: ${theme.colors.brown2};
+  }
+
+  & svg {
+    width: 14px;
+    height: 14px;
   }
 `;
 
@@ -33,7 +71,8 @@ const HeadlineShop = styled.h2`
   font-weight: 400;
   line-height: 144%; /* 51.84px */
   text-transform: capitalize;
-  color: ${theme.colors.green};
+  color: ${props =>
+    props.$primary ? theme.colors.green : theme.colors.green1};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 28px;
@@ -64,12 +103,10 @@ const Accord = styled.div`
   display: flex;
   align-items: center;
 
-  /* padding: 10px; */
-
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     gap: 50px;
 
-    padding: 15px;
+    padding: 10px;
     border: 0.5px solid ${theme.colors.brown2};
   }
 
@@ -165,6 +202,7 @@ const FiltersContainer = styled.div`
 
 const SelectedFilters = styled.div`
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 8px;
 
   margin-top: 10px;
@@ -180,7 +218,7 @@ const SelectedFilters = styled.div`
     justify-content: space-between;
     gap: 4px;
 
-    padding: 6px;
+    padding: 6px 6px 6px 10px;
 
     font-family: ${theme.fonts[1]}; //Nib pro
     font-size: 10px;
@@ -232,6 +270,7 @@ export {
   CatalogSection,
   CatalogContainer,
   Heading,
+  SearchResults,
   HeadlineShop,
   HeadingBtnBox,
   SelectedFilters,

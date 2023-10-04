@@ -15,7 +15,7 @@ export const MobileNav = ({ toggleMenu }) => {
       <NavItem to={`/`} onClick={toggleMenu}>
         {t('About Us')}
       </NavItem>
-      <NavItem to={`/catalog/plants?${searchParams}`} onClick={toggleMenu}>
+      <NavItem to={`/catalog/plants`} onClick={toggleMenu}>
         {t('Shop')}
       </NavItem>
       <NavItem to={`/gifts`} onClick={toggleMenu}>
@@ -23,6 +23,9 @@ export const MobileNav = ({ toggleMenu }) => {
       </NavItem>
       <NavItem to="/care" onClick={toggleMenu}>
         {t('Care')}
+      </NavItem>
+      <NavItem to="/addition" onClick={toggleMenu}>
+        {t('Addition')}
       </NavItem>
     </MobileNavList>
   );
@@ -40,6 +43,7 @@ export const Nav = () => {
       <NavItem to={`/catalog?${searchParams}`}>{t('Shop')}</NavItem>
       <NavItem to={`/gifts?${searchParams}`}>{t('Gifts')}</NavItem>
       <NavItem to="/care">{t('Care')}</NavItem>
+      <NavItem to="/addition">{t('Addition')}</NavItem>
     </NavList>
   );
 };

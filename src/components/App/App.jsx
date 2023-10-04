@@ -11,7 +11,10 @@ import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
 import { UserData } from 'components/UserComp/UserData/UserData';
-import { Order } from 'components/CheckOut/Order/Order';
+import { selectBasket } from 'redux/basket/selectors';
+import Step1 from 'components/CheckOut/Step1/Step1';
+import Step2 from 'components/CheckOut/Step2/Step2';
+import Step3 from 'components/CheckOut/Step3/Step3';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -24,10 +27,12 @@ const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
 const CheckOutPage = lazy(() => import('pages/CheckOut'));
 const ForgotPasswordPage = lazy(() => import('pages/ForgotPassword'));
+const AdditionPage = lazy(() => import('pages/Addition'));
 
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const basket = useSelector(selectBasket);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -47,7 +52,9 @@ export const App = () => {
               path="register"
               element={
                 <RestrictedRoute
-                  redirectTo="/user"
+                  redirectTo={
+                    basket.length > 0 ? '/checkout/step1' : '/user/profile'
+                  }
                   component={<RegisterPage />}
                 />
               }
@@ -56,7 +63,12 @@ export const App = () => {
             <Route
               path="signin"
               element={
-                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+                <RestrictedRoute
+                  redirectTo={
+                    basket.length > 0 ? '/checkout/step1' : '/user/profile'
+                  }
+                  component={<LoginPage />}
+                />
               }
             />
 
@@ -84,8 +96,29 @@ export const App = () => {
             />
             <Route path="gifts" element={<GiftsPage />} />
             <Route path="care" element={<CarePage />} />
-            <Route path="checkout" element={<CheckOutPage />} />
-            <Route path="checkout/order" element={<Order />} />
+
+            <Route path="checkout" element={<CheckOutPage />}>
+              <Route path="step1" element={<Step1 />} />
+              <Route path="step2" element={<Step2 />} />
+              <Route path="step3" element={<Step3 />} />
+            </Route>
+
+            <Route path="addition" element={<AdditionPage />}>
+              <Route
+                path="about_company"
+                element={<h4>About our company</h4>}
+              />
+              <Route path="faq" element={<h4>FAQ</h4>} />
+              <Route path="blogs" element={<h4>BLOGS</h4>} />
+              <Route path="shipping" element={<h4>Shipping & Handling</h4>} />
+              <Route path="garantee" element={<h4>Garantee</h4>} />
+              <Route path="course" element={<h4>Free Online Course</h4>} />
+              <Route path="contact" element={<h4>Contact Us</h4>} />
+              <Route
+                path="rewards_program"
+                element={<h4>Rewards Program</h4>}
+              />
+            </Route>
 
             <Route
               path="user"

@@ -19,8 +19,20 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import * as SC from './Catalog.styled';
 import { ReactComponent as Open } from 'images/svg/open.svg';
 import { ReactComponent as Close } from 'images/svg/icon_close.svg';
+import { Headline, Subtitle } from 'components/baseStyles/CommonStyle.styled';
 
 let perPage = 12;
+const initialState = {
+  typeOfPlants: [],
+  rare: [],
+  light: [],
+  petFriendly: [],
+  minPrice: '',
+  maxPrice: '',
+  hardToKill: [],
+  potSize: [],
+  waterSchedule: [],
+};
 
 export const Catalog = () => {
   const [products, setProducts] = useState([]);
@@ -30,14 +42,14 @@ export const Catalog = () => {
   const [page, setPages] = useState(
     getFromStorage('page') ? getFromStorage('page') : 1,
   );
-  const [selectedFilter, setSelectedFilter] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const routeParams = useParams();
-  console.log('Catalog ~ routeParams:', routeParams);
-  const [category, setCategory] = useState(
+  const [category] = useState(
     routeParams.category ? routeParams.category : 'plants',
-  );
-
+  ); //, setCategory
+  const [selectedFilter, setSelectedFilter] = useState([]);
+  const [filters, setFilters] = useState(initialState);
+  const [search, setSearch] = useState('');
   const { t } = useTranslation();
 
   const setPage = toPage => {
@@ -65,6 +77,7 @@ export const Catalog = () => {
         }
         setProducts(data.catalog);
         setTotalPage(Math.ceil(data.total / perPage));
+        getSelectedFilter();
       } catch (error) {
         setError(error);
       } finally {
@@ -72,6 +85,16 @@ export const Catalog = () => {
       }
     })();
   }, [t, page, perPage, searchParams]);
+
+  useEffect(() => {
+    setFilters(getFromStorage('filters'));
+    setSearch(searchParams.get('search'));
+    setParams();
+
+    if (selectedFilter.length === 0) {
+      setParams();
+    }
+  }, [selectedFilter, search]);
 
   const [showSort, setShowSort] = useState(false);
   const toggleSort = () => {
@@ -92,35 +115,112 @@ export const Catalog = () => {
 
   const removeLocalStor = () => {
     removeItem('category');
-    removeItem('typeOfPlants');
-    removeItem('rare');
-    removeItem('light');
-    removeItem('petFriendly');
-    removeItem('minPrice');
-    removeItem('maxPrice');
-    removeItem('hardToKill');
-    removeItem('potSize');
-    removeItem('waterSchedule');
+    removeItem('filters');
   };
 
-  const getSelectedFilter = filters => {
-    setSelectedFilter(filters);
+  const getSelectedFilter = () => {
+    const LS = getFromStorage('filters');
+    const LSvalues = Object.values(LS);
+    const concat = (...arrays) =>
+      [].concat(...arrays).filter(item => item !== '');
+    const concated = concat(...LSvalues);
+    setSelectedFilter(concated);
   };
 
-  // for (const [key, value] of searchParams.entries()) {
-  //   console.log(`${key}, ${value}`);
-  // }
+  const removeSelectedFilter = e => {
+    const deletedFilter = e.currentTarget.dataset.key;
+    const newFilters = selectedFilter.filter(item => item !== deletedFilter);
+    setSelectedFilter(newFilters);
+
+    const LS = getFromStorage('filters');
+    const LSentries = Object.entries(LS);
+
+    for (const [key, value] of LSentries) {
+      const arr = [key, value];
+
+      if (arr[1].length !== 0) {
+        if (Array.isArray(arr[1])) {
+          const index = arr[1].findIndex(item => item === deletedFilter);
+          if (index > -1) {
+            arr[1].splice(index, 1);
+            saveToStorage('filters', { ...LS, [arr[0]]: arr[1] });
+            setFilters(prevState => ({ ...prevState, [arr[0]]: arr[1] }));
+            setParams();
+          }
+        }
+        if (!Array.isArray(arr[1])) {
+          if (arr[0] == 'minPrice') {
+            saveToStorage('filters', { ...LS, ['minPrice']: '' });
+            setFilters(prevState => ({ ...prevState, ['minPrice']: '' }));
+            setParams();
+          }
+          if (arr[0] == 'maxPrice') {
+            saveToStorage('filters', { ...LS, ['maxPrice']: '' });
+            setFilters(prevState => ({ ...prevState, ['maxPrice']: '' }));
+            setParams();
+          }
+        }
+      }
+    }
+
+    const checkboxes = document.querySelectorAll(
+      `label[data-key="${deletedFilter}"]`,
+    );
+    checkboxes?.forEach(checkbox => checkbox.classList.remove('active_label'));
+  };
+
+  const setParams = () => {
+    let params = Object.fromEntries(searchParams);
+
+    if (filters.typeOfPlants !== '') {
+      params.typeOfPlants = filters.typeOfPlants;
+    }
+    if (filters.rare !== '') {
+      params.rare = filters.rare;
+    }
+    if (filters.light !== '') {
+      params.light = filters.light;
+    }
+    if (filters.petFriendly !== '') {
+      params.petFriendly = filters.petFriendly;
+    }
+    if (filters.minPrice !== '') {
+      params.minPrice = filters.minPrice;
+    }
+    if (filters.maxPrice !== '') {
+      params.maxPrice = filters.maxPrice;
+    }
+    if (filters.hardToKill !== '') {
+      params.hardToKill = filters.hardToKill;
+    }
+    if (filters.potSize !== '') {
+      params.potSize = filters.potSize;
+    }
+    if (filters.waterSchedule !== '') {
+      params.waterSchedule = filters.waterSchedule;
+    }
+
+    setSearchParams(params);
+  };
 
   return (
     <SC.CatalogContainer>
       <SC.CatalogSection>
         <SC.Heading>
-          <a
-            href={`/indoor-plants/catalog/${category}?perPage=12&page=1`}
-            onClick={() => removeLocalStor()}
-          >
-            <SC.HeadlineShop>{category}</SC.HeadlineShop>
-          </a>
+          <div>
+            <a
+              href={`/indoor-plants/catalog?perPage=12&page=1`}
+              onClick={() => removeLocalStor()}
+            >
+              <SC.HeadlineShop>Shop / </SC.HeadlineShop>
+            </a>
+            <a
+              href={`/indoor-plants/catalog/${category}?perPage=12&page=1`}
+              onClick={() => removeLocalStor()}
+            >
+              <SC.HeadlineShop $primary>{category}</SC.HeadlineShop>
+            </a>
+          </div>
           {category === 'plants' && (
             <SC.HeadingBtnBox>
               <SC.SortBox>
@@ -149,34 +249,41 @@ export const Catalog = () => {
                 </SC.Accord>
                 {showFilter && (
                   <SC.FiltersWrapper>
-                    <CatalogFilter
-                      onSelected={getSelectedFilter}
-                      filters={selectedFilter}
-                    />
+                    <CatalogFilter />
                   </SC.FiltersWrapper>
                 )}
               </SC.FiltersBox>
             </SC.HeadingBtnBox>
           )}
         </SC.Heading>
+        {search && (
+          <SC.SearchResults>
+            <span>Search results:</span> {search}
+            <Close
+              data-key="search"
+              onClick={() => {
+                setSearch('');
+                searchParams.delete('search');
+              }}
+            />
+          </SC.SearchResults>
+        )}
         <SC.SelectedFilters>
           {selectedFilter.map((filter, i) => {
             return (
               <label key={i} data-key={filter}>
                 <span>{filter}</span>
-                <Close />
+                <Close
+                  data-key={filter}
+                  onClick={e => removeSelectedFilter(e)}
+                />
               </label>
             );
           })}
         </SC.SelectedFilters>
         <SC.GridContainer onClick={handleClick}>
           <SC.FiltersContainer>
-            {category === 'plants' && (
-              <CatalogFilter
-                onSelected={getSelectedFilter}
-                filters={selectedFilter}
-              />
-            )}
+            {category === 'plants' && <CatalogFilter />}
           </SC.FiltersContainer>
           <SC.GridWrapper>
             {isLoading ? onLoading() : onLoaded()}
@@ -189,6 +296,9 @@ export const Catalog = () => {
               changePage={setPage}
               page={page}
             />
+            {products.length === 0 && !isLoading && !error && (
+              <Headline>Nothing found for these parameters...</Headline>
+            )}
           </SC.GridWrapper>
         </SC.GridContainer>
       </SC.CatalogSection>

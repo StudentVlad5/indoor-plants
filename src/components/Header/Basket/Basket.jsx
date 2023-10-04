@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { IconBasket } from '../Navigation/Navigation.styled';
+import {
+  IconBasket,
+  NumberOfItemInBasket,
+} from '../Navigation/Navigation.styled';
 import {
   BasketIconClose,
   BasketBox,
@@ -33,7 +36,11 @@ import peaceLily from '../../../images/basket/peace-lily.png';
 import philodendron from '../../../images/basket/philodendron.png';
 import plantGrayPot from '../../../images/basket/plant-gray-pot.png';
 import { useSelector } from 'react-redux';
-import { selectBasket, selectTotalPayment } from 'redux/basket/selectors';
+import {
+  selectBasket,
+  selectTotalPayment,
+  selectTotalAmount,
+} from 'redux/basket/selectors';
 import { BasketList } from './BasketList/BasketList';
 
 export const Basket = () => {
@@ -63,10 +70,13 @@ export const Basket = () => {
   ];
   const basket = useSelector(selectBasket);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
-
+  // document.querySelector('body').style.overflow = "hidden";
   return (
     <>
-      <div style={{width: 24, height: 24}}>
+      <div style={{ width: '24px', height: '24px', position: 'relative' }}>
+        {basket.length > 0 && (
+          <NumberOfItemInBasket>{basket.length}</NumberOfItemInBasket>
+        )}
         <IconBasket onClick={() => setIsOpen(!isOpen)} />
         {basket.length > 0 && (
           <BasketCount onClick={() => setIsOpen(!isOpen)}>
@@ -124,7 +134,11 @@ export const Basket = () => {
                   Separate shipping is applicable to the majority of items. Once
                   an order is placed, it cannot be cancelled.
                 </TotalDiscr>
-                <OrderBtn to="/checkout" onClick={() => setIsOpen(!isOpen)}>
+
+                <OrderBtn
+                  to="/checkout/step1"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
                   checkout
                 </OrderBtn>
               </TotalTitleBox>

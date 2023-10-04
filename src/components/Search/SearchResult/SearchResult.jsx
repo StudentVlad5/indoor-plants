@@ -12,11 +12,7 @@ import * as SC from './SearchResult.styled';
 import { Subtitle } from 'components/baseStyles/CommonStyle.styled';
 
 import { MdEast } from 'react-icons/md';
-
-// const { BASE_URL_IMG } = window.global;
-// const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-const BASE_URL_IMG =
-  'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 export const SearchResult = ({ onClose, toggleMobileMenu }) => {
   const [products, setProducts] = useState([]);

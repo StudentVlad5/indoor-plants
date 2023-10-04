@@ -19,13 +19,9 @@ import { removeProduct } from 'redux/basket/operations';
 import * as SC from '../../../ProductCard/ProductCard.styled';
 import { setQuantity } from 'redux/basket/slice';
 import { useState } from 'react';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
 export const BasketList = ({ _id, name, optionData, images, quantity }) => {
-  // const { BASE_URL_IMG } = window.global;
-  // const BASE_URL_IMG = 'http://localhost:3030/uploads/';
-  const BASE_URL_IMG =
-    'https://indoor-plants-backend.studentvlad5.repl.co/uploads/';
-
   const dispatch = useDispatch();
 
   const removeProductHandler = (_id, size) => {

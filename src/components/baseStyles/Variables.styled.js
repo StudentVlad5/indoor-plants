@@ -44,6 +44,7 @@ const theme = {
   // fonts: ['Barlow, sans-serif', 'Fraunces, serif'],
   fonts: ['Archivo, sans-serif', 'Fraunces, serif'],
   fontSizes: {
+    extrasmall: '10px',
     small: '14px',
     medium: '18px',
     large: '20px',

@@ -5,7 +5,11 @@
  */
 
 function saveToStorage(storageKey, dataToSave) {
-  localStorage.setItem(storageKey, JSON.stringify(dataToSave));
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(dataToSave));
+  } catch (error) {
+    console.error('Set state error: ', error.message);
+  }
 }
 
 /**

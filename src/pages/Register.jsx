@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 const Register = () => {
   const dispatch = useDispatch();
 
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   useEffect(() => {
     dispatch(
       addHeaderBottom({

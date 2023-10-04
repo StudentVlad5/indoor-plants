@@ -19,6 +19,8 @@ const ProductCardPage = ({ addToBasket }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   useEffect(() => {
     async function getData() {
       setIsLoading(true);
