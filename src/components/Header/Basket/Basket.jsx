@@ -74,9 +74,6 @@ export const Basket = () => {
   return (
     <>
       <div style={{ width: '24px', height: '24px', position: 'relative' }}>
-        {basket.length > 0 && (
-          <NumberOfItemInBasket>{basket.length}</NumberOfItemInBasket>
-        )}
         <IconBasket onClick={() => setIsOpen(!isOpen)} />
         {basket.length > 0 && (
           <BasketCount onClick={() => setIsOpen(!isOpen)}>

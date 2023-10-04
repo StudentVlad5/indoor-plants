@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import schemas from 'components/Schemas/schemas';
 import { FormContainer, Div, SelectInput } from './Delivery.styled';
-import {
-  getListOfCities,
-  getListOfDepartments,
-  getListOfCitiesUP,
-  getListOfDepartmentsUP,
-} from 'services/APIservice';
+import { getListOfCitiesUP, getListOfDepartmentsUP } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
+import { saveToStorage, getFromStorage } from 'services/localStorService';
 
 const DeliveryUP = ({ ukrPoshta, department }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [cityName, setCityName] = useState('');
   const [checkCityName, setCheckCityName] = useState('');
   const [listOfCities, setListOfSities] = useState([]);
 
   const [cityRef, setCityRef] = useState('');
-  const [cityNameUP, setCityNameUP] = useState('');
+  const [cityNameUP, setCityNameUP] = useState(
+    getFromStorage('cityNameUP') ? getFromStorage('cityNameUP') : '',
+  );
   const [checkCityNameUP, setCheckCityNameUP] = useState('');
   const [listOfCitiesUP, setListOfSitiesUP] = useState([]);
 
-  const [departmentNameUP, setDepartmentNameUP] = useState('');
+  const [departmentNameUP, setDepartmentNameUP] = useState(
+    getFromStorage('departmentNameUP')
+      ? getFromStorage('departmentNameUP')
+      : '',
+  );
   const [cityIDUP, setCityIDUP] = useState('');
   const [listOfDepartmentUP, setListOfDepartmentUP] = useState([]);
 
@@ -108,7 +109,7 @@ const DeliveryUP = ({ ukrPoshta, department }) => {
           }
         });
     }
-
+    console.log(checkCityNameUP, 'checkCityNameUP');
     return options;
   }
 
@@ -146,6 +147,7 @@ const DeliveryUP = ({ ukrPoshta, department }) => {
               onChange={e => {
                 if (e?.value) {
                   setCityNameUP(e.value);
+                  saveToStorage('cityNameUP', e.label);
                 }
               }}
               defaultValue={cityNameUP}
@@ -153,7 +155,9 @@ const DeliveryUP = ({ ukrPoshta, department }) => {
               isClearable={true}
               isSearchable={true}
               options={optionsUP(cityNameUP)}
-              placeholder="Select city please..."
+              placeholder={
+                cityNameUP !== '' ? checkCityNameUP : 'Select city please...'
+              }
             />
           </Div>
           <Div>
@@ -163,6 +167,12 @@ const DeliveryUP = ({ ukrPoshta, department }) => {
               className="basic-single"
               classNamePrefix="select"
               onInputChange={e => setDepartmentNameUP(e)}
+              onChange={e => {
+                if (e?.value) {
+                  setDepartmentNameUP(e.value);
+                  saveToStorage('departmentNameUP', e.value);
+                }
+              }}
               defaultValue={departmentNameUP}
               isDisabled={typeof +checkCityNameUP !== 'number'}
               isClearable={true}

@@ -78,10 +78,7 @@ export const TotalPrice = () => {
             </Link>
           </PaymentTotalListItem>
         </PaymentTotalList>
-
         <DeliverBox>
-          <PaymentBtn to="/checkout/order">checkout</PaymentBtn>
-
           <DeliverBoxItem>
             <ShippingFast />
             Get free standart shipping when you spend $150 or more.
