@@ -4,88 +4,71 @@ import { ReactComponent as iconSearch } from 'images/svg/icon_searchLight__heade
 import { ReactComponent as iconFavorite } from 'images/svg/icon_favorite__header.svg';
 import { ReactComponent as iconBasket } from 'images/svg/icon_basketLight__header.svg';
 
-const IconSearch = styled(iconSearch)`
-  cursor: pointer;
-  display: none;
-  size: 24px;
-  transition: ${theme.transition[0]};
-  & > path {
-    stroke: ${theme.colors.brown1};
-    /* fill: ${theme.colors.brown1}; */
-  }
-  :hover,
-  :focus {
-    transform: ${theme.scale[0]};
-    transition: ${theme.transition[0]};
-  }
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+const IconWrapper = styled.div`
+  position: relative;
+
+  width: 24px;
+  height: 24px;
+
+  & svg {
     display: flex;
     justify-content: center;
     width: 100%;
-  }
-`;
-
-const IconFavorite = styled(iconFavorite)`
-  cursor: pointer;
-  display: none;
-  size: 24px;
-  transition: ${theme.transition[0]};
-  & > path {
-    stroke: ${theme.colors.brown1};
-    /* fill: ${theme.colors.brown1}; */
-  }
-  :hover,
-  :focus {
-    transform: ${theme.scale[0]};
+    size: 24px;
     transition: ${theme.transition[0]};
-  }
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    cursor: pointer;
+
+    & > path {
+      stroke: ${theme.colors.brown1};
+      /* fill: ${theme.colors.brown1}; */
+    }
+
+    &:hover,
+    &:focus {
+      transform: ${theme.scale[0]};
+      transition: ${theme.transition[0]};
+    }
   }
 `;
 
-const IconBasket = styled(iconBasket)`
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  /* width: 100%; */
-  size: 24px;
-  transition: ${theme.transition[0]};
-  & > path {
-    stroke: ${theme.colors.brown1};
-    /* fill: ${theme.colors.brown1}; */
-  }
-  :hover,
-  :focus {
-    transform: ${theme.scale[0]};
-    transition: ${theme.transition[0]};
-  }
-`;
-
-const NumberOfItemInBasket = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border-color: ${theme.colors.darkGreen};
-  background-color: ${theme.colors.darkGreen};
-  color: ${theme.colors.white};
-  font-size: ${theme.fontSizes.extrasmall};
-  width: 16px;
-  height: 16px;
-
+const Count = styled.p`
   position: absolute;
-  top: -14px;
-  left: 6px;
+  right: -5px;
+  top: 12px;
+
+  padding: 1px 5px;
+
+  color: ${theme.colors.fon};
+  font-family: ${theme.fonts[0]};
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+
+  border-radius: 100%;
+  background-color: ${theme.colors.brown1};
+
+  cursor: pointer;
 `;
+
+const View = styled.div`
+  display: none;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const IconSearch = styled(iconSearch)``;
+const IconFavorite = styled(iconFavorite)``;
+const IconBasket = styled(iconBasket)``;
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
-  
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 100%;
     margin-left: 94px;
@@ -133,30 +116,15 @@ const MobileNavBlock = styled(NavBlock)`
   }
 `;
 
-const IconSearchMobile = styled(IconSearch)`
-  display: flex;
-  width: 100%;
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    display: none;
-  }
-`;
-const IconFavoriteMobile = styled(IconFavorite)`
-  display: flex;
-  width: 100%;
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    display: none;
-  }
-`;
-
 export {
   Container,
   NavBlock,
+  View,
+  IconWrapper,
+  Count,
   IconSearch,
   IconFavorite,
   IconBasket,
-  NumberOfItemInBasket,
   MobileContainer,
   MobileNavBlock,
-  IconSearchMobile,
-  IconFavoriteMobile,
 };

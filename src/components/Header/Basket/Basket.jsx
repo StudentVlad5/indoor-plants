@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
-  IconBasket,
-  NumberOfItemInBasket,
-} from '../Navigation/Navigation.styled';
+  selectBasket,
+  selectTotalPayment,
+  selectTotalAmount,
+} from 'redux/basket/selectors';
+import { BasketList } from './BasketList/BasketList';
 import {
   BasketIconClose,
   BasketBox,
@@ -28,20 +32,17 @@ import {
   ProgressBarBox,
   ProgressBarTitle,
   ProgressBar,
-  BasketCount,
 } from './Basket.styled';
-import { NavLink } from 'react-router-dom';
-import groupPlants from '../../../images/basket/group-plants.png';
-import peaceLily from '../../../images/basket/peace-lily.png';
-import philodendron from '../../../images/basket/philodendron.png';
-import plantGrayPot from '../../../images/basket/plant-gray-pot.png';
-import { useSelector } from 'react-redux';
 import {
-  selectBasket,
-  selectTotalPayment,
-  selectTotalAmount,
-} from 'redux/basket/selectors';
-import { BasketList } from './BasketList/BasketList';
+  Count,
+  IconBasket,
+  IconWrapper,
+} from 'components/Header/Navigation/Navigation.styled';
+
+import groupPlants from 'images/basket/group-plants.png';
+import peaceLily from 'images/basket/peace-lily.png';
+import philodendron from 'images/basket/philodendron.png';
+import plantGrayPot from 'images/basket/plant-gray-pot.png';
 
 export const Basket = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,22 +69,19 @@ export const Basket = () => {
       link: '/gifts',
     },
   ];
+
   const basket = useSelector(selectBasket);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
   // document.querySelector('body').style.overflow = "hidden";
+
   return (
     <>
-      <div style={{ width: '24px', height: '24px', position: 'relative' }}>
+      <IconWrapper>
+        <IconBasket onClick={() => setIsOpen(!isOpen)} aria-label="Basket" />
         {basket.length > 0 && (
-          <NumberOfItemInBasket>{basket.length}</NumberOfItemInBasket>
+          <Count onClick={() => setIsOpen(!isOpen)}>{basket.length}</Count>
         )}
-        <IconBasket onClick={() => setIsOpen(!isOpen)} />
-        {basket.length > 0 && (
-          <BasketCount onClick={() => setIsOpen(!isOpen)}>
-            {basket.length}
-          </BasketCount>
-        )}
-      </div>
+      </IconWrapper>
 
       <Overlay isOpen={isOpen} onClick={() => setIsOpen(false)} />
 
@@ -96,36 +94,38 @@ export const Basket = () => {
         <BasketBoxList>
           {basket.length !== 0 ? (
             <OrderBox>
-              {totalPayment < 150 ? (
-                <>
+              <div>
+                {totalPayment < 150 ? (
+                  <>
+                    <ProgressBarTitle>
+                      You’re ${(150 - totalPayment).toFixed(2)} away from Free
+                      Shipping!
+                    </ProgressBarTitle>
+                    <ProgressBarBox>
+                      <ProgressBar
+                        style={{
+                          width: `${(totalPayment / 150) * 100}%`,
+                        }}
+                      ></ProgressBar>
+                    </ProgressBarBox>
+                  </>
+                ) : (
                   <ProgressBarTitle>
-                    You’re ${(150 - totalPayment).toFixed(2)} away from Free
-                    Shipping!
+                    Great! You have free shipping!
                   </ProgressBarTitle>
-                  <ProgressBarBox>
-                    <ProgressBar
-                      style={{
-                        width: `${(totalPayment / 150) * 100}%`,
-                      }}
-                    ></ProgressBar>
-                  </ProgressBarBox>
-                </>
-              ) : (
-                <ProgressBarTitle>
-                  Great! You have free shipping!
-                </ProgressBarTitle>
-              )}
+                )}
 
-              <OrderList>
-                {basket.map((product, idx) => (
-                  <BasketList
-                    key={`${idx}${product._id}`}
-                    {...{ ...product, index: idx }}
-                  />
-                ))}
-              </OrderList>
+                <OrderList>
+                  {basket.map((product, idx) => (
+                    <BasketList
+                      key={`${idx}${product._id}`}
+                      {...{ ...product, index: idx }}
+                    />
+                  ))}
+                </OrderList>
+              </div>
               <TotalTitleBox>
-                <div style={{ position: 'relative' }}>
+                <div>
                   <TotalTitle>Total</TotalTitle>
                   <TotalTitlePrice>{totalPayment}</TotalTitlePrice>
                 </div>
@@ -155,6 +155,8 @@ export const Basket = () => {
                     <NavLink to={item.link}>
                       <ListImage
                         src={item.imageUrl}
+                        width={95}
+                        height={105}
                         alt="Image"
                         loading="lazy"
                       />

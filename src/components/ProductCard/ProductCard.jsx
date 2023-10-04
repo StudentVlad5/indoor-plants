@@ -46,6 +46,7 @@ export const ProductCard = ({ product }) => {
     title: null,
     oldPrice: oldPrice ? oldPrice : currentPrice || 0,
     currentPrice: currentPrice ? currentPrice : oldPrice || 0,
+    currency: currency ? currency : '$',
     total: totalQuantity || 0,
     quantity: 1,
   };
@@ -341,6 +342,7 @@ export const ProductCard = ({ product }) => {
                   const productToAdd = {
                     _id,
                     name,
+                    currency,
                     optionData,
                     quantity,
                     images,
