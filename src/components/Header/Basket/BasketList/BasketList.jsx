@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeProduct } from 'redux/basket/operations';
+import { setQuantity } from 'redux/basket/slice';
 import {
-  BasketIconMinus,
-  BasketIconPlus,
   DiscrBox,
-  DiscrBoxBtn,
+  RemoveBtn,
   DiscrBoxDiv,
   DiscrBoxForText,
   DiscrBoxSize,
-  DiscrBoxTilte,
-  DiscrDataListItemBasket,
-  ListImage,
+  DiscrBoxTitle,
+  DiscrTitle,
   OrderItem,
-  QuantityCheckOutBasket,
-  QuantityCheckOutList,
-} from '../Basket.styled';
-import { useDispatch } from 'react-redux';
-import { removeProduct } from 'redux/basket/operations';
-import * as SC from '../../../ProductCard/ProductCard.styled';
-import { setQuantity } from 'redux/basket/slice';
-import { useState } from 'react';
+  Quantity,
+  QuantityBox,
+  IconQuantityBtn,
+} from './BasketList.styled';
+import { ListImage } from '../Basket.styled';
+
+import { ReactComponent as Minus } from 'images/svg/minus.svg';
+import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
-export const BasketList = ({ _id, name, optionData, images, quantity }) => {
+export const BasketList = ({
+  _id,
+  name,
+  currency,
+  optionData,
+  images,
+  quantity,
+}) => {
   const dispatch = useDispatch();
 
   const removeProductHandler = (_id, size) => {
@@ -56,46 +63,43 @@ export const BasketList = ({ _id, name, optionData, images, quantity }) => {
         <DiscrBoxDiv>
           <DiscrBox>
             <DiscrBoxForText>
-              <DiscrBoxTilte>{name}</DiscrBoxTilte>
-              <DiscrBoxTilte>${optionData.currentPrice}</DiscrBoxTilte>
-            </DiscrBoxForText>
-
-            {optionData.title === null ? (
-              <DiscrBoxSize>S</DiscrBoxSize>
-            ) : (
+              <DiscrBoxTitle>
+                <DiscrTitle>{name}</DiscrTitle>
+                <DiscrTitle>
+                  {currency}
+                  {optionData.currentPrice}
+                </DiscrTitle>
+              </DiscrBoxTitle>
               <DiscrBoxSize>{optionData.title}</DiscrBoxSize>
-            )}
-
-            <QuantityCheckOutList>
-              <DiscrDataListItemBasket>
-                <QuantityCheckOutBasket>
-                  <SC.IconBtn
-                    type="button"
-                    aria-label="minus"
-                    onClick={handleDecrease}
-                    disabled={optionData.quantity <= 1}
-                  >
-                    <BasketIconMinus />
-                  </SC.IconBtn>
-                  <span>{optionData.quantity}</span>
-                  <SC.IconBtn
-                    type="button"
-                    aria-label="plus"
-                    onClick={handleIncrease}
-                    disabled={optionData.quantity >= optionData.total}
-                  >
-                    <BasketIconPlus />
-                  </SC.IconBtn>
-                </QuantityCheckOutBasket>
-              </DiscrDataListItemBasket>
-            </QuantityCheckOutList>
-            <DiscrBoxBtn
-              onClick={() => {
-                removeProductHandler(_id, optionData.title);
-              }}
-            >
-              remove
-            </DiscrBoxBtn>
+            </DiscrBoxForText>
+            <QuantityBox>
+              <Quantity>
+                <IconQuantityBtn
+                  type="button"
+                  aria-label="minus"
+                  onClick={handleDecrease}
+                  disabled={optionData.quantity <= 1}
+                >
+                  <Minus />
+                </IconQuantityBtn>
+                <span>{optionData.quantity}</span>
+                <IconQuantityBtn
+                  type="button"
+                  aria-label="plus"
+                  onClick={handleIncrease}
+                  disabled={optionData.quantity >= optionData.total}
+                >
+                  <Plus />
+                </IconQuantityBtn>
+              </Quantity>
+              <RemoveBtn
+                onClick={() => {
+                  removeProductHandler(_id, optionData.title);
+                }}
+              >
+                remove
+              </RemoveBtn>
+            </QuantityBox>
           </DiscrBox>
         </DiscrBoxDiv>
       </OrderItem>

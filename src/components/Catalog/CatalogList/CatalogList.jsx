@@ -65,46 +65,48 @@ export const CatalogList = ({ products }) => {
                 height="460"
                 loading="lazy"
               />
-              <SC.CardTitle>
-                <SC.CardName>{card.name}</SC.CardName>
-                {card.discount !== 0 ? (
-                  <SC.CardPrices>
-                    {card.currentPrice && (
-                      <SC.CardDiscount>
-                        {card.currentPrice}
-                        {card.currency}
-                      </SC.CardDiscount>
-                    )}
-                    {card.oldPrice && (
-                      <SC.CardPrice>
-                        {card.oldPrice}
-                        {card.currency}
-                      </SC.CardPrice>
-                    )}
-                  </SC.CardPrices>
-                ) : (
-                  <SC.CardPrices>
-                    {card.currentPrice && (
-                      <SC.CardDiscount>
-                        {card.currentPrice}
-                        {card.currency}
-                      </SC.CardDiscount>
-                    )}
-                  </SC.CardPrices>
-                )}
-              </SC.CardTitle>
-              <SC.CardSize>
-                <span>Size</span>
-                <div>
-                  {card.options.map(option => {
-                    return (
-                      option.total != 0 && (
-                        <span key={option._id}>{option.title}</span>
-                      )
-                    );
-                  })}
-                </div>
-              </SC.CardSize>
+              <SC.CardDescription>
+                <SC.CardTitle>
+                  <SC.CardName>{card.name}</SC.CardName>
+                  {card.discount !== 0 ? (
+                    <SC.CardPrices>
+                      {card.currentPrice && (
+                        <SC.CardDiscount>
+                          {card.currentPrice}
+                          {card.currency}
+                        </SC.CardDiscount>
+                      )}
+                      {card.oldPrice && (
+                        <SC.CardPrice>
+                          {card.oldPrice}
+                          {card.currency}
+                        </SC.CardPrice>
+                      )}
+                    </SC.CardPrices>
+                  ) : (
+                    <SC.CardPrices>
+                      {card.currentPrice && (
+                        <SC.CardDiscount>
+                          {card.currentPrice}
+                          {card.currency}
+                        </SC.CardDiscount>
+                      )}
+                    </SC.CardPrices>
+                  )}
+                </SC.CardTitle>
+                <SC.CardSize>
+                  <span>Size</span>
+                  <div>
+                    {card.options.map(option => {
+                      return (
+                        option.total != 0 && (
+                          <span key={option._id}>{option.title}</span>
+                        )
+                      );
+                    })}
+                  </div>
+                </SC.CardSize>
+              </SC.CardDescription>
             </NavLink>
           </SC.Card>
         );

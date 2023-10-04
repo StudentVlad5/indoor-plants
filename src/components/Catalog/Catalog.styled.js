@@ -18,8 +18,12 @@ const CatalogContainer = styled(Container)`
 const Heading = styled.div`
   display: inline-flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   width: 100%;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    align-items: center;
+  }
 
   & > div {
     display: inline-flex;
@@ -66,16 +70,16 @@ const SearchResults = styled.div`
 
 const HeadlineShop = styled.h2`
   font-family: ${theme.fonts[1]}; //Nib pro
-  font-size: 26px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 144%; /* 51.84px */
   text-transform: capitalize;
   color: ${props =>
     props.$primary ? theme.colors.green : theme.colors.green1};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 28px;
+    line-height: 144%; /* 51.84px */
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -85,7 +89,11 @@ const HeadlineShop = styled.h2`
 
 const HeadingBtnBox = styled.div`
   display: flex;
-  gap: 18px;
+  gap: 8px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    gap: 18px;
+  }
 `;
 
 const SortBox = styled.div`

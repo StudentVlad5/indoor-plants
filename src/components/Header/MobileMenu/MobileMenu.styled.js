@@ -1,7 +1,7 @@
-import { ReactComponent as iconClose } from 'images/svg/icon_close.svg';
-import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import theme from 'components/baseStyles/Variables.styled';
+import { ReactComponent as iconClose } from 'images/svg/icon_close.svg';
 
 const MobileHeader = styled.div`
   width: 100%;
