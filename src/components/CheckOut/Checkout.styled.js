@@ -270,10 +270,10 @@ export const PaymentBtn = styled.button`
   line-height: normal;
   text-transform: uppercase;
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 500px;
+    max-width: 500px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    width: 800px;
+    max-width: 800px;
   }
 `;
 

@@ -11,6 +11,7 @@ import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
 import { UserData } from 'components/UserComp/UserData/UserData';
+import { selectBasket } from 'redux/basket/selectors';
 import Step1 from 'components/CheckOut/Step1/Step1';
 import Step2 from 'components/CheckOut/Step2/Step2';
 import Step3 from 'components/CheckOut/Step3/Step3';
@@ -31,6 +32,7 @@ const AdditionPage = lazy(() => import('pages/Addition'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const basket = useSelector(selectBasket);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -50,7 +52,9 @@ export const App = () => {
               path="register"
               element={
                 <RestrictedRoute
-                  redirectTo="/user"
+                  redirectTo={
+                    basket.length > 0 ? '/checkout/step1' : '/user/profile'
+                  }
                   component={<RegisterPage />}
                 />
               }
@@ -59,7 +63,12 @@ export const App = () => {
             <Route
               path="signin"
               element={
-                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+                <RestrictedRoute
+                  redirectTo={
+                    basket.length > 0 ? '/checkout/step1' : '/user/profile'
+                  }
+                  component={<LoginPage />}
+                />
               }
             />
 

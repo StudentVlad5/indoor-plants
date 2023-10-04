@@ -127,7 +127,12 @@ export const Basket = () => {
                   Separate shipping is applicable to the majority of items. Once
                   an order is placed, it cannot be cancelled.
                 </TotalDiscr>
-                <OrderBtn to="/checkout">checkout</OrderBtn>
+                <OrderBtn
+                  to="/checkout/step1"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  checkout
+                </OrderBtn>
               </TotalTitleBox>
             </OrderBox>
           ) : (

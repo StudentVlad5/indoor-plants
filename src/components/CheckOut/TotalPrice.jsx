@@ -19,12 +19,17 @@ import {
   selectTotalPayment,
 } from 'redux/basket/selectors';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const TotalPrice = () => {
   // console.log('IDDDD--',quantity, totalAmount, price, optionData, value );
   const totalAmount = useSelector(selectTotalAmount).toFixed(2);
   const totalDiscount = useSelector(selectTotalDiscount).toFixed(2);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
+
+  const handleEnableStep2 = () => {
+    document.querySelector('.step2Btn').classList.remove('isDisabled');
+  };
   return (
     <PaymentBox>
       <PaymentTotalTitle>Total</PaymentTotalTitle>
@@ -64,7 +69,13 @@ export const TotalPrice = () => {
             <PaymentTotalTitlePrice>${totalPayment}</PaymentTotalTitlePrice>
           </PaymentTotalListItem>
           <PaymentTotalListItem>
-            <PaymentBtn>checkout</PaymentBtn>
+            <Link
+              to={`/checkout/step2`}
+              style={{ textDecoration: 'none', width: '100%' }}
+              onClick={handleEnableStep2}
+            >
+              <PaymentBtn>checkout</PaymentBtn>
+            </Link>
           </PaymentTotalListItem>
         </PaymentTotalList>
 

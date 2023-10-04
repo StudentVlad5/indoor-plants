@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
   FormContainer,
@@ -8,14 +9,25 @@ import {
   ConfirmBtn,
   PostContainer,
 } from './Step3.styled';
+import { addPayment } from 'redux/payment/operations';
 
 // import { useTranslation } from 'react-i18next';
 
 const Step3 = () => {
+  const [isDisabled, setDisabled] = useState(true);
   // const { t } = useTranslation();
   const [prepaidCard, setPrepaidCard] = useState(false);
   const [accountPayment, setAccountPayment] = useState(false);
   const [cashOnDelivery, setCashOnDelivery] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (prepaidCard || accountPayment || cashOnDelivery) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [prepaidCard, accountPayment, cashOnDelivery]);
 
   const handleChangePayment = e => {
     switch (e.target.value) {
@@ -39,6 +51,11 @@ const Step3 = () => {
     }
   };
 
+  const handleConfirmOrder = e => {
+    e.preventDefault;
+    const payment = { prepaidCard, accountPayment, cashOnDelivery };
+    dispatch(addPayment(payment));
+  };
   return (
     <FormContainer>
       <form>
@@ -79,7 +96,13 @@ const Step3 = () => {
             </Label>
           </div>
         </PostContainer>
-        <ConfirmBtn type="submit">Сonfirm order</ConfirmBtn>
+        <ConfirmBtn
+          type="submit"
+          disabled={isDisabled}
+          onClick={e => handleConfirmOrder(e)}
+        >
+          Сonfirm order
+        </ConfirmBtn>
       </form>
     </FormContainer>
   );

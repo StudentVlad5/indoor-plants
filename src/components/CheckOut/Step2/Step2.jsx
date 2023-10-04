@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import {
   FormContainer,
@@ -13,9 +15,12 @@ import {
 } from './Step2.styled';
 import DeliveryNP from 'components/Delivery/DeliveryNP';
 import DeliveryUP from 'components/Delivery/DeliveryUP';
+import { addDelivery } from 'redux/delivery/operations';
+
 // import { useTranslation } from 'react-i18next';
 
 const Step2 = () => {
+  const [isDisabled, setDisabled] = useState(true);
   // const { t } = useTranslation();
   const [novaPoshta, setNovaPoshta] = useState(false);
   const [ukrPoshta, setUkrPoshta] = useState(false);
@@ -24,6 +29,28 @@ const Step2 = () => {
   const [department, setDepartment] = useState(false);
   const [courier, setСourier] = useState(false);
   const [postAdress, setPostAdress] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (department || postAdress) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [department, postAdress]);
+
+  const handleEnableStep3 = () => {
+    document.querySelector('.step3Btn').classList.remove('isDisabled');
+    const delivery = {
+      novaPoshta,
+      ukrPoshta,
+      other,
+      department,
+      courier,
+      postAdress,
+    };
+    dispatch(addDelivery(delivery));
+  };
 
   const handleChangeDelivery = e => {
     switch (e.target.value) {
@@ -61,8 +88,6 @@ const Step2 = () => {
         break;
     }
   };
-
-  console.log(postAdress, 'postAdress');
   return (
     <FormContainer>
       <form>
@@ -171,7 +196,18 @@ const Step2 = () => {
             )}
           </div>
         </PostContainer>
-        <DeliveryBtn type="submit">Choose way of delivery</DeliveryBtn>
+        <Link
+          to={`/checkout/step3`}
+          style={{ textDecoration: 'none', width: '100%' }}
+        >
+          <DeliveryBtn
+            disabled={isDisabled}
+            type="submit"
+            onClick={handleEnableStep3}
+          >
+            Choose way of delivery
+          </DeliveryBtn>
+        </Link>
       </form>
     </FormContainer>
   );

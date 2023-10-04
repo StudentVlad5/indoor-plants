@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FormSection,
   CheckOutContainer,
@@ -26,12 +26,16 @@ export const CheckOut = () => {
             <LinkFolder className="linkFolder" to={`/checkout/step1`}>
               Step 1
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/checkout/step2`}>
-              Step 2
-            </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/checkout/step3`}>
-              Step 3
-            </LinkFolder>
+            <span className="isDisabled step2Btn">
+              <LinkFolder className="linkFolder" to={`/checkout/step2`}>
+                Step 2
+              </LinkFolder>
+            </span>
+            <span className="isDisabled step3Btn">
+              <LinkFolder className="linkFolder" to={`/checkout/step3`}>
+                Step 3
+              </LinkFolder>
+            </span>
           </FolderWrapper>
           <CheckOutAboutWrapper>
             <Outlet />

@@ -22,8 +22,7 @@ const Step1 = () => {
   const auth = useSelector(getUser);
   // const { t } = useTranslation();
   const basket = useSelector(selectBasket);
-  console.log(auth._id);
-  console.log(basket.length > 0);
+
   return (
     <FormContainer>
       <div>

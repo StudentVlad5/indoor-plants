@@ -312,4 +312,13 @@ input::-webkit-calendar-picker-indicator:hover {
   font-size: ${theme.fontSizes.small};
   font-family: ${theme.fonts[0]};
 }
+.isDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.isDisabled > a {
+  color: currentColor;
+  pointer-events: none;
+  text-decoration: none;
+}
 `;
