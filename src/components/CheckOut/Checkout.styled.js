@@ -6,7 +6,7 @@ import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 import { ReactComponent as done } from 'images/svg/done.svg';
 import { ReactComponent as shippingFast } from 'images/svg/shipping-fast.svg';
 import { Quantity } from 'components/ProductCard/ProductCard.styled';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const FormSection = styled(Section)``;
 
