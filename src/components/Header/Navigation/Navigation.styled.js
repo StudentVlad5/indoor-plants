@@ -84,7 +84,8 @@ const NumberOfItemInBasket = styled.div`
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-
+  position: relative;
+  
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 100%;
     margin-left: 94px;
@@ -113,6 +114,7 @@ const MobileContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   margin-top: 25px;
+  position: relative;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 100%;

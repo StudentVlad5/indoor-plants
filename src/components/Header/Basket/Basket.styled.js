@@ -2,7 +2,6 @@ import theme from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 import { IconClose } from '../MobileMenu/MobileMenu.styled';
 import { Link } from 'react-router-dom';
-import { QuantityCheckOut } from 'components/CheckOut/Checkout.styled';
 import { ReactComponent as Minus } from 'images/svg/minus.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 
@@ -16,6 +15,22 @@ export const Overlay = styled.div`
   opacity: 0.4;
   z-index: 1000;
   display: ${props => (props.isOpen ? 'block' : 'none')};
+`;
+
+export const BasketCount = styled.p`
+  position: absolute;
+  right: -10px;
+  top: 12px;
+  padding: 0.1px 5px;
+  border-radius: 100%;
+  background-color: rgb(95, 74, 50);
+  color: ${theme.colors.fon};
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  cursor: pointer;
 `;
 
 export const BasketBox = styled.div`
@@ -245,6 +260,7 @@ export const DiscrBoxBtn = styled.button`
   font-weight: 400;
   line-height: 140%; /* 16.8px */
   padding: 0;
+  cursor: pointer;
 `;
 
 export const TotalTitleBox = styled.div`

@@ -6,13 +6,18 @@ import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 import { ReactComponent as done } from 'images/svg/done.svg';
 import { ReactComponent as shippingFast } from 'images/svg/shipping-fast.svg';
 import { Quantity } from 'components/ProductCard/ProductCard.styled';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export const FormSection = styled(Section)`
-  padding-top: 122px;
+export const FormSection = styled(Section)``;
+
+export const FormContainer = styled(Container)`
+  position: relative;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding-top: 154px;
+    padding-top: 170px;
+  }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding-top: 80px;
   }
 `;
 export const CheckOutContainer = styled(Container)`
@@ -261,7 +266,7 @@ export const PaymentBtn = styled.button`
   margin-bottom: 24px;
   width: 100%;
   cursor: pointer;
-
+  text-decoration: none;
   color: ${theme.colors.brown2};
   font-family: 'Barlow', sans-serif;
   font-size: 14px;
@@ -277,7 +282,9 @@ export const PaymentBtn = styled.button`
   }
 `;
 
-export const DeliverBox = styled.div``;
+export const DeliverBox = styled.div`
+  margin-top: 24px;
+`;
 
 export const DeliverBoxItem = styled.p`
   display: flex;
