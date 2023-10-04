@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import {
+  saveToStorage,
+  getFromStorage,
+  removeItem,
+} from 'services/localStorService';
 
 import {
   FormContainer,
@@ -15,10 +20,17 @@ import { addPayment } from 'redux/payment/operations';
 
 const Step3 = () => {
   const [isDisabled, setDisabled] = useState(true);
+  let payment = getFromStorage('payment');
   // const { t } = useTranslation();
-  const [prepaidCard, setPrepaidCard] = useState(false);
-  const [accountPayment, setAccountPayment] = useState(false);
-  const [cashOnDelivery, setCashOnDelivery] = useState(false);
+  const [prepaidCard, setPrepaidCard] = useState(
+    payment?.prepaidCard ? payment.prepaidCard : false,
+  );
+  const [accountPayment, setAccountPayment] = useState(
+    payment?.accountPayment ? payment.accountPayment : false,
+  );
+  const [cashOnDelivery, setCashOnDelivery] = useState(
+    payment?.cashOnDelivery ? payment.cashOnDelivery : false,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,7 +65,8 @@ const Step3 = () => {
 
   const handleConfirmOrder = e => {
     e.preventDefault;
-    const payment = { prepaidCard, accountPayment, cashOnDelivery };
+    payment = { prepaidCard, accountPayment, cashOnDelivery };
+    saveToStorage('payment', payment);
     dispatch(addPayment(payment));
   };
   return (

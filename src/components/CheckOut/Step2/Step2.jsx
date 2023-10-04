@@ -16,19 +16,33 @@ import {
 import DeliveryNP from 'components/Delivery/DeliveryNP';
 import DeliveryUP from 'components/Delivery/DeliveryUP';
 import { addDelivery } from 'redux/delivery/operations';
+import { saveToStorage, getFromStorage } from 'services/localStorService';
 
 // import { useTranslation } from 'react-i18next';
 
 const Step2 = () => {
   const [isDisabled, setDisabled] = useState(true);
   // const { t } = useTranslation();
-  const [novaPoshta, setNovaPoshta] = useState(false);
-  const [ukrPoshta, setUkrPoshta] = useState(false);
-  const [other, setOther] = useState(false);
 
-  const [department, setDepartment] = useState(false);
-  const [courier, setСourier] = useState(false);
-  const [postAdress, setPostAdress] = useState(false);
+  let delivery = getFromStorage('delivery');
+  const [novaPoshta, setNovaPoshta] = useState(
+    delivery?.novaPoshta ? delivery.novaPoshta : false,
+  );
+  const [ukrPoshta, setUkrPoshta] = useState(
+    delivery?.ukrPoshta ? delivery.ukrPoshta : false,
+  );
+  const [other, setOther] = useState(delivery?.other ? delivery.other : false);
+
+  const [department, setDepartment] = useState(
+    delivery?.department ? delivery.department : false,
+  );
+  const [courier, setСourier] = useState(
+    delivery?.courier ? delivery.courier : false,
+  );
+  const [postAdress, setPostAdress] = useState(
+    delivery?.postAdress ? delivery.postAdress : false,
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,7 +55,7 @@ const Step2 = () => {
 
   const handleEnableStep3 = () => {
     document.querySelector('.step3Btn').classList.remove('isDisabled');
-    const delivery = {
+    delivery = {
       novaPoshta,
       ukrPoshta,
       other,
@@ -49,6 +63,7 @@ const Step2 = () => {
       courier,
       postAdress,
     };
+    saveToStorage('delivery', delivery);
     dispatch(addDelivery(delivery));
   };
 
@@ -140,6 +155,7 @@ const Step2 = () => {
                       name="postAdress"
                       rows={4}
                       cols={40}
+                      value={postAdress ? postAdress : ''}
                       onChange={e => setPostAdress(e.target.value)}
                     />
                   </TextAreaLabel>
@@ -188,6 +204,7 @@ const Step2 = () => {
                 Add your Delivery service:
                 <TextArea
                   name="postAdress"
+                  value={postAdress ? postAdress : ''}
                   rows={4}
                   cols={40}
                   onChange={e => setPostAdress(e.target.value)}

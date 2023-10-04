@@ -3,22 +3,24 @@ import schemas from 'components/Schemas/schemas';
 import { FormContainer, Div, SelectInput } from './Delivery.styled';
 import { getListOfCities, getListOfDepartments } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
+import { saveToStorage, getFromStorage } from 'services/localStorService';
 
 const DeliveryNP = ({ novaPoshta, department }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [cityName, setCityName] = useState('');
+  const [cityName, setCityName] = useState(
+    getFromStorage('cityNameNP') ? getFromStorage('cityNameNP') : '',
+  );
   const [checkCityName, setCheckCityName] = useState('');
   const [listOfCities, setListOfSities] = useState([]);
 
-  const [departmentName, setDepartmentName] = useState('');
+  const [departmentName, setDepartmentName] = useState(
+    getFromStorage('departmentNameNP')
+      ? getFromStorage('departmentNameNP')
+      : '',
+  );
   const [cityRef, setCityRef] = useState('');
   const [checkCityRef, setCheckCityRef] = useState('');
   const [listOfDepartment, setListOfDepartment] = useState([]);
-
-  const [cityNameUP, setCityNameUP] = useState('');
-  const [checkCityNameUP, setCheckCityNameUP] = useState('');
-
-  const [departmentNameUP, setDepartmentNameUP] = useState('');
 
   //  get cities for Nova Poshta
   useEffect(() => {
@@ -118,7 +120,7 @@ const DeliveryNP = ({ novaPoshta, department }) => {
     }
     return options;
   }
-
+  console.log('cityName', cityName);
   // options for UKR Poshta
 
   return (
@@ -135,6 +137,7 @@ const DeliveryNP = ({ novaPoshta, department }) => {
               onChange={e => {
                 if (e?.value) {
                   setCityName(e.value);
+                  saveToStorage('cityNameNP', e.value);
                 }
               }}
               defaultValue={cityName}
@@ -143,7 +146,7 @@ const DeliveryNP = ({ novaPoshta, department }) => {
               isSearchable={true}
               validate={schemas.checkDepartmentNP.city}
               options={optionsNP(cityName)}
-              placeholder="Select city please..."
+              placeholder={cityName !== '' ? cityName : 'Select city please...'}
             />
           </Div>
           <Div>
@@ -153,6 +156,12 @@ const DeliveryNP = ({ novaPoshta, department }) => {
               className="basic-single"
               classNamePrefix="select"
               onInputChange={e => setDepartmentName(e)}
+              onChange={e => {
+                if (e?.value) {
+                  setDepartmentName(e.value);
+                  saveToStorage('departmentNameNP', e.value);
+                }
+              }}
               defaultValue={departmentName}
               isDisabled={!checkCityRef}
               isClearable={true}
