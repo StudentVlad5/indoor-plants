@@ -5,22 +5,27 @@ import { getListOfCities, getListOfDepartments } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
 
-const DeliveryNP = ({ novaPoshta, department }) => {
+const DeliveryNP = ({
+  novaPoshta,
+  department,
+  setCityNameNovaPosta,
+  setDepartmentNameNovaPosta,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [checkCityName, setCheckCityName] = useState('');
+  const [listOfCities, setListOfSities] = useState([]);
+  const [cityRef, setCityRef] = useState('');
+  const [checkCityRef, setCheckCityRef] = useState('');
+  const [listOfDepartment, setListOfDepartment] = useState([]);
+
   const [cityName, setCityName] = useState(
     getFromStorage('cityNameNP') ? getFromStorage('cityNameNP') : '',
   );
-  const [checkCityName, setCheckCityName] = useState('');
-  const [listOfCities, setListOfSities] = useState([]);
-
   const [departmentName, setDepartmentName] = useState(
     getFromStorage('departmentNameNP')
       ? getFromStorage('departmentNameNP')
       : '',
   );
-  const [cityRef, setCityRef] = useState('');
-  const [checkCityRef, setCheckCityRef] = useState('');
-  const [listOfDepartment, setListOfDepartment] = useState([]);
 
   //  get cities for Nova Poshta
   useEffect(() => {
@@ -137,6 +142,7 @@ const DeliveryNP = ({ novaPoshta, department }) => {
               onChange={e => {
                 if (e?.value) {
                   setCityName(e.value);
+                  setCityNameNovaPosta(e.value);
                   saveToStorage('cityNameNP', e.value);
                 }
               }}
@@ -159,6 +165,7 @@ const DeliveryNP = ({ novaPoshta, department }) => {
               onChange={e => {
                 if (e?.value) {
                   setDepartmentName(e.value);
+                  setDepartmentNameNovaPosta(e.value);
                   saveToStorage('departmentNameNP', e.value);
                 }
               }}

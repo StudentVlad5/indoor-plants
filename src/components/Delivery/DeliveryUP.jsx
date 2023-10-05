@@ -5,23 +5,27 @@ import { getListOfCitiesUP, getListOfDepartmentsUP } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
 
-const DeliveryUP = ({ ukrPoshta, department }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [checkCityName, setCheckCityName] = useState('');
-  const [listOfCities, setListOfSities] = useState([]);
-
-  const [cityRef, setCityRef] = useState('');
+const DeliveryUP = ({
+  ukrPoshta,
+  department,
+  setСitytNameUPLabel,
+  setDepartmentUPLabel,
+}) => {
   const [cityNameUP, setCityNameUP] = useState(
     getFromStorage('cityNameUP') ? getFromStorage('cityNameUP') : '',
   );
-  const [checkCityNameUP, setCheckCityNameUP] = useState('');
-  const [listOfCitiesUP, setListOfSitiesUP] = useState([]);
-
   const [departmentNameUP, setDepartmentNameUP] = useState(
     getFromStorage('departmentNameUP')
       ? getFromStorage('departmentNameUP')
       : '',
   );
+  const [isLoading, setIsLoading] = useState(false);
+  const [checkCityName, setCheckCityName] = useState('');
+  const [listOfCities, setListOfSities] = useState([]);
+
+  const [cityRef, setCityRef] = useState('');
+  const [checkCityNameUP, setCheckCityNameUP] = useState('');
+  const [listOfCitiesUP, setListOfSitiesUP] = useState([]);
   const [cityIDUP, setCityIDUP] = useState('');
   const [listOfDepartmentUP, setListOfDepartmentUP] = useState([]);
 
@@ -109,7 +113,6 @@ const DeliveryUP = ({ ukrPoshta, department }) => {
           }
         });
     }
-    console.log(checkCityNameUP, 'checkCityNameUP');
     return options;
   }
 
@@ -148,6 +151,7 @@ const DeliveryUP = ({ ukrPoshta, department }) => {
                 if (e?.value) {
                   setCityNameUP(e.value);
                   saveToStorage('cityNameUP', e.label);
+                  setСitytNameUPLabel(e.label);
                 }
               }}
               defaultValue={cityNameUP}
@@ -170,6 +174,7 @@ const DeliveryUP = ({ ukrPoshta, department }) => {
               onChange={e => {
                 if (e?.value) {
                   setDepartmentNameUP(e.value);
+                  setDepartmentUPLabel(e.value);
                   saveToStorage('departmentNameUP', e.value);
                 }
               }}

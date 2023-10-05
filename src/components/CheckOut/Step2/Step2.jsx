@@ -43,6 +43,24 @@ const Step2 = () => {
     delivery?.postAdress ? delivery.postAdress : false,
   );
 
+  const [cityNameNovaPosta, setCityNameNovaPosta] = useState(
+    getFromStorage('cityNameNP') ? getFromStorage('cityNameNP') : '',
+  );
+  const [departmentNameNovaPosta, setDepartmentNameNovaPosta] = useState(
+    getFromStorage('departmentNameNP')
+      ? getFromStorage('departmentNameNP')
+      : '',
+  );
+
+  const [cityNameUPLabel, setСitytNameUPLabel] = useState(
+    getFromStorage('cityNameUP') ? getFromStorage('cityNameUP') : '',
+  );
+  const [departmentUPLabel, setDepartmentUPLabel] = useState(
+    getFromStorage('departmentNameUP')
+      ? getFromStorage('departmentNameUP')
+      : '',
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,6 +80,10 @@ const Step2 = () => {
       department,
       courier,
       postAdress,
+      cityNameNP: cityNameNovaPosta,
+      departmentNameNP: departmentNameNovaPosta,
+      cityNameUP: cityNameUPLabel,
+      departmentNameUP: departmentUPLabel,
     };
     saveToStorage('delivery', delivery);
     dispatch(addDelivery(delivery));
@@ -137,7 +159,12 @@ const Step2 = () => {
                   />
                   To department
                 </SubLabel>
-                <DeliveryNP novaPoshta={novaPoshta} department={department} />
+                <DeliveryNP
+                  novaPoshta={novaPoshta}
+                  department={department}
+                  setCityNameNovaPosta={setCityNameNovaPosta}
+                  setDepartmentNameNovaPosta={setDepartmentNameNovaPosta}
+                />
                 <SubLabel>
                   <Input
                     type="radio"
@@ -185,7 +212,12 @@ const Step2 = () => {
                   />
                   To department
                 </SubLabel>
-                <DeliveryUP ukrPoshta={ukrPoshta} department={department} />
+                <DeliveryUP
+                  ukrPoshta={ukrPoshta}
+                  department={department}
+                  setDepartmentUPLabel={setDepartmentUPLabel}
+                  setСitytNameUPLabel={setСitytNameUPLabel}
+                />
               </div>
             )}
             <br />
