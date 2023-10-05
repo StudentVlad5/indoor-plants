@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Nav } from 'components/Header/Nav/Nav';
 import { AuthNav } from 'components/Header/AuthNav/AuthNav';
 import { UserNav } from 'components/Header/UserNav/UserNav';
 import { Basket } from '../Basket/Basket';
 import { Search } from 'components/Search/Search';
-
 import {
   Container,
   IconSearch,
@@ -15,12 +14,14 @@ import {
   IconFavorite,
   MobileContainer,
   MobileNavBlock,
-  IconSearchMobile,
-  IconFavoriteMobile,
+  IconWrapper,
+  Count,
+  View,
 } from './Navigation.styled';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const favorites = useSelector(selectFavorites);
 
   const [showSearchForm, setShowSearchForm] = useState(false);
   const toggleSearchForm = () => {
@@ -34,27 +35,29 @@ export const Navigation = () => {
     <Container>
       <Nav />
       <NavBlock>
-        {!showSearchForm && (
-          <IconSearch onClick={toggleSearchForm} aria-label="Search" />
-        )}
-        {showSearchForm && <Search onClose={closeSearchForm} />}
+        <View>
+          {!showSearchForm && (
+            <IconSearch onClick={toggleSearchForm} aria-label="Search" />
+          )}
+          {showSearchForm && <Search onClose={closeSearchForm} />}
 
-        {isLoggedIn ? <UserNav /> : <AuthNav />}
+          {isLoggedIn ? <UserNav /> : <AuthNav />}
 
-        {isLoggedIn ? (
-          <Link to={'/user/favorites'}>
-            <div style={{ width: '24px', height: '24px' }}>
-              <IconFavorite />
-            </div>
-          </Link>
-        ) : (
-          <Link to={'/signin'}>
-            {' '}
-            <div style={{ width: '24px', height: '24px' }}>
-              <IconFavorite />
-            </div>
-          </Link>
-        )}
+          {isLoggedIn ? (
+            <Link to={'/user/favorites'}>
+              <IconWrapper>
+                <IconFavorite aria-label="Favorites" />
+                {favorites.length > 0 && <Count>{favorites.length}</Count>}
+              </IconWrapper>
+            </Link>
+          ) : (
+            <Link to={'/signin'}>
+              <IconWrapper>
+                <IconFavorite aria-label="Favorites" />
+              </IconWrapper>
+            </Link>
+          )}
+        </View>
 
         <Basket />
       </NavBlock>
@@ -63,6 +66,9 @@ export const Navigation = () => {
 };
 
 export const MobileNavigation = ({ toggleMobileMenu }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const favorites = useSelector(selectFavorites);
+
   const [showSearchForm, setShowSearchForm] = useState(false);
   const toggleSearchForm = () => {
     setShowSearchForm(state => !state);
@@ -73,7 +79,7 @@ export const MobileNavigation = ({ toggleMobileMenu }) => {
       <Nav />
       <MobileNavBlock>
         {!showSearchForm && (
-          <IconSearchMobile onClick={toggleSearchForm} aria-label="Search" />
+          <IconSearch onClick={toggleSearchForm} aria-label="Search" />
         )}
         {showSearchForm && (
           <Search
@@ -82,8 +88,20 @@ export const MobileNavigation = ({ toggleMobileMenu }) => {
           />
         )}
 
-        <IconFavoriteMobile />
-        <Basket />
+        {isLoggedIn ? (
+          <Link to={'/user/favorites'} onClick={toggleMobileMenu}>
+            <IconWrapper>
+              <IconFavorite aria-label="Favorites" />
+              {favorites.length > 0 && <Count>{favorites.length}</Count>}
+            </IconWrapper>
+          </Link>
+        ) : (
+          <Link to={'/signin'}>
+            <IconWrapper>
+              <IconFavorite aria-label="Favorites" />
+            </IconWrapper>
+          </Link>
+        )}
       </MobileNavBlock>
     </MobileContainer>
   );
