@@ -17,6 +17,10 @@ const FormSection = styled(Section)`
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 129px;
   }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding-bottom: 110px;
+  }
 `;
 
 const FormContainer = styled(Container)`
