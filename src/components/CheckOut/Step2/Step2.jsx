@@ -21,7 +21,7 @@ import {
   Input,
   ConfirmBtn,
   PostContainer,
-} from './Step3.styled';
+} from './Step2.styled';
 
 // import { useTranslation } from 'react-i18next';
 
