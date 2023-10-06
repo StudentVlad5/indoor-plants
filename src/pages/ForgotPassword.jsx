@@ -1,10 +1,8 @@
-import React from 'react';
-import RegisterForm from 'components/RegisterForm/RegisterForm';
-import { SEO } from 'utils/SEO';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { SEO } from 'utils/SEO';
 import { addHeaderBottom } from 'redux/header_bottom/operation';
-import { useEffect } from 'react';
-import ForgotPasswordForm from 'components/ForgotPasswordForm/ForgotPasswordForm';
+import ForgotPasswordForm from 'components/Auth/ForgotPasswordForm/ForgotPasswordForm';
 
 const ForgotPasswordPage = () => {
   const dispatch = useDispatch();

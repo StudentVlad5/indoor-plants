@@ -6,24 +6,21 @@ import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import schemas from 'utils/schemas';
 import { register } from 'redux/auth/operations';
 import theme from 'components/baseStyles/Variables.styled';
+import { BackButton, FormRegister, TitleRegister } from './RegisterForm.styled';
 import {
-  FormRegister,
-  FormContainer,
-  Input,
-  Btn,
-  TitleRegister,
-  BackButton,
-  ShowPassword,
-  StyledLink,
   BoxText,
-  IconValid,
-  IconInValid,
-  ErrBox,
-  Div,
-  FormSection,
+  Btn,
   BtnContainer,
+  ErrorBox,
+  FormContainer,
+  FormSection,
+  IconInValid,
+  IconValid,
+  Input,
+  ShowPassword,
   Span,
-} from './RegisterForm.styled';
+  StyledLink,
+} from '../AuthForm.styled';
 
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
@@ -101,7 +98,7 @@ const RegisterForm = () => {
           <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
             <TitleRegister>{'Register'}</TitleRegister>
             {isShown && (
-              <Div>
+              <div>
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -123,13 +120,13 @@ const RegisterForm = () => {
                   <IconInValid color={theme.colors.red} />
                 )}
                 {formik.errors.email && formik.touched.email ? (
-                  <ErrBox>{formik.errors.email}</ErrBox>
+                  <ErrorBox>{formik.errors.email}</ErrorBox>
                 ) : null}
                 <Span className="floating-label">Email</Span>
-              </Div>
+              </div>
             )}
             {isShown && (
-              <Div>
+              <div>
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -147,13 +144,13 @@ const RegisterForm = () => {
                   {!showPass ? <ImEyeBlocked /> : <ImEye />}
                 </ShowPassword>
                 {formik.errors.password && formik.touched.password ? (
-                  <ErrBox>{formik.errors.password}</ErrBox>
+                  <ErrorBox>{formik.errors.password}</ErrorBox>
                 ) : null}
                 <Span className="floating-label">Password</Span>
-              </Div>
+              </div>
             )}
             {isShown && (
-              <Div>
+              <div>
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -172,10 +169,10 @@ const RegisterForm = () => {
                 </ShowPassword>
                 {formik.errors.confirmPassword &&
                 formik.touched.confirmPassword ? (
-                  <ErrBox>{formik.errors.confirmPassword}</ErrBox>
+                  <ErrorBox>{formik.errors.confirmPassword}</ErrorBox>
                 ) : null}
                 <Span className="floating-label">Confirm Password</Span>
-              </Div>
+              </div>
             )}
             {isShown && (
               <BtnContainer>
@@ -189,7 +186,7 @@ const RegisterForm = () => {
               </BtnContainer>
             )}
             {!isShown && (
-              <Div>
+              <div>
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -209,13 +206,13 @@ const RegisterForm = () => {
                   <IconInValid color={theme.colors.red} />
                 )}
                 {formik.errors.name && formik.touched.name ? (
-                  <ErrBox>{formik.errors.name}</ErrBox>
+                  <ErrorBox>{formik.errors.name}</ErrorBox>
                 ) : null}
                 <Span className="floating-label">Name</Span>
-              </Div>
+              </div>
             )}
             {!isShown && (
-              <Div>
+              <div>
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -238,13 +235,13 @@ const RegisterForm = () => {
                 )}
 
                 {formik.errors.location && formik.touched.location ? (
-                  <ErrBox>{formik.errors.location}</ErrBox>
+                  <ErrorBox>{formik.errors.location}</ErrorBox>
                 ) : null}
                 <Span className="floating-label">Location, region</Span>
-              </Div>
+              </div>
             )}
             {!isShown && (
-              <Div>
+              <div>
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -265,10 +262,10 @@ const RegisterForm = () => {
                   <IconInValid color={theme.colors.red} />
                 )}
                 {formik.errors.phone && formik.touched.phone ? (
-                  <ErrBox>{formik.errors.phone}</ErrBox>
+                  <ErrorBox>{formik.errors.phone}</ErrorBox>
                 ) : null}
                 <Span className="floating-label">Mobile phone</Span>
-              </Div>
+              </div>
             )}
             {!isShown && (
               <BtnContainer>
