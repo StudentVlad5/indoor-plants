@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
-import schemas from 'components/Schemas/schemas';
+import schemas from 'utils/schemas';
 import { changePasswordAuth } from 'redux/auth/operations';
 import theme from 'components/baseStyles/Variables.styled';
 import {
