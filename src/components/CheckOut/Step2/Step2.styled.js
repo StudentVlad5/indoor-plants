@@ -29,29 +29,6 @@ export const Label = styled.label`
   cursor: pointer;
 `;
 
-export const SubLabel = styled.label`
-  margin-right: 15px;
-  line-height: 32px;
-  font-size: ${theme.fontSizes.small};
-  cursor: pointer;
-`;
-export const TextAreaLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  line-height: 32px;
-  font-size: ${theme.fontSizes.small};
-  color: ${theme.colors.brown1};
-  cursor: pointer;
-`;
-export const TextArea = styled.textarea`
-  font-size: ${theme.fontSizes.small};
-  font-family: ${theme.fonts[0]};
-  color: ${theme.colors.green};
-  background-color: ${theme.colors.white};
-  opacity: 0.5;
-  border: 2px solid ${theme.colors.brown};
-`;
-
 export const Input = styled.input`
   appearance: none;
   border-radius: 50%;
@@ -64,34 +41,5 @@ export const Input = styled.input`
   top: 4px;
   &:checked {
     border: 6px solid ${theme.colors.darkGreen};
-  }
-`;
-
-export const DeliveryBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  border: 1px solid ${theme.colors.brown2};
-  background-color: transparent;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-top: 22px;
-  margin-bottom: 24px;
-  width: 100%;
-  cursor: pointer;
-
-  color: ${theme.colors.brown2};
-  font-family: 'Barlow', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: uppercase;
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 500px;
-  }
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    width: 800px;
   }
 `;

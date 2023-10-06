@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import {
   FormSection,
   CheckOutContainer,
@@ -7,8 +8,10 @@ import {
   FolderWrapper,
   LinkFolder,
   CheckOutAboutWrapper,
+  Liner,
+  LinkFolderTitle,
 } from './Checkout.styled';
-import { Outlet } from 'react-router-dom';
+
 // import { useTranslation } from 'react-i18next';
 
 export const CheckOut = () => {
@@ -18,24 +21,34 @@ export const CheckOut = () => {
     <FormSection>
       <CheckOutContainer>
         <CheckOutTitle as="h1" hidden>
-          CheckOut
+          CheckOut Steps
         </CheckOutTitle>
         <CheckOutDataWrapper>
           <FolderWrapper>
-            <CheckOutTitle as="h2">CheckOut:</CheckOutTitle>
             <LinkFolder className="linkFolder" to={`/checkout/step1`}>
-              Step 1
+              <span>1</span>
+              <LinkFolderTitle>Delivery</LinkFolderTitle>
             </LinkFolder>
-            <span className="isDisabled step2Btn">
-              <LinkFolder className="linkFolder" to={`/checkout/step2`}>
-                Step 2
-              </LinkFolder>
-            </span>
-            <span className="isDisabled step3Btn">
-              <LinkFolder className="linkFolder" to={`/checkout/step3`}>
-                Step 3
-              </LinkFolder>
-            </span>
+            <Liner>
+              <span></span>
+            </Liner>
+            <LinkFolder
+              className="linkFolder isDisabled step2Btn"
+              to={`/checkout/step2`}
+            >
+              <span>2</span>
+              <LinkFolderTitle>Payment</LinkFolderTitle>
+            </LinkFolder>
+            <Liner>
+              <span></span>
+            </Liner>
+            <LinkFolder
+              className="linkFolder isDisabled step2Btn"
+              to={`/checkout/step3`}
+            >
+              <span>3</span>
+              <LinkFolderTitle>Total</LinkFolderTitle>
+            </LinkFolder>
           </FolderWrapper>
           <CheckOutAboutWrapper>
             <Outlet />

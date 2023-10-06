@@ -5,7 +5,7 @@ import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Nav } from 'components/Header/Nav/Nav';
 import { AuthNav } from 'components/Header/AuthNav/AuthNav';
 import { UserNav } from 'components/Header/UserNav/UserNav';
-import { Basket } from '../Basket/Basket';
+import { ShoppingBag } from '../ShoppingBag/ShoppingBag';
 import { Search } from 'components/Search/Search';
 import {
   Container,
@@ -59,7 +59,7 @@ export const Navigation = () => {
           )}
         </View>
 
-        <Basket />
+        <ShoppingBag />
       </NavBlock>
     </Container>
   );
