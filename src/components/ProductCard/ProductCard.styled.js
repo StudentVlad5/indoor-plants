@@ -111,7 +111,7 @@ const ControlsList = styled.ul`
     }
 
     &.disabled {
-      cursor: default;
+      cursor: not-allowed;
     }
   }
 `;
@@ -322,7 +322,7 @@ const Option = styled.label`
       color: ${theme.colors.brown2};
       background-color: ${theme.colors.greyOpacity};
       border: 1px solid ${theme.colors.brown2};
-      cursor: default;
+      cursor: not-allowed;
     }
 
     &:checked + span,
@@ -375,7 +375,7 @@ const IconBtn = styled.button`
   }
 
   &:disabled {
-    cursor: default;
+    cursor: not-allowed;
 
     & > svg > path {
       stroke: ${theme.colors.brown2};
@@ -415,7 +415,7 @@ const TextBtn = styled.button`
     color: ${theme.colors.brown1};
     background-color: ${theme.colors.green4};
     border: 1px solid ${theme.colors.green4};
-    cursor: default;
+    cursor: not-allowed;
   }
 `;
 

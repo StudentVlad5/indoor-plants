@@ -1,9 +1,8 @@
-import React from 'react';
-import { LoginForm } from 'components/LoginForm/LoginForm';
-import { SEO } from 'utils/SEO';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { SEO } from 'utils/SEO';
+import { LoginForm } from 'components/Auth/LoginForm/LoginForm';
 import { addHeaderBottom } from 'redux/header_bottom/operation';
-import { useEffect } from 'react';
 
 const Login = () => {
   const dispatch = useDispatch();

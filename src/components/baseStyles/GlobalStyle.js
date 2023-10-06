@@ -4,11 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 body {
-  /* Raisonne Pro */
   font-family: 'Archivo', sans-serif;
-  /* font-family: 'Barlow', sans-serif; */
-  /* Nib Pro */
-  /* font-family: 'Domine', serif; */
  font-family: 'Fraunces', serif;
 
   background-color:${theme.colors.fon};
@@ -244,7 +240,7 @@ input::-webkit-calendar-picker-indicator:hover {
   background-color: ${theme.colors.brown1};
 }
 
-/* Select container */
+//-----Select container-----//
 .select__value-container {
   width: 280px;
   font-size: ${theme.fontSizes.small};
@@ -321,4 +317,20 @@ input::-webkit-calendar-picker-indicator:hover {
   pointer-events: none;
   text-decoration: none;
 }
+
+.iNcVkr {
+  gap:4px;
+}
+.osMwo {
+  width: 100%;
+  border:none !important;
+  border-radius: 3px !important;
+  overflow:hidden !important;
+}
+.css-13cymwt-control {
+  border-color: ${theme.colors.brown2} !important;;
+  border-radius: 3px !important;;
+  border-width: 0.5px !important;;
+}
+
 `;

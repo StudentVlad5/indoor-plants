@@ -5,7 +5,13 @@ const saveBasket = () => {
   const savedData = localStorage.getItem('basketData');
   return savedData
     ? JSON.parse(savedData)
-    : { basketItems: [], totalAmount: 0, totalDiscount: 0, totalPayment: 0 };
+    : {
+        basketItems: [],
+        totalAmount: 0,
+        totalDiscount: 0,
+        totalPayment: 0,
+        currency: '$',
+      };
 };
 
 const initialState = saveBasket();
@@ -15,7 +21,7 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
     setQuantity: (state, action) => {
-      const { _id, optionData, quantity } = action.payload;
+      const { _id, optionData, quantity, currency } = action.payload;
       // const item = state.basketItems.find(item => item._id === _id);
       const item = state.basketItems.find(
         item => item.optionData._id === optionData._id,
@@ -24,6 +30,7 @@ export const basketSlice = createSlice({
       if (item) {
         // item.quantity = quantity;
         item.optionData.quantity = quantity;
+        item.currency = currency;
         functionTotalAmount(state);
         functionDiscountAmount(state);
         functionPaymentAmount(state);
@@ -34,7 +41,7 @@ export const basketSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(addToBasket, (state, action) => {
-        const { optionData, quantity } = action.payload;
+        const { optionData, quantity, currency } = action.payload;
         const existingItem = state.basketItems.find(
           item => item.optionData._id === optionData._id,
         );
@@ -68,23 +75,23 @@ export const basketSlice = createSlice({
 
 const functionTotalAmount = state => {
   state.totalAmount = state.basketItems.reduce((total, item) => {
-    return total + item.optionData.quantity * item.optionData.currentPrice;
+    return total + item.optionData.quantity * item.optionData.oldPrice;
   }, 0);
 };
 
 const functionDiscountAmount = state => {
   state.totalDiscount = state.basketItems.reduce((discount, item) => {
-    return discount + item.optionData.discount * item.optionData.quantity;
+    return (
+      discount +
+      item.optionData.quantity * item.optionData.oldPrice -
+      item.optionData.quantity * item.optionData.currentPrice
+    );
   }, 0);
 };
 
 const functionPaymentAmount = state => {
   state.totalPayment = state.basketItems.reduce((payment, item) => {
-    return (
-      payment +
-      (item.optionData.currentPrice - item.optionData.discount) *
-        item.optionData.quantity
-    );
+    return payment + item.optionData.currentPrice * item.optionData.quantity;
   }, 0);
 };
 

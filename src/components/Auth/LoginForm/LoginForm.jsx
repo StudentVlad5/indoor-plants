@@ -3,27 +3,25 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-import schemas from 'components/Schemas/schemas';
+import schemas from 'utils/schemas';
 import theme from 'components/baseStyles/Variables.styled';
 
-import {
-  FormSection,
-  FormContainer,
-  FormLogin,
-  ShowPassword,
-  Input,
-  Btn,
-  StyledLink,
-  BoxText,
-  IconValid,
-  IconInValid,
-  ErrorBox,
-  Div,
-  TitleLogin,
-  BtnContainer,
-  Span,
-} from './LoginForm.styled';
+import { FormLogin, TitleLogin } from './LoginForm.styled';
 import { logIn } from 'redux/auth/operations';
+import {
+  BoxText,
+  Btn,
+  BtnContainer,
+  ErrorBox,
+  FormContainer,
+  FormSection,
+  IconInValid,
+  IconValid,
+  Input,
+  ShowPassword,
+  Span,
+  StyledLink,
+} from '../AuthForm.styled';
 // import { useTranslation } from 'react-i18next';
 
 export const LoginForm = () => {
@@ -83,7 +81,7 @@ export const LoginForm = () => {
           <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
             <TitleLogin>{'Login Page'}</TitleLogin>
             {isShown && (
-              <Div>
+              <div>
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -107,11 +105,11 @@ export const LoginForm = () => {
                   <ErrorBox>{formik.errors.email}</ErrorBox>
                 ) : null}
                 <Span className="floating-label">Email</Span>
-              </Div>
+              </div>
             )}
 
             {isShown && (
-              <Div>
+              <div>
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -133,7 +131,7 @@ export const LoginForm = () => {
                   <ErrorBox>{formik.errors.password}</ErrorBox>
                 ) : null}
                 <Span className="floating-label">Password</Span>
-              </Div>
+              </div>
             )}
             <BtnContainer>
               {isShown && (

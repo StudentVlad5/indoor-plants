@@ -20,10 +20,7 @@ const CheckOutPage = () => {
 
   return (
     <>
-      <SEO
-        title="HomeForest CheckOut"
-        description="CheckOut for making order"
-      />
+      <SEO title="CheckOut steps" description="CheckOut for making order" />
       <CheckOut />
     </>
   );

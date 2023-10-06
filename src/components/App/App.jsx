@@ -29,6 +29,7 @@ const LoginPage = lazy(() => import('pages/Login'));
 const CheckOutPage = lazy(() => import('pages/CheckOut'));
 const ForgotPasswordPage = lazy(() => import('pages/ForgotPassword'));
 const AdditionPage = lazy(() => import('pages/Addition'));
+const BasketPage = lazy(() => import('pages/Basket'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -98,6 +99,8 @@ export const App = () => {
             <Route path="gifts" element={<GiftsPage />} />
             <Route path="care" element={<CarePage />} />
 
+            <Route path="basket" element={<BasketPage />} />
+
             <Route path="checkout" element={<CheckOutPage />}>
               <Route path="step1" element={<Step1 />} />
               <Route path="step2" element={<Step2 />} />
@@ -112,7 +115,7 @@ export const App = () => {
               <Route path="faq" element={<h4>FAQ</h4>} />
               <Route path="blogs" element={<h4>BLOGS</h4>} />
               <Route path="shipping" element={<h4>Shipping & Handling</h4>} />
-              <Route path="garantee" element={<h4>Garantee</h4>} />
+              <Route path="guarantee" element={<h4>Guarantee</h4>} />
               <Route path="course" element={<h4>Free Online Course</h4>} />
               <Route path="contact" element={<h4>Contact Us</h4>} />
               <Route
