@@ -15,6 +15,7 @@ import { selectBasket } from 'redux/basket/selectors';
 import Step1 from 'components/CheckOut/Step1/Step1';
 import Step2 from 'components/CheckOut/Step2/Step2';
 import Step3 from 'components/CheckOut/Step3/Step3';
+import { UserOrders } from 'components/UserComp/UserData/UserOrders/UserOrders';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -140,7 +141,7 @@ export const App = () => {
                 element={
                   <PrivateRoute
                     redirectTo="/signin"
-                    component={<h2>orders information</h2>}
+                    component={<UserOrders />}
                   />
                 }
               />
