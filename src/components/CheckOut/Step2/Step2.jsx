@@ -19,7 +19,6 @@ import {
   Legend,
   Label,
   Input,
-  ConfirmBtn,
   PostContainer,
 } from './Step2.styled';
 
@@ -165,13 +164,20 @@ const Step2 = () => {
           to={`/checkout/step3`}
           style={{ textDecoration: 'none', width: '100%' }}
         >
-          <ConfirmBtn
+          {/* <ConfirmBtn
             type="submit"
             disabled={isDisabled}
             onClick={e => handleConfirmOrder(e)}
           >
             Confirm order
-          </ConfirmBtn>
+          </ConfirmBtn> */}
+          <button
+            type="submit"
+            disabled={isDisabled}
+            onClick={e => handleConfirmOrder(e)}
+          >
+            Confirm order
+          </button>
         </Link>
       </form>
     </FormContainer>
