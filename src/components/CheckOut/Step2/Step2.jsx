@@ -21,6 +21,7 @@ import {
   Input,
   PostContainer,
 } from './Step2.styled';
+import { CheckoutBtn } from '../Checkout.styled';
 
 // import { useTranslation } from 'react-i18next';
 
@@ -164,13 +165,13 @@ const Step2 = () => {
           to={`/checkout/step3`}
           style={{ textDecoration: 'none', width: '100%' }}
         >
-          {/* <ConfirmBtn
+          <CheckoutBtn
             type="submit"
             disabled={isDisabled}
             onClick={e => handleConfirmOrder(e)}
           >
             Confirm order
-          </ConfirmBtn> */}
+          </CheckoutBtn>
           <button
             type="submit"
             disabled={isDisabled}
