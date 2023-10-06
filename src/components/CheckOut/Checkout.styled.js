@@ -27,10 +27,11 @@ export const FolderWrapper = styled.div`
   justify-content: center;
   flex-wrap: nowrap;
   align-items: center;
-  width: 50%;
+  width: 90%;
   gap: 20px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 50%;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
