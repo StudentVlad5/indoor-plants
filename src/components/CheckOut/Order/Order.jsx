@@ -42,7 +42,7 @@ import {
   PaymentBlockOptionsLable,
   PaymentBlockOptionsInput,
 } from './Order.styled';
-import { BasketCompTitle, ShippingFast } from '../Checkout.styled';
+import { CheckOutTitle } from '../Checkout.styled';
 
 export const Order = () => {
   const basket = useSelector(selectBasket);
@@ -223,13 +223,13 @@ export const Order = () => {
       <Container>
         <Delivery>
           <DeliveryInfoBox>
-            <BasketCompTitle id="deliveryTitle">Delivery</BasketCompTitle>
-            <BasketCompTitle id="addressTitle" style={{ display: 'none' }}>
+            <CheckOutTitle id="deliveryTitle">Delivery</CheckOutTitle>
+            <CheckOutTitle id="addressTitle" style={{ display: 'none' }}>
               ADDRESS
-            </BasketCompTitle>
-            <BasketCompTitle id="paymentTitle" style={{ display: 'none' }}>
+            </CheckOutTitle>
+            <CheckOutTitle id="paymentTitle" style={{ display: 'none' }}>
               payment
-            </BasketCompTitle>
+            </CheckOutTitle>
 
             {/* deliveryBlock */}
             <DeliveryBlock id="deliveryBlock">
@@ -304,7 +304,7 @@ export const Order = () => {
                     onChange={handleInputChange}
                   >
                     <DeliveryBlockOptionsInput type="radio" name="delivery" />
-                    <ShippingFast style={{ width: 55 }} />
+                    {/* <ShippingFast style={{ width: 55 }} /> */}
                     <DeliveryBlockOptionsLableBox>
                       <DeliveryBlockOptionsTitle>
                         Courier delivery

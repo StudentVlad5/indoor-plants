@@ -15,6 +15,7 @@ import { selectBasket } from 'redux/basket/selectors';
 import Step1 from 'components/CheckOut/Step1/Step1';
 import Step2 from 'components/CheckOut/Step2/Step2';
 import Step3 from 'components/CheckOut/Step3/Step3';
+import Step4 from 'components/CheckOut/Step4/Step4';
 import { UserOrders } from 'components/UserComp/UserData/UserOrders/UserOrders';
 
 const HomePage = lazy(() => import('pages/Home'));
@@ -105,6 +106,7 @@ export const App = () => {
               <Route path="step1" element={<Step1 />} />
               <Route path="step2" element={<Step2 />} />
               <Route path="step3" element={<Step3 />} />
+              <Route path="step4" element={<Step4 />} />
             </Route>
 
             <Route path="addition" element={<AdditionPage />}>
