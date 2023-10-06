@@ -109,6 +109,26 @@ async function getCareList(pathParams) {
   });
 }
 
+async function makeOrder(pathParams, body) {
+  return await axios.post(`${BASE_URL}${pathParams}`, body, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
+async function getOrder(pathParams) {
+  return await axios.get(`${BASE_URL}${pathParams}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
@@ -147,6 +167,15 @@ getListOfDepartmentsUP.propTypes = {
   body: PropTypes.string.isRequired,
 };
 
+makeOrder.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+};
+
+getOrder.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+};
+
 getCareList.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
@@ -161,4 +190,6 @@ export {
   getListOfCitiesUP,
   getListOfDepartmentsUP,
   getCareList,
+  makeOrder,
+  getOrder,
 };

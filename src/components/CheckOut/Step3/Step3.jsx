@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  saveToStorage,
-  getFromStorage,
-  removeItem,
-} from 'services/localStorService';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveToStorage, getFromStorage } from 'services/localStorService';
 
 import {
   FormContainer,
@@ -15,10 +11,24 @@ import {
   PostContainer,
 } from './Step3.styled';
 import { addPayment } from 'redux/payment/operations';
+import { makeOrder } from 'services/APIservice';
+import { getUser, selectId } from 'redux/auth/selectors';
+import {
+  selectBasket,
+  selectTotalAmount,
+  selectTotalDiscount,
+  selectTotalPayment,
+} from 'redux/basket/selectors';
+import { selectDelivery } from 'redux/delivery/selectors';
+import { selectPayment } from 'redux/payment/selectors';
+import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 
 // import { useTranslation } from 'react-i18next';
 
 const Step3 = () => {
+  const [isFetch, setisFetch] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(true);
   let payment = getFromStorage('payment');
   // const { t } = useTranslation();
@@ -31,6 +41,14 @@ const Step3 = () => {
   const [cashOnDelivery, setCashOnDelivery] = useState(
     payment?.cashOnDelivery ? payment.cashOnDelivery : false,
   );
+  const basket = useSelector(selectBasket);
+  const totalAmount = useSelector(selectTotalAmount);
+  const totalDiscount = useSelector(selectTotalDiscount);
+  const totalPayment = useSelector(selectTotalPayment);
+  const user_id = useSelector(selectId);
+  const user = useSelector(getUser);
+  const delivery = useSelector(selectDelivery);
+  const metodPayment = useSelector(selectPayment);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -63,11 +81,44 @@ const Step3 = () => {
     }
   };
 
+  useEffect(() => {
+    async function postOrder() {
+      const order = {
+        basket,
+        totalAmount,
+        totalDiscount,
+        totalPayment,
+        delivery,
+        metodPayment,
+        userName: user.userName,
+        userPhone: user.phone,
+        userEmail: user.email,
+      };
+      setIsLoading(true);
+      try {
+        const { data } = await makeOrder(`/order/${user_id}`, order);
+        if (!data) {
+          return onFetchError(t('Whoops, something went wrong'));
+        }
+        onSuccess('Great! Thank you for your order');
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+        setisFetch(false);
+      }
+    }
+    if (isFetch) {
+      postOrder();
+    }
+  }, [isFetch]);
+
   const handleConfirmOrder = e => {
     e.preventDefault;
     payment = { prepaidCard, accountPayment, cashOnDelivery };
     saveToStorage('payment', payment);
     dispatch(addPayment(payment));
+    setisFetch(true);
   };
   return (
     <FormContainer>
