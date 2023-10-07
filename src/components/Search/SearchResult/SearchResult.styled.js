@@ -82,6 +82,7 @@ const Products = styled.ul`
   width: 100%;
   margin-bottom: auto;
 `;
+
 const LinkToGifts = styled(NavLink)`
   display: flex;
   align-items: center;
@@ -153,6 +154,8 @@ const LinkToCatalog = styled(NavLink)`
 `;
 
 const CardSearch = styled(Card)`
+  width: 274px;
+
   & > a {
     display: flex;
     align-items: center;
@@ -162,7 +165,6 @@ const CardSearch = styled(Card)`
 const CardImageSearch = styled(CardImage)`
   width: 62px;
   height: 100px;
-  margin-right: 12px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 93px;
@@ -200,7 +202,7 @@ const CardTitleSearch = styled(CardTitle)`
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
-  width: 150px;
+  width: 130px;
 `;
 
 const Category = styled.ul`

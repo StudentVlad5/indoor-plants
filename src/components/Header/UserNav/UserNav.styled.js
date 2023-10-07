@@ -8,7 +8,7 @@ const MobileAccountButton = styled(NavLink)`
   justify-content: center;
   align-items: center;
   margin: 46px auto 0 auto;
-  padding: 8px 36px;
+  /* padding: 8px 36px; */
 
   height: 35px;
   border-radius: 40px;
@@ -31,7 +31,7 @@ const AccountButton = styled(MobileAccountButton)`
   display: none;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    padding: 8px 28px;
+    /* padding: 8px 28px; */
     display: flex;
     height: 44px;
     font-size: 20px;

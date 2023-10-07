@@ -46,9 +46,9 @@ export const SearchResult = ({ onClose, toggleMobileMenu }) => {
       (async function getData() {
         setIsLoading(true);
         try {
-          const { data } = await fetchData(`/catalog`);
-          setProducts(data);
-          setCategory(data);
+          const { data } = await fetchData(`/catalog/plants?perPage=12&page=1`);
+          setProducts(data.catalog);
+          setCategory(data.catalog);
           setTotal(data.length);
           if (!data) {
             return onFetchError(t('Whoops, something went wrong'));
@@ -86,7 +86,7 @@ export const SearchResult = ({ onClose, toggleMobileMenu }) => {
               {products.slice(0, 4).map(card => {
                 return (
                   <SC.CardSearch key={card._id} onClick={onClose}>
-                    <NavLink to={`/catalog/${card._id}`}>
+                    <NavLink to={`/catalog/byid/${card._id}`}>
                       <SC.CardImageSearch
                         src={BASE_URL_IMG + card.images[0]}
                         alt={card.name}

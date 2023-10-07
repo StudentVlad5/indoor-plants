@@ -11,23 +11,26 @@ import theme from 'components/baseStyles/Variables.styled';
 import { Text } from 'components/Header/Elements/logo/Logo.styled';
 
 export const FooterSection = styled.footer`
-  /* width: 100vw; */
-  /* backdrop-filter: blur(10px); */
+  /* position: fixed;
+  bottom: 0%;
+  left: 0;
+  right: 0;
+  z-index: 10; */
 `;
 
 export const FooterContainer = styled(Container)`
   margin: 0 auto;
-  padding: 60px 10px;
+  padding: 10px;
   width: 100%;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding: 60px 30px;
+    padding: 10px 30px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     justify-content: space-between;
-    padding: 120px;
+    padding: 10px 120px;
     max-width: ${theme.breakpoints.desktop};
   }
 `;
@@ -42,8 +45,10 @@ export const FooterFaqList = styled.ul`
 
   &:nth-child(2) {
     display: none;
+
     @media screen and (min-width: ${theme.breakpoints.desktop}) {
       display: flex;
+      gap: 20px;
     }
   }
 `;
@@ -61,10 +66,6 @@ export const FooterFaqListItem = styled.li`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-
     &::before {
       content: none;
     }
@@ -84,7 +85,7 @@ export const FaqListBoxText = styled.div`
 export const FooterFaqListTitle = styled.h3`
   padding: 13px 0;
   color: ${theme.colors.brown2};
-  font-family: 'Raisonne Pro', sans-serif;
+  font-family: ${theme.fonts[0]};
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -101,7 +102,7 @@ export const FaqListOptionsBox = styled.div``;
 
 export const FaqListOptions = styled.p`
   color: ${theme.colors.green};
-  font-family: 'Raisonne Pro', sans-serif;
+  font-family: ${theme.fonts[0]};
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -128,7 +129,7 @@ export const FaqListOptions = styled.p`
 export const FooterSubscribtion = styled.h2`
   display: block;
   color: ${theme.colors.green};
-  font-family: 'Nib Pro', sans-serif;
+  font-family: ${theme.fonts[1]};
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -143,6 +144,7 @@ export const FooterSubscribtion = styled.h2`
   }
   &:nth-child(2) {
     display: none;
+
     @media screen and (min-width: ${theme.breakpoints.desktop}) {
       display: block;
       margin-bottom: 12px;
@@ -157,11 +159,12 @@ export const FooterSubscribtion = styled.h2`
 export const FooterSubscribtionDiscr = styled.p`
   display: block;
   color: ${theme.colors.brown2};
-  font-family: 'Raisonne Pro', sans-serif;
+  font-family: ${theme.fonts[0]};
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 140%; /* 19.6px */
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: none;
   }
@@ -169,6 +172,7 @@ export const FooterSubscribtionDiscr = styled.p`
 
 export const FooterSubscribtionDiscr1 = styled(FooterSubscribtionDiscr)`
   display: none;
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: block;
     width: 437px;
@@ -206,7 +210,7 @@ export const FooterInput = styled.input`
   padding: 12px 190px 12px 12px;
 
   color: ${theme.colors.brown2};
-  font-family: 'Raisonne Pro', sans-serif;
+  font-family: ${theme.fonts[0]};
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -223,7 +227,7 @@ export const FooterInputFormBtn = styled.button`
   display: none;
   border-radius: 10px;
   border-color: transparent;
-  background: var(--store-green, #5a6b47);
+  background: ${theme.colors.green};
   padding: 10px 0;
   width: 100%;
   margin-top: 16px;
@@ -231,7 +235,7 @@ export const FooterInputFormBtn = styled.button`
 
   color: ${theme.colors.fon};
   text-align: center;
-  font-family: 'Raisonne Pro', sans-serif;
+  font-family: ${theme.fonts[0]};
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -290,24 +294,19 @@ export const FooterLogo = styled(Text)`
 `;
 
 export const FooterContactsList = styled.ul`
-  display: flex;
   position: absolute;
   right: 0;
+  display: flex;
+  gap: 9px;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     position: static;
+    gap: 28px;
   }
 `;
 
 export const FooterContactsListItem = styled.li`
   cursor: pointer;
-
-  &:not(:last-child) {
-    margin-right: 9px;
-    @media screen and (min-width: ${theme.breakpoints.desktop}) {
-      margin-right: 28px;
-    }
-  }
 `;
 
 // Team
