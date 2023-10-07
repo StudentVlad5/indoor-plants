@@ -6,7 +6,7 @@ import {
   selectTotalPayment,
   selectTotalAmount,
 } from 'redux/basket/selectors';
-import { BasketList } from './BasketList/BasketList';
+import { ShoppingBagList } from './ShoppingBagList/ShoppingBagList';
 import {
   BasketIconClose,
   BasketBox,
@@ -32,7 +32,7 @@ import {
   ProgressBarBox,
   ProgressBarTitle,
   ProgressBar,
-} from './Basket.styled';
+} from './ShoppingBag.styled';
 import {
   Count,
   IconBasket,
@@ -44,7 +44,7 @@ import peaceLily from 'images/basket/peace-lily.png';
 import philodendron from 'images/basket/philodendron.png';
 import plantGrayPot from 'images/basket/plant-gray-pot.png';
 
-export const Basket = () => {
+export const ShoppingBag = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dataArr = [
@@ -117,7 +117,7 @@ export const Basket = () => {
 
                 <OrderList>
                   {basket.map((product, idx) => (
-                    <BasketList
+                    <ShoppingBagList
                       key={`${idx}${product._id}`}
                       {...{ ...product, index: idx }}
                     />
@@ -135,10 +135,7 @@ export const Basket = () => {
                   an order is placed, it cannot be cancelled.
                 </TotalDiscr>
 
-                <OrderBtn
-                  to="/checkout/step1"
-                  onClick={() => setIsOpen(!isOpen)}
-                >
+                <OrderBtn to="/basket" onClick={() => setIsOpen(!isOpen)}>
                   checkout
                 </OrderBtn>
               </TotalTitleBox>

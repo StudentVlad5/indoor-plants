@@ -34,7 +34,6 @@ export const Header = () => {
 
   return (
     <HeaderSectionWrap isScrolled={isScrolled}>
-      {/* <HeaderSection> */}
       <HeaderContainer>
         <Menu />
         <Logo />
@@ -42,7 +41,6 @@ export const Header = () => {
         <Navigation />
       </HeaderContainer>
       <HeaderUnderLine className={headerBottom.headerBottom} />
-      {/* </HeaderSection> */}
     </HeaderSectionWrap>
   );
 };

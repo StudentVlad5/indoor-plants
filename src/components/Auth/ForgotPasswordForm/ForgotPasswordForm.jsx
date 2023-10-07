@@ -2,27 +2,25 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
-import schemas from 'components/Schemas/schemas';
+import schemas from 'utils/schemas';
 import { changePasswordAuth } from 'redux/auth/operations';
 import theme from 'components/baseStyles/Variables.styled';
-import {
-  FormRegister,
-  FormContainer,
-  Input,
-  Btn,
-  TitleRegister,
-  StyledLink,
-  BoxText,
-  IconValid,
-  IconInValid,
-  ErrBox,
-  Div,
-  FormSection,
-  BtnContainer,
-  Span,
-} from './ForgotPasswordForm.styled.js';
+import { FormRegister, TitleRegister } from './ForgotPasswordForm.styled.js';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages.jsx';
 import { useNavigate } from 'react-router-dom';
+import {
+  BoxText,
+  Btn,
+  BtnContainer,
+  ErrorBox,
+  FormContainer,
+  FormSection,
+  IconInValid,
+  IconValid,
+  Input,
+  Span,
+  StyledLink,
+} from '../AuthForm.styled.js';
 
 const ForgotPasswordForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +69,7 @@ const ForgotPasswordForm = () => {
         <Formik validationSchema={schemas.changePasswordSchema}>
           <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
             <TitleRegister>{'Forgot Password'}</TitleRegister>
-            <Div>
+            <div>
               <Input
                 style={{
                   borderColor: showAccentValidateInput(
@@ -93,10 +91,10 @@ const ForgotPasswordForm = () => {
                 <IconInValid color={theme.colors.red} />
               )}
               {formik.errors.email && formik.touched.email ? (
-                <ErrBox>{formik.errors.email}</ErrBox>
+                <ErrorBox>{formik.errors.email}</ErrorBox>
               ) : null}
               <Span className="floating-label">Email</Span>
-            </Div>
+            </div>
             <BtnContainer>
               <Btn
                 type="submit"

@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectBasket } from 'redux/basket/selectors';
+import { addOrder } from 'redux/order/operations';
+import { getUser } from 'redux/auth/selectors';
+import { useAuth } from 'hooks/useAuth';
+import { Container } from 'components/baseStyles/CommonStyle.styled';
+import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
+import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
 import {
   Delivery,
   DeliveryInfoBox,
@@ -34,15 +42,7 @@ import {
   PaymentBlockOptionsLable,
   PaymentBlockOptionsInput,
 } from './Order.styled';
-import { Container } from 'components/baseStyles/CommonStyle.styled';
-import { selectBasket } from 'redux/basket/selectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { BasketCompTitle, ShippingFast } from '../Checkout.styled';
-import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
-import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
-import { addOrder } from 'redux/order/operations';
-import { getUser } from 'redux/auth/selectors';
-import { useAuth } from 'hooks/useAuth';
+import { CheckOutTitle } from '../Checkout.styled';
 
 export const Order = () => {
   const basket = useSelector(selectBasket);
@@ -133,9 +133,9 @@ export const Order = () => {
   };
 
   const deliveryOptions = [
-    { value: 'Нова Пошта', label: 'Нова Пошта' },
-    { value: 'Укр Пошта', label: 'Укр Пошта' },
-    { value: "Доставка кур'єром", label: "Доставка кур'єром" },
+    { value: 'NovaPoshta', label: 'NovaPoshta' },
+    { value: 'UkrPoshta', label: 'UkrPoshta' },
+    { value: 'Courier delivery', label: 'Courier delivery' },
   ];
 
   const paymentOptions = [
@@ -223,13 +223,13 @@ export const Order = () => {
       <Container>
         <Delivery>
           <DeliveryInfoBox>
-            <BasketCompTitle id="deliveryTitle">Delivery</BasketCompTitle>
-            <BasketCompTitle id="addressTitle" style={{ display: 'none' }}>
+            <CheckOutTitle id="deliveryTitle">Delivery</CheckOutTitle>
+            <CheckOutTitle id="addressTitle" style={{ display: 'none' }}>
               ADDRESS
-            </BasketCompTitle>
-            <BasketCompTitle id="paymentTitle" style={{ display: 'none' }}>
+            </CheckOutTitle>
+            <CheckOutTitle id="paymentTitle" style={{ display: 'none' }}>
               payment
-            </BasketCompTitle>
+            </CheckOutTitle>
 
             {/* deliveryBlock */}
             <DeliveryBlock id="deliveryBlock">
@@ -244,7 +244,7 @@ export const Order = () => {
 
                     <DeliveryBlockOptionsLableBox>
                       <DeliveryBlockOptionsTitle>
-                        Нова Пошта
+                        NovaPoshta
                       </DeliveryBlockOptionsTitle>
                       <DeliveryBlockOptionsTitleDiscr>
                         Cash upon delivery, card payment Visa, Master Card
@@ -276,7 +276,7 @@ export const Order = () => {
 
                     <DeliveryBlockOptionsLableBox>
                       <DeliveryBlockOptionsTitle>
-                        Укр Пошта
+                        UkrPoshta
                       </DeliveryBlockOptionsTitle>
                       <DeliveryBlockOptionsTitleDiscr>
                         Cash upon delivery, card payment Visa, Master Card
@@ -304,10 +304,10 @@ export const Order = () => {
                     onChange={handleInputChange}
                   >
                     <DeliveryBlockOptionsInput type="radio" name="delivery" />
-                    <ShippingFast style={{ width: 55 }} />
+                    {/* <ShippingFast style={{ width: 55 }} /> */}
                     <DeliveryBlockOptionsLableBox>
                       <DeliveryBlockOptionsTitle>
-                        Доставка кур&#39;єром
+                        Courier delivery
                       </DeliveryBlockOptionsTitle>
                       <DeliveryBlockOptionsTitleDiscr>
                         Cash upon delivery, card payment Visa, Master Card

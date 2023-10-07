@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { SEO } from 'utils/SEO';
 import { addHeaderBottom } from 'redux/header_bottom/operation';
-import ForgotPasswordForm from 'components/Auth/ForgotPasswordForm/ForgotPasswordForm';
+import { SEO } from 'utils/SEO';
+import { Basket } from 'components/Basket/Basket';
 
-const ForgotPasswordPage = () => {
+const BasketPage = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(
       addHeaderBottom({
@@ -17,13 +16,10 @@ const ForgotPasswordPage = () => {
 
   return (
     <>
-      <SEO
-        title="HomeForest Change Password"
-        description="Change Password for your account"
-      />
-      <ForgotPasswordForm />
+      <SEO title="Basket" description="Your shopping bag" />
+      <Basket />
     </>
   );
 };
 
-export default ForgotPasswordPage;
+export default BasketPage;

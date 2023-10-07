@@ -14,14 +14,14 @@ import {
   Quantity,
   QuantityBox,
   IconQuantityBtn,
-} from './BasketList.styled';
-import { ListImage } from '../Basket.styled';
+} from './ShoppingBagList.styled';
+import { ListImage } from '../ShoppingBag.styled';
 
 import { ReactComponent as Minus } from 'images/svg/minus.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
-export const BasketList = ({
+export const ShoppingBagList = ({
   _id,
   name,
   currency,

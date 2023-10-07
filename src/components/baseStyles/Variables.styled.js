@@ -40,8 +40,6 @@ const theme = {
     greyOpacity: 'rgba(113, 113, 113, 0.1)',
     white: '#ffffff',
   },
-  // fonts: ['Archivo, sans-serif', 'Domine, serif'],
-  // fonts: ['Barlow, sans-serif', 'Fraunces, serif'],
   fonts: ['Archivo, sans-serif', 'Fraunces, serif'],
   fontSizes: {
     extrasmall: '10px',

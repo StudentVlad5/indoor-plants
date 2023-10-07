@@ -57,6 +57,7 @@ const View = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     align-items: center;
+    gap: 24px;
   }
 `;
 

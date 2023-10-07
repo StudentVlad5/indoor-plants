@@ -1,261 +1,184 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { saveToStorage, getFromStorage } from 'services/localStorService';
+import { addPayment } from 'redux/payment/operations';
+import { makeOrder } from 'services/APIservice';
+import { getUser, selectId } from 'redux/auth/selectors';
+import {
+  selectBasket,
+  selectTotalAmount,
+  selectTotalDiscount,
+  selectTotalPayment,
+} from 'redux/basket/selectors';
+import { selectDelivery } from 'redux/delivery/selectors';
+import { selectPayment } from 'redux/payment/selectors';
+import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import {
   FormContainer,
   Legend,
   Label,
-  SubLabel,
   Input,
-  DeliveryBtn,
   PostContainer,
-  TextAreaLabel,
-  TextArea,
 } from './Step2.styled';
-import DeliveryNP from 'components/Delivery/DeliveryNP';
-import DeliveryUP from 'components/Delivery/DeliveryUP';
-import { addDelivery } from 'redux/delivery/operations';
-import { saveToStorage, getFromStorage } from 'services/localStorService';
+import { CheckoutBtn } from '../Checkout.styled';
 
 // import { useTranslation } from 'react-i18next';
 
 const Step2 = () => {
+  const [isFetch, setisFetch] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(true);
+  let payment = getFromStorage('payment');
   // const { t } = useTranslation();
-
-  let delivery = getFromStorage('delivery');
-  const [novaPoshta, setNovaPoshta] = useState(
-    delivery?.novaPoshta ? delivery.novaPoshta : false,
+  const [prepaidCard, setPrepaidCard] = useState(
+    payment?.prepaidCard ? payment.prepaidCard : false,
   );
-  const [ukrPoshta, setUkrPoshta] = useState(
-    delivery?.ukrPoshta ? delivery.ukrPoshta : false,
+  const [accountPayment, setAccountPayment] = useState(
+    payment?.accountPayment ? payment.accountPayment : false,
   );
-  const [other, setOther] = useState(delivery?.other ? delivery.other : false);
-
-  const [department, setDepartment] = useState(
-    delivery?.department ? delivery.department : false,
+  const [cashOnDelivery, setCashOnDelivery] = useState(
+    payment?.cashOnDelivery ? payment.cashOnDelivery : false,
   );
-  const [courier, setСourier] = useState(
-    delivery?.courier ? delivery.courier : false,
-  );
-  const [postAdress, setPostAdress] = useState(
-    delivery?.postAdress ? delivery.postAdress : false,
-  );
-
-  const [cityNameNovaPosta, setCityNameNovaPosta] = useState(
-    getFromStorage('cityNameNP') ? getFromStorage('cityNameNP') : '',
-  );
-  const [departmentNameNovaPosta, setDepartmentNameNovaPosta] = useState(
-    getFromStorage('departmentNameNP')
-      ? getFromStorage('departmentNameNP')
-      : '',
-  );
-
-  const [cityNameUPLabel, setСitytNameUPLabel] = useState(
-    getFromStorage('cityNameUP') ? getFromStorage('cityNameUP') : '',
-  );
-  const [departmentUPLabel, setDepartmentUPLabel] = useState(
-    getFromStorage('departmentNameUP')
-      ? getFromStorage('departmentNameUP')
-      : '',
-  );
-
+  const basket = useSelector(selectBasket);
+  const totalAmount = useSelector(selectTotalAmount);
+  const totalDiscount = useSelector(selectTotalDiscount);
+  const totalPayment = useSelector(selectTotalPayment);
+  const user_id = useSelector(selectId);
+  const user = useSelector(getUser);
+  const delivery = useSelector(selectDelivery);
+  const metodPayment = useSelector(selectPayment);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (department || postAdress) {
+    if (prepaidCard || accountPayment || cashOnDelivery) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [department, postAdress]);
+  }, [prepaidCard, accountPayment, cashOnDelivery]);
 
-  const handleEnableStep3 = () => {
+  const handleChangePayment = e => {
+    switch (e.target.value) {
+      case 'prepaidCard':
+        setPrepaidCard(true);
+        setAccountPayment(false);
+        setCashOnDelivery(false);
+        break;
+      case 'accountPayment':
+        setPrepaidCard(false);
+        setAccountPayment(true);
+        setCashOnDelivery(false);
+        break;
+      case 'cashOnDelivery':
+        setPrepaidCard(false);
+        setAccountPayment(false);
+        setCashOnDelivery(true);
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    async function postOrder() {
+      const order = {
+        basket,
+        totalAmount,
+        totalDiscount,
+        totalPayment,
+        delivery,
+        metodPayment,
+        userName: user.userName,
+        userPhone: user.phone,
+        userEmail: user.email,
+      };
+      setIsLoading(true);
+      try {
+        const { data } = await makeOrder(`/order/${user_id}`, order);
+        if (!data) {
+          return onFetchError(t('Whoops, something went wrong'));
+        }
+        onSuccess('Great! Thank you for your order');
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+        setisFetch(false);
+      }
+    }
+    if (isFetch) {
+      postOrder();
+    }
+  }, [isFetch]);
+
+  const handleConfirmOrder = e => {
+    e.preventDefault;
+    payment = { prepaidCard, accountPayment, cashOnDelivery };
+    saveToStorage('payment', payment);
+    dispatch(addPayment(payment));
+    setisFetch(true);
     document.querySelector('.step3Btn').classList.remove('isDisabled');
-    delivery = {
-      novaPoshta,
-      ukrPoshta,
-      other,
-      department,
-      courier,
-      postAdress,
-      cityNameNP: cityNameNovaPosta,
-      departmentNameNP: departmentNameNovaPosta,
-      cityNameUP: cityNameUPLabel,
-      departmentNameUP: departmentUPLabel,
-    };
-    saveToStorage('delivery', delivery);
-    dispatch(addDelivery(delivery));
-  };
-
-  const handleChangeDelivery = e => {
-    switch (e.target.value) {
-      case 'novaPoshta':
-        setNovaPoshta(true);
-        setUkrPoshta(false);
-        setOther(false);
-        break;
-      case 'ukrPoshta':
-        setNovaPoshta(false);
-        setUkrPoshta(true);
-        setOther(false);
-        break;
-      case 'other':
-        setNovaPoshta(false);
-        setUkrPoshta(false);
-        setOther(true);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleChangePost = e => {
-    switch (e.target.value) {
-      case 'department':
-        setDepartment(true);
-        setСourier(false);
-        break;
-      case 'courier':
-        setDepartment(false);
-        setСourier(true);
-        break;
-      default:
-        break;
-    }
   };
   return (
     <FormContainer>
       <form>
         <PostContainer>
           <div>
-            <Legend>Delivery</Legend>
+            <Legend>Terms of payment</Legend>
             <Label>
               <Input
                 type="radio"
-                name="delivery"
-                value="novaPoshta"
-                checked={novaPoshta}
-                onChange={e => handleChangeDelivery(e)}
+                name="payment"
+                value="prepaidCard"
+                checked={prepaidCard}
+                onChange={e => handleChangePayment(e)}
               />
-              Nova Poshta
+              Prepayment to a bank card
             </Label>
-            {novaPoshta && (
-              <div
-                style={{
-                  paddingLeft: '30px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
-                <SubLabel>
-                  <Input
-                    type="radio"
-                    name="post"
-                    value="department"
-                    checked={department}
-                    onChange={e => handleChangePost(e)}
-                  />
-                  To department
-                </SubLabel>
-                <DeliveryNP
-                  novaPoshta={novaPoshta}
-                  department={department}
-                  setCityNameNovaPosta={setCityNameNovaPosta}
-                  setDepartmentNameNovaPosta={setDepartmentNameNovaPosta}
-                />
-                <SubLabel>
-                  <Input
-                    type="radio"
-                    name="post"
-                    value="courier"
-                    checked={courier}
-                    onChange={e => handleChangePost(e)}
-                  />
-                  Сourier
-                </SubLabel>
-                {novaPoshta && courier && (
-                  <TextAreaLabel>
-                    Edit your post adress:
-                    <TextArea
-                      name="postAdress"
-                      rows={4}
-                      cols={40}
-                      value={postAdress ? postAdress : ''}
-                      onChange={e => setPostAdress(e.target.value)}
-                    />
-                  </TextAreaLabel>
-                )}
-              </div>
-            )}
             <br />
             <Label>
               <Input
                 type="radio"
-                name="delivery"
-                value="ukrPoshta"
-                checked={ukrPoshta}
-                onChange={e => handleChangeDelivery(e)}
+                name="payment"
+                value="accountPayment"
+                checked={accountPayment}
+                onChange={e => handleChangePayment(e)}
               />
-              UkrPoshta
+              Payment on account
             </Label>
-            {ukrPoshta && (
-              <div style={{ paddingLeft: '30px' }}>
-                <SubLabel>
-                  <Input
-                    type="radio"
-                    name="post"
-                    value="department"
-                    checked={department}
-                    onChange={e => handleChangePost(e)}
-                  />
-                  To department
-                </SubLabel>
-                <DeliveryUP
-                  ukrPoshta={ukrPoshta}
-                  department={department}
-                  setDepartmentUPLabel={setDepartmentUPLabel}
-                  setСitytNameUPLabel={setСitytNameUPLabel}
-                />
-              </div>
-            )}
             <br />
             <Label>
               <Input
                 type="radio"
-                name="delivery"
-                value="other"
-                checked={other}
-                onChange={e => handleChangeDelivery(e)}
+                name="payment"
+                value="cashOnDelivery"
+                checked={cashOnDelivery}
+                onChange={e => handleChangePayment(e)}
               />
-              Other Delivery Service
+              Cash on delivery
             </Label>
-            {other && (
-              <TextAreaLabel>
-                Add your Delivery service:
-                <TextArea
-                  name="postAdress"
-                  value={postAdress ? postAdress : ''}
-                  rows={4}
-                  cols={40}
-                  onChange={e => setPostAdress(e.target.value)}
-                />
-              </TextAreaLabel>
-            )}
           </div>
         </PostContainer>
         <Link
           to={`/checkout/step3`}
           style={{ textDecoration: 'none', width: '100%' }}
         >
-          <DeliveryBtn
-            disabled={isDisabled}
+          <CheckoutBtn
             type="submit"
-            onClick={handleEnableStep3}
+            disabled={isDisabled}
+            onClick={e => handleConfirmOrder(e)}
           >
-            Choose way of delivery
-          </DeliveryBtn>
+            Confirm order
+          </CheckoutBtn>
+          <button
+            type="submit"
+            disabled={isDisabled}
+            onClick={e => handleConfirmOrder(e)}
+          >
+            Confirm order
+          </button>
         </Link>
       </form>
     </FormContainer>

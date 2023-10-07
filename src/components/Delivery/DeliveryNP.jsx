@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import schemas from 'components/Schemas/schemas';
+import schemas from 'utils/schemas';
 import { FormContainer, Div, SelectInput } from './Delivery.styled';
 import { getListOfCities, getListOfDepartments } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
@@ -125,7 +125,8 @@ const DeliveryNP = ({
     }
     return options;
   }
-  console.log('cityName', cityName);
+  // console.log('cityName', cityName);
+
   // options for UKR Poshta
 
   return (
