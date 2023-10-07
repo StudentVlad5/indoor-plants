@@ -10,6 +10,7 @@ const AuthLink = styled(NavLink)`
   /* height: 35px; */
   text-decoration: none;
   text-transform: uppercase;
+  margin: 0 8px;
 
   font-family: ${theme.fonts[0]};
   font-style: normal;
