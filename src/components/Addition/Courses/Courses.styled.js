@@ -15,4 +15,17 @@ const Container = styled.div`
   padding: 20px;
 `;
 
-export { Container };
+const MovieCintainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    flex-direction: row;
+  }
+`;
+
+export { Container, MovieCintainer };
