@@ -22,6 +22,8 @@ import { AboutUs } from 'components/Addition/AboutUs/AboutUs';
 import { Faq } from 'components/Addition/FAQ/Faq';
 import { Blog } from 'components/Addition/Blog/Blog';
 import { Shipping } from 'components/Addition/Shipping/Shipping';
+import { Guarantee } from 'components/Addition/Guarantee/Guarantee';
+import { Courses } from 'components/Addition/Courses/Courses';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -127,8 +129,8 @@ export const App = () => {
               <Route path="faq" element={<Faq />} />
               <Route path="blogs" element={<Blog />} />
               <Route path="shipping" element={<Shipping />} />
-              <Route path="garantee" element={<h4>Garantee</h4>} />
-              <Route path="course" element={<h4>Free Online Course</h4>} />
+              <Route path="guarantee" element={<Guarantee />} />
+              <Route path="course" element={<Courses />} />
               <Route path="contact" element={<h4>Contact Us</h4>} />
               <Route
                 path="rewards_program"
