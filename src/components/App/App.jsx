@@ -20,6 +20,8 @@ import { UserOrders } from 'components/UserComp/UserData/UserOrders/UserOrders';
 import { BasketRoute } from 'routes/BasketRoute';
 import { AboutUs } from 'components/Addition/AboutUs/AboutUs';
 import { Faq } from 'components/Addition/FAQ/Faq';
+import { Blog } from 'components/Addition/Blog/Blog';
+import { Shipping } from 'components/Addition/Shipping/Shipping';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -123,8 +125,8 @@ export const App = () => {
             <Route path="addition" element={<AdditionPage />}>
               <Route path="about_company" element={<AboutUs />} />
               <Route path="faq" element={<Faq />} />
-              <Route path="blogs" element={<h4>BLOGS</h4>} />
-              <Route path="shipping" element={<h4>Shipping & Handling</h4>} />
+              <Route path="blogs" element={<Blog />} />
+              <Route path="shipping" element={<Shipping />} />
               <Route path="garantee" element={<h4>Garantee</h4>} />
               <Route path="course" element={<h4>Free Online Course</h4>} />
               <Route path="contact" element={<h4>Contact Us</h4>} />
