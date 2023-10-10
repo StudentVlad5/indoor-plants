@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeProduct } from 'redux/basket/operations';
 import { setQuantity } from 'redux/basket/slice';
+import { selectCurrency } from 'redux/basket/selectors';
 import {
   DiscrBox,
   RemoveBtn,
@@ -24,7 +25,6 @@ import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 export const ShoppingBagList = ({
   _id,
   name,
-  currency,
   optionData,
   images,
   quantity,
@@ -34,6 +34,7 @@ export const ShoppingBagList = ({
   const removeProductHandler = (_id, size) => {
     dispatch(removeProduct({ _id, size }));
   };
+  const currency = useSelector(selectCurrency);
 
   const initialPrice = optionData.currentPrice * optionData.quantity;
   const [price, setPrice] = useState(initialPrice);

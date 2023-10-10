@@ -116,9 +116,13 @@ export const PaymentBtn = styled(Link)`
 
   &:hover,
   &:focus {
-    border-radius: 10px;
+    color: ${theme.colors.white};
+    background: ${theme.colors.green};
+    border: 1px solid ${theme.colors.green};
+
+    /* border-radius: 10px;
     border: 1px solid ${theme.colors.green2};
-    background: ${theme.colors.green5};
+    background: ${theme.colors.green5}; */
   }
 `;
 

@@ -28,7 +28,8 @@ export const Basket = () => {
     <BasketSection>
       <BasketContainer>
         <Legend>Basket</Legend>
-        {auth._id && basket.length > 0 ? (
+        {/* {auth._id && basket.length > 0 ? ( */}
+        {basket.length > 0 ? (
           <BasketWrapper>
             <BasketCompList>
               {basket.map((product, idx) => (

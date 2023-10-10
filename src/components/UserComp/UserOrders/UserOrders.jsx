@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getOrder } from '../../../../services/APIservice';
+import { getOrder } from '../../../services/APIservice';
 import { useSelector } from 'react-redux';
 import { selectId } from 'redux/auth/selectors';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';

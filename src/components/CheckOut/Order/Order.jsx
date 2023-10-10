@@ -41,6 +41,8 @@ import {
   DeliveryBlockOptionsBtn,
   PaymentBlockOptionsLable,
   PaymentBlockOptionsInput,
+  Btnwrapper,
+  DeliveryInfoBlock,
 } from './Order.styled';
 import { CheckOutTitle } from '../Checkout.styled';
 
@@ -64,7 +66,7 @@ export const Order = () => {
     const deliveryTitle = document.getElementById('deliveryTitle');
 
     deliveryBlock.style.display = 'none';
-    deliveryInfoBlock.style.display = 'block';
+    deliveryInfoBlock.style.display = 'flex';
     addressTitle.style.display = 'block';
     deliveryTitle.style.display = 'none';
   };
@@ -100,7 +102,7 @@ export const Order = () => {
     const addressTitle = document.getElementById('addressTitle');
 
     paymentBlock.style.display = 'none';
-    deliveryInfoBlock.style.display = 'block';
+    deliveryInfoBlock.style.display = 'flex';
     paymentTitle.style.display = 'none';
     addressTitle.style.display = 'block';
   };
@@ -327,144 +329,142 @@ export const Order = () => {
           </DeliveryInfoBox>
 
           {/* deliveryInfoBlock */}
-          <div>
-            <div
-              id="deliveryInfoBlock"
-              style={{ display: 'none', position: 'relative' }}
-            >
-              {auth._id ? (
-                <div>
-                  <p>{userIn.userName}</p>
-                  <p>{userIn.phone}</p>
-                  <p>{userIn.email}</p>
-                  <p>{userIn.location}</p>
-                </div>
-              ) : (
-                <DeliveryForm>
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>First name</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      required
-                      placeholder="George"
-                    />
-                  </DeliveryFormLable>
+          <DeliveryInfoBlock id="deliveryInfoBlock" style={{ display: 'none' }}>
+            {auth._id ? (
+              <div>
+                <p>
+                  {userIn.userName} {userIn.surname}
+                </p>
+                <p>{userIn.phone}</p>
+                <p>{userIn.email}</p>
+                <p>{userIn.location}</p>
+              </div>
+            ) : (
+              <DeliveryForm>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>First name</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    required
+                    // placeholder="George"
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>Last name</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="text"
-                      id="surname"
-                      name="surname"
-                      value={formData.surname}
-                      required
-                      placeholder="Washington"
-                    />
-                  </DeliveryFormLable>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>Last name</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="text"
+                    id="surname"
+                    name="surname"
+                    value={formData.surname}
+                    required
+                    // placeholder="Washington"
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>Company</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="text"
-                      id="company"
-                      value={formData.company}
-                      name="company"
-                    />
-                  </DeliveryFormLable>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>Company</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="text"
+                    id="company"
+                    value={formData.company}
+                    name="company"
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>Address 1</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="text"
-                      id="address1"
-                      value={formData.address1}
-                      name="address1"
-                      required
-                    />
-                  </DeliveryFormLable>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>Address 1</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="text"
+                    id="address1"
+                    value={formData.address1}
+                    name="address1"
+                    required
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>Address 2</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="text"
-                      id="address2"
-                      name="address2"
-                      value={formData.address2}
-                    />
-                  </DeliveryFormLable>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>Address 2</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="text"
+                    id="address2"
+                    name="address2"
+                    value={formData.address2}
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>City</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="text"
-                      id="town"
-                      name="town"
-                      value={formData.town}
-                      required
-                    />
-                  </DeliveryFormLable>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>City</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="text"
+                    id="town"
+                    name="town"
+                    value={formData.town}
+                    required
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>State</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="text"
-                      id="state"
-                      name="state"
-                      value={formData.state}
-                      required
-                    />
-                  </DeliveryFormLable>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>State</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="text"
+                    id="state"
+                    name="state"
+                    value={formData.state}
+                    required
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>Zip code</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="text"
-                      id="zipCode"
-                      name="zipCode"
-                      value={formData.zipCode}
-                      required
-                    />
-                  </DeliveryFormLable>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>Zip code</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="text"
+                    id="zipCode"
+                    name="zipCode"
+                    value={formData.zipCode}
+                    required
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>Phone</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      required
-                      placeholder="Phone"
-                    />
-                  </DeliveryFormLable>
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>Phone</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    required
+                    placeholder="Phone"
+                  />
+                </DeliveryFormLable>
 
-                  <DeliveryFormLable>
-                    <DeliveryFormLableText>Email</DeliveryFormLableText>
-                    <DeliveryFormInput
-                      onChange={handleInputChange}
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      required
-                      placeholder="george.washington@gmail.com"
-                    />
-                  </DeliveryFormLable>
-                </DeliveryForm>
-              )}
-
+                <DeliveryFormLable>
+                  <DeliveryFormLableText>Email</DeliveryFormLableText>
+                  <DeliveryFormInput
+                    onChange={handleInputChange}
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    required
+                    placeholder="george.washington@gmail.com"
+                  />
+                </DeliveryFormLable>
+              </DeliveryForm>
+            )}
+            <Btnwrapper>
               <DeliveryFormBtn type="button" onClick={goBackToDelivery}>
                 Back
               </DeliveryFormBtn>
@@ -472,8 +472,8 @@ export const Order = () => {
               <DeliveryFormBtnFinish type="button" onClick={showPayment}>
                 Save
               </DeliveryFormBtnFinish>
-            </div>
-          </div>
+            </Btnwrapper>
+          </DeliveryInfoBlock>
 
           {/* Payment */}
           <div id="paymentBlock" style={{ display: 'none' }}>

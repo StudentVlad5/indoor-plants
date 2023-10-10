@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <>
-      <SEO title="HomeForest Log in" description="Log in to your account" />
+      <SEO title="LogIn" description="Log in to your account" />
       <LoginForm />
     </>
   );

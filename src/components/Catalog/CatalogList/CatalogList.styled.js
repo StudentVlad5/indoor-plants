@@ -104,7 +104,7 @@ const CardName = styled.span`
   letter-spacing: 0.32px;
   color: ${theme.colors.green};
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 16px;
   }
 `;
@@ -129,7 +129,7 @@ const CardDiscount = styled.span`
 
   color: ${theme.colors.green};
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 16px;
   }
 `;
@@ -145,7 +145,7 @@ const CardPrice = styled.span`
 
   color: ${theme.colors.brown2};
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 14px;
   }
 `;
@@ -165,7 +165,7 @@ const CardSize = styled.div`
     line-height: 140%; /* 16.8px */
     color: ${theme.colors.brown2};
 
-    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
       font-size: 12px;
     }
   }
@@ -175,6 +175,7 @@ const CardSize = styled.div`
     gap: 3px;
   }
 `;
+
 const BtnForFavorite = styled.button`
   position: absolute;
   top: 10px;

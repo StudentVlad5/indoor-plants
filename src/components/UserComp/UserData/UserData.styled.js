@@ -1,7 +1,7 @@
+import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
 import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
-import { ReactComponent as Pencil } from 'images/svg/pencil.svg';
-import styled from 'styled-components';
+import { ReactComponent as Pencil } from 'images/svg/edit_light.svg';
 
 const UserDataSection = styled.div`
   display: flex;
@@ -9,80 +9,83 @@ const UserDataSection = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
+
   width: 100%;
-  margin-bottom: 0px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    align-items: end;
+    gap: 36px;
+    width: 80%;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    gap: 42px;
   }
 `;
 const UserDataContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 18px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 0px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    justify-content: space-around;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    margin: 30px 0;
-    padding: 0 20px;
+    gap: 24px;
   }
 `;
 
 const UserDataImgWrapper = styled.div`
-  margin-bottom: 32px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  margin: 0 auto;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    margin-bottom: 0px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    position: relative;
-    margin-bottom: 90px;
   }
 `;
 
 const EditCameraForm = styled.form`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    position: absolute;
+    /* position: absolute;
     right: 0;
-    top: 214px;
+    top: 214px; */
   }
 `;
 
 const UserDataImg = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 12px;
   object-fit: cover;
-`;
 
-const EditCameraWrapper = styled.div`
-  display: flex;
-  justify-content: baseline;
-  flex-direction: row-reverse;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+  }
 `;
 
 const EditPhotoLabel = styled.label`
   display: flex;
   align-items: center;
-  cursor: pointer;
-  padding-right: 24px;
+
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.fontSizes.small};
+  font-size: 12px;
+  font-style: normal;
   font-weight: 400;
-  line-height: 1.8;
-  transition: all 150ms linear;
+  line-height: 140%; /* 16.8px */
+
+  transition: ${theme.transition[1]};
+  cursor: pointer;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-right: 0px;
@@ -91,24 +94,29 @@ const EditPhotoLabel = styled.label`
 
 const EditPhotoInput = styled.input`
   opacity: 0;
-  position: absolute;
-  z-index: -1;
-  width: 0;
-  height: 0;
+  width: 75px;
+  height: 75px;
+  z-index: 11;
+  cursor: pointer;
 `;
 
-const UserDataList = styled.ul`
+const UserDataList = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding-top: 16px;
+    /* padding-top: 16px;
     padding-bottom: 55px;
     width: 379px;
-    margin-left: 32px;
+    margin-left: 32px; */
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    padding-top: 0px;
+    gap: 24px;
+    /* padding-top: 0px;
     padding-bottom: 0px;
-    margin-left: 16px;
+    margin-left: 16px; */
   }
 `;
 
@@ -132,26 +140,33 @@ const UserPasswordList = styled.ul`
   }
 `;
 
-const BtnChangePassword = styled(Button)`
+const BtnLight = styled(Button)`
   display: flex;
-  width: 180px;
-  height: 40px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 24px;
-  text-decoration: none;
+  width: 130px;
+  height: 35px;
+
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.fontSizes.small};
+  font-size: 10px;
   font-style: normal;
-  font-weight: 400;
-  text-align: center;
-  text-transform: uppercase;
+  font-weight: 300;
   line-height: normal;
-  border-radius: 5px;
-  border: 1px solid ${theme.colors.brown};
-  color: ${theme.colors.brown};
+  text-transform: uppercase;
+  color: ${theme.colors.brown1};
+
   background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid ${theme.colors.brown1};
+
   cursor: pointer;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 180px;
+    height: 45px;
+    font-size: 14px;
+  }
+
   &:hover,
   &:focus {
     color: ${theme.colors.white};
@@ -159,54 +174,40 @@ const BtnChangePassword = styled(Button)`
   }
 `;
 
-const BtnSave = styled(Button)`
+const BtnGreen = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
-  border-radius: 4px;
-  color: ${theme.colors.brown1};
-  background: ${theme.colors.green4};
-  transform: scale(1);
-  cursor: pointer;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  transition: all 0.25s ease-in;
-  :hover,
-  :focus {
-    transform: scale(1.05);
-    transition: transform 0.5s;
-    color: ${theme.colors.white};
-    background: ${theme.colors.brown2};
-  }
-  :disabled {
-    opacity: 0.5;
-    cursor: auto;
-    transform: none;
-    transition: none;
-  }
-`;
+  width: 130px;
+  height: 35px;
 
-const BtnCancel = styled(Button)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid ${theme.colors.brown};
-  border-radius: 4px;
+  font-family: ${theme.fonts[0]};
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
   color: ${theme.colors.brown1};
-  transform: scale(1);
+
+  background-color: ${theme.colors.green4};
+  border-radius: 10px;
+  border: 1px solid ${theme.colors.green4};
+
   cursor: pointer;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  transition: all 0.25s ease-in;
-  :hover,
-  :focus {
-    transform: scale(1.05);
-    transition: transform 0.5s;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 180px;
+    height: 45px;
+    font-size: 14px;
   }
-  :disabled {
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.green};
+  }
+
+  & :disabled {
     opacity: 0.5;
     cursor: auto;
     transform: none;
@@ -215,93 +216,135 @@ const BtnCancel = styled(Button)`
 `;
 
 const ProfileContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: start;
-  position: relative;
   flex-direction: column;
-  padding: 20px 20px;
-  background-color: ${theme.colors.blue3};
+  gap: 8px;
+
   width: 100%;
-  margin: 0 40px;
+  padding: 20px;
+
+  background-color: ${theme.colors.blue3};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    gap: 10px;
+  }
 `;
 
 const BtnContainer = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 20px 20px;
-  width: 100%;
-  gap: 20px;
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    flex-direction: row;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    /* width: 580px; */
   }
 `;
 
 const ProfileSpanName = styled.span`
   font-family: ${theme.fonts[1]};
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
   color: ${theme.colors.green};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 `;
 
 const ProfileSpanValues = styled.span`
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.fontSizes.small};
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
-  margin: 4px 0;
   color: ${theme.colors.brown1};
-`;
 
-const PensilStyle = styled(Pencil)`
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  width: 14px;
-  height: 14px;
-  fill: ${theme.colors.brown1};
-  transform: all 150ms linear;
-  cursor: pointer;
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 20px;
-    height: 20px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 12px;
   }
 `;
 
-const TitleArticle = styled.div`
-  width: 100%;
-  padding: 0 20px;
+const IconBtn = styled.button`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+
+  border: none;
+
+  cursor: pointer;
+  transform: ${theme.transition[1]};
+  transition: all 0.25s ease-in;
+
+  &:hover,
+  &:focus {
+    border-radius: 50%;
+    background-color: ${theme.colors.fon};
+  }
+
+  &:disabled {
+    svg {
+      fill: ${theme.colors.grey1};
+    }
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
+const PensilStyle = styled(Pencil)`
+  width: 18px;
+  height: 18px;
+  fill: ${theme.colors.white};
+  transform: ${theme.transition[1]};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+const TitleArticle = styled.h2`
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.fontSizes.medium};
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   color: ${theme.colors.brown1};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 18px;
+  }
 `;
 
 export {
   EditCameraForm,
-  EditCameraWrapper,
   EditPhotoInput,
   EditPhotoLabel,
   UserDataContainer,
   UserDataImg,
   UserDataImgWrapper,
   UserDataList,
-  BtnChangePassword,
-  BtnSave,
-  BtnCancel,
+  BtnLight,
+  BtnGreen,
   UserDataSection,
   UserPasswordList,
   ProfileContainer,
   ProfileSpanName,
   ProfileSpanValues,
+  IconBtn,
   PensilStyle,
   TitleArticle,
   BtnContainer,

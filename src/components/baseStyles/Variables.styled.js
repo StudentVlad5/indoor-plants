@@ -50,7 +50,7 @@ const theme = {
     extraXL: '32px',
     extraXXL: '36px',
   },
-  transition: ['all 0.25s ease-in'],
+  transition: ['all 0.25s ease-in', 'all 150ms linear'],
   scale: ['scale(1.15)'],
 };
 
