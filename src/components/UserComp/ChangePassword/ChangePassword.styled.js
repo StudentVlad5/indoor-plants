@@ -47,7 +47,7 @@ const Input = styled.input`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    width: 580px;
+    /* width: 580px; */
     padding: 12px 30px 12px 20px;
     font-size: 16px;
   }
@@ -79,6 +79,11 @@ const Input = styled.input`
 const EditBtn = styled(IconBtn)`
   top: 0;
   bottom: 1px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    top: 5px;
+    bottom: 0;
+  }
 `;
 
 const ShowIcon = styled(ShowPassword)`

@@ -59,7 +59,7 @@ const ProfileInput = styled(Field)`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    width: 580px;
+    /* width: 580px; */
     padding: 12px 30px 12px 20px;
     font-size: 16px;
   }

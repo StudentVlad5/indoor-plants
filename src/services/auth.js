@@ -20,7 +20,16 @@ export const signIn = async credentials => {
 
 export const changePassword = async credentials => {
   try {
-    const res = await axios.post('/auth/changepassword', credentials);
+    const res = await axios.post('/auth/changePassword', credentials);
+    return res;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+export const forgotPassword = async credentials => {
+  try {
+    const res = await axios.post('/auth/forgotPassword', credentials);
     return res;
   } catch (error) {
     return error.message;
@@ -43,11 +52,18 @@ export const updateUserData = async updateData => {
   updateData.phone && formData.append('phone', updateData.phone);
   updateData.password && formData.append('password', updateData.password);
   updateData.delivery && formData.append('delivery', updateData.delivery);
-  // updateData.address && formData.append('address', updateData.address);
-  // updateData.address.forEach(value => {
-  //   formData.append('address[]', value);
-  // });
-  const { data } = await axios.patch(`/auth/user/${updateData.id}`, formData);
+  Object.entries(updateData.address).forEach(([key, value]) => {
+    formData.append(`address[${key}]`, value);
+  });
+
+  const { data } = await axios.patch(`/auth/user/${updateData.id}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+      'Access-Control-Expose-Headers': 'Content-Range',
+    },
+  });
   return data;
 };
 

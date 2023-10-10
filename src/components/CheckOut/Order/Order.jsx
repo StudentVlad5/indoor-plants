@@ -332,7 +332,9 @@ export const Order = () => {
           <DeliveryInfoBlock id="deliveryInfoBlock" style={{ display: 'none' }}>
             {auth._id ? (
               <div>
-                <p>{userIn.userName}</p>
+                <p>
+                  {userIn.userName} {userIn.surname}
+                </p>
                 <p>{userIn.phone}</p>
                 <p>{userIn.email}</p>
                 <p>{userIn.location}</p>

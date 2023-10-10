@@ -21,7 +21,7 @@ const initialState = {
     favorites: null,
     birthday: null,
     delivery: null,
-    address: [],
+    address: {},
   },
   token: null,
   permission: null,

@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import theme from 'components/baseStyles/Variables.styled';
-import {
-  Container,
-  Section,
-  Title,
-} from 'components/baseStyles/CommonStyle.styled';
+import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 export const UserSection = styled(Section)`
   padding-top: 122px;
@@ -21,16 +17,19 @@ export const UserContainer = styled(Container)`
 
 export const UserDataWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: start;
   flex-wrap: nowrap;
   align-items: start;
   gap: 20px;
+
   width: 100%;
+  padding: 0 30px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    gap: 50px;
-    width: 80%;
+    flex-direction: row;
+    gap: 100px;
+    padding: 0;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -47,6 +46,7 @@ export const UserAboutWrapper = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: row;
+    justify-content: flex-start;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -60,7 +60,8 @@ export const FolderWrapper = styled.div`
   flex-wrap: nowrap;
   align-items: flex-start;
   gap: 20px;
-  width: 120px;
+
+  width: 100%;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 150px;

@@ -30,9 +30,11 @@ import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 import { Profile } from '../Profile/Profile';
 import { ChangePassword } from '../ChangePassword/ChangePassword';
 import { DefaultDelivery } from '../DefaultDelivery/DefaultDelivery';
+import { Address } from '../Address/Address';
 
 export const UserData = () => {
   const [editProfileSettings, setEditProfileSettings] = useState(false);
+  const [showAddAddress, setShowAddAddress] = useState(false);
   const dispatch = useDispatch();
 
   const id = useSelector(selectId);
@@ -98,7 +100,36 @@ export const UserData = () => {
       </UserDataContainer>
       <UserDataContainer>
         <TitleArticle>My addresses</TitleArticle>
-        <BtnLight>add address</BtnLight>
+        {!userIn.address && !showAddAddress && (
+          <BtnLight onClick={() => setShowAddAddress(true)}>
+            add address
+          </BtnLight>
+        )}
+        {showAddAddress && <Address onClose={setShowAddAddress} />}
+        {userIn.address && (
+          <ProfileContainer>
+            <IconBtn onClick={() => setShowAddAddress(true)}>
+              <PensilStyle />
+            </IconBtn>
+            <ProfileSpanValues>
+              {userIn.address.userName} {userIn.address.surname}
+            </ProfileSpanValues>
+            {userIn.address.company && (
+              <ProfileSpanValues>{userIn.address.company}</ProfileSpanValues>
+            )}
+            <ProfileSpanValues>
+              {userIn.address.city}, {userIn.address.state},{' '}
+              {userIn.address.zipCode}
+            </ProfileSpanValues>
+            {userIn.address.address1 && userIn.address.address2 && (
+              <ProfileSpanValues>
+                {userIn.address.address1} {userIn.address.address2}
+              </ProfileSpanValues>
+            )}
+            <ProfileSpanValues>{userIn.address.phone}</ProfileSpanValues>
+            <ProfileSpanValues>{userIn.address.email}</ProfileSpanValues>
+          </ProfileContainer>
+        )}
       </UserDataContainer>
       <UserDataContainer>
         <TitleArticle>Default delivery</TitleArticle>

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import schemas from 'utils/schemas';
-import { changePasswordAuth } from 'redux/auth/operations';
+import { forgotPasswordAuth } from 'redux/auth/operations';
 import theme from 'components/baseStyles/Variables.styled';
 import { FormRegister, TitleRegister } from './ForgotPasswordForm.styled.js';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages.jsx';
@@ -31,7 +31,7 @@ const ForgotPasswordForm = () => {
     setIsLoading(true);
     const { email } = values;
     dispatch(
-      changePasswordAuth({
+      forgotPasswordAuth({
         email,
       }),
     );

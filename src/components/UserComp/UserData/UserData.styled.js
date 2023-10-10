@@ -14,6 +14,7 @@ const UserDataSection = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     gap: 36px;
+    width: 80%;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -220,12 +221,16 @@ const ProfileContainer = styled.div`
   justify-content: center;
   align-items: start;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 
   width: 100%;
   padding: 20px;
 
   background-color: ${theme.colors.blue3};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    gap: 10px;
+  }
 `;
 
 const BtnContainer = styled.div`
@@ -233,7 +238,7 @@ const BtnContainer = styled.div`
   justify-content: space-between;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    width: 580px;
+    /* width: 580px; */
   }
 `;
 
@@ -272,8 +277,8 @@ const IconBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
 
   border: none;
 
@@ -286,6 +291,7 @@ const IconBtn = styled.button`
     border-radius: 50%;
     background-color: ${theme.colors.fon};
   }
+
   &:disabled {
     svg {
       fill: ${theme.colors.grey1};
@@ -293,9 +299,8 @@ const IconBtn = styled.button`
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 32px;
-    height: 32px;
-    margin-left: 24px;
+    width: 30px;
+    height: 30px;
   }
 `;
 
