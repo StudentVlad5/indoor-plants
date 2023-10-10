@@ -28,7 +28,7 @@ export const Basket = () => {
     <BasketSection>
       <BasketContainer>
         <Legend>Basket</Legend>
-        {auth._id && basket.length > 0 ? (
+        {basket.length > 0 ? (
           <BasketWrapper>
             <BasketCompList>
               {basket.map((product, idx) => (
@@ -41,7 +41,17 @@ export const Basket = () => {
 
             <TotalPrice />
           </BasketWrapper>
-        ) : !auth._id ? (
+        ) : (
+          <AuthCheckOutBox>
+            <TitleCheckOut>YOUR Basket is empty</TitleCheckOut>
+            <TextCheckOut>Please add an item to checkout</TextCheckOut>
+            <Link to="/catalog" style={{ textDecoration: 'none' }}>
+              <Btn>SHOP</Btn>
+            </Link>
+          </AuthCheckOutBox>
+        )}
+
+        {!auth._id ? (
           <AuthCheckOutBox>
             <TitleCheckOut>Do not see selected products?</TitleCheckOut>
             <TextCheckOut>
@@ -52,13 +62,7 @@ export const Basket = () => {
             </Link>
           </AuthCheckOutBox>
         ) : (
-          <AuthCheckOutBox>
-            <TitleCheckOut>YOUR Basket is empty</TitleCheckOut>
-            <TextCheckOut>Please add an item to checkout</TextCheckOut>
-            <Link to="/catalog" style={{ textDecoration: 'none' }}>
-              <Btn>SHOP</Btn>
-            </Link>
-          </AuthCheckOutBox>
+          <AuthCheckOutBox></AuthCheckOutBox>
         )}
       </BasketContainer>
     </BasketSection>

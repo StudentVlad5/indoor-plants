@@ -100,7 +100,7 @@ export const DeliveryBlockOptionsLableBox = styled.div`
 export const DeliveryBlockOptionsTitle = styled.span`
   color: ${theme.colors.brown1};
 
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
   font-family: 'Fraunces', sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -260,7 +260,7 @@ export const PoshtaTitle = styled.p`
 
 export const PaymentOptionBox = styled.div`
   background-color: ${theme.colors.green6};
-  &:first-child {
+  &:not(:last-child) {
     margin-bottom: 10px;
   }
 `;
@@ -317,7 +317,7 @@ export const PaymentBlockOptionsLable = styled.label`
   }
 `;
 
-export const  PaymentBlockOptionsInput = styled.input`
+export const PaymentBlockOptionsInput = styled.input`
   appearance: none;
   margin-right: 20px;
 

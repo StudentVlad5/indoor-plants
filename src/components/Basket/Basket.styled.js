@@ -150,6 +150,7 @@ export const BasketCompList = styled.ul`
 `;
 
 export const AuthCheckOutBox = styled.div`
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
