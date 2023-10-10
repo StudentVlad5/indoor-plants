@@ -58,11 +58,11 @@ export const Footer = () => {
   const faqItems = [
     {
       title: 'Customer Service',
-      options: ['FAQ', 'Shipping & Handling', '30-Day Garantee', 'Contact Us'],
+      options: ['FAQ', 'Shipping & Handling', '30-Day guarantee', 'Contact Us'],
       links: [
         `/addition/faq`,
         `/addition/shipping`,
-        `/addition/garantee`,
+        `/addition/guarantee`,
         `/addition/contact`,
       ],
     },

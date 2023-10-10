@@ -24,6 +24,12 @@ export const Addition = () => {
             <LinkFolder className="linkFolder" to={`/addition/about_company`}>
               About company
             </LinkFolder>
+            <LinkFolder className="linkFolder" to={`/addition/location`}>
+              Location
+            </LinkFolder>
+            <LinkFolder className="linkFolder" to={`/addition/careers`}>
+              Careers
+            </LinkFolder>
             <LinkFolder className="linkFolder" to={`/addition/faq`}>
               FAQ
             </LinkFolder>
@@ -33,8 +39,8 @@ export const Addition = () => {
             <LinkFolder className="linkFolder" to={`/addition/shipping`}>
               Shipping & Handling
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/garantee`}>
-              30-Day Garantee
+            <LinkFolder className="linkFolder" to={`/addition/guarantee`}>
+              30-Day Guarantee
             </LinkFolder>
             <LinkFolder className="linkFolder" to={`/addition/course`}>
               Free Online Course
