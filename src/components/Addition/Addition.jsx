@@ -24,6 +24,12 @@ export const Addition = () => {
             <LinkFolder className="linkFolder" to={`/addition/about_company`}>
               About company
             </LinkFolder>
+            <LinkFolder className="linkFolder" to={`/addition/location`}>
+              Location
+            </LinkFolder>
+            <LinkFolder className="linkFolder" to={`/addition/careers`}>
+              Careers
+            </LinkFolder>
             <LinkFolder className="linkFolder" to={`/addition/faq`}>
               FAQ
             </LinkFolder>
