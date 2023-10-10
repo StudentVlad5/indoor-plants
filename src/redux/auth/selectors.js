@@ -6,3 +6,5 @@ export const selectId = ({ auth }) => auth.user._id;
 export const getUser = ({ auth }) => auth.user;
 export const getUserAvatar = ({ auth }) => auth.user.avatar;
 export const getPermission = ({ auth }) => auth.permission;
+export const getDelivery = ({ auth }) => auth.user.delivery;
+export const getAddress = ({ auth }) => auth.user.address;

@@ -229,12 +229,6 @@ input::-webkit-calendar-picker-indicator:hover {
   background-color:${theme.colors.fon} !important;}
 
 
-//-----NavLink-----//
-.linkFolder.active {
-  color: ${theme.colors.white};
-  background-color: ${theme.colors.green};
-}
-
 //-----Header-----//
 .addHeaderBottom{
   background-color: ${theme.colors.brown1};

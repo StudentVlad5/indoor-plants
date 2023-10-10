@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { UserDataItem } from './UserDataItem/UserDataItem';
+import { useAuth } from 'hooks/useAuth';
+import { update } from 'redux/auth/operations';
+import { selectId, getUserAvatar } from 'redux/auth/selectors';
 import {
-  BtnChangePassword,
+  BtnLight,
   EditCameraForm,
-  EditCameraWrapper,
   EditPhotoInput,
   EditPhotoLabel,
   ProfileContainer,
@@ -18,22 +19,22 @@ import {
   UserDataSection,
   UserPasswordList,
   PensilStyle,
-  BtnSave,
-  BtnCancel,
+  BtnGreen,
   TitleArticle,
   BtnContainer,
+  IconBtn,
 } from './UserData.styled';
-import { useAuth } from 'hooks/useAuth';
-import { update } from 'redux/auth/operations';
-import { selectId, getUserAvatar } from 'redux/auth/selectors';
-import NotFoundImg from '../../../images/No-image-available.webp';
+
+import NotFoundImg from 'images/No-image-available.webp';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
+import { Profile } from '../Profile/Profile';
+import { ChangePassword } from '../ChangePassword/ChangePassword';
+import { DefaultDelivery } from '../DefaultDelivery/DefaultDelivery';
 
 export const UserData = () => {
   const [editProfileSettings, setEditProfileSettings] = useState(false);
-  const [active, setActive] = useState('');
-  const [changePasswordShow, setChangePasswordShow] = useState(false);
   const dispatch = useDispatch();
+
   const id = useSelector(selectId);
   const userAvatar = useSelector(getUserAvatar);
   let avatar = NotFoundImg;
@@ -45,7 +46,6 @@ export const UserData = () => {
   }
   // const { t } = useTranslation();
   let { userIn } = useAuth();
-  let profile = false;
 
   const changeAvatar = e => {
     const data = {};
@@ -55,37 +55,34 @@ export const UserData = () => {
   };
 
   const birthday = userIn.birthday
-    ? new Date(userIn.birthday).toISOString().slice(0, 10)
+    ? new Date(userIn.birthday).toLocaleDateString()
     : '';
 
   return (
     <UserDataSection>
       <UserDataContainer>
-        <TitleArticle>Photo</TitleArticle>
-        <UserDataImgWrapper>
-          <UserDataImg alt="User" src={avatar} />
-          <EditCameraForm>
-            <EditCameraWrapper>
-              <EditPhotoLabel htmlFor="user_photo">
-                <span>Edit photo</span>
-              </EditPhotoLabel>
-            </EditCameraWrapper>
-            <EditPhotoInput
-              type="file"
-              name="edit photo"
-              id="user_photo"
-              onChange={changeAvatar}
-              accept=".gif,.jpg,.jpeg,.webp,.png"
-            />
-          </EditCameraForm>
-        </UserDataImgWrapper>
-
         {!editProfileSettings && (
           <>
+            <UserDataImgWrapper>
+              <UserDataImg alt="User" src={avatar} />
+              <EditCameraForm>
+                <EditPhotoInput
+                  type="file"
+                  name="edit photo"
+                  id="user_photo"
+                  onChange={changeAvatar}
+                  accept=".gif,.jpg,.jpeg,.webp,.png"
+                />
+              </EditCameraForm>
+            </UserDataImgWrapper>
             <TitleArticle>Profile</TitleArticle>
             <ProfileContainer>
-              <PensilStyle onClick={() => setEditProfileSettings(true)} />
-              <ProfileSpanName>{userIn.userName}</ProfileSpanName>
+              <IconBtn onClick={() => setEditProfileSettings(true)}>
+                <PensilStyle />
+              </IconBtn>
+              <ProfileSpanName>
+                {userIn.userName} {userIn.surname}
+              </ProfileSpanName>
               <ProfileSpanValues>{userIn.email}</ProfileSpanValues>
               <ProfileSpanValues>{birthday}</ProfileSpanValues>
               <ProfileSpanValues>{userIn.phone}</ProfileSpanValues>
@@ -93,95 +90,20 @@ export const UserData = () => {
             </ProfileContainer>
           </>
         )}
-        {editProfileSettings && (
-          <>
-            <UserDataList>
-              <UserDataItem
-                profile={profile}
-                label={'Name'}
-                defaultValue={userIn.userName}
-                type="text"
-                name="userName"
-                active={active}
-                setActive={setActive}
-                id="name"
-              />
-
-              <UserDataItem
-                profile={profile}
-                label={'Email'}
-                defaultValue={userIn.email}
-                type="email"
-                name="email"
-                active={active}
-                setActive={setActive}
-                id="email"
-              />
-
-              <UserDataItem
-                profile={profile}
-                label={'Birthday'}
-                defaultValue={birthday || '01.01.1900'}
-                type="date"
-                name="birthday"
-                active={active}
-                setActive={setActive}
-                id="birthday"
-              />
-
-              <UserDataItem
-                profile={profile}
-                label={'Phone'}
-                defaultValue={userIn.phone}
-                type="tel"
-                name="phone"
-                active={active}
-                setActive={setActive}
-                id="phone"
-              />
-
-              <UserDataItem
-                profile={profile}
-                label={'City'}
-                defaultValue={userIn.location}
-                type="text"
-                name="location"
-                active={active}
-                setActive={setActive}
-                id="city"
-              />
-            </UserDataList>
-            <BtnContainer>
-              <BtnCancel onClick={() => setEditProfileSettings(false)}>
-                CANCEL
-              </BtnCancel>
-              <BtnSave onClick={() => setEditProfileSettings(false)}>
-                SAVE
-              </BtnSave>
-            </BtnContainer>
-          </>
-        )}
+        {editProfileSettings && <Profile onClose={setEditProfileSettings} />}
       </UserDataContainer>
-      <TitleArticle>Change Password</TitleArticle>
-      <BtnChangePassword
-        onClick={() => setChangePasswordShow(!changePasswordShow)}
-      >
-        Change Password
-      </BtnChangePassword>
-      {changePasswordShow && (
-        <UserPasswordList>
-          <UserDataItem
-            profile={profile}
-            label={'New Password'}
-            type="text"
-            name="password"
-            active={active}
-            setActive={setActive}
-            id="ChangePassword"
-            password={setChangePasswordShow}
-          />
-        </UserPasswordList>
-      )}
+      <UserDataContainer>
+        <TitleArticle>Change Password</TitleArticle>
+        <ChangePassword />
+      </UserDataContainer>
+      <UserDataContainer>
+        <TitleArticle>My addresses</TitleArticle>
+        <BtnLight>add address</BtnLight>
+      </UserDataContainer>
+      <UserDataContainer>
+        <TitleArticle>Default delivery</TitleArticle>
+        <DefaultDelivery />
+      </UserDataContainer>
     </UserDataSection>
   );
 };

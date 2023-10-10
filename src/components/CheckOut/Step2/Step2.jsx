@@ -172,13 +172,6 @@ const Step2 = () => {
           >
             Confirm order
           </CheckoutBtn>
-          <button
-            type="submit"
-            disabled={isDisabled}
-            onClick={e => handleConfirmOrder(e)}
-          >
-            Confirm order
-          </button>
         </Link>
       </form>
     </FormContainer>

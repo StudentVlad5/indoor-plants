@@ -36,12 +36,17 @@ export const updateUserData = async updateData => {
   const formData = new FormData();
   updateData.avatar && formData.set('avatar', updateData.avatar);
   updateData.userName && formData.append('userName', updateData.userName);
+  updateData.surname && formData.append('surname', updateData.surname);
   updateData.email && formData.append('email', updateData.email);
   updateData.birthday && formData.append('birthday', updateData.birthday);
   updateData.location && formData.append('location', updateData.location);
   updateData.phone && formData.append('phone', updateData.phone);
   updateData.password && formData.append('password', updateData.password);
-
+  updateData.delivery && formData.append('delivery', updateData.delivery);
+  // updateData.address && formData.append('address', updateData.address);
+  // updateData.address.forEach(value => {
+  //   formData.append('address[]', value);
+  // });
   const { data } = await axios.patch(`/auth/user/${updateData.id}`, formData);
   return data;
 };
