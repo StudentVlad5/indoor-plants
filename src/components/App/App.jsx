@@ -16,7 +16,7 @@ import Step1 from 'components/CheckOut/Step1/Step1';
 import Step2 from 'components/CheckOut/Step2/Step2';
 import Step3 from 'components/CheckOut/Step3/Step3';
 import Step4 from 'components/CheckOut/Step4/Step4';
-import { UserOrders } from 'components/UserComp/UserData/UserOrders/UserOrders';
+import { UserOrders } from 'components/UserComp/UserOrders/UserOrders';
 import { BasketRoute } from 'routes/BasketRoute';
 import { AboutUs } from 'components/Addition/AboutUs/AboutUs';
 import { Faq } from 'components/Addition/FAQ/Faq';
@@ -66,9 +66,7 @@ export const App = () => {
               path="register"
               element={
                 <RestrictedRoute
-                  redirectTo={
-                    basket.length > 0 ? '/checkout/step1' : '/user/profile'
-                  }
+                  redirectTo={basket.length > 0 ? '/basket' : '/catalog'}
                   component={<RegisterPage />}
                 />
               }
@@ -78,9 +76,7 @@ export const App = () => {
               path="signin"
               element={
                 <RestrictedRoute
-                  redirectTo={
-                    basket.length > 0 ? '/checkout/step1' : '/user/profile'
-                  }
+                  redirectTo={basket.length > 0 ? '/basket' : '/catalog'}
                   component={<LoginPage />}
                 />
               }
@@ -90,7 +86,7 @@ export const App = () => {
               path="forgot_password"
               element={
                 <RestrictedRoute
-                  redirectTo="/user"
+                  redirectTo="/user/profile"
                   component={<ForgotPasswordPage />}
                 />
               }
@@ -113,15 +109,7 @@ export const App = () => {
 
             <Route path="basket" element={<BasketPage />} />
 
-            <Route
-              path="checkout"
-              element={
-                <BasketRoute
-                  redirectTo="/catalog"
-                  component={<CheckOutPage />}
-                />
-              }
-            >
+            <Route path="checkout" element={<CheckOutPage />}>
               <Route path="step1" element={<Step1 />} />
               <Route path="step2" element={<Step2 />} />
               <Route path="step3" element={<Step3 />} />

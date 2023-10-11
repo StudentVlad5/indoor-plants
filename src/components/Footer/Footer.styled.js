@@ -205,9 +205,9 @@ export const FooterInputForm = styled.form`
 `;
 
 export const FooterInput = styled.input`
-  background: #ebebeb;
-  border-color: transparent;
-  padding: 12px 190px 12px 12px;
+  width: 100%;
+  max-width: 425px;
+  padding: 12px;
 
   color: ${theme.colors.brown2};
   font-family: ${theme.fonts[0]};
@@ -216,6 +216,9 @@ export const FooterInput = styled.input`
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+
+  background: #ebebeb;
+  border-color: transparent;
   cursor: pointer;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {

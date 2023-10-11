@@ -21,15 +21,14 @@ export const UserComp = () => {
         </Title>
         <UserDataWrapper>
           <FolderWrapper>
-            <UserTitle as="h2">My account:</UserTitle>
             <LinkFolder className="linkFolder" to={`/user/profile`}>
-              Profile settings
+              My account
             </LinkFolder>
             <LinkFolder className="linkFolder" to={`/user/orders`}>
               My orders
             </LinkFolder>
             <LinkFolder className="linkFolder" to={`/user/favorites`}>
-              Favorites
+              My favorites
             </LinkFolder>
             <Logout />
           </FolderWrapper>

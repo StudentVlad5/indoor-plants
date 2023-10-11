@@ -12,7 +12,7 @@ import theme from 'components/baseStyles/Variables.styled';
 
 const FormSection = styled(Section)`
   padding-top: 123px;
-  padding-bottom: 0;
+  /* padding-bottom: 0; */
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 129px;
@@ -83,7 +83,7 @@ const Input = styled(Field)`
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: ${theme.colors.brown2};
   background: ${theme.colors.blue1};
 
@@ -110,7 +110,7 @@ const Input = styled(Field)`
   }
 
   &::placeholder {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
   }
 
   &:focus ~ .floating-label,

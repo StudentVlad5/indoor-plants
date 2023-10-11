@@ -24,7 +24,7 @@ export const MobileUserNav = ({ toggleMenu }) => {
   // const { t } = useTranslation();
 
   return (
-    <MobileAccountButton to="/user" onClick={toggleMenu}>
+    <MobileAccountButton to="/user/profile" onClick={toggleMenu}>
       {avatar ? <AvatarUser src={avatar} alt="User" /> : <IconUser />}
       {user}
     </MobileAccountButton>
@@ -43,7 +43,7 @@ export const UserNav = () => {
   }
 
   return (
-    <AccountButton to="/user">
+    <AccountButton to="/user/profile">
       {avatar ? <AvatarUser src={avatar} alt="User" /> : <IconUser />}
       {user}
     </AccountButton>

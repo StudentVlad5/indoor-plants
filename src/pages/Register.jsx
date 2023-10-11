@@ -19,7 +19,7 @@ const Register = () => {
 
   return (
     <>
-      <SEO title="HomeForest Register" description="Register your account" />
+      <SEO title="Register" description="Register your account" />
       <RegisterForm />
     </>
   );

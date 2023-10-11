@@ -9,6 +9,7 @@ import {
   removeFromFavorite,
   updateUserData,
   changePassword,
+  forgotPassword,
 } from 'services';
 
 const setAuthHeader = token => {
@@ -89,10 +90,23 @@ export const refreshUser = createAsyncThunk(
 );
 
 export const changePasswordAuth = createAsyncThunk(
-  '/auth/changepassword',
+  '/auth/changePassword',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await changePassword(credentials);
+      return data;
+    } catch (error) {
+      alert(`Something wrong`, error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const forgotPasswordAuth = createAsyncThunk(
+  '/auth/forgotPassword',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await forgotPassword(credentials);
       return data;
     } catch (error) {
       alert(`Something wrong`, error.message);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   FormSection,
@@ -11,6 +11,7 @@ import {
   Liner,
   LinkFolderTitle,
 } from './Checkout.styled';
+import { Order } from './Order/Order';
 
 // import { useTranslation } from 'react-i18next';
 
@@ -62,6 +63,7 @@ export const CheckOut = () => {
           </CheckOutAboutWrapper>
         </CheckOutDataWrapper>
       </CheckOutContainer>
+      <Order />
     </FormSection>
   );
 };
