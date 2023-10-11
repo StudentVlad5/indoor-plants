@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, SubTitleP, Title, SubTitleLi } from './Rewards.styled';
 
 export const Rewards = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <Container>
       <Title>Rewards programm</Title>

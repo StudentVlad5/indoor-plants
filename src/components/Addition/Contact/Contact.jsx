@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Title, SubTitleLi } from './Contact.styled';
 
 export const Contact = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <Container>
       <Title>Contact us</Title>

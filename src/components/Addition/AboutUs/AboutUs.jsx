@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Title, Parah } from './AboutUs.styled';
 
 export const AboutUs = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <Container>
       <Title>About us</Title>

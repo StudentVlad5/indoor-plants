@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Title, Subtitle, SubtitleP, Img } from './Shipping.styled';
 import rules_img from 'images/shipping/shipping.webp';
 
 export const Shipping = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <Container>
       <Title>Our rules of Shipping & Handling</Title>

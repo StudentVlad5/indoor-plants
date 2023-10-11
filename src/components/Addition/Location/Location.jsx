@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from './Location.styled';
 
 export const Location = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <Container>
       <div className="google-map-code">
@@ -11,7 +15,7 @@ export const Location = () => {
           height="450"
           frameBorder="0"
           style={{ border: 0 }}
-          allowfullscreen=""
+          allowFullScreen=""
           aria-hidden="false"
           tabIndex="0"
           loading="lazy"

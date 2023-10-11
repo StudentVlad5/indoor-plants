@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Title, ParahQ, ParahA, ArrowBox, Span } from './Faq.styled';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
@@ -50,6 +50,10 @@ export const Faq = () => {
       [idx]: !prevState[idx],
     }));
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <Container>
