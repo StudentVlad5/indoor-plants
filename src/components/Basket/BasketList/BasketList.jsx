@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeProduct } from 'redux/basket/operations';
 import { setQuantity } from 'redux/basket/slice';
+import { selectCurrency } from 'redux/basket/selectors';
 import { onSuccess } from '../../helpers/Messages/NotifyMessages';
 import {
   BasketCompIconClose,
@@ -26,20 +27,14 @@ import { ReactComponent as Minus } from 'images/svg/minus.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
-export const BasketList = ({
-  _id,
-  name,
-  optionData,
-  images,
-  quantity,
-  currency,
-}) => {
+export const BasketList = ({ _id, name, optionData, images, quantity }) => {
   const dispatch = useDispatch();
 
   const removeProductHandler = (_id, size) => {
     dispatch(removeProduct({ _id, size }));
     onSuccess('Removed');
   };
+  const currency = useSelector(selectCurrency);
 
   const initialPrice = optionData.currentPrice * optionData.quantity;
   const [price, setPrice] = useState(initialPrice);

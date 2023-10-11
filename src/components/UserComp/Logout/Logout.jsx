@@ -1,12 +1,11 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ModalLogout } from './ModalLogout/ModalLogout';
 import {
   LogoutBtn,
   LogoutBtnText,
   LogoutIconStyled,
   Modal,
 } from './Logout.styled';
-import { ModalLogout } from './ModalLogout/ModalLogout';
 
 export const Logout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +20,7 @@ export const Logout = () => {
   return (
     <>
       <LogoutBtn onClick={toggleModal} aria-label="open log out window">
-        <LogoutIconStyled className="logout_icon" />
+        <LogoutIconStyled />
         <LogoutBtnText>Log Out</LogoutBtnText>
       </LogoutBtn>
 

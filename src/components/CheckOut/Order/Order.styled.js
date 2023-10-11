@@ -1,11 +1,10 @@
-import { Section } from 'components/baseStyles/CommonStyle.styled';
+import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import { Section } from 'components/baseStyles/CommonStyle.styled';
 import { ReactComponent as novaPoshta } from 'images/svg/Nova_Poshta.svg';
 import { ReactComponent as ukrposhta } from 'images/svg/ukrposhta-logo.svg';
 import { ReactComponent as liqpay } from 'images/svg/LIQPAY.svg';
 import { ReactComponent as wallet } from 'images/svg/wallet.svg';
-
-import styled from 'styled-components';
 
 export const DeliverySection = styled(Section)`
   padding-top: 170px;
@@ -19,7 +18,7 @@ export const DeliveryInfoBoxTitle = styled.h2`
   color: rgb(95, 74, 50);
   margin-bottom: 20px;
 
-  font-family: 'Fraunces', sans-serif;
+  font-family: ${theme.fonts[1]};
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -101,7 +100,7 @@ export const DeliveryBlockOptionsTitle = styled.span`
   color: ${theme.colors.brown1};
 
   /* margin-bottom: 14px; */
-  font-family: 'Fraunces', sans-serif;
+  font-family: ${theme.fonts[1]};
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -112,7 +111,7 @@ export const DeliveryBlockOptionsTitle = styled.span`
 export const DeliveryBlockOptionsTitleDiscr = styled.span`
   color: ${theme.colors.brown1};
 
-  font-family: 'Archivo', sans-serif;
+  font-family: ${theme.fonts[0]};
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -120,75 +119,133 @@ export const DeliveryBlockOptionsTitleDiscr = styled.span`
   letter-spacing: 0.28px;
 `;
 
+export const DeliveryInfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
 export const DeliveryForm = styled.form`
   display: flex;
-  margin-top: 20px;
   justify-content: center;
   flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
 `;
 
 export const DeliveryFormLable = styled.label`
   display: flex;
   flex-direction: column;
-  margin-bottom: 12px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 `;
 
 export const DeliveryFormLableText = styled.span`
   margin-bottom: 8px;
   color: ${theme.colors.darkGreen};
-  font-family: 'Archivo', sans-serif;
-  font-size: 14px;
+  font-family: ${theme.fonts[0]};
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.28px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
 `;
 
 export const DeliveryFormInput = styled.input`
-  /* padding: 15px 222px 15px 15px; */
+  width: 100%;
+  padding: 8px 30px 8px 20px;
+
+  color: ${theme.colors.green};
+  font-family: ${theme.fonts[1]};
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+
   border: 1px solid #c6cdd3;
-  padding-left: 15px;
-  width: 580px;
-  height: 44px;
   border-color: transparent;
   border-radius: 10px;
   background: ${theme.colors.blue3};
 
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 580px;
+    padding: 12px 30px 12px 20px;
+    font-size: 16px;
+  }
+
   &::placeholder {
     color: ${theme.colors.green};
-    font-family: 'Fraunces', sans-serif;
-    font-size: 16px;
+    font-family: ${theme.fonts[1]};
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.32px;
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      font-size: 14px;
+    }
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      font-size: 16px;
+    }
+  }
+`;
+
+export const Btnwrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 580px;
   }
 `;
 
 export const DeliveryFormBtn = styled.button`
-  border-radius: 10px;
-  border: 1px solid rgb(140, 130, 118);
-  background-color: transparent;
-  padding: 15px 66px;
-  margin-top: 22px;
-  cursor: pointer;
+  width: 150px;
+  height: 35px;
+
   color: ${theme.colors.brown1};
-  font-family: 'Barlow', sans-serif;
-  font-size: 14px;
+  font-family: ${theme.fonts[0]};
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+
+  border-radius: 10px;
+  border: 1px solid ${theme.colors.brown1};
+  background-color: transparent;
+  cursor: pointer;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 190px;
+    height: 45px;
+    font-size: 14px;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.white};
+    border: 1px solid ${theme.colors.green};
+    background-color: ${theme.colors.green};
+  }
 `;
 
 export const DeliveryFormBtnFinish = styled(DeliveryFormBtn)`
-  position: absolute;
-  left: 413px;
   background: ${theme.colors.green4};
+  border: 1px solid ${theme.colors.green4};
 `;
 
 // export const PaymentBlockOptionsLable = styled.label`
@@ -239,7 +296,7 @@ export const PoshtaBoxTitle = styled.p`
   padding-top: 20px;
   margin-bottom: 18px;
   color: ${theme.colors.brown1};
-  font-family: 'Fraunces', sans-serif;
+  font-family: ${theme.fonts[1]};
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -249,7 +306,7 @@ export const PoshtaBoxTitle = styled.p`
 
 export const PoshtaTitle = styled.p`
   color: ${theme.colors.darkGreen};
-  font-family: 'Archivo', sans-serif;
+  font-family: ${theme.fonts[0]};
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -289,7 +346,7 @@ export const PaymentFormBtnFinish = styled.button`
   background: ${theme.colors.green4};
 
   color: ${theme.colors.brown1};
-  font-family: 'Archivo', sans-serif;
+  font-family: ${theme.fonts[0]};
   font-size: 14px;
   font-style: normal;
   font-weight: 300;

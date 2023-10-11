@@ -18,7 +18,7 @@ const ForgotPasswordPage = () => {
   return (
     <>
       <SEO
-        title="HomeForest Change Password"
+        title="Change Password"
         description="Change Password for your account"
       />
       <ForgotPasswordForm />

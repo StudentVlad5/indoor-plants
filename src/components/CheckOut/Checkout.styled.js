@@ -5,7 +5,7 @@ import theme from 'components/baseStyles/Variables.styled';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 export const FormSection = styled(Section)`
-  padding: 130px 0 0 0;
+  padding: 130px 0;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     max-width: ${theme.breakpoints.tablet};

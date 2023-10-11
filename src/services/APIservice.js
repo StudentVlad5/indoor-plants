@@ -21,13 +21,14 @@ async function fetchData(pathParams) {
 async function updateUserData(pathParams, body, file) {
   const formData = new FormData();
   file && formData.set('avatar', file);
+  formData.append('userName', body.userName);
+  formData.append('surname', body.surname);
   formData.append('email', body.email);
   formData.append('birthday', body.birthday);
   formData.append('location', body.location);
   formData.append('password', body.password);
   formData.append('phone', body.phone);
   // formData.append('role', body.role);
-  formData.append('userName', body.userName);
 
   return await axios.patch(`${BASE_URL}${pathParams}`, formData, {
     headers: {

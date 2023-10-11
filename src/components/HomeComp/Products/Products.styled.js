@@ -8,7 +8,7 @@ export const ProductsBox = styled(Container)`
   padding-bottom: 0;
   /* overflow-x: hidden; */
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding-bottom: 0;
   }
 `;
@@ -35,8 +35,8 @@ export const ProductsSection = styled.div`
 `;
 
 export const ProductsTitle = styled.h2`
-  color: #5a6b47;
-  font-family: 'Nib Pro', sans-serif;
+  color: ${theme.colors.green};
+  font-family: ${theme.fonts[1]};
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
@@ -47,8 +47,8 @@ export const ProductsTitle = styled.h2`
 export const ProductsBtn = styled(Link)`
   display: flex;
   justify-content: flex-end;
-  color: #5a6b47;
-  font-family: 'Nib Pro', sans-serif;
+  color: ${theme.colors.green};
+  font-family: ${theme.fonts[1]};
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
@@ -63,6 +63,7 @@ export const ProductsBtn = styled(Link)`
 
 export const ProductsList = styled.ul`
   display: flex;
+  gap: 20px;
   margin-top: 24px;
 
   overflow-x: hidden;
@@ -78,25 +79,22 @@ export const ProductsList = styled.ul`
 export const ProductsListItem = styled.li`
   display: flex;
   align-items: center;
-  cursor: pointer;
-  list-style: none;
   flex: 0 0 285px;
   height: 496px;
+  padding: 5px;
+  cursor: pointer;
+  list-style: none;
 
-  &:not(:last-child) {
-    margin-right: 20px;
+  &:hover,
+  &:focus {
+    /* transform: scale(1.05); */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Додайте потрібні значення для тіні */
   }
 `;
 
 export const ProductsListItemLink = styled(NavLink)`
   text-decoration: none;
   transition: transform 0.3s, box-shadow 0.3s;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.05);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Додайте потрібні значення для тіні */
-  }
 `;
 
 export const ProductsImg = styled.img`
@@ -109,16 +107,16 @@ export const ProductsImg = styled.img`
   }
 `;
 
-export const ListItemDiscrTitle = styled.h4`
-  color: #5a6b47;
+export const ListItemDiscrTitle = styled.span`
+  color: ${theme.colors.green};
   text-align: center;
-  font-family: 'Nib Pro', sans-serif;
+  font-family: ${theme.fonts[1]};
   font-size: 13px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 16px;
   }
 `;

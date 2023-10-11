@@ -50,7 +50,6 @@ const Step2 = () => {
   // const delivery = useSelector(selectDelivery);
   // const metodPayment = useSelector(selectPayment);
   // const dispatch = useDispatch();
-
   // useEffect(() => {
   //   if (prepaidCard || accountPayment || cashOnDelivery) {
   //     setDisabled(false);
@@ -58,7 +57,6 @@ const Step2 = () => {
   //     setDisabled(true);
   //   }
   // }, [prepaidCard, accountPayment, cashOnDelivery]);
-
   // const handleChangePayment = e => {
   //   switch (e.target.value) {
   //     case 'prepaidCard':
@@ -80,7 +78,6 @@ const Step2 = () => {
   //       break;
   //   }
   // };
-
   // useEffect(() => {
   //   async function postOrder() {
   //     const order = {
@@ -112,7 +109,6 @@ const Step2 = () => {
   //     postOrder();
   //   }
   // }, [isFetch]);
-
   // const handleConfirmOrder = e => {
   //   e.preventDefault;
   //   payment = { prepaidCard, accountPayment, cashOnDelivery };

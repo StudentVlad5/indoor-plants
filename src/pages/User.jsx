@@ -18,7 +18,7 @@ const UserPage = () => {
   }, []);
   return (
     <>
-      <SEO title="HomeForest Profile" description="User profile" />
+      <SEO title="Profile" description="User profile" />
       <UserComp />
     </>
   );

@@ -66,6 +66,7 @@ export const CheckOut = () => {
           </CheckOutAboutWrapper>
         </CheckOutDataWrapper>
       </CheckOutContainer>
+      <Order />
     </FormSection>
   );
 };

@@ -5,6 +5,7 @@ import {
   selectBasket,
   selectTotalPayment,
   selectTotalAmount,
+  selectCurrency,
 } from 'redux/basket/selectors';
 import { ShoppingBagList } from './ShoppingBagList/ShoppingBagList';
 import {
@@ -72,6 +73,7 @@ export const ShoppingBag = () => {
 
   const basket = useSelector(selectBasket);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
+  const currency = useSelector(selectCurrency);
   // document.querySelector('body').style.overflow = "hidden";
 
   return (
@@ -127,7 +129,10 @@ export const ShoppingBag = () => {
               <TotalTitleBox>
                 <div>
                   <TotalTitle>Total</TotalTitle>
-                  <TotalTitlePrice>{totalPayment}</TotalTitlePrice>
+                  <TotalTitlePrice>
+                    {currency}
+                    {totalPayment}
+                  </TotalTitlePrice>
                 </div>
 
                 <TotalDiscr>
