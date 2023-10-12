@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Title, Subtitle, Parah, Signature } from './AboutUs.styled';
 
 export const AboutUs = () => {
