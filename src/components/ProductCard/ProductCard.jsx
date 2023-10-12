@@ -37,6 +37,7 @@ export const ProductCard = ({ product }) => {
     petFriendly,
     hardToKill,
     waterSchedule,
+    waterDescribe,
     category,
   } = product;
 
@@ -398,7 +399,11 @@ export const ProductCard = ({ product }) => {
                     </SC.AccordCareItem>
                     <SC.AccordCareItem>
                       <Oil width={24} height={24} />
-                      {waterSchedule === 'often' && (
+                      <span>
+                        {waterDescribe.charAt(0).toUpperCase() +
+                          waterDescribe.slice(1)}
+                      </span>
+                      {/* {waterSchedule === 'often' && (
                         <span>
                           Do not wait until half of the substrate in the pot
                           dries out before watering again, and water often
@@ -415,7 +420,7 @@ export const ProductCard = ({ product }) => {
                           Wait for the substrate in the pot to dry before
                           watering again
                         </span>
-                      )}
+                      )} */}
                     </SC.AccordCareItem>
                     <SC.AccordCareItem>
                       <Evenodd width={24} height={24} />
@@ -576,6 +581,7 @@ ProductCard.propTypes = {
       hardToKill: PropTypes.string,
       rare: PropTypes.string,
       waterSchedule: PropTypes.string,
+      waterDescribe: PropTypes.string,
       images: PropTypes.array,
       category: PropTypes.string,
     }),

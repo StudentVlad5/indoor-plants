@@ -43,17 +43,7 @@ export const NewArrivals = () => {
       <ImgTitle>New Arrivals</ImgTitle>
       <List>
         {imgArr.map((image, idx) => (
-          <ListItem
-            key={idx}
-            onClick={() =>
-              saveToStorage('filters', {
-                ...getFromStorage('filters'),
-                [Object.keys(titleArr[2].filters[idx])]: Object.values(
-                  titleArr[2].filters[idx],
-                ),
-              })
-            }
-          >
+          <ListItem key={idx}>
             <Link
               style={{ textDecoration: 'none' }}
               to={titleArr[1].links[idx]}
