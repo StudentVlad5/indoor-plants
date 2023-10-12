@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Container, Title, ParahQ, ParahA, ArrowBox, Span } from './Faq.styled';
+import {
+  Container,
+  Title,
+  FAQList,
+  ParahQ,
+  ParahA,
+  ArrowBox,
+  Span,
+} from './Faq.styled';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
@@ -54,20 +62,16 @@ export const Faq = () => {
   return (
     <Container>
       <Title>FAQ</Title>
-      <ul style={{ width: '100%' }}>
+      <FAQList>
         {faq.map((item, idx) => (
           <li key={item.question}>
             <ParahQ onClick={() => toggleVisibility(idx)}>
               <Span>Question: </Span> {item.question}
               <ArrowBox>
                 {isOpen[idx] ? (
-                  <MdOutlineKeyboardArrowUp
-                    style={{ width: '25px', height: '25px' }}
-                  />
+                  <MdOutlineKeyboardArrowUp />
                 ) : (
-                  <MdOutlineKeyboardArrowDown
-                    style={{ width: '25px', height: '25px' }}
-                  />
+                  <MdOutlineKeyboardArrowDown />
                 )}
               </ArrowBox>
             </ParahQ>
@@ -82,7 +86,7 @@ export const Faq = () => {
             )}
           </li>
         ))}
-      </ul>
+      </FAQList>
     </Container>
   );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Title, Parah } from './Careers.styled';
 
-export const Сareers = () => {
+export const Careers = () => {
   return (
     <Container>
-      <Title>Сareers</Title>
+      <Title>Careers</Title>
       <Parah>Currently, the company has no vacancies</Parah>
     </Container>
   );

@@ -16,11 +16,9 @@ export const AdditionSection = styled(Section)`
 `;
 
 export const AdditionContainer = styled(Container)`
-  margin: 0 auto;
-  width: 100%;
-  /* min-height: 100vh; */
-  height: 100%;
-  padding-top: 40px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding-top: 40px;
+  }
 `;
 
 export const AdditionDataWrapper = styled.div`
@@ -29,28 +27,39 @@ export const AdditionDataWrapper = styled.div`
   justify-content: start;
   flex-wrap: nowrap;
   align-items: start;
+  gap: 50px;
+
   width: 100%;
+  padding: 0 30px;
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: row;
+    padding: 0;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    gap: 160px;
   }
 `;
 
 export const FolderWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  flex-wrap: nowrap;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+
   width: 100%;
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 320px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 285px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    width: 437px;
+    gap: 30px;
   }
 `;
 
@@ -63,58 +72,58 @@ export const AdditionAboutWrapper = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: row;
+    justify-content: flex-start;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    flex-direction: row;
-  }
-`;
-
-export const AdditionTitle = styled(Title)`
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-bottom: 0px;
-  margin-bottom: 24px;
-  font-size: ${theme.fontSizes.extra};
-  font-weight: 400;
-  line-height: 1.25;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: ${theme.colors.brown1};
-  outline: none;
-
-  @media (min-width: ${theme.breakpoints.tablet}) {
-    text-align: start;
-    padding-bottom: 4px;
-    font-size: 28px;
-    letter-spacing: 0;
   }
 `;
 
 export const LinkFolder = styled(NavLink)`
-  display: flex;
-  width: 180px;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 24px;
-  text-decoration: none;
+  position: relative;
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.fontSizes.small};
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
-  text-align: center;
-  text-transform: uppercase;
   line-height: normal;
-  border-radius: 5px;
-  border: 1px solid ${theme.colors.brown};
-  color: ${theme.colors.brown};
-  background-color: transparent;
-  cursor: pointer;
-  transition: ${theme.transition};
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: ${theme.colors.darkGreen};
+
+  @media (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
+
   &:hover,
   &:focus {
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.green};
+    color: ${theme.colors.green2};
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: -10px;
+    width: 135%;
+    height: 0.5px;
+    background: ${theme.colors.beige};
+
+    @media (min-width: ${theme.breakpoints.tablet}) {
+      left: 0;
+      width: 165px;
+    }
+
+    @media (min-width: ${theme.breakpoints.desktop}) {
+      width: 285px;
+    }
+  }
+
+  &.active {
+    color: ${theme.colors.green2};
   }
 `;

@@ -1,10 +1,16 @@
 import React from 'react';
-import { Container, SubTitleP, Title, SubTitleLi } from './Rewards.styled';
+import {
+  Container,
+  SubTitleP,
+  Title,
+  WorksList,
+  SubTitleLi,
+} from './Rewards.styled';
 
 export const Rewards = () => {
   return (
     <Container>
-      <Title>Rewards programm</Title>
+      <Title>Rewards program</Title>
       <SubTitleP>
         <span style={{ fontWeight: '700' }}>Buy more—get more! </span> Our
         loyalty program rewards our garden-loving friends with in-store credit
@@ -12,7 +18,7 @@ export const Rewards = () => {
         special benefits.
       </SubTitleP>
       <Title>How It Works:</Title>
-      <ul>
+      <WorksList>
         <SubTitleLi>Earn 1 point for every dollar you spend.</SubTitleLi>
         <SubTitleLi>
           For every 500 points earned you will receive a $10 Plant Perfect gift
@@ -26,7 +32,7 @@ export const Rewards = () => {
           Landscaping materials and services do not qualify for earning points.
           Members are automatically included in our newsletter list.
         </SubTitleLi>
-      </ul>
+      </WorksList>
     </Container>
   );
 };
