@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Container,
   SubTitleP,
@@ -8,6 +8,10 @@ import {
 } from './Rewards.styled';
 
 export const Rewards = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <Container>
       <Title>Rewards program</Title>

@@ -96,8 +96,8 @@ export const Footer = () => {
       options: ['Our Story', 'Locations', 'Careers', 'Corporate Gifting'],
       links: [
         `/addition/about_company`,
-        `/addition/about_company`,
-        `/addition/about_company`,
+        `/addition/location`,
+        `/addition/careers`,
         `/gifts`,
       ],
     },

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, MovieCintainer } from './Courses.styled';
+import React, { useEffect } from 'react';
+import { MovieCintainer } from './Courses.styled';
 import YouTube from 'react-youtube';
 
 export class Courses extends React.Component {
@@ -12,6 +12,7 @@ export class Courses extends React.Component {
         autoplay: 1,
       },
     };
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
     return (
       <MovieCintainer style={{ display: 'flex', gap: '20px' }}>

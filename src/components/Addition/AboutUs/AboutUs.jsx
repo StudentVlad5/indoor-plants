@@ -2,6 +2,10 @@ import React from 'react';
 import { Container, Title, Subtitle, Parah, Signature } from './AboutUs.styled';
 
 export const AboutUs = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <Container>
       <Title>About us</Title>
