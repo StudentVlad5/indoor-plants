@@ -27,12 +27,53 @@ const initialState = {
 export const CatalogFilter = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState('plants');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filterState = {
+    typeOfPlants:
+      searchParams.getAll('typeOfPlants') !== undefined
+        ? searchParams.getAll('typeOfPlants')
+        : [],
+    rare:
+      searchParams.getAll('rare') !== undefined
+        ? searchParams.getAll('rare')
+        : [],
+    light:
+      searchParams.getAll('light') !== undefined
+        ? searchParams.getAll('light')
+        : [],
+    petFriendly:
+      searchParams.getAll('petFriendly') !== undefined
+        ? searchParams.getAll('petFriendly')
+        : [],
+    minPrice:
+      searchParams.get('minPrice') !== undefined &&
+      searchParams.get('minPrice') !== null
+        ? searchParams.get('minPrice')
+        : '',
+    maxPrice:
+      searchParams.get('maxPrice') !== undefined &&
+      searchParams.get('maxPrice') !== null
+        ? searchParams.get('maxPrice')
+        : '',
+    hardToKill:
+      searchParams.getAll('hardToKill') !== undefined
+        ? searchParams.getAll('hardToKill')
+        : [],
+    potSize:
+      searchParams.getAll('potSize') !== undefined
+        ? searchParams.getAll('potSize')
+        : [],
+    waterSchedule:
+      searchParams.getAll('waterSchedule') !== undefined
+        ? searchParams.getAll('waterSchedule')
+        : [],
+  };
   const [filters, setFilters] = useState(
     getFromStorage('filters') ? getFromStorage('filters') : initialState,
+    // filterState,
   );
-  const [searchParams, setSearchParams] = useSearchParams();
   const routeParams = useParams();
-  const [, setError] = useState(null); //error
+  const [error, setError] = useState(null);
   const { t } = useTranslation();
 
   const min = Math.min.apply(
@@ -50,9 +91,9 @@ export const CatalogFilter = () => {
       try {
         const { data } = await fetchData(`/catalog/${category}`);
         getActiveLabel();
-        document
-          .querySelector(`div[data-key="typeOfPlants"]`)
-          .classList.add('active'); // default open filter
+        // document
+        //   .querySelector(`div[data-key="typeOfPlants"]`)
+        //   .classList.add('active'); // default open filter
         setCategory(routeParams.category);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
@@ -519,7 +560,6 @@ export const CatalogFilter = () => {
                   onChange={e => {
                     setFilters({ ...filters, ['minPrice']: e.target.value });
                     setParams();
-                    // handleChange(e);
                   }}
                 />
                 <>$</>
@@ -535,7 +575,6 @@ export const CatalogFilter = () => {
                   onChange={e => {
                     setFilters({ ...filters, ['maxPrice']: e.target.value });
                     setParams();
-                    // handleChange(e);
                   }}
                 />
                 <>$</>

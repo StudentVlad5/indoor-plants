@@ -30,7 +30,7 @@ export const FooterContainer = styled(Container)`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     justify-content: space-between;
-    padding: 10px 120px;
+    padding: 120px;
     max-width: ${theme.breakpoints.desktop};
   }
 `;
@@ -206,7 +206,7 @@ export const FooterInputForm = styled.form`
 
 export const FooterInput = styled.input`
   width: 100%;
-  max-width: 425px;
+  max-width: 437px;
   padding: 12px;
 
   color: ${theme.colors.brown2};

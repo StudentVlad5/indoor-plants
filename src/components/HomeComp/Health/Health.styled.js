@@ -1,36 +1,40 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import theme from 'components/baseStyles/Variables.styled';
 
 export const HealthBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  gap: 24px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    flex-direction: row-reverse;
+    gap: 173px;
+  }
 `;
 
 export const HealthBoxDiscr = styled.div`
-  &:nth-child(1) {
-    display: block;
-    @media screen and (min-width: 1440px) {
-      display: none;
-    }
-  }
-
-  &:nth-child(2) {
-    display: none;
-    @media screen and (min-width: 1440px) {
-      display: block;
-      display: flex;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
 `;
 
 export const BoxText = styled.div`
-  margin-left: 173px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    gap: 40px;
+  }
 `;
 
 export const HealthHeadTitle = styled.h3`
-  color: #5f4a32;
-  font-family: 'Raisonne Pro', sans-serif;
+  color: ${theme.colors.brown1};
+  font-family: ${theme.fonts[0]};
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -39,39 +43,34 @@ export const HealthHeadTitle = styled.h3`
 `;
 
 export const HealthTitle = styled.h2`
-  color: #5a6b47;
-  font-family: 'Nib Pro', sans-serif;
+  color: ${theme.colors.green};
+  font-family: ${theme.fonts[1]};
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-top: 24px;
-  margin-bottom: 32px;
 
-  @media screen and (min-width: 1440px) {
-    margin-bottom: 40px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 32px;
   }
 `;
 
 export const HealthDiscr = styled.p`
-  color: #8c8276;
-  font-family: 'Nib Pro', sans-serif;
+  color: ${theme.colors.brown2};
+  font-family: ${theme.fonts[1]};
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 166%; /* 26.56px */
-  margin-bottom: 24px;
 
-  @media screen and (min-width: 1440px) {
-    margin-bottom: 32px;
-    width: 437px;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    /* width: 437px; */
   }
 `;
 
 export const ReadMore = styled(Link)`
-  color: #5f4a32;
-  font-family: 'Nib Pro';
+  color: ${theme.colors.brown1};
+  font-family: ${theme.fonts[1]};
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -79,61 +78,12 @@ export const ReadMore = styled(Link)`
   text-decoration-line: underline;
 `;
 
-export const ImgBox = styled.div`
-  position: relative;
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
+export const ImgBox = styled.img`
+  width: 355px;
+  height: 222px;
 
-  @media screen and (min-width: 1440px) {
-    margin-top: 0;
-  }
-`;
-
-export const HealthList = styled.ul`
-  @media screen and (min-width: 1440px) {
-    display: flex;
-  }
-`;
-
-export const HealthListItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media screen and (min-width: 1440px) {
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-  }
-`;
-
-export const HealthImgTitle = styled(HealthTitle)`
-  margin-top: 0;
-  margin-bottom: 32px;
-
-  @media screen and (min-width: 1440px) {
-    text-align: center;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 144.5%; /* 46.24px */
-    margin-bottom: 40px;
-  }
-`;
-
-export const HealthImgDiscr = styled.h4`
-  color: #5f4a32;
-  text-align: center;
-  font-family: Nib Pro;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin-top: 18px;
-  margin-bottom: 32px;
-
-  @media screen and (min-width: 1440px) {
-    font-size: 22px;
-    margin-top: 24px;
-    margin-bottom: 0;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 590px;
+    height: 370px;
   }
 `;

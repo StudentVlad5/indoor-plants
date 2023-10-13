@@ -7,26 +7,35 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: justify;
-  font-family: ${theme.fonts[1]};
-  font-size: ${theme.fontSizes.medium};
 
-  width: 100%;
-  margin: 10px 0;
-  padding: 20px;
+  & > div {
+    padding: 60px 0;
+  }
+
+  & div:nth-child(1) {
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
 `;
+
 const BlogWrap = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
   width: 100%;
   padding: 20px;
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     grid-template-columns: 1fr 1fr;
   }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;
+
 const BlogInfo = styled.li`
   display: flex;
   flex-direction: column;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import { CatalogSort } from './CatalogSort/CatalogSort';
 import { CatalogFilter } from './CatalogFilter/CatalogFilter';
 import { Benefits } from './Benefits/Benefits';
@@ -19,22 +18,52 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import * as SC from './Catalog.styled';
 import { ReactComponent as Open } from 'images/svg/open.svg';
 import { ReactComponent as Close } from 'images/svg/icon_close.svg';
-import { Headline, Subtitle } from 'components/baseStyles/CommonStyle.styled';
+import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
 let perPage = 12;
-const initialState = {
-  typeOfPlants: [],
-  rare: [],
-  light: [],
-  petFriendly: [],
-  minPrice: '',
-  maxPrice: '',
-  hardToKill: [],
-  potSize: [],
-  waterSchedule: [],
-};
 
 export const Catalog = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filterState = {
+    typeOfPlants:
+      searchParams.getAll('typeOfPlants') !== undefined
+        ? searchParams.getAll('typeOfPlants')
+        : [],
+    rare:
+      searchParams.getAll('rare') !== undefined
+        ? searchParams.getAll('rare')
+        : [],
+    light:
+      searchParams.getAll('light') !== undefined
+        ? searchParams.getAll('light')
+        : [],
+    petFriendly:
+      searchParams.getAll('petFriendly') !== undefined
+        ? searchParams.getAll('petFriendly')
+        : [],
+    minPrice:
+      searchParams.get('minPrice') !== undefined &&
+      searchParams.get('minPrice') !== null
+        ? searchParams.get('minPrice')
+        : '',
+    maxPrice:
+      searchParams.get('maxPrice') !== undefined &&
+      searchParams.get('maxPrice') !== null
+        ? searchParams.get('maxPrice')
+        : '',
+    hardToKill:
+      searchParams.getAll('hardToKill') !== undefined
+        ? searchParams.getAll('hardToKill')
+        : [],
+    potSize:
+      searchParams.getAll('potSize') !== undefined
+        ? searchParams.getAll('potSize')
+        : [],
+    waterSchedule:
+      searchParams.getAll('waterSchedule') !== undefined
+        ? searchParams.getAll('waterSchedule')
+        : [],
+  };
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -42,13 +71,12 @@ export const Catalog = () => {
   const [page, setPages] = useState(
     getFromStorage('page') ? getFromStorage('page') : 1,
   );
-  const [searchParams, setSearchParams] = useSearchParams();
   const routeParams = useParams();
-  const [category] = useState(
+  const [category, setCategory] = useState(
     routeParams.category ? routeParams.category : 'plants',
-  ); //, setCategory
+  );
   const [selectedFilter, setSelectedFilter] = useState([]);
-  const [filters, setFilters] = useState(initialState);
+  const [filters, setFilters] = useState(filterState);
   const [search, setSearch] = useState('');
   const { t } = useTranslation();
 
@@ -58,6 +86,11 @@ export const Catalog = () => {
     setPages(toPage);
     setSearchParams(searchParams);
   };
+
+  useEffect(() => {
+    setParams();
+    saveToStorage('filters', filterState);
+  }, []);
 
   useEffect(() => {
     if (!page || !perPage) {
@@ -95,6 +128,13 @@ export const Catalog = () => {
       setParams();
     }
   }, [selectedFilter, search]);
+
+  useEffect(() => {
+    window.addEventListener('unload', removeLocalStor);
+    return () => {
+      window.removeEventListener('unload', removeLocalStor);
+    };
+  }, []);
 
   const [showSort, setShowSort] = useState(false);
   const toggleSort = () => {

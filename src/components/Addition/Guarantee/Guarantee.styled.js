@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
 const Container = styled.div`
   display: flex;
@@ -7,18 +8,20 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: justify;
-  font-family: ${theme.fonts[1]};
-  font-size: ${theme.fontSizes.medium};
+  gap: 20px;
+  margin: 0 auto;
+`;
 
-  width: 100%;
-  margin: 10px 0;
-  padding: 20px;
-`;
-const Title = styled.h3`
-  margin: 20px 0;
-`;
+const Title = styled(Headline)``;
+
 const SubTitleP = styled.p`
-  margin: 20px 0;
+  font-family: ${theme.fonts[0]};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${theme.colors.green};
+  text-transform: uppercase;
 `;
 
 export { Container, Title, SubTitleP };

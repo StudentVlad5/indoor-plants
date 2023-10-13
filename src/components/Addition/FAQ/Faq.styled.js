@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
 const Container = styled.div`
   display: flex;
@@ -7,29 +8,47 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: justify;
-  font-family: ${theme.fonts[1]};
-  font-size: ${theme.fontSizes.medium};
+  gap: 20px;
+`;
 
+const Title = styled(Headline)``;
+
+const FAQList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
-  margin: 10px 0;
-  padding: 20px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    gap: 20px;
+  }
 `;
-const Title = styled.h3`
-  margin: 20px 0;
-`;
+
 const ParahQ = styled.div`
   position: relative;
-  padding: 13px 0;
+
+  width: 100%;
+  padding-right: 20px;
+  margin-bottom: 10px;
+
   color: ${theme.colors.brown2};
   font-family: ${theme.fonts[0]};
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-transform: uppercase;
-  margin: 10px 0;
-  z-index: 90;
+  /* text-transform: uppercase; */
+
+  z-index: 5;
   cursor: pointer;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: calc(100vw - 300px);
+    max-width: 600px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     color: ${theme.colors.green};
     padding: 0;
@@ -38,15 +57,33 @@ const ParahQ = styled.div`
 const ParahA = styled(ParahQ)`
   text-transform: none;
 `;
+
 const ArrowBox = styled.div`
   position: absolute;
   right: 0;
-  top: 25%;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
+
+  & svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    top: 25%;
+    transform: translateY(-25%);
+
+    & svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
 `;
+
 const Span = styled.span`
   font-weight: 600;
   color: ${theme.colors.darkGreen};
 `;
 
-export { Container, Title, ParahQ, ParahA, ArrowBox, Span };
+export { Container, Title, FAQList, ParahQ, ParahA, ArrowBox, Span };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProductsSection } from '../Products/Products.styled';
 import {
   BoxText,
   HealthBox,
@@ -9,9 +10,7 @@ import {
   ImgBox,
   ReadMore,
 } from './Health.styled';
-import woman from '../../../images/hero/products/woman.png';
-import { Discr } from './Discr/Discr';
-import { ProductsSection } from '../Products/Products.styled';
+import woman from 'images/hero/products/woman.png';
 
 export const Health = () => {
   return (
@@ -20,26 +19,7 @@ export const Health = () => {
         <HealthBox>
           <HealthBoxDiscr>
             <HealthHeadTitle>health as part of a lifestyle</HealthHeadTitle>
-            <HealthTitle>How plants make us happy</HealthTitle>
-            <HealthDiscr>
-              Here are some of the health benefits of indoor plants. For example
-              indoor plants have can help reduce stress and anxiety. Studies
-              have shown that just looking at plants can lower blood pressure
-              and heart rate.
-            </HealthDiscr>
-
-            <ReadMore to={'/addition/blogs'}>Read more</ReadMore>
-            <ImgBox>
-              <img src={woman} alt="" />
-            </ImgBox>
-          </HealthBoxDiscr>
-
-          <HealthBoxDiscr>
-            <ImgBox>
-              <img src={woman} alt="" />
-            </ImgBox>
             <BoxText>
-              <HealthHeadTitle>health as part of a lifestyle</HealthHeadTitle>
               <HealthTitle>How plants make us happy</HealthTitle>
               <HealthDiscr>
                 Here are some of the health benefits of indoor plants. For
@@ -47,13 +27,17 @@ export const Health = () => {
                 Studies have shown that just looking at plants can lower blood
                 pressure and heart rate.
               </HealthDiscr>
-
-              <ReadMore to={'/addition/blogs'}>Read more</ReadMore>
             </BoxText>
+            <ReadMore to={'/addition/blogs'}>Read more</ReadMore>
           </HealthBoxDiscr>
+          <ImgBox
+            src={woman}
+            alt="Woman with plants"
+            width={355}
+            height={222}
+          />
         </HealthBox>
       </ProductsSection>
-      <Discr />
     </>
   );
 };

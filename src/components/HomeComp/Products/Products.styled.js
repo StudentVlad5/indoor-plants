@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container } from 'components/baseStyles/CommonStyle.styled';
+import { Container, Headline } from 'components/baseStyles/CommonStyle.styled';
 import theme from 'components/baseStyles/Variables.styled';
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as arrow } from 'images/svg/arrow.svg';
@@ -34,22 +34,14 @@ export const ProductsSection = styled.div`
   }
 `;
 
-export const ProductsTitle = styled.h2`
-  color: ${theme.colors.green};
-  font-family: ${theme.fonts[1]};
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 144.5%;
-  margin-bottom: 24px;
-`;
+export const ProductsTitle = styled(Headline)``;
 
 export const ProductsBtn = styled(Link)`
   display: flex;
   justify-content: flex-end;
   color: ${theme.colors.green};
   font-family: ${theme.fonts[1]};
-  font-size: 24px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -57,7 +49,15 @@ export const ProductsBtn = styled(Link)`
 
   &:hover,
   &:focus {
-    color: rgb(154, 184, 121);
+    color: ${theme.colors.green1};
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 24px;
   }
 `;
 

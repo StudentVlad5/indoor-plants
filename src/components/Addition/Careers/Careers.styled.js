@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
+import { Headline } from 'components/baseStyles/CommonStyle.styled';
 
 const Container = styled.div`
   display: flex;
@@ -7,19 +8,19 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: justify;
-  font-family: ${theme.fonts[1]};
-  font-size: ${theme.fontSizes.medium};
-
-  width: 100%;
-  margin: 10px 0;
-  padding: 20px;
+  gap: 20px;
+  margin: 0 auto;
 `;
 
-const Title = styled.h3`
-  margin: 20px 0;
-`;
+const Title = styled(Headline)``;
+
 const Parah = styled.p`
-  margin: 10px 0;
+  font-family: ${theme.fonts[1]};
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 166%;
+  color: ${theme.colors.brown2};
 `;
 
 export { Container, Title, Parah };

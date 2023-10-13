@@ -95,7 +95,7 @@ export const LinkFolder = styled(NavLink)`
 
   &:hover,
   &:focus {
-    color: ${theme.colors.green};
+    color: ${theme.colors.green2};
   }
 
   &::before {
@@ -117,6 +117,6 @@ export const LinkFolder = styled(NavLink)`
   }
 
   &.active {
-    color: ${theme.colors.green};
+    color: ${theme.colors.green2};
   }
 `;

@@ -27,7 +27,7 @@ import { Courses } from 'components/Addition/Courses/Courses';
 import { Rewards } from 'components/Addition/Rewards/Rewards';
 import { Contact } from 'components/Addition/Contact/Contact';
 import { Location } from 'components/Addition/Location/Location';
-import { Сareers } from 'components/Addition/Careers/Careers';
+import { Careers } from 'components/Addition/Careers/Careers';
 
 const HomePage = lazy(() => import('pages/Home'));
 const UserPage = lazy(() => import('pages/User'));
@@ -124,7 +124,7 @@ export const App = () => {
               <Route path="guarantee" element={<Guarantee />} />
               <Route path="course" element={<Courses />} />
               <Route path="contact" element={<Contact />} />
-              <Route path="careers" element={<Сareers />} />
+              <Route path="careers" element={<Careers />} />
               <Route path="location" element={<Location />} />
               <Route path="rewards_program" element={<Rewards />} />
             </Route>

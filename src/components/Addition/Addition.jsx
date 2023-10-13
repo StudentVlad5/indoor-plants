@@ -20,7 +20,7 @@ export const Addition = () => {
         </Title>
         <AdditionDataWrapper>
           <FolderWrapper>
-            <AdditionTitle as="h2">Magazin:</AdditionTitle>
+            {/* <AdditionTitle as="h2">Magazine:</AdditionTitle> */}
             <LinkFolder className="linkFolder" to={`/addition/about_company`}>
               About company
             </LinkFolder>

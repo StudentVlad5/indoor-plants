@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { Container, Title, Subtitle, SubtitleP, Img } from './Shipping.styled';
+import {
+  Container,
+  Title,
+  List,
+  Subtitle,
+  SubtitleP,
+  Img,
+} from './Shipping.styled';
 import rules_img from 'images/shipping/shipping.webp';
 
 export const Shipping = () => {
@@ -10,11 +17,12 @@ export const Shipping = () => {
   return (
     <Container>
       <Title>Our rules of Shipping & Handling</Title>
-      <ul style={{ width: '100%' }}>
+      <List>
         <Subtitle>
           <h4>Make sure the soil is contained.</h4>
-          <SubtitleP>Place the pot inside a plastic bag.</SubtitleP>
           <SubtitleP>
+            Place the pot inside a plastic bag.
+            <br />
             Secure the top opening of the bag around the stem of the plant so
             that soil can’t escape from the pot or bag.
           </SubtitleP>
@@ -24,8 +32,7 @@ export const Shipping = () => {
           <SubtitleP>
             Use a corrugated divider to keep the pot from shifting in the box
             and damaging stems and leaves.
-          </SubtitleP>
-          <SubtitleP>
+            <br />
             If the plant doesn’t have a single main stem, place paper between
             the leaves and over the soil and secure it to the pot.
           </SubtitleP>
@@ -36,10 +43,11 @@ export const Shipping = () => {
             Use the H taping method to apply at least three strips of adhesive
             tape. Do this to the top and bottom of the box. Then tape all seams
             and flaps.
+            <br />
+            Place our shipping label on top of the box.
           </SubtitleP>
-          <SubtitleP>Place our shipping label on top of the box.</SubtitleP>
         </Subtitle>
-      </ul>
+      </List>
       <Img
         alt="Our rules of Shipping & Handling"
         src={rules_img}
