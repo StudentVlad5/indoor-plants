@@ -153,7 +153,7 @@ export const ShoppingBag = () => {
               </BasketBoxListDiscr>
               <List>
                 {dataArr.map((item, idx) => (
-                  <ListItem key={idx}>
+                  <ListItem key={idx} onClick={() => setIsOpen(false)}>
                     <NavLink to={item.link}>
                       <ListImage
                         src={item.imageUrl}

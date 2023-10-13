@@ -124,108 +124,108 @@ const Step1 = () => {
   // };
 
   return (
-    <DeliveryInfoBox>
-      <DeliveryBlock>
-        <DeliveryBlockOptions>
-          <DeliveryBlockOptionsBoxLable>
-            <DeliveryBlockOptionsLable
-              onClick={() => handleOptionClick(0)}
-              onChange={handleInputChange}
-            >
-              <DeliveryBlockOptionsInput type="radio" name="delivery" />
-              <NovaPoshtaIcon />
+    <DeliveryBlockOptions>
+      <DeliveryBlockOptionsBoxLable>
+        <DeliveryBlockOptionsLable
+          onClick={() => handleOptionClick(0)}
+          onChange={handleInputChange}
+        >
+          <DeliveryBlockOptionsInput type="radio" name="delivery" />
+          <NovaPoshtaIcon />
 
-              <DeliveryBlockOptionsLableBox>
-                <DeliveryBlockOptionsTitle>
-                  NovaPoshta
-                </DeliveryBlockOptionsTitle>
-                <DeliveryBlockOptionsTitleDiscr>
-                  Cash upon delivery, card payment Visa, Master Card
-                </DeliveryBlockOptionsTitleDiscr>
-              </DeliveryBlockOptionsLableBox>
-            </DeliveryBlockOptionsLable>
+          <DeliveryBlockOptionsLableBox>
+            <DeliveryBlockOptionsTitle>NovaPoshta</DeliveryBlockOptionsTitle>
+            <DeliveryBlockOptionsTitleDiscr>
+              Cash upon delivery, card payment Visa, Master Card
+            </DeliveryBlockOptionsTitleDiscr>
+          </DeliveryBlockOptionsLableBox>
+        </DeliveryBlockOptionsLable>
 
-            {selectedOption === 0 && (
-              <BoxPost>
-                <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
+        {selectedOption === 0 && (
+          <BoxPost>
+            <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
 
-                <PoshtaBox>
-                  <NovaPoshta
-                    setSelectedCity={setSelectedCity}
-                    setSelectedDepartment={setSelectedDepartment}
-                  />
-                </PoshtaBox>
-              </BoxPost>
-            )}
-          </DeliveryBlockOptionsBoxLable>
+            <PoshtaBox>
+              <NovaPoshta
+                setSelectedCity={setSelectedCity}
+                setSelectedDepartment={setSelectedDepartment}
+              />
+            </PoshtaBox>
+          </BoxPost>
+        )}
+      </DeliveryBlockOptionsBoxLable>
 
-          <DeliveryBlockOptionsBoxLable>
-            <DeliveryBlockOptionsLable
-              onClick={() => handleOptionClick(1)}
-              onChange={handleInputChange}
-            >
-              <DeliveryBlockOptionsInput type="radio" name="delivery" />
-              <UkrPoshtaIcon />
+      <DeliveryBlockOptionsBoxLable>
+        <DeliveryBlockOptionsLable
+          onClick={() => handleOptionClick(1)}
+          onChange={handleInputChange}
+        >
+          <DeliveryBlockOptionsInput type="radio" name="delivery" />
+          <UkrPoshtaIcon />
 
-              <DeliveryBlockOptionsLableBox>
-                <DeliveryBlockOptionsTitle>UkrPoshta</DeliveryBlockOptionsTitle>
-                <DeliveryBlockOptionsTitleDiscr>
-                  Cash upon delivery, card payment Visa, Master Card
-                </DeliveryBlockOptionsTitleDiscr>
-              </DeliveryBlockOptionsLableBox>
-            </DeliveryBlockOptionsLable>
+          <DeliveryBlockOptionsLableBox>
+            <DeliveryBlockOptionsTitle>UkrPoshta</DeliveryBlockOptionsTitle>
+            <DeliveryBlockOptionsTitleDiscr>
+              Cash upon delivery, card payment Visa, Master Card
+            </DeliveryBlockOptionsTitleDiscr>
+          </DeliveryBlockOptionsLableBox>
+        </DeliveryBlockOptionsLable>
 
-            {selectedOption === 1 && (
-              <BoxPost>
-                <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
+        {selectedOption === 1 && (
+          <BoxPost>
+            <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
 
-                <PoshtaBox>
-                  <UkrPoshta
-                    setSelectedCity={setSelectedCity}
-                    setSelectedDepartment={setSelectedDepartment}
-                  />
-                </PoshtaBox>
-              </BoxPost>
-            )}
-          </DeliveryBlockOptionsBoxLable>
+            <PoshtaBox>
+              <UkrPoshta
+                setSelectedCity={setSelectedCity}
+                setSelectedDepartment={setSelectedDepartment}
+              />
+            </PoshtaBox>
+          </BoxPost>
+        )}
+      </DeliveryBlockOptionsBoxLable>
 
-          <DeliveryBlockOptionsBoxLable>
-            <DeliveryBlockOptionsLable
-              onClick={() => handleOptionClick(2)}
-              onChange={handleInputChange}
-            >
-              <DeliveryBlockOptionsInput type="radio" name="delivery" />
-              {/* <ShippingFast style={{ width: 55 }} /> */}
-              <DeliveryBlockOptionsLableBox>
-                <DeliveryBlockOptionsTitle>
-                  Courier delivery
-                </DeliveryBlockOptionsTitle>
-                <DeliveryBlockOptionsTitleDiscr>
-                  Cash upon delivery, card payment Visa, Master Card
-                </DeliveryBlockOptionsTitleDiscr>
-              </DeliveryBlockOptionsLableBox>
-            </DeliveryBlockOptionsLable>
-          </DeliveryBlockOptionsBoxLable>
+      <DeliveryBlockOptionsBoxLable>
+        <DeliveryBlockOptionsLable
+          onClick={() => handleOptionClick(2)}
+          onChange={handleInputChange}
+        >
+          <DeliveryBlockOptionsInput type="radio" name="delivery" />
+          {/* <ShippingFast style={{ width: 55 }} /> */}
+          <DeliveryBlockOptionsLableBox>
+            <DeliveryBlockOptionsTitle>
+              Courier delivery
+            </DeliveryBlockOptionsTitle>
+            <DeliveryBlockOptionsTitleDiscr>
+              Cash upon delivery, card payment Visa, Master Card
+            </DeliveryBlockOptionsTitleDiscr>
+          </DeliveryBlockOptionsLableBox>
+        </DeliveryBlockOptionsLable>
+      </DeliveryBlockOptionsBoxLable>
 
-          <Link
-            to={`/checkout/step2`}
-            style={{ textDecoration: 'none', width: '100%' }}
-          >
-            <CheckoutBtn
-              onClick={() => {
-                localStorage.setItem('selectedCity', selectedCity);
-                localStorage.setItem('selectedDepartment', selectedDepartment);
-                localStorage.setItem('selectedDeliveryOption', selectedDeliveryOption);
-              }}
-              // disabled={isDisabled}
-              type="button"
-              // onClick={nextStep}
-            >
-              Next
-            </CheckoutBtn>
-          </Link>
+      <Link
+        to={`/checkout/step2`}
+        style={{ textDecoration: 'none', width: '100%' }}
+      >
+        <CheckoutBtn
+          onClick={() => {
+            localStorage.setItem('selectedCity', selectedCity);
+            localStorage.setItem('selectedDepartment', selectedDepartment);
+            localStorage.setItem(
+              'selectedDeliveryOption',
+              selectedDeliveryOption,
+            );
+            document.querySelector('.step2Btn').classList.remove('isDisabled');
+          }}
+          // disabled={isDisabled}
+          type="button"
+          // onClick={nextStep}
+        >
+          Next
+        </CheckoutBtn>
+      </Link>
 
-          {/* <Link to={`/checkout/step2`}>
+      {/* <Link to={`/checkout/step2`}>
             <DeliveryBlockOptionsBtn
               type="button"
               // onClick={showDeliveryInfoBlock}
@@ -233,9 +233,7 @@ const Step1 = () => {
               Next
             </DeliveryBlockOptionsBtn>
           </Link> */}
-        </DeliveryBlockOptions>
-      </DeliveryBlock>
-    </DeliveryInfoBox>
+    </DeliveryBlockOptions>
   );
 };
 
