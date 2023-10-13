@@ -32,7 +32,10 @@ export const CheckOut = () => {
             <Liner>
               <span></span>
             </Liner>
-            <LinkFolder className="linkFolder step2Btn" to={`/checkout/step2`}>
+            <LinkFolder
+              className="linkFolder isDisabled step2Btn"
+              to={`/checkout/step2`}
+            >
               <span>2</span>
               <LinkFolderTitle>Address</LinkFolderTitle>
             </LinkFolder>

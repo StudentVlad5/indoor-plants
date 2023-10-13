@@ -130,7 +130,7 @@ const Step2 = () => {
                   name="name"
                   value={formData.name}
                   required
-                  placeholder="George"
+                  // placeholder="George"
                 />
               </DeliveryFormLable>
 
@@ -143,7 +143,7 @@ const Step2 = () => {
                   name="surname"
                   value={formData.surname}
                   required
-                  placeholder="Washington"
+                  // placeholder="Washington"
                 />
               </DeliveryFormLable>
 
@@ -226,7 +226,7 @@ const Step2 = () => {
                   name="phone"
                   value={formData.phone}
                   required
-                  placeholder="Phone"
+                  // placeholder="+123456789"
                 />
               </DeliveryFormLable>
 
@@ -239,7 +239,7 @@ const Step2 = () => {
                   name="email"
                   value={formData.email}
                   required
-                  placeholder="george.washington@gmail.com"
+                  // placeholder="george.washington@gmail.com"
                 />
               </DeliveryFormLable>
             </DeliveryForm>
@@ -256,7 +256,7 @@ const Step2 = () => {
               name="name"
               value={formData.name}
               required
-              placeholder="George"
+              // placeholder="George"
             />
           </DeliveryFormLable>
 
@@ -269,7 +269,7 @@ const Step2 = () => {
               name="surname"
               value={formData.surname}
               required
-              placeholder="Washington"
+              // placeholder="Washington"
             />
           </DeliveryFormLable>
 
@@ -352,7 +352,7 @@ const Step2 = () => {
               name="phone"
               value={formData.phone}
               required
-              placeholder="Phone"
+              // placeholder="+123456789"
             />
           </DeliveryFormLable>
 
@@ -365,7 +365,7 @@ const Step2 = () => {
               name="email"
               value={formData.email}
               required
-              placeholder="george.washington@gmail.com"
+              // placeholder="george.washington@gmail.com"
             />
           </DeliveryFormLable>
         </DeliveryForm>

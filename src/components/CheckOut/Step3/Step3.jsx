@@ -13,6 +13,7 @@ import {
   PaymentBlockOptionsInput,
   DeliveryBlockOptionsTitle,
   DeliveryBlockOptionsLableBox,
+  Payment,
 } from '../Order/Order.styled';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -111,6 +112,7 @@ const Step3 = () => {
       setOrder([...order, newOrder]);
       localStorage.setItem('formData', JSON.stringify(newOrder));
       console.log(newOrder);
+      document.querySelector('.step4Btn').classList.remove('isDisabled');
     }
   };
 
@@ -137,60 +139,60 @@ const Step3 = () => {
   };
 
   return (
-    <div>
-      <PaymentOptionBox>
-        <PaymentBlockOptionsLable onClick={() => handlePaymentOptionClick(0)}>
-          <PaymentBlockOptionsInput type="radio" name="payment" />
-          <LIQPAY />
+    <Payment>
+      {/* <PaymentOptionBox> */}
+      <PaymentBlockOptionsLable onClick={() => handlePaymentOptionClick(0)}>
+        <PaymentBlockOptionsInput type="radio" name="payment" />
+        <LIQPAY />
 
-          <DeliveryBlockOptionsLableBox>
-            <DeliveryBlockOptionsTitle>
-              Card or e-wallet
-            </DeliveryBlockOptionsTitle>
-            {/* <DeliveryBlockOptionsTitleDiscr>
+        <DeliveryBlockOptionsLableBox>
+          <DeliveryBlockOptionsTitle>
+            Terms of payment
+          </DeliveryBlockOptionsTitle>
+          {/* <DeliveryBlockOptionsTitleDiscr>
                 Visa, Master Card, Apple Pay, Google Pay
               </DeliveryBlockOptionsTitleDiscr> */}
-          </DeliveryBlockOptionsLableBox>
-        </PaymentBlockOptionsLable>
-      </PaymentOptionBox>
+        </DeliveryBlockOptionsLableBox>
+      </PaymentBlockOptionsLable>
+      {/* </PaymentOptionBox> */}
 
-      <PaymentOptionBox>
-        <PaymentBlockOptionsLable
-          onClick={() => handlePaymentOptionClick(1)}
-          onChange={handleInputChange}
-        >
-          <PaymentBlockOptionsInput type="radio" name="payment" />
-          <Wallet style={{ width: 65 }} />
+      {/* <PaymentOptionBox> */}
+      <PaymentBlockOptionsLable
+        onClick={() => handlePaymentOptionClick(1)}
+        onChange={handleInputChange}
+      >
+        <PaymentBlockOptionsInput type="radio" name="payment" />
+        <Wallet style={{ width: 65 }} />
 
-          <DeliveryBlockOptionsLableBox>
-            <DeliveryBlockOptionsTitle>
-              Cash on delivery
-            </DeliveryBlockOptionsTitle>
-            {/* <DeliveryBlockOptionsTitleDiscr>
+        <DeliveryBlockOptionsLableBox>
+          <DeliveryBlockOptionsTitle>
+            Cash on delivery
+          </DeliveryBlockOptionsTitle>
+          {/* <DeliveryBlockOptionsTitleDiscr>
                 Only on delivery by courier Meest
               </DeliveryBlockOptionsTitleDiscr> */}
-          </DeliveryBlockOptionsLableBox>
-        </PaymentBlockOptionsLable>
-      </PaymentOptionBox>
+        </DeliveryBlockOptionsLableBox>
+      </PaymentBlockOptionsLable>
+      {/* </PaymentOptionBox> */}
 
-      <PaymentOptionBox>
-        <PaymentBlockOptionsLable
-          onClick={() => handlePaymentOptionClick(2)}
-          onChange={handleInputChange}
-        >
-          <PaymentBlockOptionsInput type="radio" name="payment" />
-          <Wallet style={{ width: 65 }} />
+      {/* <PaymentOptionBox> */}
+      <PaymentBlockOptionsLable
+        onClick={() => handlePaymentOptionClick(2)}
+        onChange={handleInputChange}
+      >
+        <PaymentBlockOptionsInput type="radio" name="payment" />
+        <Wallet style={{ width: 65 }} />
 
-          <DeliveryBlockOptionsLableBox>
-            <DeliveryBlockOptionsTitle>
-              Payment on account
-            </DeliveryBlockOptionsTitle>
-            {/* <DeliveryBlockOptionsTitleDiscr>
+        <DeliveryBlockOptionsLableBox>
+          <DeliveryBlockOptionsTitle>
+            Payment on account
+          </DeliveryBlockOptionsTitle>
+          {/* <DeliveryBlockOptionsTitleDiscr>
                 Only on delivery by courier Meest
               </DeliveryBlockOptionsTitleDiscr> */}
-          </DeliveryBlockOptionsLableBox>
-        </PaymentBlockOptionsLable>
-      </PaymentOptionBox>
+        </DeliveryBlockOptionsLableBox>
+      </PaymentBlockOptionsLable>
+      {/* </PaymentOptionBox> */}
 
       <PaymentFormBtnBox>
         <Link to={`/checkout/step2`}>
@@ -202,13 +204,13 @@ const Step3 = () => {
           </PaymentFormBtn>
         </Link>
 
-        <Link to={`/basket`}>
+        <Link to={`/checkout/step4`}>
           <PaymentFormBtnFinish type="submit" onClick={handleAddOrder}>
             Total
           </PaymentFormBtnFinish>
         </Link>
       </PaymentFormBtnBox>
-    </div>
+    </Payment>
   );
 };
 
