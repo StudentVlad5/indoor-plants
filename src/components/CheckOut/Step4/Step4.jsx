@@ -17,6 +17,7 @@ import {
 } from 'components/CheckOut/Order/Order.styled';
 import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
 import { addCommentToOrder } from 'redux/order/operations';
+import { Link } from 'react-router-dom';
 
 const Step4 = () => {
   const orders = useSelector(selectOrders);
@@ -38,6 +39,13 @@ const Step4 = () => {
         <OrderBox key={order.id}>
           <OrderBoxContainer>
             <OrderBoxTitle>Selected delivery</OrderBoxTitle>
+
+            <DataContainerPensil>
+              <Link to={`/checkout/step1`}>
+                <PensilStyle />
+              </Link>
+            </DataContainerPensil>
+
             <DataContainerText>
               {order.selectedDeliveryOption}
             </DataContainerText>
@@ -47,6 +55,12 @@ const Step4 = () => {
 
           <OrderBoxContainer>
             <OrderBoxTitle>Selected address</OrderBoxTitle>
+
+            <DataContainerPensil>
+              <Link to={`/checkout/step2`}>
+                <PensilStyle />
+              </Link>
+            </DataContainerPensil>
 
             <DataContainerTextGreen>
               {order.name} {order.surname}
@@ -63,6 +77,13 @@ const Step4 = () => {
 
           <OrderBoxContainer>
             <OrderBoxTitle>Selected payment</OrderBoxTitle>
+
+            <DataContainerPensil>
+              <Link to={`/checkout/step3`}>
+                <PensilStyle />
+              </Link>
+            </DataContainerPensil>
+
             <DataContainerText>{order.selectedPaymentOption}</DataContainerText>
           </OrderBoxContainer>
 
