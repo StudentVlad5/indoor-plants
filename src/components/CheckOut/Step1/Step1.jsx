@@ -33,7 +33,7 @@ import {
   PoshtaBoxTitle,
   BoxPost,
   DeliveryBlockOptionsTitleDiscr,
-  // DeliveryBlockOptionsBtn,
+  DeliveryBlockOptionsBtn,
   DeliveryBlockOptionsLableBox,
   DeliveryBlockOptionsTitle,
 } from '../Order/Order.styled';
@@ -48,8 +48,7 @@ const Step1 = () => {
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [isDisabled, setDisabled] = useState(true);
-
-  const [delivery, setDelivery] = useState([]);
+  const [selectedDeliveryOption, setSelectedDeliveryOption] = useState(null);
 
   const auth = useSelector(getUser);
   let { userIn } = useAuth();
@@ -64,22 +63,24 @@ const Step1 = () => {
     address2: auth._id ? userIn.address.address2 : '',
     city: auth._id ? userIn.address.city : '',
     state: auth._id ? userIn.address.state : '',
-    zipCode: '',
+    zipCode: auth._id ? userIn.address.zipCode : '',
   });
 
   const handleOptionClick = index => {
     const selectedDeliveryOption = deliveryOptions[index].label;
+    setSelectedDeliveryOption(selectedDeliveryOption);
+
     setSelectedOption(index);
     setFormData({
       ...formData,
-      selectedDeliveryOption,
+      selectedDeliveryOption: selectedDeliveryOption,
     });
 
     setFormDataAuth({
       ...formDataAuth,
-      selectedDeliveryOption,
+      selectedDeliveryOption: selectedDeliveryOption,
     });
-    setDelivery(selectedDeliveryOption);
+    // setDelivery(selectedDeliveryOption);
   };
 
   const deliveryOptions = [
@@ -99,13 +100,13 @@ const Step1 = () => {
     restoreFormDataFromLocalStorage();
   }, []);
 
-  useEffect(() => {
-    if (delivery) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [delivery]);
+  // useEffect(() => {
+  //   if (delivery) {
+  //     setDisabled(false);
+  //   } else {
+  //     setDisabled(true);
+  //   }
+  // }, [delivery]);
 
   const handleInputChange = e => {
     const inputName = e.target.name;
@@ -118,9 +119,9 @@ const Step1 = () => {
     localStorage.setItem('formData', JSON.stringify(formData));
   };
 
-  const nextStep = () => {
-    document.querySelector('.step2Btn').classList.remove('isDisabled');
-  };
+  // const nextStep = () => {
+  //   document.querySelector('.step2Btn').classList.remove('isDisabled');
+  // };
 
   return (
     <DeliveryInfoBox>
@@ -210,7 +211,16 @@ const Step1 = () => {
             to={`/checkout/step2`}
             style={{ textDecoration: 'none', width: '100%' }}
           >
-            <CheckoutBtn disabled={isDisabled} type="submit" onClick={nextStep}>
+            <CheckoutBtn
+              onClick={() => {
+                localStorage.setItem('selectedCity', selectedCity);
+                localStorage.setItem('selectedDepartment', selectedDepartment);
+                localStorage.setItem('selectedDeliveryOption', selectedDeliveryOption);
+              }}
+              // disabled={isDisabled}
+              type="button"
+              // onClick={nextStep}
+            >
               Next
             </CheckoutBtn>
           </Link>

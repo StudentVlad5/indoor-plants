@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { saveToStorage, getFromStorage } from 'services/localStorService';
 // import { addPayment } from 'redux/payment/operations';
 // import { makeOrder } from 'services/APIservice';
@@ -39,6 +39,7 @@ import {
   DeliveryFormBtn,
 } from '../Order/Order.styled';
 import { useAuth } from 'hooks/useAuth';
+import { getUser } from 'redux/auth/selectors';
 
 const Step2 = () => {
   const [showAddAddress, setShowAddAddress] = useState(false);
@@ -65,7 +66,7 @@ const Step2 = () => {
     address2: auth._id ? userIn.address.address2 : '',
     city: auth._id ? userIn.address.city : '',
     state: auth._id ? userIn.address.state : '',
-    zipCode: '',
+    zipCode: auth._id ? userIn.address.zipCode : '',
   });
 
   const restoreFormDataFromLocalStorage = () => {
@@ -105,10 +106,11 @@ const Step2 = () => {
             <DataContainerText>{formData.company}</DataContainerText>
             <DataContainerText>{formData.city}</DataContainerText>
             <DataContainerText>{formData.state}</DataContainerText>
+            <DataContainerText>{formData.zipCode}</DataContainerText>
             <DataContainerText>{formData.address1}</DataContainerText>
             <DataContainerText>{formData.address2}</DataContainerText>
-            <DataContainerText>{formData.phone}</DataContainerText>
             <DataContainerText>{formData.email}</DataContainerText>
+            <DataContainerText>{formData.phone}</DataContainerText>
 
             <DataContainerPensil
               onClick={() => setShowAddAddress(!showAddAddress)}
@@ -203,17 +205,17 @@ const Step2 = () => {
                 />
               </DeliveryFormLable>
 
-              {/* <DeliveryFormLable>
-<DeliveryFormLableText>Zip code</DeliveryFormLableText>
-<DeliveryFormInput
-onChange={handleInputChange}
-type="text"
-id="zipCode"
-name="zipCode"
-value={formData.zipCode}
-required
-/>
-</DeliveryFormLable> */}
+              <DeliveryFormLable>
+                <DeliveryFormLableText>Zip code</DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="zipCode"
+                  name="zipCode"
+                  value={formData.zipCode}
+                  required
+                />
+              </DeliveryFormLable>
 
               <DeliveryFormLable>
                 <DeliveryFormLableText>Phone</DeliveryFormLableText>

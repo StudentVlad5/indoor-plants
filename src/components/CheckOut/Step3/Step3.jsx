@@ -24,13 +24,17 @@ const Step3 = () => {
   const basket = useSelector(selectBasket);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState('');
   const [order, setOrder] = useState([]);
+  const [formDataAuth, setFormDataAuth] = useState({});
 
-  const [selectedCity, setSelectedCity] = useState('');
-  const [selectedDepartment, setSelectedDepartment] = useState('');
+  //   const [selectedCity, setSelectedCity] = useState('');
+  //   const [selectedDepartment, setSelectedDepartment] = useState('');
   const dispatch = useDispatch();
   const auth = useSelector(getUser);
   let { userIn } = useAuth();
-  // const orderRedux = useSelector(state => state.orders);
+
+  const selectedCity = localStorage.getItem('selectedCity');
+  const selectedDepartment = localStorage.getItem('selectedDepartment');
+  const selectedDeliveryOption = localStorage.getItem('selectedDeliveryOption');
 
   const handlePaymentOptionClick = index => {
     const selectedPaymentOptionData = paymentOptions[index].label;
@@ -61,12 +65,14 @@ const Step3 = () => {
     address2: auth._id ? userIn.address.address2 : '',
     city: auth._id ? userIn.address.city : '',
     state: auth._id ? userIn.address.state : '',
-    zipCode: '',
+    zipCode: auth._id ? userIn.address.zipCode : '',
   });
 
-  const [formDataAuth, setFormDataAuth] = useState({});
   const handleAddOrder = e => {
     e.preventDefault();
+    // const selectedDeliveryOption = deliveryOptions[selectedOption].label;
+    // const selectedPaymentOptionData =
+    //   paymentOptions[selectedPaymentOption].label;
 
     if (auth._id) {
       const newOrderAuth = {
@@ -74,6 +80,7 @@ const Step3 = () => {
         basket: basket,
         cityDelivery: selectedCity,
         department: selectedDepartment,
+        selectedDeliveryOption: selectedDeliveryOption,
         name: formData.name + ' ' + formData.surname,
         company: formData.company,
         city: formData.city,
@@ -82,6 +89,7 @@ const Step3 = () => {
         email: formData.email,
         address1: formData.address1,
         address2: formData.address2,
+        zipCode: formData.zipCode,
       };
 
       dispatch(addOrder(newOrderAuth));
@@ -93,7 +101,10 @@ const Step3 = () => {
         ...formData,
         basket: basket,
         cityDelivery: selectedCity,
+        selectedDeliveryOption: selectedDeliveryOption,
+        // deliveryMethod: selectedDeliveryOption,
         department: selectedDepartment,
+        // paymentMethod: selectedPaymentOptionData,
       };
 
       dispatch(addOrder(newOrder));
@@ -124,6 +135,7 @@ const Step3 = () => {
 
     localStorage.setItem('formData', JSON.stringify(formData));
   };
+
   return (
     <div>
       <PaymentOptionBox>
@@ -190,9 +202,11 @@ const Step3 = () => {
           </PaymentFormBtn>
         </Link>
 
-        <PaymentFormBtnFinish type="submit" onClick={handleAddOrder}>
-          Total
-        </PaymentFormBtnFinish>
+        <Link to={`/basket`}>
+          <PaymentFormBtnFinish type="submit" onClick={handleAddOrder}>
+            Total
+          </PaymentFormBtnFinish>
+        </Link>
       </PaymentFormBtnBox>
     </div>
   );

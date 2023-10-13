@@ -9,6 +9,7 @@ import { basketReducer } from './basket/slice';
 
 import { deliveryReducer } from './delivery/slice';
 import { paymentReducer } from './payment/slice';
+import { orderReducer } from './order/slice';
 
 // Persisting token and role fields from auth slice to localstorage
 const authPersistConfig = {
@@ -24,7 +25,8 @@ export const store = configureStore({
     modal: modalReducer,
     headerBottom: headerBottomReducer,
     basket: basketReducer,
-    delivery: deliveryReducer,
+    // delivery: deliveryReducer,
+    order: orderReducer,
     payment: paymentReducer,
   },
   middleware: getDefaultMiddleware =>
