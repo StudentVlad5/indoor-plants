@@ -40,6 +40,7 @@ import {
 } from '../Order/Order.styled';
 import { useAuth } from 'hooks/useAuth';
 import { getUser } from 'redux/auth/selectors';
+import { getFromStorage, saveToStorage } from 'services/localStorService';
 
 const Step2 = () => {
   const [showAddAddress, setShowAddAddress] = useState(false);
@@ -70,9 +71,9 @@ const Step2 = () => {
   });
 
   const restoreFormDataFromLocalStorage = () => {
-    const savedFormData = localStorage.getItem('formData');
+    const savedFormData = getFromStorage('formData');
     if (savedFormData) {
-      setFormData(JSON.parse(savedFormData));
+      setFormData(savedFormData);
     }
   };
 
@@ -88,11 +89,11 @@ const Step2 = () => {
       [inputName]: inputValue,
     });
 
-    localStorage.setItem('formData', JSON.stringify(formData));
+    saveToStorage('formData', formData);
   };
 
   const nextStep = () => {
-    document.querySelector('.step3Btn').classList.remove('isDisabled');
+    saveToStorage('step', '3');
   };
 
   return (

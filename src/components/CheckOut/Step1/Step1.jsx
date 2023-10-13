@@ -41,6 +41,7 @@ import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
 import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
 import { getUser } from 'redux/auth/selectors';
 import { useAuth } from 'hooks/useAuth';
+import { getFromStorage, saveToStorage } from 'services/localStorService';
 
 const Step1 = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -90,9 +91,9 @@ const Step1 = () => {
   ];
 
   const restoreFormDataFromLocalStorage = () => {
-    const savedFormData = localStorage.getItem('formData');
+    const savedFormData = getFromStorage('formData');
     if (savedFormData) {
-      setFormData(JSON.parse(savedFormData));
+      setFormData(savedFormData);
     }
   };
 
@@ -116,12 +117,15 @@ const Step1 = () => {
       [inputName]: inputValue,
     });
 
-    localStorage.setItem('formData', JSON.stringify(formData));
+    saveToStorage('formData', formData);
   };
 
-  // const nextStep = () => {
-  //   document.querySelector('.step2Btn').classList.remove('isDisabled');
-  // };
+  const nextStep = () => {
+    saveToStorage('selectedCity', selectedCity);
+    saveToStorage('selectedDepartment', selectedDepartment);
+    saveToStorage('selectedDeliveryOption', selectedDeliveryOption);
+    saveToStorage('step', '2');
+  };
 
   return (
     <DeliveryBlockOptions>
@@ -208,18 +212,9 @@ const Step1 = () => {
         style={{ textDecoration: 'none', width: '100%' }}
       >
         <CheckoutBtn
-          onClick={() => {
-            localStorage.setItem('selectedCity', selectedCity);
-            localStorage.setItem('selectedDepartment', selectedDepartment);
-            localStorage.setItem(
-              'selectedDeliveryOption',
-              selectedDeliveryOption,
-            );
-            document.querySelector('.step2Btn').classList.remove('isDisabled');
-          }}
           // disabled={isDisabled}
           type="button"
-          // onClick={nextStep}
+          onClick={nextStep}
         >
           Next
         </CheckoutBtn>

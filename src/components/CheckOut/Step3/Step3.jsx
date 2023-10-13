@@ -20,6 +20,11 @@ import { useState } from 'react';
 import { selectBasket } from 'redux/basket/selectors';
 import { useEffect } from 'react';
 import { addOrder } from 'redux/order/operations';
+import {
+  getFromStorage,
+  removeItem,
+  saveToStorage,
+} from 'services/localStorService';
 
 const Step3 = () => {
   const basket = useSelector(selectBasket);
@@ -33,9 +38,9 @@ const Step3 = () => {
   const auth = useSelector(getUser);
   let { userIn } = useAuth();
 
-  const selectedCity = localStorage.getItem('selectedCity');
-  const selectedDepartment = localStorage.getItem('selectedDepartment');
-  const selectedDeliveryOption = localStorage.getItem('selectedDeliveryOption');
+  const selectedCity = getFromStorage('selectedCity');
+  const selectedDepartment = getFromStorage('selectedDepartment');
+  const selectedDeliveryOption = getFromStorage('selectedDeliveryOption');
 
   const handlePaymentOptionClick = index => {
     const selectedPaymentOptionData = paymentOptions[index].label;
@@ -51,7 +56,7 @@ const Step3 = () => {
   };
 
   const paymentOptions = [
-    { value: 'Card or e-wallet', label: 'Card or e-wallet' },
+    { value: 'Terms of payment', label: 'Terms of payment' },
     { value: 'Cash on delivery', label: 'Cash on delivery' },
     { value: ' Payment on account', label: ' Payment on account' },
   ];
@@ -95,7 +100,7 @@ const Step3 = () => {
 
       dispatch(addOrder(newOrderAuth));
       setOrder([...order, newOrderAuth]);
-      localStorage.setItem('formData', JSON.stringify(newOrderAuth));
+      saveToStorage('formData', newOrderAuth);
       console.log(newOrderAuth);
     } else {
       const newOrder = {
@@ -110,16 +115,16 @@ const Step3 = () => {
 
       dispatch(addOrder(newOrder));
       setOrder([...order, newOrder]);
-      localStorage.setItem('formData', JSON.stringify(newOrder));
+      saveToStorage('formData', newOrder);
       console.log(newOrder);
-      document.querySelector('.step4Btn').classList.remove('isDisabled');
+      removeItem('step');
     }
   };
 
   const restoreFormDataFromLocalStorage = () => {
-    const savedFormData = localStorage.getItem('formData');
+    const savedFormData = getFromStorage('formData');
     if (savedFormData) {
-      setFormData(JSON.parse(savedFormData));
+      setFormData(savedFormData);
     }
   };
 
@@ -135,7 +140,7 @@ const Step3 = () => {
       [inputName]: inputValue,
     });
 
-    localStorage.setItem('formData', JSON.stringify(formData));
+    saveToStorage('formData', formData);
   };
 
   return (
@@ -205,7 +210,11 @@ const Step3 = () => {
         </Link>
 
         <Link to={`/checkout/step4`}>
-          <PaymentFormBtnFinish type="submit" onClick={handleAddOrder}>
+          <PaymentFormBtnFinish
+            type="submit"
+            // onClick={handleAddOrder}
+            onClick={saveToStorage('step', '4')}
+          >
             Total
           </PaymentFormBtnFinish>
         </Link>
