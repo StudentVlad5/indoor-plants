@@ -48,14 +48,6 @@ const Step2 = () => {
   const auth = useSelector(getUser);
   let { userIn } = useAuth();
 
-  // useEffect(() => {
-  //   if (prepaidCard || accountPayment || cashOnDelivery) {
-  //     setDisabled(false);
-  //   } else {
-  //     setDisabled(true);
-  //   }
-  // }, [prepaidCard, accountPayment, cashOnDelivery]);
-
   const [formData, setFormData] = useState({
     name: auth._id ? userIn.address.userName : '',
     surname: auth._id ? userIn.address.surname : '',
@@ -68,6 +60,22 @@ const Step2 = () => {
     state: auth._id ? userIn.address.state : '',
     zipCode: auth._id ? userIn.address.zipCode : '',
   });
+
+  useEffect(() => {
+    const requiredFields = [
+      'name',
+      'surname',
+      'address1',
+      'city',
+      'state',
+      'zipCode',
+      'email',
+      'phone',
+    ];
+
+    const isFilled = requiredFields.every(field => !!formData[field]);
+    setDisabled(!isFilled);
+  }, [formData]);
 
   const restoreFormDataFromLocalStorage = () => {
     const savedFormData = localStorage.getItem('formData');
@@ -382,7 +390,15 @@ const Step2 = () => {
         </Link>
 
         <Link to={`/checkout/step3`}>
-          <DeliveryFormBtnFinish type="button" onClick={nextStep}>
+          <DeliveryFormBtnFinish
+            disabled={isDisabled}
+            type="button"
+            isDisabled={isDisabled}
+            style={{
+              cursor: isDisabled ? 'not-allowed' : 'pointer',
+            }}
+            // onClick={nextStep}
+          >
             Save
           </DeliveryFormBtnFinish>
         </Link>

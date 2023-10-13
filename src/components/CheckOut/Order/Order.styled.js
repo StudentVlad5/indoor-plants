@@ -285,6 +285,13 @@ export const DeliveryFormBtn = styled.button`
     font-size: 14px;
   }
 
+  &:disabled:hover,
+  &:disabled:focus {
+    cursor: not-allowed;
+    background-color: rgb(151 163 137);
+    color: ${theme.colors.white};
+  }
+
   &:hover,
   &:focus {
     color: ${theme.colors.white};
@@ -296,6 +303,13 @@ export const DeliveryFormBtn = styled.button`
 export const DeliveryFormBtnFinish = styled(DeliveryFormBtn)`
   background: ${theme.colors.green4};
   border: 1px solid ${theme.colors.green4};
+
+  &:disabled:hover,
+  &:disabled:focus {
+    cursor: not-allowed;
+    background-color: rgb(151 163 137);
+    color: ${theme.colors.white};
+  }
 `;
 
 // export const PaymentBlockOptionsLable = styled.label`
@@ -402,6 +416,19 @@ export const PaymentFormBtnFinish = styled.button`
   font-weight: 300;
   line-height: normal;
   text-transform: uppercase;
+
+  &:disabled:hover,
+  &:disabled:focus {
+    cursor: not-allowed;
+    background-color: rgb(151 163 137);
+    color: ${theme.colors.white};
+  }
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.green2};
+  }
 `;
 
 export const DeliveryBlockOptionsBtn = styled(PaymentFormBtn)`

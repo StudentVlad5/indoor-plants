@@ -207,3 +207,31 @@ export const OrderBoxTitle = styled.p`
 export const DataContainerTextGreen = styled(DataContainerText)`
   color: ${theme.colors.green};
 `;
+
+export const OrderForm = styled.form`
+  display: flex;
+  justify-content: center;
+`;
+
+export const OrderFormTextarea = styled.textarea`
+color: ${theme.colors.brown1};
+  font-family: ${theme.fonts[1]};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: 1px solid black;
+
+  border-radius: 10px;
+  background: ${theme.colors.blue3};
+
+  &::placeholder {
+    color: ${theme.colors.green};
+    font-family: ${theme.fonts[1]};
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.32px;
+  }
+`;

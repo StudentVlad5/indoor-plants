@@ -25,6 +25,7 @@ const Step3 = () => {
   const [selectedPaymentOption, setSelectedPaymentOption] = useState('');
   const [order, setOrder] = useState([]);
   const [formDataAuth, setFormDataAuth] = useState({});
+  const [isDisabled, setDisabled] = useState(true);
 
   //   const [selectedCity, setSelectedCity] = useState('');
   //   const [selectedDepartment, setSelectedDepartment] = useState('');
@@ -39,6 +40,13 @@ const Step3 = () => {
   const handlePaymentOptionClick = index => {
     const selectedPaymentOptionData = paymentOptions[index].label;
     setSelectedPaymentOption(index);
+    
+    if (selectedPaymentOption !== null) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+
     setFormData({
       ...formData,
       selectedPaymentOption: selectedPaymentOptionData,
@@ -147,9 +155,6 @@ const Step3 = () => {
             <DeliveryBlockOptionsTitle>
               Card or e-wallet
             </DeliveryBlockOptionsTitle>
-            {/* <DeliveryBlockOptionsTitleDiscr>
-                Visa, Master Card, Apple Pay, Google Pay
-              </DeliveryBlockOptionsTitleDiscr> */}
           </DeliveryBlockOptionsLableBox>
         </PaymentBlockOptionsLable>
       </PaymentOptionBox>
@@ -166,9 +171,6 @@ const Step3 = () => {
             <DeliveryBlockOptionsTitle>
               Cash on delivery
             </DeliveryBlockOptionsTitle>
-            {/* <DeliveryBlockOptionsTitleDiscr>
-                Only on delivery by courier Meest
-              </DeliveryBlockOptionsTitleDiscr> */}
           </DeliveryBlockOptionsLableBox>
         </PaymentBlockOptionsLable>
       </PaymentOptionBox>
@@ -185,9 +187,6 @@ const Step3 = () => {
             <DeliveryBlockOptionsTitle>
               Payment on account
             </DeliveryBlockOptionsTitle>
-            {/* <DeliveryBlockOptionsTitleDiscr>
-                Only on delivery by courier Meest
-              </DeliveryBlockOptionsTitleDiscr> */}
           </DeliveryBlockOptionsLableBox>
         </PaymentBlockOptionsLable>
       </PaymentOptionBox>
@@ -203,7 +202,15 @@ const Step3 = () => {
         </Link>
 
         <Link to={`/basket`}>
-          <PaymentFormBtnFinish type="submit" onClick={handleAddOrder}>
+          <PaymentFormBtnFinish
+            disabled={isDisabled}
+            isDisabled={isDisabled}
+            style={{
+              cursor: isDisabled ? 'not-allowed' : 'pointer',
+            }}
+            type="submit"
+            onClick={handleAddOrder}
+          >
             Total
           </PaymentFormBtnFinish>
         </Link>

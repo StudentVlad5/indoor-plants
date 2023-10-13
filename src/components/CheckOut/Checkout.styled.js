@@ -167,6 +167,13 @@ export const CheckoutBtn = styled.button`
   background-color: transparent;
   cursor: pointer;
 
+  &:disabled:hover,
+  &:disabled:focus {
+    cursor: not-allowed;
+    background-color: rgb(151 163 137);
+    color: ${theme.colors.white};
+  }
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 500px;
   }
