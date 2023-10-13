@@ -22,12 +22,14 @@ import {
   PaymentTotalTitlePriceDiscr,
   ShippingFast,
 } from './TotalPrice.styled';
+import { selectOrders } from 'redux/order/selectors';
 
 export const TotalPrice = () => {
   const totalAmount = useSelector(selectTotalAmount).toFixed(2);
   const totalDiscount = useSelector(selectTotalDiscount).toFixed(2);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
   const currency = useSelector(selectCurrency);
+  const orders = useSelector(selectOrders);
 
   const handleEnableStep1 = () => {
     document.querySelector('.step1Btn').classList.remove('isDisabled');
@@ -81,9 +83,15 @@ export const TotalPrice = () => {
           </PaymentTotalList>
         </table>
       </PaymentTotal>
-      <PaymentBtn to={`/checkout/step1`} onClick={handleEnableStep1}>
-        checkout
-      </PaymentBtn>
+      
+      {orders.length > 0 ? (
+        <PaymentBtn>Pay</PaymentBtn>
+      ) : (
+        <PaymentBtn to={`/checkout/step1`} onClick={handleEnableStep1}>
+          checkout
+        </PaymentBtn>
+      )}
+
       <DeliverBox>
         <DeliverBoxItem>
           <ShippingFast />

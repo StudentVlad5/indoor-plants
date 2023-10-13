@@ -5,6 +5,56 @@ import { ReactComponent as novaPoshta } from 'images/svg/Nova_Poshta.svg';
 import { ReactComponent as ukrposhta } from 'images/svg/ukrposhta-logo.svg';
 import { ReactComponent as liqpay } from 'images/svg/LIQPAY.svg';
 import { ReactComponent as wallet } from 'images/svg/wallet.svg';
+import { ReactComponent as checkMark } from 'images/svg/check-mark.svg';
+import { ProfileContainer } from 'components/UserComp/UserData/UserData.styled';
+import { IconBtn } from 'components/Catalog/Catalog.styled';
+
+export const DataContainer = styled(ProfileContainer)`
+  width: 590px;
+  background-color: ${theme.colors.green6};
+`;
+
+export const DataContainerText = styled.p`
+  color: ${theme.colors.brown1};
+  font-family: ${theme.fonts[1]};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  &:first-child {
+    color: ${theme.colors.green};
+  }
+`;
+
+export const DataContainerPensil = styled(IconBtn)`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+`;
+
+export const DataContainerCheckMark = styled(checkMark)`
+  padding: 0;
+  line-height: 0;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  & > svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:disabled {
+    cursor: default;
+
+    & > svg > path {
+      stroke: ${theme.colors.green};
+      fill: ${theme.colors.green};
+    }
+  }
+`;
 
 export const DeliverySection = styled(Section)`
   padding-top: 170px;
@@ -99,7 +149,7 @@ export const DeliveryBlockOptionsLableBox = styled.div`
 export const DeliveryBlockOptionsTitle = styled.span`
   color: ${theme.colors.brown1};
 
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
   font-family: ${theme.fonts[1]};
   font-size: 16px;
   font-style: normal;
@@ -202,7 +252,7 @@ export const DeliveryFormInput = styled.input`
 export const Btnwrapper = styled.div`
   display: flex;
   justify-content: space-between;
-
+  margin-top: 24px;
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 580px;
   }
@@ -317,7 +367,7 @@ export const PoshtaTitle = styled.p`
 
 export const PaymentOptionBox = styled.div`
   background-color: ${theme.colors.green6};
-  &:first-child {
+  &:not(:last-child) {
     margin-bottom: 10px;
   }
 `;

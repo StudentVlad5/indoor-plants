@@ -3,6 +3,8 @@ import { Section, Title } from 'components/baseStyles/CommonStyle.styled';
 import theme from 'components/baseStyles/Variables.styled';
 import { Button } from 'components/helpers/ButtonSplit/ButtonSplit.styled';
 import { Container } from 'components/baseStyles/CommonStyle.styled';
+import { DataContainerText } from 'components/CheckOut/Order/Order.styled';
+import { ProfileContainer } from 'components/UserComp/UserData/UserData.styled';
 
 export const BasketSection = styled(Section)`
   padding-top: 123px;
@@ -150,7 +152,58 @@ export const BasketCompList = styled.ul`
 `;
 
 export const AuthCheckOutBox = styled.div`
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const OrderBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 68px;
+  gap: 30px 20px;
+  width: 600px;
+`;
+
+export const OrderBoxContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  width: 285px;
+  height: 300px;
+
+  background-color: ${theme.colors.green6};
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    gap: 10px;
+  }
+`;
+
+export const OrderBoxTitle = styled.p`
+  color: ${theme.colors.brown1};
+  font-family: ${theme.fonts[1]};
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+  position: relative;
+  padding-bottom: 12px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+
+    height: 1px;
+    width: 100%;
+    background: ${theme.colors.brown1};
+  }
+`;
+
+export const DataContainerTextGreen = styled(DataContainerText)`
+  color: ${theme.colors.green};
 `;

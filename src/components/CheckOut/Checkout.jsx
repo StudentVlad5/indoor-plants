@@ -11,7 +11,6 @@ import {
   Liner,
   LinkFolderTitle,
 } from './Checkout.styled';
-import { Order } from './Order/Order';
 
 // import { useTranslation } from 'react-i18next';
 
@@ -26,14 +25,14 @@ export const CheckOut = () => {
         </CheckOutTitle>
         <CheckOutDataWrapper>
           <FolderWrapper>
-            <LinkFolder className="linkFolder" to={`/checkout/step1`}>
+            <LinkFolder className="linkFolder step1Btn" to={`/checkout/step1`}>
               <span>1</span>
               <LinkFolderTitle>Delivery</LinkFolderTitle>
             </LinkFolder>
             <Liner>
               <span></span>
             </Liner>
-            <LinkFolder className="linkFolder" to={`/checkout/step2`}>
+            <LinkFolder className="linkFolder step2Btn" to={`/checkout/step2`}>
               <span>2</span>
               <LinkFolderTitle>Address</LinkFolderTitle>
             </LinkFolder>
@@ -58,12 +57,12 @@ export const CheckOut = () => {
               <LinkFolderTitle>Total</LinkFolderTitle>
             </LinkFolder>
           </FolderWrapper>
+
           <CheckOutAboutWrapper>
             <Outlet />
           </CheckOutAboutWrapper>
         </CheckOutDataWrapper>
       </CheckOutContainer>
-      <Order />
     </FormSection>
   );
 };

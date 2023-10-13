@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { ADD_ORDER, addOrder } from './operations';
+import { ADD_ORDER, ADD_COMMENT_TO_ORDER } from './operations';
 
 const initialState = {
   orders: JSON.parse(localStorage.getItem('orders')) || [],
@@ -11,12 +10,10 @@ const initialState = {
 //   reducers: {},
 //   extraReducers: builder => {
 //     builder.addCase(addOrder, (state, action) => {
-//       // Змінюємо стан імутабельно за допомогою immer
 //       const newOrders = [...state.orders, action.payload];
 
 //       state.orders.push(newOrders);
 
-//       // Оновлюємо дані у localStorage
 //       localStorage.setItem('orders', JSON.stringify(state.orders));
 //     });
 //   },
@@ -30,6 +27,16 @@ export const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         orders: newOrders,
+      };
+    case ADD_COMMENT_TO_ORDER:
+      const { orderId, comment } = action.payload;
+      const updatedOrders = state.orders.map(order =>
+        order.id === orderId ? { ...order, comment } : order,
+      );
+      localStorage.setItem('orders', JSON.stringify(updatedOrders));
+      return {
+        ...state,
+        orders: updatedOrders,
       };
     default:
       return state;
