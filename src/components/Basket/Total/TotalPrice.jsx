@@ -82,9 +82,7 @@ export const TotalPrice = () => {
       {/* {orders.length > 0 ? (
         <PaymentBtn>Pay</PaymentBtn>
       ) : ( */}
-      <PaymentBtn to={`/checkout/step1`} onClick={handleEnableStep1}>
-        checkout
-      </PaymentBtn>
+      <PaymentBtn to={`/checkout/step1`}>checkout</PaymentBtn>
       {/* )} */}
       <DeliverBox>
         <DeliverBoxItem>
