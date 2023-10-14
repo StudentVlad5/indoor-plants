@@ -41,6 +41,7 @@ import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
 import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
 import { getUser } from 'redux/auth/selectors';
 import { useAuth } from 'hooks/useAuth';
+import { getFromStorage, saveToStorage } from 'services/localStorService';
 
 const Step1 = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -76,7 +77,7 @@ const Step1 = () => {
     }
 
     setSelectedOption(index);
-    
+
     setFormData({
       ...formData,
       selectedDeliveryOption: selectedDeliveryOption,
@@ -96,9 +97,9 @@ const Step1 = () => {
   ];
 
   const restoreFormDataFromLocalStorage = () => {
-    const savedFormData = localStorage.getItem('formData');
+    const savedFormData = getFromStorage('formData');
     if (savedFormData) {
-      setFormData(JSON.parse(savedFormData));
+      setFormData(savedFormData);
     }
   };
 
@@ -114,94 +115,97 @@ const Step1 = () => {
       [inputName]: inputValue,
     });
 
-    localStorage.setItem('formData', JSON.stringify(formData));
+    saveToStorage('formData', formData);
+  };
+
+  const nextStep = () => {
+    saveToStorage('selectedCity', selectedCity);
+    saveToStorage('selectedDepartment', selectedDepartment);
+    saveToStorage('selectedDeliveryOption', selectedDeliveryOption);
+    saveToStorage('step', '2');
   };
 
   return (
-    <DeliveryInfoBox>
-      <DeliveryBlock>
-        <DeliveryBlockOptions>
-          <DeliveryBlockOptionsBoxLable>
-            <DeliveryBlockOptionsLable
-              onClick={() => handleOptionClick(0)}
-              onChange={handleInputChange}
-            >
-              <DeliveryBlockOptionsInput type="radio" name="delivery" />
-              <NovaPoshtaIcon />
+    <DeliveryBlockOptions>
+      <DeliveryBlockOptionsBoxLable>
+        <DeliveryBlockOptionsLable
+          onClick={() => handleOptionClick(0)}
+          onChange={handleInputChange}
+        >
+          <DeliveryBlockOptionsInput type="radio" name="delivery" />
+          <NovaPoshtaIcon />
 
-              <DeliveryBlockOptionsLableBox>
-                <DeliveryBlockOptionsTitle>
-                  NovaPoshta
-                </DeliveryBlockOptionsTitle>
-                <DeliveryBlockOptionsTitleDiscr>
-                  Cash upon delivery, card payment Visa, Master Card
-                </DeliveryBlockOptionsTitleDiscr>
-              </DeliveryBlockOptionsLableBox>
-            </DeliveryBlockOptionsLable>
+          <DeliveryBlockOptionsLableBox>
+            <DeliveryBlockOptionsTitle>NovaPoshta</DeliveryBlockOptionsTitle>
+            <DeliveryBlockOptionsTitleDiscr>
+              Cash upon delivery, card payment Visa, Master Card
+            </DeliveryBlockOptionsTitleDiscr>
+          </DeliveryBlockOptionsLableBox>
+        </DeliveryBlockOptionsLable>
 
-            {selectedOption === 0 && (
-              <BoxPost>
-                <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
+        {selectedOption === 0 && (
+          <BoxPost>
+            <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
 
-                <PoshtaBox>
-                  <NovaPoshta
-                    setSelectedCity={setSelectedCity}
-                    setSelectedDepartment={setSelectedDepartment}
-                  />
-                </PoshtaBox>
-              </BoxPost>
-            )}
-          </DeliveryBlockOptionsBoxLable>
+            <PoshtaBox>
+              <NovaPoshta
+                setSelectedCity={setSelectedCity}
+                setSelectedDepartment={setSelectedDepartment}
+              />
+            </PoshtaBox>
+          </BoxPost>
+        )}
+      </DeliveryBlockOptionsBoxLable>
 
-          <DeliveryBlockOptionsBoxLable>
-            <DeliveryBlockOptionsLable
-              onClick={() => handleOptionClick(1)}
-              onChange={handleInputChange}
-            >
-              <DeliveryBlockOptionsInput type="radio" name="delivery" />
-              <UkrPoshtaIcon />
+      <DeliveryBlockOptionsBoxLable>
+        <DeliveryBlockOptionsLable
+          onClick={() => handleOptionClick(1)}
+          onChange={handleInputChange}
+        >
+          <DeliveryBlockOptionsInput type="radio" name="delivery" />
+          <UkrPoshtaIcon />
 
-              <DeliveryBlockOptionsLableBox>
-                <DeliveryBlockOptionsTitle>UkrPoshta</DeliveryBlockOptionsTitle>
-                <DeliveryBlockOptionsTitleDiscr>
-                  Cash upon delivery, card payment Visa, Master Card
-                </DeliveryBlockOptionsTitleDiscr>
-              </DeliveryBlockOptionsLableBox>
-            </DeliveryBlockOptionsLable>
+          <DeliveryBlockOptionsLableBox>
+            <DeliveryBlockOptionsTitle>UkrPoshta</DeliveryBlockOptionsTitle>
+            <DeliveryBlockOptionsTitleDiscr>
+              Cash upon delivery, card payment Visa, Master Card
+            </DeliveryBlockOptionsTitleDiscr>
+          </DeliveryBlockOptionsLableBox>
+        </DeliveryBlockOptionsLable>
 
-            {selectedOption === 1 && (
-              <BoxPost>
-                <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
+        {selectedOption === 1 && (
+          <BoxPost>
+            <PoshtaBoxTitle>Select point office </PoshtaBoxTitle>
 
-                <PoshtaBox>
-                  <UkrPoshta
-                    setSelectedCity={setSelectedCity}
-                    setSelectedDepartment={setSelectedDepartment}
-                  />
-                </PoshtaBox>
-              </BoxPost>
-            )}
-          </DeliveryBlockOptionsBoxLable>
+            <PoshtaBox>
+              <UkrPoshta
+                setSelectedCity={setSelectedCity}
+                setSelectedDepartment={setSelectedDepartment}
+              />
+            </PoshtaBox>
+          </BoxPost>
+        )}
+      </DeliveryBlockOptionsBoxLable>
 
-          <DeliveryBlockOptionsBoxLable>
-            <DeliveryBlockOptionsLable
-              onClick={() => handleOptionClick(2)}
-              onChange={handleInputChange}
-            >
-              <DeliveryBlockOptionsInput type="radio" name="delivery" />
-              {/* <ShippingFast style={{ width: 55 }} /> */}
-              <DeliveryBlockOptionsLableBox>
-                <DeliveryBlockOptionsTitle>
-                  Courier delivery
-                </DeliveryBlockOptionsTitle>
-                <DeliveryBlockOptionsTitleDiscr>
-                  Cash upon delivery, card payment Visa, Master Card
-                </DeliveryBlockOptionsTitleDiscr>
-              </DeliveryBlockOptionsLableBox>
-            </DeliveryBlockOptionsLable>
-          </DeliveryBlockOptionsBoxLable>
+      <DeliveryBlockOptionsBoxLable>
+        <DeliveryBlockOptionsLable
+          onClick={() => handleOptionClick(2)}
+          onChange={handleInputChange}
+        >
+          <DeliveryBlockOptionsInput type="radio" name="delivery" />
+          {/* <ShippingFast style={{ width: 55 }} /> */}
+          <DeliveryBlockOptionsLableBox>
+            <DeliveryBlockOptionsTitle>
+              Courier delivery
+            </DeliveryBlockOptionsTitle>
+            <DeliveryBlockOptionsTitleDiscr>
+              Cash upon delivery, card payment Visa, Master Card
+            </DeliveryBlockOptionsTitleDiscr>
+          </DeliveryBlockOptionsLableBox>
+        </DeliveryBlockOptionsLable>
+      </DeliveryBlockOptionsBoxLable>
 
-          <Link to={`/checkout/step2`} style={{ textDecoration: 'none' }}>
+      {/* <Link to={`/checkout/step2`} style={{ textDecoration: 'none' }}>
             <CheckoutBtn
               onClick={() => {
                 if (!isDisabled) {
@@ -225,10 +229,29 @@ const Step1 = () => {
             >
               Next
             </CheckoutBtn>
-          </Link>
-        </DeliveryBlockOptions>
-      </DeliveryBlock>
-    </DeliveryInfoBox>
+          </Link> */}
+      <Link
+        to={`/checkout/step2`}
+        style={{ textDecoration: 'none', width: '100%' }}
+      >
+        <CheckoutBtn
+          // disabled={isDisabled}
+          type="button"
+          onClick={nextStep}
+        >
+          Next
+        </CheckoutBtn>
+      </Link>
+    </DeliveryBlockOptions>
+
+    // {/* <Link to={`/checkout/step2`}>
+    //   <DeliveryBlockOptionsBtn
+    //     type="button"
+    //     // onClick={showDeliveryInfoBlock}
+    //   >
+    //     Next
+    //   </DeliveryBlockOptionsBtn>
+    // </Link> */}
   );
 };
 

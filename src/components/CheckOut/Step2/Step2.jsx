@@ -40,6 +40,7 @@ import {
 } from '../Order/Order.styled';
 import { useAuth } from 'hooks/useAuth';
 import { getUser } from 'redux/auth/selectors';
+import { getFromStorage, saveToStorage } from 'services/localStorService';
 
 const Step2 = () => {
   const [showAddAddress, setShowAddAddress] = useState(false);
@@ -78,9 +79,9 @@ const Step2 = () => {
   }, [formData]);
 
   const restoreFormDataFromLocalStorage = () => {
-    const savedFormData = localStorage.getItem('formData');
+    const savedFormData = getFromStorage('formData');
     if (savedFormData) {
-      setFormData(JSON.parse(savedFormData));
+      setFormData(savedFormData);
     }
   };
 
@@ -96,11 +97,11 @@ const Step2 = () => {
       [inputName]: inputValue,
     });
 
-    localStorage.setItem('formData', JSON.stringify(formData));
+    saveToStorage('formData', formData);
   };
 
   const nextStep = () => {
-    document.querySelector('.step3Btn').classList.remove('isDisabled');
+    saveToStorage('step', '3');
   };
 
   return (
@@ -138,7 +139,7 @@ const Step2 = () => {
                   name="name"
                   value={formData.name}
                   required
-                  placeholder="George"
+                  // placeholder="George"
                 />
               </DeliveryFormLable>
 
@@ -151,7 +152,7 @@ const Step2 = () => {
                   name="surname"
                   value={formData.surname}
                   required
-                  placeholder="Washington"
+                  // placeholder="Washington"
                 />
               </DeliveryFormLable>
 
@@ -234,7 +235,7 @@ const Step2 = () => {
                   name="phone"
                   value={formData.phone}
                   required
-                  placeholder="Phone"
+                  // placeholder="+123456789"
                 />
               </DeliveryFormLable>
 
@@ -247,7 +248,7 @@ const Step2 = () => {
                   name="email"
                   value={formData.email}
                   required
-                  placeholder="george.washington@gmail.com"
+                  // placeholder="george.washington@gmail.com"
                 />
               </DeliveryFormLable>
             </DeliveryForm>
@@ -264,7 +265,7 @@ const Step2 = () => {
               name="name"
               value={formData.name}
               required
-              placeholder="George"
+              // placeholder="George"
             />
           </DeliveryFormLable>
 
@@ -277,7 +278,7 @@ const Step2 = () => {
               name="surname"
               value={formData.surname}
               required
-              placeholder="Washington"
+              // placeholder="Washington"
             />
           </DeliveryFormLable>
 
@@ -360,7 +361,7 @@ const Step2 = () => {
               name="phone"
               value={formData.phone}
               required
-              placeholder="Phone"
+              // placeholder="+123456789"
             />
           </DeliveryFormLable>
 
@@ -373,7 +374,7 @@ const Step2 = () => {
               name="email"
               value={formData.email}
               required
-              placeholder="george.washington@gmail.com"
+              // placeholder="george.washington@gmail.com"
             />
           </DeliveryFormLable>
         </DeliveryForm>

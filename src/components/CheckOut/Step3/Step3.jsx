@@ -58,7 +58,7 @@ const Step3 = () => {
   };
 
   const paymentOptions = [
-    { value: 'Card or e-wallet', label: 'Card or e-wallet' },
+    { value: 'Terms of payment', label: 'Terms of payment' },
     { value: 'Cash on delivery', label: 'Cash on delivery' },
     { value: ' Payment on account', label: ' Payment on account' },
   ];
@@ -153,7 +153,7 @@ const Step3 = () => {
 
           <DeliveryBlockOptionsLableBox>
             <DeliveryBlockOptionsTitle>
-              Card or e-wallet
+              Terms of payment
             </DeliveryBlockOptionsTitle>
           </DeliveryBlockOptionsLableBox>
         </PaymentBlockOptionsLable>

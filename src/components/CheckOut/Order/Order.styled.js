@@ -85,26 +85,33 @@ export const DeliveryBlockOptions = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
+  width: 100%;
 `;
 
 export const DeliveryBlockOptionsBoxLable = styled.div`
   background-color: ${theme.colors.green6};
-  padding: 10px;
-  width: 1200px;
-  &:not(:last-child) {
-    margin-bottom: 10px;
+  width: 100%;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 1200px;
   }
 `;
 
 export const DeliveryBlockOptionsLable = styled.label`
   display: flex;
   align-items: center;
+  gap: 20px;
+  padding: 20px;
   cursor: pointer;
 
   & input[type='radio']::before {
     content: '';
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     border: 2px solid #6f8d4c;
     display: inline-block;
@@ -113,7 +120,6 @@ export const DeliveryBlockOptionsLable = styled.label`
 
 export const DeliveryBlockOptionsInput = styled.input`
   appearance: none;
-  margin-right: 20px;
 
   &:checked::before {
     content: '';
@@ -130,10 +136,9 @@ export const UkrPoshtaIcon = styled(ukrposhta)``;
 export const DeliveryBlockOptionsLableBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 35px;
   /* position: relative; */
   /* width: 100%; */
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 
   /* &::before {
     content: '';
@@ -151,41 +156,67 @@ export const DeliveryBlockOptionsTitle = styled.span`
 
   /* margin-bottom: 14px; */
   font-family: ${theme.fonts[1]};
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 `;
 
 export const DeliveryBlockOptionsTitleDiscr = styled.span`
   color: ${theme.colors.brown1};
 
   font-family: ${theme.fonts[0]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.28px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export const DeliveryInfoBlock = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
+  width: 100%;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  }
 `;
 
 export const DeliveryForm = styled.form`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
+  width: 100%;
   margin-top: 20px;
 `;
 
 export const DeliveryFormLable = styled.label`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: ${theme.breakpoints.desktop_max}) {
+    width: 100%;
+  }
 `;
 
 export const DeliveryFormLableText = styled.span`
@@ -230,6 +261,13 @@ export const DeliveryFormInput = styled.input`
     font-size: 16px;
   }
 
+  &:hover,
+  &:focus,
+  &:visited,
+  &:focus-visible {
+    border: 1px solid ${theme.colors.green};
+  }
+
   &::placeholder {
     color: ${theme.colors.green};
     font-family: ${theme.fonts[1]};
@@ -252,7 +290,9 @@ export const DeliveryFormInput = styled.input`
 export const Btnwrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
   margin-top: 24px;
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 580px;
   }
@@ -340,50 +380,83 @@ export const DeliveryFormBtnFinish = styled(DeliveryFormBtn)`
 
 export const BoxPost = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
 
   &::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -10px;
+    left: 0px;
     height: 0.5px;
-    width: 1200px;
+    width: 100%;
     background: ${theme.colors.brown1};
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      width: 1200px;
+    }
   }
 `;
 
 export const PoshtaBox = styled.div`
   display: flex;
+  flex-direction: row;
+  gap: 22px;
 `;
 
 export const PoshtaBoxTitle = styled.p`
-  padding-top: 20px;
-  margin-bottom: 18px;
+  display: inline-block;
+
   color: ${theme.colors.brown1};
   font-family: ${theme.fonts[1]};
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 `;
 
 export const PoshtaTitle = styled.p`
+  display: inline-block;
+  margin-bottom: 8px;
+
   color: ${theme.colors.darkGreen};
   font-family: ${theme.fonts[0]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.28px;
-  margin-bottom: 8px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
+`;
+
+export const Payment = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
 `;
 
 export const PaymentOptionBox = styled.div`
+  padding: 20px;
   background-color: ${theme.colors.green6};
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
 `;
 
 export const LIQPAY = styled(liqpay)``;
@@ -391,21 +464,24 @@ export const Wallet = styled(wallet)``;
 
 export const PaymentFormBtnBox = styled.div`
   display: flex;
-  justify-content: center;
-  margin-top: 40px;
+  justify-content: space-between;
+  margin-top: 20px;
 `;
 
 export const PaymentFormBtn = styled(DeliveryFormBtn)`
-  width: 285px;
-  height: 45px;
+  padding: 10px 12px;
   margin-top: 0;
-  margin-right: 131px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 285px;
+    height: 45px;
+  }
 `;
 
-export const PaymentFormBtnFinish = styled.button`
-  width: 285px;
-  height: 45px;
-  border-radius: 10px;
+export const PaymentFormBtnFinish = styled(PaymentFormBtn)`
   border-color: transparent;
   background: ${theme.colors.green4};
 
@@ -439,12 +515,15 @@ export const DeliveryBlockOptionsBtn = styled(PaymentFormBtn)`
 export const PaymentBlockOptionsLable = styled.label`
   display: flex;
   align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: ${theme.colors.green6};
   cursor: pointer;
 
   & input[type='radio']::before {
     content: '';
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     border: 2px solid #6f8d4c;
     display: inline-block;
@@ -453,7 +532,6 @@ export const PaymentBlockOptionsLable = styled.label`
 
 export const PaymentBlockOptionsInput = styled.input`
   appearance: none;
-  margin-right: 20px;
 
   &:checked::before {
     content: '';

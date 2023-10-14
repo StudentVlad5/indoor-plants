@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import schemas from 'utils/schemas';
-import { Div, SelectInput } from '../Delivery.styled';
+import { Box, Div, SelectInput } from '../Delivery.styled';
 import { getListOfCitiesUP, getListOfDepartmentsUP } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { PoshtaTitle } from 'components/CheckOut/Order/Order.styled';
@@ -140,7 +140,7 @@ export const UkrPoshta = ({
 
   return (
     <>
-      <div>
+      <Box>
         <PoshtaTitle>City</PoshtaTitle>
         <SelectInput
           name="cityNameUP"
@@ -161,9 +161,9 @@ export const UkrPoshta = ({
           options={optionsUP(cityNameUP)}
           placeholder="Select city please..."
         />
-      </div>
+      </Box>
 
-      <div>
+      <Box>
         <PoshtaTitle>Point office</PoshtaTitle>
         <SelectInput
           name="departmentNameUP"
@@ -188,7 +188,7 @@ export const UkrPoshta = ({
             }
           }}
         />
-      </div>
+      </Box>
       {isLoading ? onLoading() : onLoaded()}
     </>
   );
