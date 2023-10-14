@@ -4,32 +4,42 @@ import { Box, Div, SelectInput } from '../Delivery.styled';
 import { getListOfCitiesUP, getListOfDepartmentsUP } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { PoshtaTitle } from 'components/CheckOut/Order/Order.styled';
+import { getFromStorage } from 'services/localStorService';
 
 export const UkrPoshta = ({
-  selectedCity,
+  setSelectedCity_UP_NAME,
   setSelectedCity,
   setSelectedDepartment,
+  selectedCity_UP_NAME,
 }) => {
+  const [ukrPoshta, setUkrPoshta] = useState(
+    getFromStorage('selectedDeliveryOption') === 'UkrPoshta' ? true : false,
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [listOfCities, setListOfSities] = useState([]);
 
   const [cityRef, setCityRef] = useState('');
 
-  const [cityNameUP, setCityNameUP] = useState('');
-  const [checkCityNameUP, setCheckCityNameUP] = useState('');
+  const [cityNameUP, setCityNameUP] = useState(
+    getFromStorage('selectedCity_UP') && ukrPoshta
+      ? getFromStorage('selectedCity_UP')
+      : '',
+  );
+  const [checkCityNameUP, setCheckCityNameUP] = useState(
+    getFromStorage('selectedCity_UP_NAME') && ukrPoshta
+      ? getFromStorage('selectedCity_UP_NAME')
+      : '',
+  );
   const [listOfCitiesUP, setListOfSitiesUP] = useState([]);
 
-  const [departmentNameUP, setDepartmentNameUP] = useState('');
+  const [departmentNameUP, setDepartmentNameUP] = useState(
+    getFromStorage('selectedDepartment_UP') && ukrPoshta
+      ? getFromStorage('selectedDepartment_UP')
+      : '',
+  );
   const [cityIDUP, setCityIDUP] = useState('');
   const [listOfDepartmentUP, setListOfDepartmentUP] = useState([]);
 
-  const handleDepartmentChange = selectedOption => {
-    setSelectedDepartment(selectedOption);
-  };
-
-  const handleCityChange = selectedOption => {
-    setSelectedCity(selectedOption);
-  };
   //  get cities for Ukr Poshta
   useEffect(() => {
     async function getData(cityNameUP) {
@@ -152,6 +162,7 @@ export const UkrPoshta = ({
             if (e?.value) {
               setCityNameUP(e.value);
               setSelectedCity(e.value);
+              setSelectedCity_UP_NAME(e.label);
             }
           }}
           defaultValue={cityNameUP}
@@ -159,7 +170,11 @@ export const UkrPoshta = ({
           isClearable={true}
           isSearchable={true}
           options={optionsUP(cityNameUP)}
-          placeholder="Select city please..."
+          placeholder={
+            selectedCity_UP_NAME === ''
+              ? 'Select city please...'
+              : selectedCity_UP_NAME
+          }
         />
       </Box>
 

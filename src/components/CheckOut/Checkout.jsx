@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   FormSection,
@@ -11,6 +11,7 @@ import {
   Liner,
   LinkFolderTitle,
 } from './Checkout.styled';
+import { StatusContext } from 'components/ContextStatus/ContextStatus';
 import { getFromStorage } from 'services/localStorService';
 
 // import { useTranslation } from 'react-i18next';
@@ -20,6 +21,7 @@ export const CheckOut = () => {
     getFromStorage('step') ? getFromStorage('step') : 1,
   );
   // const { t } = useTranslation();
+  const { statusDisableStep2 } = useContext(StatusContext);
 
   useEffect(() => {
     const links = document.querySelectorAll('.linkFolder');
@@ -45,7 +47,15 @@ export const CheckOut = () => {
             <Liner>
               <span></span>
             </Liner>
-            <LinkFolder className="linkFolder step2Btn" to={`/checkout/step2`}>
+            <LinkFolder
+              className={
+                // statusDisableStep2
+                //   ? 'linkFolder isDisabled step2Btn'
+                //   : 'linkFolder step2Btn'
+                'linkFolder step2Btn'
+              }
+              to={`/checkout/step2`}
+            >
               <span>2</span>
               <LinkFolderTitle>Address</LinkFolderTitle>
             </LinkFolder>

@@ -4,14 +4,26 @@ import { Box, Div, SelectInput } from '../Delivery.styled';
 import { getListOfCities, getListOfDepartments } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { PoshtaTitle } from 'components/CheckOut/Order/Order.styled';
+import { getFromStorage } from 'services/localStorService';
 
 export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
+  const [novaPoshta, setNovaPoshta] = useState(
+    getFromStorage('selectedDeliveryOption') === 'NovaPoshta' ? true : false,
+  );
   const [isLoading, setIsLoading] = useState(false);
-  const [cityName, setCityName] = useState('');
+  const [cityName, setCityName] = useState(
+    getFromStorage('selectedCity') && novaPoshta
+      ? getFromStorage('selectedCity')
+      : '',
+  );
   const [checkCityName, setCheckCityName] = useState('');
   const [listOfCities, setListOfSities] = useState([]);
 
-  const [departmentName, setDepartmentName] = useState('');
+  const [departmentName, setDepartmentName] = useState(
+    getFromStorage('selectedDepartment') && novaPoshta
+      ? getFromStorage('selectedDepartment')
+      : '',
+  );
   const [cityRef, setCityRef] = useState('');
   const [checkCityRef, setCheckCityRef] = useState('');
   const [listOfDepartment, setListOfDepartment] = useState([]);
@@ -138,7 +150,7 @@ export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
           isSearchable={true}
           validate={schemas.checkDepartmentNP.city}
           options={optionsNP(cityName)}
-          placeholder="Select city please..."
+          placeholder={cityName === '' ? 'Select city please...' : cityName}
         />
       </Box>
       <Box>

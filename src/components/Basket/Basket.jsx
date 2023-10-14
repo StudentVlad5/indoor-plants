@@ -86,12 +86,8 @@ export const Basket = () => {
               <DataContainerText>
                 {order.selectedDeliveryOption}
               </DataContainerText>
-              <DataContainerText>
-                {order.cityDelivery}
-              </DataContainerText>
-              <DataContainerText>
-                {order.department}
-              </DataContainerText>
+              <DataContainerText>{order.cityDelivery}</DataContainerText>
+              <DataContainerText>{order.department}</DataContainerText>
             </OrderBoxContainer>
 
             <OrderBoxContainer>
@@ -157,7 +153,9 @@ export const Basket = () => {
 
         {basket.length === 0 && !auth._id ? (
           <AuthCheckOutBox>
-            <TitleCheckOut>Do not see selected products?</TitleCheckOut>
+            <TitleCheckOut>
+              For quick ordering and saving order history
+            </TitleCheckOut>
             <TextCheckOut>
               Make sure you’re signed into your account
             </TextCheckOut>
