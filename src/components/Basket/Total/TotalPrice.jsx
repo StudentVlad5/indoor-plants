@@ -31,10 +31,6 @@ export const TotalPrice = () => {
   const currency = useSelector(selectCurrency);
   const orders = useSelector(selectOrders);
 
-  const handleEnableStep1 = () => {
-    document.querySelector('.step1Btn').classList.remove('isDisabled');
-  };
-
   return (
     <PaymentBox>
       <PaymentTotal>
@@ -83,13 +79,11 @@ export const TotalPrice = () => {
           </PaymentTotalList>
         </table>
       </PaymentTotal>
-      
+
       {orders.length > 0 ? (
         <PaymentBtn>Pay</PaymentBtn>
       ) : (
-        <PaymentBtn to={`/checkout/step1`} onClick={handleEnableStep1}>
-          checkout
-        </PaymentBtn>
+        <PaymentBtn to={`/checkout/step1`}>checkout</PaymentBtn>
       )}
 
       <DeliverBox>

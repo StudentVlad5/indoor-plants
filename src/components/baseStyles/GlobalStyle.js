@@ -305,9 +305,6 @@ input::-webkit-calendar-picker-indicator:hover {
 .isDisabled {
   cursor: not-allowed;
   opacity: 0.5;
-}
-.isDisabled > a {
-  color: currentColor;
   pointer-events: none;
   text-decoration: none;
 }
@@ -327,4 +324,8 @@ input::-webkit-calendar-picker-indicator:hover {
   border-width: 0.5px !important;;
 }
 
+.linkFolder.active{
+  background-color: ${theme.colors.darkGreen};
+  color: ${theme.colors.white}
+}
 `;

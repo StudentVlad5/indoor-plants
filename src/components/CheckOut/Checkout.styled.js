@@ -180,4 +180,9 @@ export const CheckoutBtn = styled.button`
     background: ${theme.colors.green};
     border: 1px solid ${theme.colors.green};
   }
+  &:disabled {
+    cursor: none;
+    pointer-events: none;
+    opacity: 0.5;
+  }
 `;

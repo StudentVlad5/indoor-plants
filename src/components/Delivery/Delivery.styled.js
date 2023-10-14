@@ -24,8 +24,6 @@ export const TitleDelivery = styled(Title)`
   }
 `;
 
-export const Div = styled.div``;
-
 export const SelectInput = styled(Select)`
   background-color: transparent;
   border-radius: 10px;
@@ -34,6 +32,6 @@ export const SelectInput = styled(Select)`
 
   &:nth-child(2) {
     margin-right: 22px;
-    /* width: 893px; */
+    width: 100%;
   }
 `;
