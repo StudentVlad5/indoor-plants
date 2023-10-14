@@ -21,11 +21,11 @@ import {
   OrderBoxContainer,
 } from './Basket.styled';
 import { selectComment, selectOrders } from 'redux/order/selectors';
-import {
-  DataContainerCheckMark,
-  DataContainerPensil,
-  DataContainerText,
-} from 'components/CheckOut/Order/Order.styled';
+// import {
+//   DataContainerCheckMark,
+//   DataContainerPensil,
+//   DataContainerText,
+// } from 'components/CheckOut/Order/Order.styled';
 import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
 import { useState } from 'react';
 import { addCommentToOrder } from 'redux/order/operations';
@@ -79,7 +79,7 @@ export const Basket = () => {
           </AuthCheckOutBox>
         )}
 
-        {orders.map(order => (
+        {/* {orders.map(order => (
           <OrderBox key={order.id}>
             <OrderBoxContainer>
               <OrderBoxTitle>Selected delivery</OrderBoxTitle>
@@ -153,9 +153,9 @@ export const Basket = () => {
               )}
             </OrderBoxContainer>
           </OrderBox>
-        ))}
+        ))} */}
 
-        {!auth._id ? (
+        {basket.length === 0 && !auth._id ? (
           <AuthCheckOutBox>
             <TitleCheckOut>Do not see selected products?</TitleCheckOut>
             <TextCheckOut>
