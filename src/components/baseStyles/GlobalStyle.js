@@ -324,7 +324,6 @@ input::-webkit-calendar-picker-indicator:hover {
   pointer-events: none;
   text-decoration: none;
 }
-
 .iNcVkr {
   gap:4px;
 }
@@ -361,5 +360,9 @@ input::-webkit-calendar-picker-indicator:hover {
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: ${theme.fontSizes.small} !important;
   }
+}
+.linkFolder.active{
+  background-color: ${theme.colors.darkGreen};
+  color: ${theme.colors.white}
 }
 `;
