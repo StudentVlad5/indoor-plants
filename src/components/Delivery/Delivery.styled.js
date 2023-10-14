@@ -23,15 +23,29 @@ export const TitleDelivery = styled(Title)`
     color: ${theme.colors.brown1};
   }
 `;
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+
+  &:nth-child(2) {
+    width: 50%;
+  }
+`;
 
 export const SelectInput = styled(Select)`
   background-color: transparent;
   border-radius: 10px;
-  width: 285px;
-  border: 0.5px solid var(--store-brown-2, #8c8276);
+  border: 0.5px solid ${theme.colors.brown2};
 
   &:nth-child(2) {
     margin-right: 22px;
     width: 100%;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  }
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 285px;
   }
 `;

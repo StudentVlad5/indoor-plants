@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import schemas from 'utils/schemas';
-import { SelectInput } from '../Delivery.styled';
+import { Box, Div, SelectInput } from '../Delivery.styled';
 import { getListOfCities, getListOfDepartments } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { PoshtaTitle } from 'components/CheckOut/Order/Order.styled';
@@ -129,7 +129,7 @@ export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
 
   return (
     <>
-      <div>
+      <Box>
         <PoshtaTitle>City</PoshtaTitle>
 
         <SelectInput
@@ -152,8 +152,8 @@ export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
           options={optionsNP(cityName)}
           placeholder={cityName === '' ? 'Select city please...' : cityName}
         />
-      </div>
-      <div style={{ width: '100%' }}>
+      </Box>
+      <Box>
         <PoshtaTitle>Point office</PoshtaTitle>
 
         <SelectInput
@@ -179,7 +179,7 @@ export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
             }
           }}
         />
-      </div>
+      </Box>
 
       {isLoading ? onLoading() : onLoaded()}
     </>

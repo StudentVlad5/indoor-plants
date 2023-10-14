@@ -28,10 +28,11 @@ export const FolderWrapper = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   width: 90%;
-  gap: 20px;
+  gap: 10px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 50%;
+    gap: 20px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -60,13 +61,13 @@ export const CheckOutAboutWrapper = styled.div`
   align-items: center;
   width: 100%;
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  /* @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: row;
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row;
-  }
+  } */
 `;
 
 export const CheckOutTitle = styled(Title)`
@@ -94,11 +95,11 @@ export const LinkFolder = styled(NavLink)`
   justify-content: center;
   align-items: center;
 
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.fontSizes.small};
+  font-size: ${theme.fontSizes.extrasmall};
   font-style: normal;
   font-weight: 400;
   text-align: center;
@@ -114,8 +115,19 @@ export const LinkFolder = styled(NavLink)`
   cursor: pointer;
   transition: ${theme.transition};
 
+  @media (min-width: ${theme.breakpoints.tablet}) {
+    width: 40px;
+    height: 40px;
+    font-size: ${theme.fontSizes.small};
+  }
+
   &:hover,
   &:focus {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.green};
+  }
+
+  &.active {
     color: ${theme.colors.white};
     background-color: ${theme.colors.green};
   }
@@ -123,9 +135,10 @@ export const LinkFolder = styled(NavLink)`
 
 export const LinkFolderTitle = styled.span`
   position: absolute;
-  top: 45px;
+  top: 25px;
+
   font-family: ${theme.fonts[0]};
-  font-size: ${theme.fontSizes.small};
+  font-size: ${theme.fontSizes.extrasmall};
   font-style: normal;
   font-weight: 400;
   text-align: center;
@@ -133,6 +146,11 @@ export const LinkFolderTitle = styled.span`
   line-height: normal;
   text-decoration: none;
   color: ${theme.colors.brown};
+
+  @media (min-width: ${theme.breakpoints.tablet}) {
+    top: 45px;
+    font-size: ${theme.fontSizes.small};
+  }
 `;
 
 export const Liner = styled.div`
@@ -150,13 +168,13 @@ export const CheckoutBtn = styled.button`
   align-items: center;
 
   width: 100%;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-top: 22px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 16px;
 
   color: ${theme.colors.brown2};
   font-family: ${theme.fonts[0]};
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -169,6 +187,10 @@ export const CheckoutBtn = styled.button`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 500px;
+    margin: 22px auto 0 auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 14px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 800px;
