@@ -5,7 +5,6 @@ import { getListOfCities, getListOfDepartments } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { PoshtaTitle } from 'components/CheckOut/Order/Order.styled';
 import { getFromStorage } from 'services/localStorService';
-import getStoredState from 'redux-persist/es/getStoredState';
 
 export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
   const [novaPoshta, setNovaPoshta] = useState(

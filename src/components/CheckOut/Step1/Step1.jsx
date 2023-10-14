@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CheckoutBtn } from '../Checkout.styled';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
 import {
@@ -21,14 +21,29 @@ import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
 import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
 import { useNavigate } from 'react-router-dom';
 import curier from '../../../images/delivery/pngegg.png';
+import { StatusContext } from 'components/ContextStatus/ContextStatus';
 
 const Step1 = () => {
+  const { setStatusDisableStep2 } = useContext(StatusContext);
   const [selectedCity, setSelectedCity] = useState(
     getFromStorage('selectedCity') ? getFromStorage('selectedCity') : '',
   );
   const [selectedDepartment, setSelectedDepartment] = useState(
     getFromStorage('selectedDepartment')
       ? getFromStorage('selectedDepartment')
+      : '',
+  );
+  const [selectedCity_UP, setSelectedCity_UP] = useState(
+    getFromStorage('selectedCity_UP') ? getFromStorage('selectedCity_UP') : '',
+  );
+  const [selectedCity_UP_NAME, setSelectedCity_UP_NAME] = useState(
+    getFromStorage('selectedCity_UP_NAME')
+      ? getFromStorage('selectedCity_UP_NAME')
+      : '',
+  );
+  const [selectedDepartment_UP, setSelectedDepartment_UP] = useState(
+    getFromStorage('selectedDepartment_UP')
+      ? getFromStorage('selectedDepartment_UP')
       : '',
   );
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState(
@@ -53,20 +68,36 @@ const Step1 = () => {
   useEffect(() => {
     if (
       selectedDeliveryOption === 'Courier delivery' ||
-      (selectedDeliveryOption && selectedCity && selectedDepartment)
+      (selectedDeliveryOption === 'NovaPoshta' &&
+        selectedCity !== '' &&
+        selectedDepartment !== '' &&
+        selectedCity &&
+        selectedDepartment) ||
+      (selectedDeliveryOption === 'UkrPoshta' &&
+        selectedCity_UP &&
+        selectedDepartment_UP &&
+        selectedCity_UP !== '' &&
+        selectedDepartment_UP !== '')
     ) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [selectedDeliveryOption, selectedCity, selectedDepartment]);
+  }, [
+    selectedDeliveryOption,
+    selectedCity,
+    selectedDepartment,
+    selectedCity_UP,
+    selectedDepartment_UP,
+  ]);
 
   const nextStep = () => {
-    const perem = document?.querySelector('.step2Btn');
-    perem && perem.classList.remove('isDisabled');
-    console.log(perem);
+    setStatusDisableStep2(false);
     saveToStorage('selectedCity', selectedCity);
+    saveToStorage('selectedCity_UP', selectedCity_UP);
+    saveToStorage('selectedCity_UP_NAME', selectedCity_UP_NAME);
     saveToStorage('selectedDepartment', selectedDepartment);
+    saveToStorage('selectedDepartment_UP', selectedDepartment_UP);
     saveToStorage('selectedDeliveryOption', selectedDeliveryOption);
     navigate('/checkout/step2', { replace: true });
   };
@@ -133,8 +164,10 @@ const Step1 = () => {
 
                 <PoshtaBox>
                   <UkrPoshta
-                    setSelectedCity={setSelectedCity}
-                    setSelectedDepartment={setSelectedDepartment}
+                    setSelectedCity={setSelectedCity_UP}
+                    setSelectedDepartment={setSelectedDepartment_UP}
+                    setSelectedCity_UP_NAME={setSelectedCity_UP_NAME}
+                    selectedCity_UP_NAME={selectedCity_UP_NAME}
                   />
                 </PoshtaBox>
               </BoxPost>

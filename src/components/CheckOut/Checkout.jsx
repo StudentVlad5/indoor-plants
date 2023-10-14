@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   FormSection,
@@ -11,11 +11,13 @@ import {
   Liner,
   LinkFolderTitle,
 } from './Checkout.styled';
+import { StatusContext } from 'components/ContextStatus/ContextStatus';
 
 // import { useTranslation } from 'react-i18next';
 
 export const CheckOut = () => {
   // const { t } = useTranslation();
+  const { statusDisableStep2 } = useContext(StatusContext);
 
   return (
     <FormSection>
@@ -33,7 +35,11 @@ export const CheckOut = () => {
               <span></span>
             </Liner>
             <LinkFolder
-              className="linkFolder isDisabled step2Btn"
+              className={
+                statusDisableStep2
+                  ? 'linkFolder isDisabled step2Btn'
+                  : 'linkFolder step2Btn'
+              }
               to={`/checkout/step2`}
             >
               <span>2</span>

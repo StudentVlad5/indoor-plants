@@ -7,6 +7,7 @@ import { persistor, store } from 'redux/store';
 import { App } from 'components/App/App';
 import { GlobalStyle } from 'components/baseStyles/GlobalStyle';
 import { I18nextProvider } from 'react-i18next';
+import { StatusProvider } from 'components/ContextStatus/ContextStatus';
 import i18n from './utils/i18n';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -14,10 +15,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={'Loading'} persistor={persistor}>
         <BrowserRouter basename="indoor-plants">
-          <I18nextProvider i18n={i18n}>
-            <GlobalStyle />
-            <App />
-          </I18nextProvider>
+          <StatusProvider>
+            <I18nextProvider i18n={i18n}>
+              <GlobalStyle />
+              <App />
+            </I18nextProvider>
+          </StatusProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>
