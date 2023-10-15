@@ -17,7 +17,6 @@ import {
   BasketWrapper,
 } from './Basket.styled';
 import Step4 from 'components/CheckOut/Step4/Step4';
-
 // import { useTranslation } from 'react-i18next';
 
 export const Basket = () => {
@@ -58,7 +57,9 @@ export const Basket = () => {
 
         {basket.length === 0 && !auth._id ? (
           <AuthCheckOutBox>
-            <TitleCheckOut>Do not see selected products?</TitleCheckOut>
+            <TitleCheckOut>
+              For quick ordering and saving order history
+            </TitleCheckOut>
             <TextCheckOut>
               Make sure you’re signed into your account
             </TextCheckOut>

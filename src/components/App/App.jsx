@@ -46,7 +46,10 @@ const BasketPage = lazy(() => import('pages/Basket'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const basket = useSelector(selectBasket);
+  let basket = [];
+  useSelector(selectBasket)
+    ? (basket = useSelector(selectBasket))
+    : (basket = []);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -109,7 +112,15 @@ export const App = () => {
 
             <Route path="basket" element={<BasketPage />} />
 
-            <Route path="checkout" element={<CheckOutPage />}>
+            <Route
+              path="checkout"
+              element={
+                <BasketRoute
+                  redirectTo="/catalog"
+                  component={<CheckOutPage />}
+                />
+              }
+            >
               <Route path="step1" element={<Step1 />} />
               <Route path="step2" element={<Step2 />} />
               <Route path="step3" element={<Step3 />} />

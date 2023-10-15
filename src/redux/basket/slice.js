@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addToBasket, removeProduct } from './operations';
+import { addToBasket, removeProduct, clearBasket } from './operations';
 
 const saveBasket = () => {
   const savedData = localStorage.getItem('basketData');
@@ -69,6 +69,9 @@ export const basketSlice = createSlice({
         functionDiscountAmount(state);
         functionPaymentAmount(state);
         localStorage.setItem('basketData', JSON.stringify(state));
+      })
+      .addCase(clearBasket, () => {
+        return initialState;
       });
   },
 });

@@ -321,13 +321,9 @@ input::-webkit-calendar-picker-indicator:hover {
 .isDisabled {
   cursor: not-allowed;
   opacity: 0.5;
-}
-.isDisabled > a {
-  color: currentColor;
   pointer-events: none;
   text-decoration: none;
 }
-
 .iNcVkr {
   gap:4px;
 }
@@ -349,7 +345,6 @@ input::-webkit-calendar-picker-indicator:hover {
 .css-t3ipsp-control {
   min-height: auto !important;
   border-color: ${theme.colors.brown2} !important;
-
   &:hover, &:focus{
   border-color: ${theme.colors.green2} !important;
   }
@@ -365,5 +360,9 @@ input::-webkit-calendar-picker-indicator:hover {
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: ${theme.fontSizes.small} !important;
   }
+}
+.linkFolder.active{
+  background-color: ${theme.colors.darkGreen};
+  color: ${theme.colors.white}
 }
 `;

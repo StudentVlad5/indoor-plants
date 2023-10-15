@@ -33,12 +33,15 @@ export const Box = styled.div`
   }
 `;
 
-export const Div = styled.div``;
-
 export const SelectInput = styled(Select)`
   background-color: transparent;
   border-radius: 10px;
   border: 0.5px solid ${theme.colors.brown2};
+
+  &:nth-child(2) {
+    margin-right: 22px;
+    width: 100%;
+  }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
   }

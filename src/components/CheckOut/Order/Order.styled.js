@@ -22,7 +22,7 @@ export const DataContainerText = styled.p`
   font-weight: 400;
   line-height: normal;
   width: 245px;
-  
+
   &:first-child {
     color: ${theme.colors.green};
   }
@@ -345,40 +345,18 @@ export const DeliveryFormBtnFinish = styled(DeliveryFormBtn)`
   background: ${theme.colors.green4};
   border: 1px solid ${theme.colors.green4};
 
-  &:disabled:hover,
+  /* &:disabled:hover,
   &:disabled:focus {
     cursor: not-allowed;
     background-color: rgb(151 163 137);
-    color: ${theme.colors.white};
+    color: ${theme.colors.white}; */
+
+  &:disabled {
+    cursor: none;
+    pointer-events: none;
+    opacity: 0.5;
   }
 `;
-
-// export const PaymentBlockOptionsLable = styled.label`
-//   display: flex;
-//   align-items: center;
-//   cursor: pointer;
-//   padding: 10px;
-
-//   border: 1px solid #000;
-//   border-radius: 4px;
-//   transition: background-color 0.3s;
-
-//   &:not(:last-child) {
-//     margin-bottom: 10px;
-//   }
-
-//   &:hover {
-//     background-color: rgba(0, 0, 0, 0.1);
-//   }
-
-//   & input[type='radio'] {
-//     display: none;
-//   }
-
-//   background-color: ${props =>
-//     props.isSelected ? 'rgba(0, 0, 0, 0.1)' : 'transparent'};
-// `;
-
 export const BoxPost = styled.div`
   position: relative;
   display: flex;
@@ -542,20 +520,3 @@ export const PaymentBlockOptionsInput = styled.input`
     display: inline-block;
   }
 `;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;

@@ -37,6 +37,8 @@ import { addOrder } from 'redux/order/operations';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { selectOrders } from 'redux/order/selectors';
 import { useEffect } from 'react';
+// import { selectOrders } from 'redux/order/selectors';
+
 
 export const TotalPrice = () => {
   const totalAmount = useSelector(selectTotalAmount).toFixed(2);
@@ -133,6 +135,7 @@ export const TotalPrice = () => {
   const handleEnableStep1 = () => {
     document.querySelector('.step1Btn').classList.remove('isDisabled');
   };
+
 
   useEffect(() => {
     if (orders.length > 0) {

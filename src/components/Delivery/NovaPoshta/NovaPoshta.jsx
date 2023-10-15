@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import schemas from 'utils/schemas';
-import { Box, Div, SelectInput } from '../Delivery.styled';
+import { Box, SelectInput } from '../Delivery.styled';
 import { getListOfCities, getListOfDepartments } from 'services/APIservice';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { PoshtaTitle } from 'components/CheckOut/Order/Order.styled';
+import { getFromStorage } from 'services/localStorService';
 
 export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [cityName, setCityName] = useState('');
+  const [cityName, setCityName] = useState(
+    getFromStorage('selectedCity') ? getFromStorage('selectedCity') : '',
+  );
   const [checkCityName, setCheckCityName] = useState('');
   const [listOfCities, setListOfSities] = useState([]);
 
-  const [departmentName, setDepartmentName] = useState('');
+  const [departmentName, setDepartmentName] = useState(
+    getFromStorage('selectedDepartment')
+      ? getFromStorage('selectedDepartment')
+      : '',
+  );
   const [cityRef, setCityRef] = useState('');
   const [checkCityRef, setCheckCityRef] = useState('');
   const [listOfDepartment, setListOfDepartment] = useState([]);
@@ -138,7 +145,7 @@ export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
           isSearchable={true}
           validate={schemas.checkDepartmentNP.city}
           options={optionsNP(cityName)}
-          placeholder="Select city please..."
+          placeholder={cityName === '' ? 'Select city please...' : cityName}
         />
       </Box>
       <Box>
