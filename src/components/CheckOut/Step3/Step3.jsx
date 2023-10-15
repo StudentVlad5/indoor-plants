@@ -136,7 +136,7 @@ const Step3 = () => {
     // const inputName = e.target.name;
     // const inputValue = e.target.value;
     setSelectedPaymentOption(e.target.value);
-    saveToStorage('selectedPaymentOption', selectedPaymentOption);
+    saveToStorage('selectedPaymentOption', e.target.value);
   };
 
   return (

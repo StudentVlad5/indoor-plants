@@ -62,6 +62,15 @@ const Step2 = () => {
   // }, []);
 
   useEffect(() => {
+    console.log(
+      delivery === 'Courier delivery' &&
+        formData.name !== '' &&
+        formData.surname !== '' &&
+        formData.email !== '' &&
+        formData.phone !== '' &&
+        formData.city !== '' &&
+        formData.address !== '',
+    );
     delivery === 'Courier delivery' &&
     formData.name !== '' &&
     formData.surname !== '' &&
@@ -71,13 +80,15 @@ const Step2 = () => {
     formData.address !== ''
       ? setDisabled(false)
       : setDisabled(true);
-    delivery !== 'Courier delivery' &&
-    formData.name !== '' &&
-    formData.surname !== '' &&
-    formData.email !== '' &&
-    formData.phone !== ''
-      ? setDisabled(false)
-      : setDisabled(true);
+    if (
+      delivery !== 'Courier delivery' &&
+      formData.name !== '' &&
+      formData.surname !== '' &&
+      formData.email !== '' &&
+      formData.phone !== ''
+    ) {
+      setDisabled(false);
+    }
   }, [formData, delivery]);
 
   const handleInputChange = e => {

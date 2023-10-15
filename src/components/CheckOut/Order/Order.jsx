@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBasket } from 'redux/basket/selectors';
-import { addOrder } from 'redux/order/operations';
 import { getUser } from 'redux/auth/selectors';
 import { useAuth } from 'hooks/useAuth';
 import { Container } from 'components/baseStyles/CommonStyle.styled';
-import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
-import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
+
 import {
   Delivery,
   DeliveryInfoBox,
@@ -50,11 +48,9 @@ import {
 } from './Order.styled';
 import { CheckOutTitle } from '../Checkout.styled';
 import { Link } from 'react-router-dom';
-import {
-  PensilStyle,
-} from 'components/UserComp/UserData/UserData.styled';
+import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
 
-export const Order = () => {
+const Order = () => {
   const basket = useSelector(selectBasket);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState('');
   const [selectedOption, setSelectedOption] = useState(null);
@@ -169,48 +165,47 @@ export const Order = () => {
   });
 
   const [formDataAuth, setFormDataAuth] = useState({});
-  const handleAddOrder = e => {
-    e.preventDefault();
-    // const selectedDeliveryOption = deliveryOptions[selectedOption].label;
-    // const selectedPaymentOptionData =
-    //   paymentOptions[selectedPaymentOption].label;
+  // const handleAddOrder = e => {
+  //   e.preventDefault();
+  //   // const selectedDeliveryOption = deliveryOptions[selectedOption].label;
+  //   // const selectedPaymentOptionData =
+  //   //   paymentOptions[selectedPaymentOption].label;
 
-    if (auth._id) {
-      const newOrderAuth = {
-        ...formDataAuth,
-        basket: basket,
-        cityDelivery: selectedCity,
-        department: selectedDepartment,
-        name: formData.name + ' ' + formData.surname,
-        company: formData.company,
-        city: formData.city,
-        state: formData.state,
-        phone: formData.phone,
-        email: formData.email,
-        address1: formData.address1,
-        address2: formData.address2,
-      };
+  //   if (auth._id) {
+  //     const newOrderAuth = {
+  //       ...formDataAuth,
+  //       basket: basket,
+  //       cityDelivery: selectedCity,
+  //       department: selectedDepartment,
+  //       name: formData.name + ' ' + formData.surname,
+  //       company: formData.company,
+  //       city: formData.city,
+  //       state: formData.state,
+  //       phone: formData.phone,
+  //       email: formData.email,
+  //       address1: formData.address1,
+  //       address2: formData.address2,
+  //     };
 
-      dispatch(addOrder(newOrderAuth));
-      setOrder([...order, newOrderAuth]);
-      localStorage.setItem('formData', JSON.stringify(newOrderAuth));
-      console.log(newOrderAuth);
-    } else {
-      const newOrder = {
-        ...formData,
-        basket: basket,
-        cityDelivery: selectedCity,
-        // deliveryMethod: selectedDeliveryOption,
-        department: selectedDepartment,
-        // paymentMethod: selectedPaymentOptionData,
-      };
+  //     dispatch(addOrder(newOrderAuth));
+  //     setOrder([...order, newOrderAuth]);
+  //     localStorage.setItem('formData', JSON.stringify(newOrderAuth));
+  //    } else {
+  //     const newOrder = {
+  //       ...formData,
+  //       basket: basket,
+  //       cityDelivery: selectedCity,
+  //       // deliveryMethod: selectedDeliveryOption,
+  //       department: selectedDepartment,
+  //       // paymentMethod: selectedPaymentOptionData,
+  //     };
 
-      dispatch(addOrder(newOrder));
-      setOrder([...order, newOrder]);
-      localStorage.setItem('formData', JSON.stringify(newOrder));
-      console.log(newOrder);
-    }
-  };
+  //     dispatch(addOrder(newOrder));
+  //     setOrder([...order, newOrder]);
+  //     localStorage.setItem('formData', JSON.stringify(newOrder));
+  //     console.log(newOrder);
+  //   }
+  // };
 
   const restoreFormDataFromLocalStorage = () => {
     const savedFormData = localStorage.getItem('formData');
@@ -223,16 +218,16 @@ export const Order = () => {
     restoreFormDataFromLocalStorage();
   }, []);
 
-  const handleInputChange = e => {
-    const inputName = e.target.name;
-    const inputValue = e.target.value;
-    setFormData({
-      ...formData,
-      [inputName]: inputValue,
-    });
+  // const handleInputChange = e => {
+  //   const inputName = e.target.name;
+  //   const inputValue = e.target.value;
+  //   setFormData({
+  //     ...formData,
+  //     [inputName]: inputValue,
+  //   });
 
-    localStorage.setItem('formData', JSON.stringify(formData));
-  };
+  //   localStorage.setItem('formData', JSON.stringify(formData));
+  // };
 
   return (
     // <DeliverySection>
@@ -248,11 +243,9 @@ export const Order = () => {
             </CheckOutTitle> */}
 
           {/* deliveryBlock */}
-
         </DeliveryInfoBox>
 
         {/* deliveryInfoBlock */}
-
 
         {/* Payment */}
         {/* <div id="paymentBlock" style={{ display: 'none' }}>
@@ -267,10 +260,10 @@ export const Order = () => {
                 <DeliveryBlockOptionsTitle>
                   Card or e-wallet
                 </DeliveryBlockOptionsTitle> */}
-                {/* <DeliveryBlockOptionsTitleDiscr>
+        {/* <DeliveryBlockOptionsTitleDiscr>
                   Visa, Master Card, Apple Pay, Google Pay
                 </DeliveryBlockOptionsTitleDiscr> */}
-              {/* </DeliveryBlockOptionsLableBox>
+        {/* </DeliveryBlockOptionsLableBox>
             </PaymentBlockOptionsLable>
           </PaymentOptionBox>
 
@@ -286,10 +279,10 @@ export const Order = () => {
                 <DeliveryBlockOptionsTitle>
                   Cash on delivery
                 </DeliveryBlockOptionsTitle> */}
-                {/* <DeliveryBlockOptionsTitleDiscr>
+        {/* <DeliveryBlockOptionsTitleDiscr>
                   Only on delivery by courier Meest
                 </DeliveryBlockOptionsTitleDiscr> */}
-              {/* </DeliveryBlockOptionsLableBox>
+        {/* </DeliveryBlockOptionsLableBox>
             </PaymentBlockOptionsLable>
           </PaymentOptionBox>
 
@@ -305,10 +298,10 @@ export const Order = () => {
                 <DeliveryBlockOptionsTitle>
                   Payment on account
                 </DeliveryBlockOptionsTitle> */}
-                {/* <DeliveryBlockOptionsTitleDiscr>
+        {/* <DeliveryBlockOptionsTitleDiscr>
                   Only on delivery by courier Meest
                 </DeliveryBlockOptionsTitleDiscr> */}
-              {/* </DeliveryBlockOptionsLableBox>
+        {/* </DeliveryBlockOptionsLableBox>
             </PaymentBlockOptionsLable>
           </PaymentOptionBox>
 
@@ -329,12 +322,6 @@ export const Order = () => {
     // </DeliverySection>
   );
 };
-
-
-
-
-
-
 
 // <DeliveryBlock id="deliveryBlock">
 // <DeliveryBlockOptions>
@@ -728,8 +715,4 @@ required
 // </Btnwrapper>
 // </DeliveryInfoBlock> */}
 
-
-
 // ///////////////////////////////TOTAL
-
-

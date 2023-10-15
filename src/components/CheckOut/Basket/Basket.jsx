@@ -20,13 +20,13 @@ import {
   DataContainerTextGreen,
   OrderBoxContainer,
 } from './Basket.styled';
-// import { selectComment, selectOrders } from 'redux/order/selectors';
+
 // import {
 //   DataContainerCheckMark,
 //   DataContainerPensil,
 //   DataContainerText,
 // } from 'components/CheckOut/Order/Order.styled';
-// import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
+
 // import { useState } from 'react';
 // import { addCommentToOrder } from 'redux/order/operations';
 
@@ -34,13 +34,11 @@ import {
 
 export const Basket = () => {
   // const { t } = useTranslation();
-  // const userComment = useSelector(selectComment);
+
   const auth = useSelector(getUser);
   const basket = useSelector(selectBasket);
-  // const orders = useSelector(selectOrders);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const [showAddAddress, setShowAddAddress] = useState(false);
-  // const [comment, setComment] = useState(userComment || '');
 
   // const handleCommentChange = e => {
   //   setComment(e.target.value);

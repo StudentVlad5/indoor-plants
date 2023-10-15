@@ -22,14 +22,13 @@ import {
   PaymentTotalTitlePriceDiscr,
   ShippingFast,
 } from './TotalPrice.styled';
-// import { selectOrders } from 'redux/order/selectors';
+import { handleAddOrder } from 'hooks/handleAddOrder';
 
 export const TotalPrice = () => {
   const totalAmount = useSelector(selectTotalAmount).toFixed(2);
   const totalDiscount = useSelector(selectTotalDiscount).toFixed(2);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
   const currency = useSelector(selectCurrency);
-  // const orders = useSelector(selectOrders);
 
   return (
     <PaymentBox>
@@ -83,7 +82,7 @@ export const TotalPrice = () => {
         <PaymentBtn>Pay</PaymentBtn>
       ) : ( */}
       <div id="paymentBtn">
-        <PaymentBtn to={`/checkout/step1`}>checkout</PaymentBtn>
+        <PaymentBtn onClick={handleAddOrder}>confirm</PaymentBtn>
       </div>
       {/* )} */}
       <DeliverBox>
