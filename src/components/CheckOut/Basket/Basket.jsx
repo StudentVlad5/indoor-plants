@@ -32,7 +32,7 @@ import {
 
 // import { useTranslation } from 'react-i18next';
 
-export const Basket = () => {
+export const Basket = ({ handleAddOrder }) => {
   // const { t } = useTranslation();
 
   const auth = useSelector(getUser);
@@ -65,7 +65,7 @@ export const Basket = () => {
               ))}
             </BasketCompList>
 
-            <TotalPrice />
+            <TotalPrice handleAddOrder={handleAddOrder} />
           </BasketWrapper>
         ) : (
           <AuthCheckOutBox>

@@ -13,10 +13,23 @@ import {
   InputComments,
 } from './Step4.styled';
 import { useNavigate } from 'react-router-dom';
-import { getFromStorage, saveToStorage } from 'services/localStorService';
+import {
+  getFromStorage,
+  removeItem,
+  saveToStorage,
+} from 'services/localStorService';
+import { makeOrder } from '../../../services/APIservice';
+import { getUser } from 'redux/auth/selectors';
+import { onFetchError, onSuccess } from '../../helpers/Messages/NotifyMessages';
+import { useSelector } from 'react-redux';
+import { selectBasket } from 'redux/basket/selectors';
+import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 
 const Step4 = () => {
-  const [formData, setFormData] = useState(
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const auth = useSelector(getUser);
+  const [formData] = useState(
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
@@ -63,55 +76,70 @@ const Step4 = () => {
   );
   const [showComments, setShowComments] = useState(false);
 
+  const basket = useSelector(selectBasket);
+
+  let cityDelivery = '';
+  let departmentDelivery = '';
+  if (delivery === 'NovaPoshta') {
+    cityDelivery = selectedCity;
+    departmentDelivery = selectedDepartment;
+  } else if (delivery === 'NovaPoshta') {
+    cityDelivery = selectedCity_UP_NAME;
+    departmentDelivery = selectedDepartment_UP;
+  } else {
+    cityDelivery = formData.city;
+    departmentDelivery = formData.address;
+  }
+
+  const newOrder = {
+    basket,
+    deliveryOrder: { delivery, cityDelivery, departmentDelivery },
+    name: formData.name + ' ' + formData.surname,
+    phone: formData.phone,
+    email: formData.email,
+    selectedPaymentOption,
+    comments,
+    user_id: auth._id,
+  };
+
   const navigate = useNavigate();
+
+  async function createOrder() {
+    setIsLoading(true);
+    try {
+      const { data } = await makeOrder(`/order/`, newOrder);
+      if (!data) {
+        return onFetchError(t('Whoops, something went wrong'));
+      }
+      onSuccess('Thank you for order');
+      removeItem('step');
+      removeItem('selectedCity');
+      removeItem('selectedCity_UP_NAME');
+      removeItem('comments');
+      removeItem('selectedCity_UP');
+      removeItem('selectedDepartment_UP');
+      removeItem('basketData');
+      removeItem('selectedDeliveryOption');
+      removeItem('selectedDepartment');
+      removeItem('formData');
+      removeItem('selectedPaymentOption');
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const handleAddOrder = e => {
     e.preventDefault();
-
-    // if (auth._id) {
-    //   const newOrderAuth = {
-    //     ...formDataAuth,
-    //     basket: basket,
-    //     cityDelivery: selectedCity,
-    //     department: selectedDepartment,
-    //     selectedDeliveryOption: selectedDeliveryOption,
-    //     name: formData.name + ' ' + formData.surname,
-    //     company: formData.company,
-    //     city: formData.city,
-    //     state: formData.state,
-    //     phone: formData.phone,
-    //     email: formData.email,
-    //     address1: formData.address1,
-    //     address2: formData.address2,
-    //     zipCode: formData.zipCode,
-    //   };
-
-    //   dispatch(addOrder(newOrderAuth));
-    //   setOrder([...order, newOrderAuth]);
-    //   saveToStorage('formData', newOrderAuth);
-    //   console.log(newOrderAuth);
-    // } else {
-    //   const newOrder = {
-    //     ...formData,
-    //     basket: basket,
-    //     cityDelivery: selectedCity,
-    //     selectedDeliveryOption: selectedDeliveryOption,
-    // deliveryMethod: selectedDeliveryOption,
-    // department: selectedDepartment,
-    // paymentMethod: selectedPaymentOptionData,
-    // };
-
-    //   dispatch(addOrder(newOrder));
-    //   setOrder([...order, newOrder]);
-    //   saveToStorage('formData', newOrder);
-    //   console.log(newOrder);
-    //   removeItem('step');
-    // }
+    createOrder();
   };
 
   return (
     <>
-      <Basket></Basket>
+      <Basket handleAddOrder={handleAddOrder}></Basket>
+      {isLoading ? onLoading() : onLoaded()}
+      {error && onFetchError('Whoops, something went wrong')}
       <DataContainerItem>
         {/* Delivery */}
         <DataContainerItems>

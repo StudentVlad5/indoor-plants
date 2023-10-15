@@ -342,33 +342,6 @@ export const DeliveryFormBtnFinish = styled(DeliveryFormBtn)`
     opacity: 0.5;
   }
 `;
-
-// export const PaymentBlockOptionsLable = styled.label`
-//   display: flex;
-//   align-items: center;
-//   cursor: pointer;
-//   padding: 10px;
-
-//   border: 1px solid #000;
-//   border-radius: 4px;
-//   transition: background-color 0.3s;
-
-//   &:not(:last-child) {
-//     margin-bottom: 10px;
-//   }
-
-//   &:hover {
-//     background-color: rgba(0, 0, 0, 0.1);
-//   }
-
-//   & input[type='radio'] {
-//     display: none;
-//   }
-
-//   background-color: ${props =>
-//     props.isSelected ? 'rgba(0, 0, 0, 0.1)' : 'transparent'};
-// `;
-
 export const BoxPost = styled.div`
   position: relative;
   display: flex;
@@ -513,20 +486,3 @@ export const PaymentBlockOptionsInput = styled.input`
     display: inline-block;
   }
 `;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;
-// export const Delivery = styled.div``;

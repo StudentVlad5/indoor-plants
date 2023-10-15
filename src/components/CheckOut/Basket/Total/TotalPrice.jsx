@@ -22,9 +22,8 @@ import {
   PaymentTotalTitlePriceDiscr,
   ShippingFast,
 } from './TotalPrice.styled';
-import { handleAddOrder } from 'hooks/handleAddOrder';
 
-export const TotalPrice = () => {
+export const TotalPrice = ({ handleAddOrder }) => {
   const totalAmount = useSelector(selectTotalAmount).toFixed(2);
   const totalDiscount = useSelector(selectTotalDiscount).toFixed(2);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
