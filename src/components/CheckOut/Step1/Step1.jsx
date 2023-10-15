@@ -77,7 +77,6 @@ const Step1 = () => {
     }
 
     setSelectedOption(index);
-
     setFormData({
       ...formData,
       selectedDeliveryOption: selectedDeliveryOption,
@@ -87,7 +86,6 @@ const Step1 = () => {
       ...formDataAuth,
       selectedDeliveryOption: selectedDeliveryOption,
     });
-    // setDelivery(selectedDeliveryOption);
   };
 
   const deliveryOptions = [
@@ -114,7 +112,6 @@ const Step1 = () => {
       ...formData,
       [inputName]: inputValue,
     });
-
     saveToStorage('formData', formData);
   };
 
@@ -234,11 +231,7 @@ const Step1 = () => {
         to={`/checkout/step2`}
         style={{ textDecoration: 'none', width: '100%' }}
       >
-        <CheckoutBtn
-          // disabled={isDisabled}
-          type="button"
-          onClick={nextStep}
-        >
+        <CheckoutBtn disabled={isDisabled} type="button" onClick={nextStep}>
           Next
         </CheckoutBtn>
       </Link>

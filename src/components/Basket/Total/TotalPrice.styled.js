@@ -95,7 +95,45 @@ export const PaymentTotalTitlePriceDiscr = styled(PaymentTotalListItemDiscr)`
   letter-spacing: 0.32px;
 `;
 
-export const PaymentBtn = styled(Link)`
+export const PaymentBtn = styled.button`
+  width: 100%;
+  padding: 15px;
+
+  color: ${theme.colors.brown2};
+  font-family: ${theme.fonts[0]};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+
+  border-radius: 10px;
+  border: 1px solid ${theme.colors.brown2};
+  background-color: transparent;
+  cursor: pointer;
+
+  &:disabled:hover,
+  &:disabled:focus {
+    cursor: not-allowed;
+    background-color: rgb(151 163 137);
+    color: ${theme.colors.white};
+  }
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.white};
+    background: ${theme.colors.green};
+    border: 1px solid ${theme.colors.green};
+
+    /* border-radius: 10px;
+    border: 1px solid ${theme.colors.green2};
+    background: ${theme.colors.green5}; */
+  }
+`;
+
+export const PaymentBtnCheckout = styled(Link)`
   width: 100%;
   padding: 15px;
 

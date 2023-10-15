@@ -17,11 +17,6 @@ import {
   BasketWrapper,
 } from './Basket.styled';
 import Step4 from 'components/CheckOut/Step4/Step4';
-// import {
-//   DataContainerCheckMark,
-//   DataContainerPensil,
-//   DataContainerText,
-// } from 'components/CheckOut/Order/Order.styled';
 
 // import { useTranslation } from 'react-i18next';
 
@@ -60,82 +55,6 @@ export const Basket = () => {
         )}
 
         <Step4 />
-
-        {/* {orders.map(order => (
-          <OrderBox key={order.id}>
-            <OrderBoxContainer>
-              <OrderBoxTitle>Selected delivery</OrderBoxTitle>
-              <DataContainerText>
-                {order.selectedDeliveryOption}
-              </DataContainerText>
-              <DataContainerText>
-                {order.cityDelivery}
-              </DataContainerText>
-              <DataContainerText>
-                {order.department}
-              </DataContainerText>
-            </OrderBoxContainer>
-
-            <OrderBoxContainer>
-              <OrderBoxTitle>Selected address</OrderBoxTitle>
-
-              <DataContainerTextGreen>
-                {order.name} {order.surname}
-              </DataContainerTextGreen>
-              <DataContainerText>{order.company}</DataContainerText>
-              <DataContainerText>{order.city}</DataContainerText>
-              <DataContainerText>{order.state}</DataContainerText>
-              <DataContainerText>{order.zipCode}</DataContainerText>
-              <DataContainerText>{order.address1}</DataContainerText>
-              <DataContainerText>{order.address2}</DataContainerText>
-              <DataContainerText>{order.email}</DataContainerText>
-              <DataContainerText>{order.phone}</DataContainerText>
-            </OrderBoxContainer>
-
-            <OrderBoxContainer>
-              <OrderBoxTitle>Selected payment</OrderBoxTitle>
-              <DataContainerText>
-                {order.selectedPaymentOption}
-              </DataContainerText>
-            </OrderBoxContainer>
-
-            <OrderBoxContainer>
-              <OrderBoxTitle> Comments to order</OrderBoxTitle>
-              <DataContainerPensil
-                onClick={() => setShowAddAddress(!showAddAddress)}
-              >
-                {showAddAddress ? (
-                  <DataContainerCheckMark
-                    onClick={() => {
-                      const orderId = order.id;
-                      const commentUser = comment;
-                      handleAddComment(orderId, commentUser);
-                    }}
-                  />
-                ) : (
-                  <PensilStyle />
-                )}
-              </DataContainerPensil>
-
-              <DataContainerText>{order.comment}</DataContainerText>
-
-              {showAddAddress && (
-                <form>
-                  <label>
-                    <textarea
-                      name="comment"
-                      value={comment}
-                      onChange={handleCommentChange}
-                      id="comment"
-                      cols="30"
-                      rows="10"
-                    ></textarea>
-                  </label>
-                </form>
-              )}
-            </OrderBoxContainer>
-          </OrderBox>
-        ))} */}
 
         {basket.length === 0 && !auth._id ? (
           <AuthCheckOutBox>

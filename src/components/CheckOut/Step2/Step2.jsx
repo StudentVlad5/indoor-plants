@@ -41,10 +41,13 @@ import {
 import { useAuth } from 'hooks/useAuth';
 import { getUser } from 'redux/auth/selectors';
 import { getFromStorage, saveToStorage } from 'services/localStorService';
+import { selectOrders } from 'redux/order/selectors';
 
 const Step2 = () => {
   const [showAddAddress, setShowAddAddress] = useState(false);
   const [isDisabled, setDisabled] = useState(true);
+  const [formDataArray, setFormDataArray] = useState([]);
+  const orders = useSelector(selectOrders);
 
   const auth = useSelector(getUser);
   let { userIn } = useAuth();
@@ -92,11 +95,11 @@ const Step2 = () => {
   const handleInputChange = e => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
+
     setFormData({
       ...formData,
       [inputName]: inputValue,
     });
-
     saveToStorage('formData', formData);
   };
 

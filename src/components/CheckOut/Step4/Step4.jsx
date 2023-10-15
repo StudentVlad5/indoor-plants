@@ -18,112 +18,254 @@ import {
 import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
 import { addCommentToOrder } from 'redux/order/operations';
 import { Link } from 'react-router-dom';
+import { getFromStorage } from 'services/localStorService';
 
 const Step4 = () => {
-  const orders = useSelector(selectOrders);
-  const userComment = useSelector(selectComment);
-  const dispatch = useDispatch();
+  const storedData = getFromStorage('formData');
+  const ordersData = getFromStorage('orders');
+
   const [showAddAddress, setShowAddAddress] = useState(false);
-  const [comment, setComment] = useState(userComment || '');
+  const [comment, setComment] = useState(
+    storedData ? storedData.comment || '' : '',
+  );
+  const orders = useSelector(selectOrders);
+  const selectedCity = getFromStorage('selectedCity');
+  const selectedDepartment = getFromStorage('selectedDepartment');
+  const selectedDeliveryOption = getFromStorage('selectedDeliveryOption');
+  const dataToSave = [storedData];
+  const ordersDataToSave = [ordersData];
+
 
   const handleCommentChange = e => {
     setComment(e.target.value);
   };
 
-  const handleAddComment = (orderId, comment) => {
-    dispatch(addCommentToOrder(orderId, comment));
+  const handleAddCommentToStorage = () => {
+    storedData.comment = comment;
+    localStorage.setItem('formData', JSON.stringify(storedData));
   };
+
   return (
     <>
-      {orders.map(order => (
-        <OrderBox key={order.id}>
-          <OrderBoxContainer>
-            <OrderBoxTitle>Selected delivery</OrderBoxTitle>
+      {/* {storedData.length > 0 ? ( */}
+      {orders.length > 0
+        ? ordersDataToSave.map(
+            order =>
+              ordersData &&
+              order.map(orderIt =>
+                orderIt.dataToSave.map(item => (
+                  <OrderBox key={item.id}>
+                    <OrderBoxContainer>
+                      <OrderBoxTitle>Selected delivery</OrderBoxTitle>
+                      {orders.length > 0 ? (
+                        <></>
+                      ) : (
+                        <DataContainerPensil>
+                          <Link to={`/checkout/step1`}>
+                            <PensilStyle />
+                          </Link>
+                        </DataContainerPensil>
+                      )}
 
-            <DataContainerPensil>
-              <Link to={`/checkout/step1`}>
-                <PensilStyle />
-              </Link>
-            </DataContainerPensil>
+                      <DataContainerText>
+                        {selectedDeliveryOption}
+                      </DataContainerText>
+                      <DataContainerText>{selectedCity}</DataContainerText>
+                      <DataContainerText>
+                        {selectedDepartment}
+                      </DataContainerText>
+                    </OrderBoxContainer>
 
-            <DataContainerText>
-              {order.selectedDeliveryOption}
-            </DataContainerText>
-            <DataContainerText>{order.cityDelivery}</DataContainerText>
-            <DataContainerText>{order.department}</DataContainerText>
-          </OrderBoxContainer>
+                    <OrderBoxContainer>
+                      <OrderBoxTitle>Selected address</OrderBoxTitle>
+                      {orders.length > 0 ? (
+                        <></>
+                      ) : (
+                        <DataContainerPensil>
+                          <Link to={`/checkout/step2`}>
+                            <PensilStyle />
+                          </Link>
+                        </DataContainerPensil>
+                      )}
 
-          <OrderBoxContainer>
-            <OrderBoxTitle>Selected address</OrderBoxTitle>
+                      <DataContainerTextGreen>
+                        {item.name} {item.surname}
+                      </DataContainerTextGreen>
+                      <DataContainerText>{item.company}</DataContainerText>
+                      <DataContainerText>{item.city}</DataContainerText>
+                      <DataContainerText>{item.state}</DataContainerText>
+                      <DataContainerText>{item.zipCode}</DataContainerText>
+                      <DataContainerText>{item.address1}</DataContainerText>
+                      <DataContainerText>{item.address2}</DataContainerText>
+                      <DataContainerText>{item.phone}</DataContainerText>
+                      <DataContainerText>{item.email}</DataContainerText>
+                    </OrderBoxContainer>
 
-            <DataContainerPensil>
-              <Link to={`/checkout/step2`}>
-                <PensilStyle />
-              </Link>
-            </DataContainerPensil>
+                    <OrderBoxContainer>
+                      <OrderBoxTitle>Selected payment</OrderBoxTitle>
 
-            <DataContainerTextGreen>
-              {order.name} {order.surname}
-            </DataContainerTextGreen>
-            <DataContainerText>{order.company}</DataContainerText>
-            <DataContainerText>{order.city}</DataContainerText>
-            <DataContainerText>{order.state}</DataContainerText>
-            <DataContainerText>{order.zipCode}</DataContainerText>
-            <DataContainerText>{order.address1}</DataContainerText>
-            <DataContainerText>{order.address2}</DataContainerText>
-            <DataContainerText>{order.email}</DataContainerText>
-            <DataContainerText>{order.phone}</DataContainerText>
-          </OrderBoxContainer>
+                      {orders.length > 0 ? (
+                        <></>
+                      ) : (
+                        <DataContainerPensil>
+                          <Link to={`/checkout/step3`}>
+                            <PensilStyle />
+                          </Link>
+                        </DataContainerPensil>
+                      )}
 
-          <OrderBoxContainer>
-            <OrderBoxTitle>Selected payment</OrderBoxTitle>
+                      <DataContainerText>
+                        {item.selectedPaymentOption}
+                      </DataContainerText>
+                    </OrderBoxContainer>
 
-            <DataContainerPensil>
-              <Link to={`/checkout/step3`}>
-                <PensilStyle />
-              </Link>
-            </DataContainerPensil>
+                    <OrderBoxContainer>
+                      <OrderBoxTitle> Comments to order</OrderBoxTitle>
+                      {orders.length > 0 ? (
+                        <></>
+                      ) : (
+                        <DataContainerPensil
+                          onClick={() => setShowAddAddress(!showAddAddress)}
+                        >
+                          {showAddAddress ? (
+                            <DataContainerCheckMark
+                              onClick={() => {
+                                handleAddCommentToStorage();
+                              }}
+                            />
+                          ) : (
+                            <PensilStyle />
+                          )}
+                        </DataContainerPensil>
+                      )}
+                      <DataContainerText>{item.comment}</DataContainerText>
 
-            <DataContainerText>{order.selectedPaymentOption}</DataContainerText>
-          </OrderBoxContainer>
+                      {showAddAddress && (
+                        <OrderForm>
+                          <label>
+                            <OrderFormTextarea
+                              name="comment"
+                              value={comment}
+                              onChange={handleCommentChange}
+                              id="comment"
+                              cols="30"
+                              rows="10"
+                            ></OrderFormTextarea>
+                          </label>
+                        </OrderForm>
+                      )}
+                    </OrderBoxContainer>
+                  </OrderBox>
+                )),
+              ),
+          )
+        : dataToSave.map(
+            order =>
+              storedData && (
+                <OrderBox key={order.id}>
+                  <OrderBoxContainer>
+                    <OrderBoxTitle>Selected delivery</OrderBoxTitle>
+                    {orders.length > 0 ? (
+                      <></>
+                    ) : (
+                      <DataContainerPensil>
+                        <Link to={`/checkout/step1`}>
+                          <PensilStyle />
+                        </Link>
+                      </DataContainerPensil>
+                    )}
 
-          <OrderBoxContainer>
-            <OrderBoxTitle> Comments to order</OrderBoxTitle>
-            <DataContainerPensil
-              onClick={() => setShowAddAddress(!showAddAddress)}
-            >
-              {showAddAddress ? (
-                <DataContainerCheckMark
-                  onClick={() => {
-                    const orderId = order.id;
-                    const commentUser = comment;
-                    handleAddComment(orderId, commentUser);
-                  }}
-                />
-              ) : (
-                <PensilStyle />
-              )}
-            </DataContainerPensil>
+                    <DataContainerText>
+                      {selectedDeliveryOption}
+                    </DataContainerText>
+                    <DataContainerText>{selectedCity}</DataContainerText>
+                    <DataContainerText>{selectedDepartment}</DataContainerText>
+                  </OrderBoxContainer>
 
-            <DataContainerText>{order.comment}</DataContainerText>
+                  <OrderBoxContainer>
+                    <OrderBoxTitle>Selected address</OrderBoxTitle>
 
-            {showAddAddress && (
-              <OrderForm>
-                <label>
-                  <OrderFormTextarea
-                    name="comment"
-                    value={comment}
-                    onChange={handleCommentChange}
-                    id="comment"
-                    cols="30"
-                    rows="10"
-                  ></OrderFormTextarea>
-                </label>
-              </OrderForm>
-            )}
-          </OrderBoxContainer>
-        </OrderBox>
-      ))}
+                    {orders.length > 0 ? (
+                      <></>
+                    ) : (
+                      <DataContainerPensil>
+                        <Link to={`/checkout/step2`}>
+                          <PensilStyle />
+                        </Link>
+                      </DataContainerPensil>
+                    )}
+
+                    <DataContainerTextGreen>
+                      {order.name} {order.surname}
+                    </DataContainerTextGreen>
+                    <DataContainerText>{order.company}</DataContainerText>
+                    <DataContainerText>{order.city}</DataContainerText>
+                    <DataContainerText>{order.state}</DataContainerText>
+                    <DataContainerText>{order.zipCode}</DataContainerText>
+                    <DataContainerText>{order.address1}</DataContainerText>
+                    <DataContainerText>{order.address2}</DataContainerText>
+                    <DataContainerText>{order.phone}</DataContainerText>
+                    <DataContainerText>{order.email}</DataContainerText>
+                  </OrderBoxContainer>
+
+                  <OrderBoxContainer>
+                    <OrderBoxTitle>Selected payment</OrderBoxTitle>
+
+                    {orders.length > 0 ? (
+                      <></>
+                    ) : (
+                      <DataContainerPensil>
+                        <Link to={`/checkout/step3`}>
+                          <PensilStyle />
+                        </Link>
+                      </DataContainerPensil>
+                    )}
+
+                    <DataContainerText>
+                      {order.selectedPaymentOption}
+                    </DataContainerText>
+                  </OrderBoxContainer>
+
+                  <OrderBoxContainer>
+                    <OrderBoxTitle> Comments to order</OrderBoxTitle>
+                    {orders.length > 0 ? (
+                      <></>
+                    ) : (
+                      <DataContainerPensil
+                        onClick={() => setShowAddAddress(!showAddAddress)}
+                      >
+                        {showAddAddress ? (
+                          <DataContainerCheckMark
+                            onClick={() => {
+                              handleAddCommentToStorage();
+                            }}
+                          />
+                        ) : (
+                          <PensilStyle />
+                        )}
+                      </DataContainerPensil>
+                    )}
+
+                    <DataContainerText>{order.comment}</DataContainerText>
+
+                    {showAddAddress && (
+                      <OrderForm>
+                        <label>
+                          <OrderFormTextarea
+                            name="comment"
+                            value={comment}
+                            onChange={handleCommentChange}
+                            id="comment"
+                            cols="30"
+                            rows="10"
+                          ></OrderFormTextarea>
+                        </label>
+                      </OrderForm>
+                    )}
+                  </OrderBoxContainer>
+                </OrderBox>
+              ),
+          )}
     </>
   );
 };

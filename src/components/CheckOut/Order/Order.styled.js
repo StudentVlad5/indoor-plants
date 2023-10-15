@@ -21,7 +21,8 @@ export const DataContainerText = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
+  width: 245px;
+  
   &:first-child {
     color: ${theme.colors.green};
   }

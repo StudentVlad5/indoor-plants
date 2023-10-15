@@ -3,7 +3,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/selectors';
 import {
-  PaymentOptionBox,
   LIQPAY,
   Wallet,
   PaymentFormBtn,
@@ -13,40 +12,44 @@ import {
   PaymentBlockOptionsInput,
   DeliveryBlockOptionsTitle,
   DeliveryBlockOptionsLableBox,
+  Payment,
 } from '../Order/Order.styled';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { selectBasket } from 'redux/basket/selectors';
 import { useEffect } from 'react';
-import { addOrder } from 'redux/order/operations';
+import {
+  getFromStorage,
+  removeItem,
+  saveToStorage,
+} from 'services/localStorService';
 
 const Step3 = () => {
-  const basket = useSelector(selectBasket);
+  // const basket = useSelector(selectBasket);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState('');
-  const [order, setOrder] = useState([]);
+  // const [order, setOrder] = useState([]);
   const [formDataAuth, setFormDataAuth] = useState({});
   const [isDisabled, setDisabled] = useState(true);
 
   //   const [selectedCity, setSelectedCity] = useState('');
   //   const [selectedDepartment, setSelectedDepartment] = useState('');
-  const dispatch = useDispatch();
   const auth = useSelector(getUser);
   let { userIn } = useAuth();
 
-  const selectedCity = localStorage.getItem('selectedCity');
-  const selectedDepartment = localStorage.getItem('selectedDepartment');
-  const selectedDeliveryOption = localStorage.getItem('selectedDeliveryOption');
+  // const selectedCity = getFromStorage('selectedCity');
+  // const selectedDepartment = getFromStorage('selectedDepartment');
+  // const selectedDeliveryOption = getFromStorage('selectedDeliveryOption');
+  // const dispatch = useDispatch();
 
   const handlePaymentOptionClick = index => {
     const selectedPaymentOptionData = paymentOptions[index].label;
-    setSelectedPaymentOption(index);
-    
     if (selectedPaymentOption !== null) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
 
+    setSelectedPaymentOption(index);
     setFormData({
       ...formData,
       selectedPaymentOption: selectedPaymentOptionData,
@@ -76,56 +79,51 @@ const Step3 = () => {
     zipCode: auth._id ? userIn.address.zipCode : '',
   });
 
-  const handleAddOrder = e => {
-    e.preventDefault();
-    // const selectedDeliveryOption = deliveryOptions[selectedOption].label;
-    // const selectedPaymentOptionData =
-    //   paymentOptions[selectedPaymentOption].label;
+  // const handleAddOrder = e => {
+  //   e.preventDefault();
 
-    if (auth._id) {
-      const newOrderAuth = {
-        ...formDataAuth,
-        basket: basket,
-        cityDelivery: selectedCity,
-        department: selectedDepartment,
-        selectedDeliveryOption: selectedDeliveryOption,
-        name: formData.name + ' ' + formData.surname,
-        company: formData.company,
-        city: formData.city,
-        state: formData.state,
-        phone: formData.phone,
-        email: formData.email,
-        address1: formData.address1,
-        address2: formData.address2,
-        zipCode: formData.zipCode,
-      };
+  //   if (auth._id) {
+  //     const newOrderAuth = {
+  //       ...formDataAuth,
+  //       basket: basket,
+  //       cityDelivery: selectedCity,
+  //       department: selectedDepartment,
+  //       selectedDeliveryOption: selectedDeliveryOption,
+  //       name: formData.name + ' ' + formData.surname,
+  //       company: formData.company,
+  //       city: formData.city,
+  //       state: formData.state,
+  //       phone: formData.phone,
+  //       email: formData.email,
+  //       address1: formData.address1,
+  //       address2: formData.address2,
+  //       zipCode: formData.zipCode,
+  //     };
 
-      dispatch(addOrder(newOrderAuth));
-      setOrder([...order, newOrderAuth]);
-      localStorage.setItem('formData', JSON.stringify(newOrderAuth));
-      console.log(newOrderAuth);
-    } else {
-      const newOrder = {
-        ...formData,
-        basket: basket,
-        cityDelivery: selectedCity,
-        selectedDeliveryOption: selectedDeliveryOption,
-        // deliveryMethod: selectedDeliveryOption,
-        department: selectedDepartment,
-        // paymentMethod: selectedPaymentOptionData,
-      };
+  //     dispatch(addOrder(newOrderAuth));
+  //     saveToStorage('formData', newOrderAuth);
+  //     console.log(newOrderAuth);
+  //   } else {
+  //     const newOrder = {
+  //       ...formData,
+  //       basket: basket,
+  //       cityDelivery: selectedCity,
+  //       selectedDeliveryOption: selectedDeliveryOption,
+  //       department: selectedDepartment,
+  //     };
 
-      dispatch(addOrder(newOrder));
-      setOrder([...order, newOrder]);
-      localStorage.setItem('formData', JSON.stringify(newOrder));
-      console.log(newOrder);
-    }
-  };
+  //     // dispatch(addOrder(newOrder));
+  //     setOrder([...order, newOrder]);
+  //     saveToStorage('formData', updatedFormData);
+  //     console.log(updatedFormData);
+  //     removeItem('step');
+  //   }
+  // };
 
   const restoreFormDataFromLocalStorage = () => {
-    const savedFormData = localStorage.getItem('formData');
+    const savedFormData = getFromStorage('formData');
     if (savedFormData) {
-      setFormData(JSON.parse(savedFormData));
+      setFormData(savedFormData);
     }
   };
 
@@ -136,86 +134,82 @@ const Step3 = () => {
   const handleInputChange = e => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
+
     setFormData({
       ...formData,
       [inputName]: inputValue,
     });
 
-    localStorage.setItem('formData', JSON.stringify(formData));
+    saveToStorage('formData', formData);
   };
 
   return (
-    <div>
-      <PaymentOptionBox>
-        <PaymentBlockOptionsLable onClick={() => handlePaymentOptionClick(0)}>
-          <PaymentBlockOptionsInput type="radio" name="payment" />
-          <LIQPAY />
+    <Payment>
+      <PaymentBlockOptionsLable
+        onClick={() => handlePaymentOptionClick(0)}
+        onChange={handleInputChange}
+      >
+        <PaymentBlockOptionsInput type="radio" name="payment" />
+        <Wallet style={{ width: 65 }} />
 
-          <DeliveryBlockOptionsLableBox>
-            <DeliveryBlockOptionsTitle>
-              Terms of payment
-            </DeliveryBlockOptionsTitle>
-          </DeliveryBlockOptionsLableBox>
-        </PaymentBlockOptionsLable>
-      </PaymentOptionBox>
+        <DeliveryBlockOptionsLableBox>
+          <DeliveryBlockOptionsTitle>
+            Terms of payment
+          </DeliveryBlockOptionsTitle>
+        </DeliveryBlockOptionsLableBox>
+      </PaymentBlockOptionsLable>
 
-      <PaymentOptionBox>
-        <PaymentBlockOptionsLable
-          onClick={() => handlePaymentOptionClick(1)}
-          onChange={handleInputChange}
-        >
-          <PaymentBlockOptionsInput type="radio" name="payment" />
-          <Wallet style={{ width: 65 }} />
+      <PaymentBlockOptionsLable
+        onClick={() => handlePaymentOptionClick(1)}
+        onChange={handleInputChange}
+      >
+        <PaymentBlockOptionsInput type="radio" name="payment" />
+        <Wallet style={{ width: 65 }} />
 
-          <DeliveryBlockOptionsLableBox>
-            <DeliveryBlockOptionsTitle>
-              Cash on delivery
-            </DeliveryBlockOptionsTitle>
-          </DeliveryBlockOptionsLableBox>
-        </PaymentBlockOptionsLable>
-      </PaymentOptionBox>
+        <DeliveryBlockOptionsLableBox>
+          <DeliveryBlockOptionsTitle>
+            Cash on delivery
+          </DeliveryBlockOptionsTitle>
+        </DeliveryBlockOptionsLableBox>
+      </PaymentBlockOptionsLable>
 
-      <PaymentOptionBox>
-        <PaymentBlockOptionsLable
-          onClick={() => handlePaymentOptionClick(2)}
-          onChange={handleInputChange}
-        >
-          <PaymentBlockOptionsInput type="radio" name="payment" />
-          <Wallet style={{ width: 65 }} />
+      <PaymentBlockOptionsLable
+        onClick={() => handlePaymentOptionClick(2)}
+        onChange={handleInputChange}
+      >
+        <PaymentBlockOptionsInput type="radio" name="payment" />
+        <Wallet style={{ width: 65 }} />
 
-          <DeliveryBlockOptionsLableBox>
-            <DeliveryBlockOptionsTitle>
-              Payment on account
-            </DeliveryBlockOptionsTitle>
-          </DeliveryBlockOptionsLableBox>
-        </PaymentBlockOptionsLable>
-      </PaymentOptionBox>
+        <DeliveryBlockOptionsLableBox>
+          <DeliveryBlockOptionsTitle>
+            Payment on account
+          </DeliveryBlockOptionsTitle>
+        </DeliveryBlockOptionsLableBox>
+      </PaymentBlockOptionsLable>
 
       <PaymentFormBtnBox>
         <Link to={`/checkout/step2`}>
-          <PaymentFormBtn
-            type="button"
-            //   onClick={goBackToDeliveryInfo}
-          >
-            Back
-          </PaymentFormBtn>
+          <PaymentFormBtn type="button">Back</PaymentFormBtn>
         </Link>
 
         <Link to={`/basket`}>
           <PaymentFormBtnFinish
+            type="submit"
             disabled={isDisabled}
             isDisabled={isDisabled}
             style={{
               cursor: isDisabled ? 'not-allowed' : 'pointer',
             }}
-            type="submit"
-            onClick={handleAddOrder}
+            onClick={() => {
+              saveToStorage('step', '4');
+              // handleAddOrder;
+            }}
           >
             Total
           </PaymentFormBtnFinish>
         </Link>
       </PaymentFormBtnBox>
-    </div>
+    </Payment>
   );
 };
 
