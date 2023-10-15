@@ -46,7 +46,10 @@ const BasketPage = lazy(() => import('pages/Basket'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const basket = useSelector(selectBasket);
+  let basket = [];
+  useSelector(selectBasket)
+    ? (basket = useSelector(selectBasket))
+    : (basket = []);
   const { t } = useTranslation();
 
   useEffect(() => {

@@ -16,7 +16,7 @@ import {
   DeliveryFormLable,
   DeliveryFormBtn,
 } from '../Order/Order.styled';
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
 import { getUser } from 'redux/auth/selectors';
 import { getFromStorage, saveToStorage } from 'services/localStorService';
 
@@ -26,7 +26,6 @@ const Step2 = () => {
   const navigate = useNavigate();
 
   const auth = useSelector(getUser);
-  let { userIn } = useAuth();
 
   let delivery = '';
   getFromStorage('selectedDeliveryOption')
@@ -37,16 +36,16 @@ const Step2 = () => {
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
-          name: auth._id ? userIn?.userName : '',
-          surname: auth._id ? userIn?.surname : '',
-          // company: auth._id ? userIn?.company : '',
-          email: auth._id ? userIn?.email : '',
-          phone: auth._id ? userIn?.phone : '',
+          name: auth._id ? auth?.userName : '',
+          surname: auth._id ? auth?.surname : '',
+          // company: auth._id ? auth?.company : '',
+          email: auth._id ? auth?.email : '',
+          phone: auth._id ? auth?.phone : '',
           city: '',
           address: '',
-          // address2: auth._id ? userIn?.address2 : '',
-          // state: auth._id ? userIn?.state : '',
-          // zipCode: auth._id ? userIn?.zipCode : '',
+          // address2: auth._id ? auth?.address2 : '',
+          // state: auth._id ? auth?.state : '',
+          // zipCode: auth._id ? auth?.zipCode : '',
         },
   );
 
@@ -62,15 +61,6 @@ const Step2 = () => {
   // }, []);
 
   useEffect(() => {
-    console.log(
-      delivery === 'Courier delivery' &&
-        formData.name !== '' &&
-        formData.surname !== '' &&
-        formData.email !== '' &&
-        formData.phone !== '' &&
-        formData.city !== '' &&
-        formData.address !== '',
-    );
     delivery === 'Courier delivery' &&
     formData.name !== '' &&
     formData.surname !== '' &&

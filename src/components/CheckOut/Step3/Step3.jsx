@@ -132,7 +132,6 @@ const Step3 = () => {
   // }, []);
 
   const handleInputChange = e => {
-    console.log(e.target.value);
     // const inputName = e.target.name;
     // const inputValue = e.target.value;
     setSelectedPaymentOption(e.target.value);

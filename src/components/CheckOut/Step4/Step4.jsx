@@ -21,22 +21,24 @@ import {
 import { makeOrder } from '../../../services/APIservice';
 import { getUser } from 'redux/auth/selectors';
 import { onFetchError, onSuccess } from '../../helpers/Messages/NotifyMessages';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectBasket } from 'redux/basket/selectors';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
+import { clearBasket } from 'redux/basket/operations';
 
 const Step4 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
   const auth = useSelector(getUser);
   const [formData] = useState(
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
-          name: auth._id ? userIn?.userName : '',
-          surname: auth._id ? userIn?.surname : '',
-          email: auth._id ? userIn?.email : '',
-          phone: auth._id ? userIn?.phone : '',
+          name: auth._id ? auth?.userName : '',
+          surname: auth._id ? auth?.surname : '',
+          email: auth._id ? auth?.email : '',
+          phone: auth._id ? auth?.phone : '',
           city: '',
           address: '',
         },
@@ -123,6 +125,7 @@ const Step4 = () => {
       removeItem('selectedDepartment');
       removeItem('formData');
       removeItem('selectedPaymentOption');
+      dispatch(clearBasket());
     } catch (error) {
       setError(error);
     } finally {
@@ -131,7 +134,6 @@ const Step4 = () => {
   }
 
   const handleAddOrder = e => {
-    e.preventDefault();
     createOrder();
   };
 
