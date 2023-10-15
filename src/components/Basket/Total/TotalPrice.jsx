@@ -33,9 +33,9 @@ import {
 import { useAuth } from 'hooks/useAuth';
 import { getUser } from 'redux/auth/selectors';
 import { useState } from 'react';
-import { addOrder } from 'redux/order/operations';
+// import { addOrder } from 'redux/order/operations';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
-import { selectOrders } from 'redux/order/selectors';
+// import { selectOrders } from 'redux/order/selectors';
 import { useEffect } from 'react';
 // import { selectOrders } from 'redux/order/selectors';
 
@@ -48,7 +48,7 @@ export const TotalPrice = () => {
   const basket = useSelector(selectBasket);
   const auth = useSelector(getUser);
   let { userIn } = useAuth();
-  const orders = useSelector(selectOrders);
+  // const orders = useSelector(selectOrders);
   const dispatch = useDispatch();
 
   const storedData = getFromStorage('formData');
@@ -87,7 +87,7 @@ export const TotalPrice = () => {
         cityDelivery: selectedCity,
         department: selectedDepartment,
       };
-      dispatch(addOrder(newOrderAuth));
+      // dispatch(addOrder(newOrderAuth));
       onSuccess('Order added successfully');
       console.log(newOrderAuth);
     } else {
@@ -127,7 +127,7 @@ export const TotalPrice = () => {
           zipCode: '',
         });
       }
-      dispatch(addOrder(newOrder));
+      // dispatch(addOrder(newOrder));
       onSuccess('Order added successfully');
     }
   };
@@ -137,13 +137,13 @@ export const TotalPrice = () => {
   };
 
 
-  useEffect(() => {
-    if (orders.length > 0) {
-      setDisabled(true);
-    } else {
-      setDisabled(false);
-    }
-  }, [dataToSave, ordersDataToSave]);
+  // useEffect(() => {
+  //   if (orders.length > 0) {
+  //     setDisabled(true);
+  //   } else {
+  //     setDisabled(false);
+  //   }
+  // }, [dataToSave, ordersDataToSave]);
   const isDataAvailable = dataToSave && dataToSave.length > 0;
   console.log(dataToSave);
   console.log(isDataAvailable);

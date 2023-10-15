@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CheckoutBtn } from '../Checkout.styled';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
 import {

@@ -19,13 +19,13 @@ import {
 // import { useAuth } from 'hooks/useAuth';
 import { getUser } from 'redux/auth/selectors';
 import { getFromStorage, saveToStorage } from 'services/localStorService';
-import { selectOrders } from 'redux/order/selectors';
+// import { selectOrders } from 'redux/order/selectors';
 
 const Step2 = () => {
   const [showAddAddress, setShowAddAddress] = useState(true);
   const [isDisabled, setDisabled] = useState(true);
   const [formDataArray, setFormDataArray] = useState([]);
-  const orders = useSelector(selectOrders);
+  // const orders = useSelector(selectOrders);
   const navigate = useNavigate();
 
   const auth = useSelector(getUser);
