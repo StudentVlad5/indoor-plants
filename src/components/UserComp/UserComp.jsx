@@ -6,7 +6,6 @@ import {
   UserContainer,
   UserAboutWrapper,
   UserDataWrapper,
-  UserTitle,
   FolderWrapper,
   LinkFolder,
 } from './UserComp.styled';

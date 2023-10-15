@@ -117,42 +117,10 @@ export const UserOrders = () => {
                 </OrderItemDetails>
               ))}
               <div style={{ padding: '12px' }}>
-                {order?.delivery[0].novaPoshta && <p>Nova Posta</p>}
-                {order?.delivery[0].cityNameNP &&
-                  order?.delivery[0].novaPoshta && (
-                    <p>City: {order.delivery[0].cityNameNP}</p>
-                  )}
-                {order?.delivery[0].departmentNameNP &&
-                  order?.delivery[0].novaPoshta && (
-                    <p>Department: {order.delivery[0].departmentNameNP}</p>
-                  )}
-                {order?.delivery[0].courier &&
-                  order?.delivery[0].novaPoshta && (
-                    <p>Courier to: {order?.delivery[0].postAdress}</p>
-                  )}
-
-                {order?.delivery[0].ukrPoshta && <p>Ukr Posta</p>}
-                {order?.delivery[0].ukrPoshta &&
-                  order?.delivery[0].cityNameUP && (
-                    <p>City: {order.delivery[0].cityNameUP}</p>
-                  )}
-                {order?.delivery[0].ukrPoshta &&
-                  order?.delivery[0].departmentNameUP && (
-                    <p>Ukr Posta: {order?.delivery[0].departmentNameUP}</p>
-                  )}
-                {order?.delivery[0].ukrPoshta && order?.delivery[0].courier && (
-                  <p>Courier to: {order?.delivery[0].postAdress}</p>
-                )}
-
-                {order?.delivery[0].other && (
-                  <p>Delivery service to: {order?.delivery[0].postAdress}</p>
-                )}
-
-                {order?.metodPayment[0].accountPayment && (
-                  <p>Payment to account</p>
-                )}
-                {order?.metodPayment[0].cashOnDelivery && <p>Cash</p>}
-                {order?.metodPayment[0].prepaidCard && <p>Prepaid card</p>}
+                <p>{order?.deliveryOrder?.delivery}</p>
+                <p>City: {order?.deliveryOrder?.cityDelivery}</p>
+                <p>Adress: {order?.deliveryOrder?.departmentDelivery}</p>
+                <p>{order?.selectedPaymentOption}</p>
               </div>
             </OrderItemDetailsContainer>
           </OrderItem>

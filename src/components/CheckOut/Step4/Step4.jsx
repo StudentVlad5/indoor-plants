@@ -22,7 +22,13 @@ import { makeOrder } from '../../../services/APIservice';
 import { getUser } from 'redux/auth/selectors';
 import { onFetchError, onSuccess } from '../../helpers/Messages/NotifyMessages';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBasket } from 'redux/basket/selectors';
+import {
+  selectBasket,
+  selectTotalAmount,
+  selectTotalDiscount,
+  selectCurrency,
+  selectTotalPayment,
+} from 'redux/basket/selectors';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { clearBasket } from 'redux/basket/operations';
 
@@ -79,13 +85,17 @@ const Step4 = () => {
   const [showComments, setShowComments] = useState(false);
 
   const basket = useSelector(selectBasket);
+  const totalAmount = useSelector(selectTotalAmount);
+  const totalDiscount = useSelector(selectTotalDiscount);
+  const totalPayment = useSelector(selectTotalPayment);
+  const currency = useSelector(selectCurrency);
 
   let cityDelivery = '';
   let departmentDelivery = '';
   if (delivery === 'NovaPoshta') {
     cityDelivery = selectedCity;
     departmentDelivery = selectedDepartment;
-  } else if (delivery === 'NovaPoshta') {
+  } else if (delivery === 'UkrPoshta') {
     cityDelivery = selectedCity_UP_NAME;
     departmentDelivery = selectedDepartment_UP;
   } else {
@@ -95,6 +105,10 @@ const Step4 = () => {
 
   const newOrder = {
     basket,
+    totalAmount: Math.round(+totalAmount * 100) / 100,
+    totalDiscount: Math.round(+totalDiscount * 100) / 100,
+    totalPayment: Math.round(+totalPayment * 100) / 100,
+    currency,
     deliveryOrder: { delivery, cityDelivery, departmentDelivery },
     name: formData.name + ' ' + formData.surname,
     phone: formData.phone,
@@ -103,7 +117,7 @@ const Step4 = () => {
     comments,
     user_id: auth._id,
   };
-
+  console.log(newOrder);
   const navigate = useNavigate();
 
   async function createOrder() {

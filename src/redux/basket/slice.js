@@ -71,7 +71,13 @@ export const basketSlice = createSlice({
         localStorage.setItem('basketData', JSON.stringify(state));
       })
       .addCase(clearBasket, () => {
-        return initialState;
+        return {
+          basketItems: [],
+          totalAmount: 0,
+          totalDiscount: 0,
+          totalPayment: 0,
+          currency: '$',
+        };
       });
   },
 });

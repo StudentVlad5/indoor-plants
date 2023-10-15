@@ -16,7 +16,6 @@ import {
   DeliveryFormLable,
   DeliveryFormBtn,
 } from '../Order/Order.styled';
-// import { useAuth } from 'hooks/useAuth';
 import { getUser } from 'redux/auth/selectors';
 import { getFromStorage, saveToStorage } from 'services/localStorService';
 
@@ -37,7 +36,7 @@ const Step2 = () => {
       ? getFromStorage('formData')
       : {
           name: auth._id ? auth?.userName : '',
-          surname: auth._id ? auth?.surname : '',
+          surname: '',
           // company: auth._id ? auth?.company : '',
           email: auth._id ? auth?.email : '',
           phone: auth._id ? auth?.phone : '',
@@ -137,7 +136,6 @@ const Step2 = () => {
               name="name"
               value={formData.name}
               required
-              // placeholder="George"
             />
           </DeliveryFormLable>
 
