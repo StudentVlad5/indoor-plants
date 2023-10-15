@@ -57,7 +57,7 @@ export const CheckOut = () => {
               to={`/checkout/step2`}
             >
               <span>2</span>
-              <LinkFolderTitle>Address</LinkFolderTitle>
+              <LinkFolderTitle>Receiver</LinkFolderTitle>
             </LinkFolder>
             <Liner>
               <span></span>

@@ -336,6 +336,11 @@ export const DeliveryFormBtn = styled.button`
 export const DeliveryFormBtnFinish = styled(DeliveryFormBtn)`
   background: ${theme.colors.green4};
   border: 1px solid ${theme.colors.green4};
+  &:disabled {
+    cursor: none;
+    pointer-events: none;
+    opacity: 0.5;
+  }
 `;
 
 // export const PaymentBlockOptionsLable = styled.label`

@@ -7,20 +7,15 @@ import { PoshtaTitle } from 'components/CheckOut/Order/Order.styled';
 import { getFromStorage } from 'services/localStorService';
 
 export const NovaPoshta = ({ setSelectedCity, setSelectedDepartment }) => {
-  const [novaPoshta, setNovaPoshta] = useState(
-    getFromStorage('selectedDeliveryOption') === 'NovaPoshta' ? true : false,
-  );
   const [isLoading, setIsLoading] = useState(false);
   const [cityName, setCityName] = useState(
-    getFromStorage('selectedCity') && novaPoshta
-      ? getFromStorage('selectedCity')
-      : '',
+    getFromStorage('selectedCity') ? getFromStorage('selectedCity') : '',
   );
   const [checkCityName, setCheckCityName] = useState('');
   const [listOfCities, setListOfSities] = useState([]);
 
   const [departmentName, setDepartmentName] = useState(
-    getFromStorage('selectedDepartment') && novaPoshta
+    getFromStorage('selectedDepartment')
       ? getFromStorage('selectedDepartment')
       : '',
   );

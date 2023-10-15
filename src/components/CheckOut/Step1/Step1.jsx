@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CheckoutBtn } from '../Checkout.styled';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
 import {
-  DeliveryInfoBox,
-  DeliveryBlock,
   DeliveryBlockOptions,
   DeliveryBlockOptionsLable,
   DeliveryBlockOptionsInput,
@@ -20,11 +18,11 @@ import {
 } from '../Order/Order.styled';
 import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
 import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
-import { StatusContext } from 'components/ContextStatus/ContextStatus';
+// import { StatusContext } from 'components/ContextStatus/ContextStatus';
 import curier from 'images/delivery/pngegg.png';
 
 const Step1 = () => {
-  const { setStatusDisableStep2 } = useContext(StatusContext);
+  // const { setStatusDisableStep2 } = useContext(StatusContext);
   const [selectedCity, setSelectedCity] = useState(
     getFromStorage('selectedCity') ? getFromStorage('selectedCity') : '',
   );
@@ -92,7 +90,7 @@ const Step1 = () => {
   ]);
 
   const nextStep = () => {
-    setStatusDisableStep2(false);
+    // setStatusDisableStep2(false);
     saveToStorage('selectedCity', selectedCity);
     saveToStorage('selectedCity_UP', selectedCity_UP);
     saveToStorage('selectedCity_UP_NAME', selectedCity_UP_NAME);

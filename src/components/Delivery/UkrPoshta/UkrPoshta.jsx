@@ -12,28 +12,23 @@ export const UkrPoshta = ({
   setSelectedDepartment,
   selectedCity_UP_NAME,
 }) => {
-  const [ukrPoshta, setUkrPoshta] = useState(
-    getFromStorage('selectedDeliveryOption') === 'UkrPoshta' ? true : false,
-  );
   const [isLoading, setIsLoading] = useState(false);
   const [listOfCities, setListOfSities] = useState([]);
 
   const [cityRef, setCityRef] = useState('');
 
   const [cityNameUP, setCityNameUP] = useState(
-    getFromStorage('selectedCity_UP') && ukrPoshta
-      ? getFromStorage('selectedCity_UP')
-      : '',
+    getFromStorage('selectedCity_UP') ? getFromStorage('selectedCity_UP') : '',
   );
   const [checkCityNameUP, setCheckCityNameUP] = useState(
-    getFromStorage('selectedCity_UP_NAME') && ukrPoshta
+    getFromStorage('selectedCity_UP_NAME')
       ? getFromStorage('selectedCity_UP_NAME')
       : '',
   );
   const [listOfCitiesUP, setListOfSitiesUP] = useState([]);
 
   const [departmentNameUP, setDepartmentNameUP] = useState(
-    getFromStorage('selectedDepartment_UP') && ukrPoshta
+    getFromStorage('selectedDepartment_UP')
       ? getFromStorage('selectedDepartment_UP')
       : '',
   );
