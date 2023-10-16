@@ -375,4 +375,47 @@ input::-webkit-calendar-picker-indicator:hover {
   text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
   background-color: transparent;
 }
+
+//-----Scrollbar-----//
+::-webkit-scrollbar {
+    width: 6px;
+    border: 0.5px solid white;
+
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${theme.colors.green1};
+    background-clip: padding-box;
+    border: 0.05em solid #eeeeee;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: ${theme.colors.green};
+  }
+  
+
+  ::-webkit-scrollbar-track {
+    background-color: ${theme.colors.fon};
+  }
+
+
+  #style-1::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: ${theme.colors.fon};
+    background-color: ${theme.colors.fon};
+  }
+  
+  #style-1::-webkit-scrollbar
+  {
+    width: 8px;
+    background-color:${theme.colors.green};
+  }
+  
+  #style-1::-webkit-scrollbar-thumb
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: ${theme.colors.green1};
+  }
+  #style-1::-webkit-scrollbar-thumb:hover {
+    background-color: ${theme.colors.green};
+  }
 `;

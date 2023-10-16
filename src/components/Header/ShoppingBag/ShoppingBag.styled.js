@@ -36,7 +36,7 @@ export const BasketBox = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 437px;
     max-width: 437px;
-    height: 780px;
+    max-height: 780px;
     padding: 40px 24px;
   }
 `;
