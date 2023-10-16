@@ -446,10 +446,13 @@ export const PaymentFormBtn = styled(DeliveryFormBtn)`
 `;
 
 export const PaymentFormBtnFinish = styled(PaymentFormBtn)`
-  border-color: transparent;
   background: ${theme.colors.green4};
-
-  color: ${theme.colors.brown1};
+  border: 1px solid ${theme.colors.green4};
+  &:disabled {
+    cursor: none;
+    pointer-events: none;
+    opacity: 0.5;
+  }
 `;
 
 export const DeliveryBlockOptionsBtn = styled(PaymentFormBtn)`
