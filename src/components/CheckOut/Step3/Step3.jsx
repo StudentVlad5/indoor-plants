@@ -190,7 +190,7 @@ const Step3 = () => {
           <PaymentFormBtn type="button">Back</PaymentFormBtn>
         </Link>
         <PaymentFormBtnFinish
-          type="submit"
+          type="button"
           onClick={handleAddOrder}
           disabled={isDisabled}
         >
