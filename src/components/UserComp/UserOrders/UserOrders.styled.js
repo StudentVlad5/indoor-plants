@@ -22,9 +22,6 @@ const OrderItem = styled.li`
   background-color: ${theme.colors.green1};
   border-radius: 10px;
   padding: 8px;
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    flex-direction: row;
-  }
 `;
 const OrderItemWrap = styled.div`
   min-width: 200px;
@@ -36,7 +33,7 @@ const OrderItemWrap = styled.div`
 `;
 const OrderItemDetails = styled(OrderItemWrap)`
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 `;
 const OrderItemDetailsContainer = styled.div`

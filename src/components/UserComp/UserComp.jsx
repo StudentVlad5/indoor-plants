@@ -20,13 +20,19 @@ export const UserComp = () => {
         </Title>
         <UserDataWrapper>
           <FolderWrapper>
-            <LinkFolder className="linkFolder" to={`/user/profile`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/user/profile`}
+            >
               My account
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/user/orders`}>
+            <LinkFolder className="linkFolder sideBar_menu" to={`/user/orders`}>
               My orders
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/user/favorites`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/user/favorites`}
+            >
               My favorites
             </LinkFolder>
             <Logout />

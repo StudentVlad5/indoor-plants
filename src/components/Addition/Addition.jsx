@@ -21,34 +21,64 @@ export const Addition = () => {
         <AdditionDataWrapper>
           <FolderWrapper>
             {/* <AdditionTitle as="h2">Magazine:</AdditionTitle> */}
-            <LinkFolder className="linkFolder" to={`/addition/about_company`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/about_company`}
+            >
               About company
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/location`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/location`}
+            >
               Location
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/careers`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/careers`}
+            >
               Careers
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/faq`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/faq`}
+            >
               FAQ
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/blogs`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/blogs`}
+            >
               BLOGS
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/shipping`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/shipping`}
+            >
               Shipping & Handling
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/guarantee`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/guarantee`}
+            >
               30-Day Guarantee
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/course`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/course`}
+            >
               Free Online Course
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/rewards_program`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/rewards_program`}
+            >
               Rewards Program
             </LinkFolder>
-            <LinkFolder className="linkFolder" to={`/addition/contact`}>
+            <LinkFolder
+              className="linkFolder sideBar_menu"
+              to={`/addition/contact`}
+            >
               Contact Us
             </LinkFolder>
           </FolderWrapper>

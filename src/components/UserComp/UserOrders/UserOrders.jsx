@@ -81,26 +81,36 @@ export const UserOrders = () => {
       {orderList &&
         orderList.map((order, index) => (
           <OrderItem key={order._id}>
-            <OrderItemWrap>
-              <p>
-                Date:{' '}
-                {order?.createdAt.split('T')[0].split('-').reverse().join('.')}
-              </p>
-              <br />
-              <p>
-                Total amount: {order?.totalAmount}
-                {order?.basket[0]?.currency}
-              </p>
-              <p>
-                Discount: {order?.totalDiscount}
-                {order?.basket[0]?.currency}
-              </p>
-              <p>
-                Payment: {order?.totalPayment}
-                {order?.basket[0]?.currency}
-              </p>
-            </OrderItemWrap>
             <OrderItemDetailsContainer>
+              <OrderItemWrap>
+                <p>
+                  Date:{' '}
+                  {order?.createdAt
+                    .split('T')[0]
+                    .split('-')
+                    .reverse()
+                    .join('.')}
+                </p>
+                <br />
+                <p>
+                  Total amount: {order?.totalAmount}
+                  {order?.basket[0]?.currency}
+                </p>
+                <p>
+                  Discount: {order?.totalDiscount}
+                  {order?.basket[0]?.currency}
+                </p>
+                <p>
+                  Payment: {order?.totalPayment}
+                  {order?.basket[0]?.currency}
+                </p>
+              </OrderItemWrap>
+              <div style={{ padding: '12px' }}>
+                <p>{order?.deliveryOrder?.delivery}</p>
+                <p>City: {order?.deliveryOrder?.cityDelivery}</p>
+                <p>Adress: {order?.deliveryOrder?.departmentDelivery}</p>
+                <p>{order?.selectedPaymentOption}</p>
+              </div>
               {order?.basket.map(item => (
                 <OrderItemDetails key={item.optionData._id}>
                   <ImgItem
@@ -116,12 +126,6 @@ export const UserOrders = () => {
                   </div>
                 </OrderItemDetails>
               ))}
-              <div style={{ padding: '12px' }}>
-                <p>{order?.deliveryOrder?.delivery}</p>
-                <p>City: {order?.deliveryOrder?.cityDelivery}</p>
-                <p>Adress: {order?.deliveryOrder?.departmentDelivery}</p>
-                <p>{order?.selectedPaymentOption}</p>
-              </div>
             </OrderItemDetailsContainer>
           </OrderItem>
         ))}

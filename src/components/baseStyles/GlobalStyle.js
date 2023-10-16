@@ -365,4 +365,14 @@ input::-webkit-calendar-picker-indicator:hover {
   background-color: ${theme.colors.darkGreen};
   color: ${theme.colors.white}
 }
+
+.linkFolder.sideBar_menu.active{
+  font-size: 12px;
+  color: ${theme.colors.darkGreen};
+  font-weight: 500;
+  transform: ${theme.scale[0]};
+  transition: ${theme.transition[0]};
+  text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
+  background-color: transparent;
+}
 `;
