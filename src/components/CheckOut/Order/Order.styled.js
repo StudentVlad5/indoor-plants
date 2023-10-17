@@ -10,8 +10,11 @@ import { ProfileContainer } from 'components/UserComp/UserData/UserData.styled';
 import { IconBtn } from 'components/Catalog/Catalog.styled';
 
 export const DataContainer = styled(ProfileContainer)`
-  width: 590px;
   background-color: ${theme.colors.green6};
+  width: 100%;
+  @media screen and (min-width: 1440px) {
+    width: 590px;
+  }
 `;
 
 export const DataContainerText = styled.p`

@@ -39,7 +39,6 @@ import liqpay from 'images/svg/LIQPAY.svg';
 import wallet from 'images/svg/wallet.svg';
 import { useAuth } from 'hooks/useAuth';
 
-
 const Step4 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -226,7 +225,7 @@ const Step4 = () => {
           <DataTitle>Selected customer options</DataTitle>
 
           <DataContainerTextBox>
-            <DataContainerText>
+            {/* <DataContainerText>
               {formData.name} {formData.surname}
             </DataContainerText>
             <DataContainerText>{formData.phone}</DataContainerText>
@@ -238,32 +237,31 @@ const Step4 = () => {
               (delivery === 'Courier delivery' && (
                 <DataContainerText>{formData.address}</DataContainerText>
               ))}
+            <DataContainerText>{formData.email}</DataContainerText> */}
+
+            <DataContainerText>
+              {formData.name} {formData.surname}
+            </DataContainerText>
+            <DataContainerText>{formData.company}</DataContainerText>
+            {delivery === '' ||
+              (delivery === 'Courier delivery' && (
+                <DataContainerText>{formData.city}</DataContainerText>
+              ))}
+            <DataContainerText>{formData.state}</DataContainerText>
+            <DataContainerText>{formData.zipCode}</DataContainerText>
+
+            {delivery === '' ||
+              (delivery === 'Courier delivery' && (
+                <DataContainerText>{formData.address1}</DataContainerText>
+              ))}
+            {delivery === '' ||
+              (delivery === 'Courier delivery' && (
+                <DataContainerText>{formData.address2}</DataContainerText>
+              ))}
+
+            <DataContainerText>{formData.phone}</DataContainerText>
             <DataContainerText>{formData.email}</DataContainerText>
           </DataContainerTextBox>
-
-          <DataContainerText>
-            {formData.name} {formData.surname}
-          </DataContainerText>
-          <DataContainerText>{formData.company}</DataContainerText>
-          {delivery === '' ||
-            (delivery === 'Courier delivery' && (
-              <DataContainerText>{formData.city}</DataContainerText>
-            ))}
-          <DataContainerText>{formData.state}</DataContainerText>
-          <DataContainerText>{formData.zipCode}</DataContainerText>
-
-          {delivery === '' ||
-            (delivery === 'Courier delivery' && (
-              <DataContainerText>{formData.address1}</DataContainerText>
-            ))}
-          {delivery === '' ||
-            (delivery === 'Courier delivery' && (
-              <DataContainerText>{formData.address2}</DataContainerText>
-            ))}
-
-          <DataContainerText>{formData.phone}</DataContainerText>
-          <DataContainerText>{formData.email}</DataContainerText>
-
 
           <DataContainerPensil
             onClick={() => navigate('/checkout/step2', { replace: true })}
