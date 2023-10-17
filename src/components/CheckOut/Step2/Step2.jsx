@@ -18,6 +18,7 @@ import {
 } from '../Order/Order.styled';
 import { getUser } from 'redux/auth/selectors';
 import { getFromStorage, saveToStorage } from 'services/localStorService';
+import { useAuth } from 'hooks/useAuth';
 
 const Step2 = () => {
   const [showAddAddress, setShowAddAddress] = useState(true);
@@ -25,6 +26,7 @@ const Step2 = () => {
   const navigate = useNavigate();
 
   const auth = useSelector(getUser);
+  const { userIn } = useAuth();
 
   let delivery = '';
   getFromStorage('selectedDeliveryOption')
@@ -35,16 +37,26 @@ const Step2 = () => {
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
-          name: auth._id ? auth?.userName : '',
-          surname: '',
+          // name: auth._id ? auth?.userName : '',
+          // surname: '',
           // company: auth._id ? auth?.company : '',
-          email: auth._id ? auth?.email : '',
-          phone: auth._id ? auth?.phone : '',
-          city: '',
-          address: '',
+          // email: auth._id ? auth?.email : '',
+          // phone: auth._id ? auth?.phone : '',
+          // city: '',
+          // address: '',
           // address2: auth._id ? auth?.address2 : '',
           // state: auth._id ? auth?.state : '',
           // zipCode: auth._id ? auth?.zipCode : '',
+          name: auth._id ? userIn.address.userName : '',
+          surname: auth._id ? userIn.address.surname : '',
+          company: auth._id ? userIn.address.company : '',
+          email: auth._id ? userIn.address.email : '',
+          phone: auth._id ? userIn.address.phone : '',
+          address1: auth._id ? userIn.address.address1 : '',
+          address2: auth._id ? userIn.address.address2 : '',
+          city: auth._id ? userIn.address.city : '',
+          state: auth._id ? userIn.address.state : '',
+          zipCode: auth._id ? userIn.address.zipCode : '',
         },
   );
 
@@ -65,8 +77,10 @@ const Step2 = () => {
     formData.surname !== '' &&
     formData.email !== '' &&
     formData.phone !== '' &&
+    formData.address1 !== '' &&
     formData.city !== '' &&
-    formData.address !== ''
+    formData.state !== '' &&
+    formData.zipCode !== ''
       ? setDisabled(false)
       : setDisabled(true);
     if (
@@ -74,7 +88,11 @@ const Step2 = () => {
       formData.name !== '' &&
       formData.surname !== '' &&
       formData.email !== '' &&
-      formData.phone !== ''
+      formData.phone !== '' &&
+      formData.address1 !== '' &&
+      formData.city !== '' &&
+      formData.state !== '' &&
+      formData.zipCode !== ''
     ) {
       setDisabled(false);
     }
@@ -105,27 +123,30 @@ const Step2 = () => {
         <DataContainerText>
           {formData.name} {formData.surname}
         </DataContainerText>
-        {/* <DataContainerText>{formData.company}</DataContainerText> */}
+        <DataContainerText>{formData.company}</DataContainerText>
         {delivery === '' ||
           (delivery === 'Courier delivery' && (
             <DataContainerText>{formData.city}</DataContainerText>
           ))}
-        {/* <DataContainerText>{formData.state}</DataContainerText> */}
-        {/* <DataContainerText>{formData.zipCode}</DataContainerText> */}
+        <DataContainerText>{formData.state}</DataContainerText>
+        <DataContainerText>{formData.zipCode}</DataContainerText>
         {delivery === '' ||
           (delivery === 'Courier delivery' && (
-            <DataContainerText>{formData.address}</DataContainerText>
+            <DataContainerText>{formData.address1}</DataContainerText>
           ))}
-        {/* <DataContainerText>{formData.address2}</DataContainerText> */}
+        {delivery === '' ||
+          (delivery === 'Courier delivery' && (
+            <DataContainerText>{formData.address2}</DataContainerText>
+          ))}
         <DataContainerText>{formData.email}</DataContainerText>
         <DataContainerText>{formData.phone}</DataContainerText>
 
         <DataContainerPensil onClick={() => setShowAddAddress(!showAddAddress)}>
-          {showAddAddress ? <DataContainerCheckMark /> : <PensilStyle />}
+          {showAddAddress ? <PensilStyle /> : <DataContainerCheckMark />}
         </DataContainerPensil>
       </DataContainer>
 
-      {showAddAddress && (
+      {!showAddAddress && (
         <DeliveryForm>
           <DeliveryFormLable>
             <DeliveryFormLableText>First name</DeliveryFormLableText>
@@ -152,16 +173,16 @@ const Step2 = () => {
             />
           </DeliveryFormLable>
 
-          {/* <DeliveryFormLable>
-                <DeliveryFormLableText>Company</DeliveryFormLableText>
-                <DeliveryFormInput
-                  onChange={handleInputChange}
-                  type="text"
-                  id="company"
-                  value={formData.company}
-                  name="company"
-                />
-              </DeliveryFormLable> */}
+          <DeliveryFormLable>
+            <DeliveryFormLableText>Company</DeliveryFormLableText>
+            <DeliveryFormInput
+              onChange={handleInputChange}
+              type="text"
+              id="company"
+              value={formData.company}
+              name="company"
+            />
+          </DeliveryFormLable>
 
           {delivery === '' ||
             (delivery === 'Courier delivery' && (
@@ -181,52 +202,52 @@ const Step2 = () => {
           {delivery === '' ||
             (delivery === 'Courier delivery' && (
               <DeliveryFormLable>
-                <DeliveryFormLableText>Address</DeliveryFormLableText>
+                <DeliveryFormLableText>Address 1</DeliveryFormLableText>
                 <DeliveryFormInput
                   onChange={handleInputChange}
                   type="text"
-                  id="address"
-                  value={formData.address}
-                  name="address"
+                  id="address1"
+                  value={formData.address1}
+                  name="address1"
                   required
                 />
               </DeliveryFormLable>
             ))}
 
-          {/* <DeliveryFormLable>
-                <DeliveryFormLableText>Address 2</DeliveryFormLableText>
-                <DeliveryFormInput
-                  onChange={handleInputChange}
-                  type="text"
-                  id="address2"
-                  name="address2"
-                  value={formData.address2}
-                />
-              </DeliveryFormLable> */}
+          <DeliveryFormLable>
+            <DeliveryFormLableText>Address 2</DeliveryFormLableText>
+            <DeliveryFormInput
+              onChange={handleInputChange}
+              type="text"
+              id="address2"
+              name="address2"
+              value={formData.address2}
+            />
+          </DeliveryFormLable>
 
-          {/* <DeliveryFormLable>
-                <DeliveryFormLableText>State</DeliveryFormLableText>
-                <DeliveryFormInput
-                  onChange={handleInputChange}
-                  type="text"
-                  id="state"
-                  name="state"
-                  value={formData.state}
-                  required
-                />
-              </DeliveryFormLable> */}
+          <DeliveryFormLable>
+            <DeliveryFormLableText>State</DeliveryFormLableText>
+            <DeliveryFormInput
+              onChange={handleInputChange}
+              type="text"
+              id="state"
+              name="state"
+              value={formData.state}
+              required
+            />
+          </DeliveryFormLable>
 
-          {/* <DeliveryFormLable>
-                <DeliveryFormLableText>Zip code</DeliveryFormLableText>
-                <DeliveryFormInput
-                  onChange={handleInputChange}
-                  type="text"
-                  id="zipCode"
-                  name="zipCode"
-                  value={formData.zipCode}
-                  required
-                />
-              </DeliveryFormLable> */}
+          <DeliveryFormLable>
+            <DeliveryFormLableText>Zip code</DeliveryFormLableText>
+            <DeliveryFormInput
+              onChange={handleInputChange}
+              type="text"
+              id="zipCode"
+              name="zipCode"
+              value={formData.zipCode}
+              required
+            />
+          </DeliveryFormLable>
 
           <DeliveryFormLable>
             <DeliveryFormLableText>Phone</DeliveryFormLableText>
@@ -257,12 +278,7 @@ const Step2 = () => {
       )}
       <Btnwrapper>
         <Link to={`/checkout/step1`}>
-          <DeliveryFormBtn
-            type="button"
-            // onClick={goBackToDelivery}
-          >
-            Back
-          </DeliveryFormBtn>
+          <DeliveryFormBtn type="button">Back</DeliveryFormBtn>
         </Link>
         <DeliveryFormBtnFinish
           type="button"
