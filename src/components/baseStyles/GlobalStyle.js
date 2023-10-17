@@ -318,12 +318,6 @@ input::-webkit-calendar-picker-indicator:hover {
     font-size: ${theme.fontSizes.small};
   }
 }
-.isDisabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-  pointer-events: none;
-  text-decoration: none;
-}
 .iNcVkr {
   gap:4px;
 }
@@ -361,6 +355,15 @@ input::-webkit-calendar-picker-indicator:hover {
     font-size: ${theme.fontSizes.small} !important;
   }
 }
+
+//-----Link Folder-----//
+.isDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+  text-decoration: none;
+}
+
 .linkFolder.active{
   background-color: ${theme.colors.darkGreen};
   color: ${theme.colors.white}
@@ -372,17 +375,24 @@ input::-webkit-calendar-picker-indicator:hover {
   font-weight: 500;
   transform: ${theme.scale[0]};
   transition: ${theme.transition[0]};
-  text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
+  /* text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4); */
   background-color: transparent;
+
+  &::before {
+    width: 115%;
+    left: -5px;
+  }
+
+   @media screen and (min-width: ${theme.breakpoints.tablet}) {  
+    margin-left:5px;
+  }
 }
 
 //-----Scrollbar-----//
 ::-webkit-scrollbar {
     width: 6px;
     border: 0.5px solid white;
-
   }
-
   ::-webkit-scrollbar-thumb {
     background-color: ${theme.colors.green1};
     background-clip: padding-box;
@@ -391,26 +401,20 @@ input::-webkit-calendar-picker-indicator:hover {
   ::-webkit-scrollbar-thumb:hover {
     background-color: ${theme.colors.green};
   }
-  
-
-  ::-webkit-scrollbar-track {
+    ::-webkit-scrollbar-track {
     background-color: ${theme.colors.fon};
   }
-
-
   #style-1::-webkit-scrollbar-track
   {
     -webkit-box-shadow: ${theme.colors.fon};
     background-color: ${theme.colors.fon};
   }
-  
-  #style-1::-webkit-scrollbar
+    #style-1::-webkit-scrollbar
   {
     width: 8px;
     background-color:${theme.colors.green};
   }
-  
-  #style-1::-webkit-scrollbar-thumb
+    #style-1::-webkit-scrollbar-thumb
   {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: ${theme.colors.green1};

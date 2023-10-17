@@ -1,26 +1,5 @@
 import React, { useState } from 'react';
-import { Basket } from '../Basket/Basket';
-import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
-import {
-  DataContainerText,
-  DataContainerPensil,
-  DataContainerCheckMark,
-} from '../Order/Order.styled';
-import {
-  DataContainerItem,
-  DataTitle,
-  DataContainerItems,
-  InputComments,
-} from './Step4.styled';
 import { useNavigate } from 'react-router-dom';
-import {
-  getFromStorage,
-  removeItem,
-  saveToStorage,
-} from 'services/localStorService';
-import { makeOrder } from '../../../services/APIservice';
-import { getUser } from 'redux/auth/selectors';
-import { onFetchError, onSuccess } from '../../helpers/Messages/NotifyMessages';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectBasket,
@@ -31,7 +10,35 @@ import {
 } from 'redux/basket/selectors';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { clearBasket } from 'redux/basket/operations';
+import {
+  getFromStorage,
+  removeItem,
+  saveToStorage,
+} from 'services/localStorService';
+import { makeOrder } from 'services/APIservice';
+import { getUser } from 'redux/auth/selectors';
+import { onFetchError, onSuccess } from '../../helpers/Messages/NotifyMessages';
+import { Basket } from '../../Basket/Basket';
+import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
+import {
+  TotalBasket,
+  DataContainerItem,
+  DataTitle,
+  DataContainerItems,
+  InputComments,
+  DataContainerText,
+  DataContainerPensil,
+  DataContainerCheckMark,
+  DataContainerTextBox,
+} from './Step4.styled';
+
+import novaPoshta from 'images/svg/Nova_Poshta.svg';
+import ukrPoshta from 'images/svg/ukrposhta-logo.svg';
+import curier from 'images/delivery/pngegg.png';
+import liqpay from 'images/svg/LIQPAY.svg';
+import wallet from 'images/svg/wallet.svg';
 import { useAuth } from 'hooks/useAuth';
+
 
 const Step4 = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -140,7 +147,7 @@ const Step4 = () => {
     comments,
     user_id: auth._id,
   };
-  console.log(newOrder);
+  // console.log(newOrder);
   const navigate = useNavigate();
 
   async function createOrder() {
@@ -175,15 +182,26 @@ const Step4 = () => {
   };
 
   return (
-    <>
-      <Basket handleAddOrder={handleAddOrder}></Basket>
+    <TotalBasket>
+      <Basket handleAddOrder={handleAddOrder} confirm={true}></Basket>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
       <DataContainerItem>
         {/* Delivery */}
         <DataContainerItems>
           <DataTitle>Selected delivery</DataTitle>
-          <DataContainerText>{delivery}</DataContainerText>
+          <DataContainerTextBox>
+            {delivery === 'NovaPoshta' && (
+              <img style={{ width: 30 }} src={novaPoshta} alt="NovaPoshta" />
+            )}
+            {delivery === 'UkrPoshta' && (
+              <img style={{ width: 30 }} src={ukrPoshta} alt="UkrPoshta" />
+            )}
+            {delivery === 'Courier delivery' && (
+              <img style={{ width: 30 }} src={curier} alt="Courier delivery" />
+            )}
+            <DataContainerText>{delivery}</DataContainerText>
+          </DataContainerTextBox>
           {delivery === 'NovaPoshta' && (
             <>
               <DataContainerText>{selectedCity}</DataContainerText>
@@ -206,6 +224,23 @@ const Step4 = () => {
         {/* Reciver */}
         <DataContainerItems>
           <DataTitle>Selected customer options</DataTitle>
+
+          <DataContainerTextBox>
+            <DataContainerText>
+              {formData.name} {formData.surname}
+            </DataContainerText>
+            <DataContainerText>{formData.phone}</DataContainerText>
+            {delivery === '' ||
+              (delivery === 'Courier delivery' && (
+                <DataContainerText>{formData.city}</DataContainerText>
+              ))}
+            {delivery === '' ||
+              (delivery === 'Courier delivery' && (
+                <DataContainerText>{formData.address}</DataContainerText>
+              ))}
+            <DataContainerText>{formData.email}</DataContainerText>
+          </DataContainerTextBox>
+
           <DataContainerText>
             {formData.name} {formData.surname}
           </DataContainerText>
@@ -229,6 +264,7 @@ const Step4 = () => {
           <DataContainerText>{formData.phone}</DataContainerText>
           <DataContainerText>{formData.email}</DataContainerText>
 
+
           <DataContainerPensil
             onClick={() => navigate('/checkout/step2', { replace: true })}
           >
@@ -239,7 +275,22 @@ const Step4 = () => {
         {/* Payment */}
         <DataContainerItems>
           <DataTitle>Selected payment</DataTitle>
-          <DataContainerText>{selectedPaymentOption}</DataContainerText>
+          <DataContainerTextBox>
+            {selectedPaymentOption === 'Payment by bank card' ? (
+              <img
+                style={{ width: 50 }}
+                src={liqpay}
+                alt="Payment by bank card"
+              />
+            ) : (
+              <img
+                style={{ width: 50 }}
+                src={wallet}
+                alt="Payment on account or Cash on delivery"
+              />
+            )}
+            <DataContainerText>{selectedPaymentOption}</DataContainerText>
+          </DataContainerTextBox>
           <DataContainerPensil
             onClick={() => navigate('/checkout/step3', { replace: true })}
           >
@@ -265,14 +316,14 @@ const Step4 = () => {
                 id="comments"
                 name="comments"
                 value={comments}
-                rows="10"
+                rows="6"
                 cols="25"
               />
             </label>
           )}
         </DataContainerItems>
       </DataContainerItem>
-    </>
+    </TotalBasket>
   );
 };
 

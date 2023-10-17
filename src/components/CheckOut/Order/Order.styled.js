@@ -42,8 +42,18 @@ export const DataContainerCheckMark = styled(checkMark)`
   cursor: pointer;
 
   & > svg {
-    width: 24px;
-    height: 24px;
+    width: 14px;
+    height: 14px;
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      width: 18px;
+      height: 18px;
+    }
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   &:disabled {

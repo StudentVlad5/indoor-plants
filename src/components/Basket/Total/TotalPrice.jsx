@@ -24,7 +24,7 @@ import {
 } from './TotalPrice.styled';
 // import { selectOrders } from 'redux/order/selectors';
 
-export const TotalPrice = () => {
+export const TotalPrice = ({ confirm, handleAddOrder }) => {
   const totalAmount = useSelector(selectTotalAmount).toFixed(2);
   const totalDiscount = useSelector(selectTotalDiscount).toFixed(2);
   const totalPayment = useSelector(selectTotalPayment).toFixed(2);
@@ -79,23 +79,27 @@ export const TotalPrice = () => {
           </PaymentTotalList>
         </table>
       </PaymentTotal>
-      {/* {orders.length > 0 ? (
-        <PaymentBtn>Pay</PaymentBtn>
-      ) : ( */}
-      <div id="paymentBtn">
-        <PaymentBtn to={`/checkout/step1`}>checkout</PaymentBtn>
-      </div>
-      {/* )} */}
-      <DeliverBox>
-        <DeliverBoxItem>
-          <ShippingFast />
-          Get free standart shipping when you spend $150 or more.
-        </DeliverBoxItem>
-        <DeliverBoxItem>
-          <Done />
-          If your plant dies withing 30 days, we’ll replace it for free.
-        </DeliverBoxItem>
-      </DeliverBox>
+      {confirm ? (
+        <PaymentBtn onClick={handleAddOrder} id="paymentBtn">
+          confirm
+        </PaymentBtn>
+      ) : (
+        <PaymentBtn to={`/checkout/step1`} id="paymentBtn">
+          checkout
+        </PaymentBtn>
+      )}
+      {!confirm && (
+        <DeliverBox>
+          <DeliverBoxItem>
+            <ShippingFast />
+            Get free standart shipping when you spend $150 or more.
+          </DeliverBoxItem>
+          <DeliverBoxItem>
+            <Done />
+            If your plant dies withing 30 days, we’ll replace it for free.
+          </DeliverBoxItem>
+        </DeliverBox>
+      )}
     </PaymentBox>
   );
 };

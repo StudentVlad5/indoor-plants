@@ -100,13 +100,13 @@ export const UserData = () => {
       </UserDataContainer>
       <UserDataContainer>
         <TitleArticle>My addresses</TitleArticle>
-        {!userIn.address && !showAddAddress && (
+        {userIn.address.length === 0 && !showAddAddress && (
           <BtnLight onClick={() => setShowAddAddress(true)}>
             add address
           </BtnLight>
         )}
         {showAddAddress && <Address onClose={setShowAddAddress} />}
-        {userIn.address && (
+        {userIn.address.length !== 0 && (
           <ProfileContainer>
             <IconBtn onClick={() => setShowAddAddress(true)}>
               <PensilStyle />

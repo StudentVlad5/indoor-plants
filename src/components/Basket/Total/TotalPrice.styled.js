@@ -31,12 +31,20 @@ export const PaymentTotal = styled.div`
 export const PaymentTotalTitle = styled.h4`
   color: ${theme.colors.brown1};
   font-family: ${theme.fonts[1]};
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
   margin-bottom: 11px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 `;
 
 export const PaymentBoxOrder = styled.div`
@@ -60,11 +68,19 @@ export const PaymentTotalListItem = styled.tr`
 export const PaymentTotalListItemTitle = styled.th`
   color: ${theme.colors.brown1};
   font-family: ${theme.fonts[0]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.28px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export const PaymentTotalListItemDiscr = styled.td`
@@ -72,27 +88,51 @@ export const PaymentTotalListItemDiscr = styled.td`
 
   color: ${theme.colors.brown2};
   font-family: ${theme.fonts[1]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-align: start;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export const PaymentTotalTitlePrice = styled.th`
   color: ${theme.colors.brown1};
   font-family: ${theme.fonts[1]};
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 `;
 
 export const PaymentTotalTitlePriceDiscr = styled(PaymentTotalListItemDiscr)`
   color: ${theme.colors.brown1};
-  font-size: 16px;
+  font-size: 12px;
   letter-spacing: 0.32px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 `;
 
 export const PaymentBtn = styled(Link)`
@@ -101,7 +141,7 @@ export const PaymentBtn = styled(Link)`
 
   color: ${theme.colors.brown2};
   font-family: ${theme.fonts[0]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -113,6 +153,14 @@ export const PaymentBtn = styled(Link)`
   border: 1px solid ${theme.colors.brown2};
   background-color: transparent;
   cursor: pointer;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 
   &:hover,
   &:focus {
@@ -142,10 +190,18 @@ export const DeliverBoxItem = styled.p`
   align-items: center;
   color: ${theme.colors.brown2};
   font-family: ${theme.fonts[1]};
-  font-size: 12px;
+  font-size: 8px;
   font-style: normal;
   font-weight: 300;
   line-height: 160%; /* 19.2px */
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 10px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 12px;
+  }
 `;
 
 export const Done = styled(done)`

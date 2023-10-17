@@ -32,7 +32,7 @@ import {
 
 // import { useTranslation } from 'react-i18next';
 
-export const Basket = () => {
+export const Basket = ({ confirm, handleAddOrder }) => {
   // const { t } = useTranslation();
   // const userComment = useSelector(selectComment);
   const auth = useSelector(getUser);
@@ -67,7 +67,7 @@ export const Basket = () => {
               ))}
             </BasketCompList>
 
-            <TotalPrice />
+            <TotalPrice confirm={confirm} handleAddOrder={handleAddOrder} />
           </BasketWrapper>
         ) : (
           <AuthCheckOutBox>
@@ -151,7 +151,7 @@ export const Basket = () => {
           </OrderBox>
         ))} */}
 
-        {basket.length === 0 && !auth._id ? (
+        {basket.length === 0 && !auth._id && (
           <AuthCheckOutBox>
             <TitleCheckOut>
               For quick ordering and saving order history
@@ -163,8 +163,6 @@ export const Basket = () => {
               <Btn>SIGN IN</Btn>
             </Link>
           </AuthCheckOutBox>
-        ) : (
-          <AuthCheckOutBox></AuthCheckOutBox>
         )}
       </BasketContainer>
     </BasketSection>
