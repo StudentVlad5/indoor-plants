@@ -18,27 +18,6 @@ async function fetchData(pathParams) {
   return await axiosInstance.get();
 }
 
-async function updateUserData(pathParams, body, file) {
-  const formData = new FormData();
-  file && formData.set('avatar', file);
-  formData.append('userName', body.userName);
-  formData.append('surname', body.surname);
-  formData.append('email', body.email);
-  formData.append('birthday', body.birthday);
-  formData.append('location', body.location);
-  formData.append('password', body.password);
-  formData.append('phone', body.phone);
-  // formData.append('role', body.role);
-
-  return await axios.patch(`${BASE_URL}${pathParams}`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
-    },
-  });
-}
-
 async function deleteData(pathParams) {
   const formData = new FormData();
   return axios.delete(`${BASE_URL}${pathParams}`, formData, {
@@ -138,11 +117,6 @@ deleteData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
-updateUserData.propTypes = {
-  pathParams: PropTypes.string.isRequired,
-  formData: PropTypes.string.isRequired,
-};
-
 getFavorites.propTypes = {
   pathParams: PropTypes.string.isRequired,
   formData: PropTypes.string.isRequired,
@@ -183,7 +157,6 @@ getCareList.propTypes = {
 
 export {
   fetchData,
-  updateUserData,
   deleteData,
   getFavorites,
   getListOfCities,
