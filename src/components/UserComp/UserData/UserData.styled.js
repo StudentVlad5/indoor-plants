@@ -196,6 +196,10 @@ const BtnGreen = styled(Button)`
   cursor: pointer;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 180px;
     height: 45px;
     font-size: 14px;
@@ -252,6 +256,10 @@ const ProfileSpanName = styled.span`
   color: ${theme.colors.green};
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     font-size: 16px;
   }
 `;
@@ -305,10 +313,15 @@ const IconBtn = styled.button`
 `;
 
 const PensilStyle = styled(Pencil)`
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   fill: ${theme.colors.white};
   transform: ${theme.transition[1]};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 18px;
+    height: 18px;
+  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 24px;

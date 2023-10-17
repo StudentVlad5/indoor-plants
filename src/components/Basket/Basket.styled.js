@@ -139,6 +139,7 @@ export const BasketCompList = styled.ul`
   justify-content: space-between;
   flex-direction: column;
   gap: 20px;
+  height: 100%;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 60%;

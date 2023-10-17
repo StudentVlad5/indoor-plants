@@ -7,7 +7,7 @@ export const BasketCompItem = styled.li`
   gap: 20px;
 
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   padding: 5px;
 
   background-color: ${theme.colors.green6};
@@ -33,13 +33,21 @@ export const BtnItem = styled.p`
   color: ${theme.colors.brown1};
   text-align: center;
   font-family: ${theme.fonts[0]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
   text-transform: uppercase;
 
   cursor: pointer;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export const DiscrDataList = styled.div`
@@ -56,12 +64,20 @@ export const DiscrDataListItem = styled.div`
 export const DiscrDataListItemTitle = styled.h4`
   color: ${theme.colors.brown1};
   font-family: ${theme.fonts[1]};
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
   margin-top: 1px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 `;
 
 export const DiscrDataListItemHeading = styled.div`
@@ -73,23 +89,39 @@ export const DiscrDataListItemHeading = styled.div`
 export const DiscrDataListItemTitlePrice = styled.span`
   color: ${theme.colors.brown1};
   font-family: ${theme.fonts[1]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.32px;
   margin-top: 1px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export const DiscrDataListItemPrice = styled.p`
   color: ${props =>
     props.$red ? `${theme.colors.red}` : `${theme.colors.brown1}`};
   font-family: ${theme.fonts[1]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-decoration-line: ${props => (props.$red ? 'none' : 'line-through')};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export const DiscrDataTable = styled.tbody`
@@ -102,7 +134,11 @@ export const DiscrDataTable = styled.tbody`
 export const DiscrDataTableLine = styled.tr`
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 60%;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 50%;
+  }
 `;
 
 export const DiscrDataTableHead = styled.th`
@@ -110,25 +146,42 @@ export const DiscrDataTableHead = styled.th`
 
   color: ${theme.colors.brown1};
   font-family: ${theme.fonts[0]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.28px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export const DiscrDataTableData = styled.td`
   display: flex;
-  gap: 10px;
+  gap: 5px;
 
   width: 50%;
 
   color: ${theme.colors.brown1};
   font-family: ${theme.fonts[1]};
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export const IconBtn = styled.button`
@@ -140,8 +193,13 @@ export const IconBtn = styled.button`
   cursor: pointer;
 
   & svg {
-    width: 17px;
-    height: 17px;
+    width: 12px;
+    height: 12px;
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      width: 17px;
+      height: 17px;
+    }
 
     & > path {
       stroke: ${theme.colors.brown1};
@@ -153,11 +211,19 @@ export const IconBtn = styled.button`
     color: ${theme.colors.brown1};
 
     font-family: ${theme.fonts[0]};
-    font-size: 14px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.28px;
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      font-size: 14px;
+    }
   }
 
   &:disabled {
@@ -172,8 +238,14 @@ export const IconBtn = styled.button`
 
 export const BasketCompIconClose = styled(IconClose)`
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 16px;
+    height: 16px;
+  }
+
   & > path {
     stroke: ${theme.colors.brown1};
     fill: ${theme.colors.brown1};
