@@ -37,22 +37,36 @@ import ukrPoshta from 'images/svg/ukrposhta-logo.svg';
 import curier from 'images/delivery/pngegg.png';
 import liqpay from 'images/svg/LIQPAY.svg';
 import wallet from 'images/svg/wallet.svg';
+import { useAuth } from 'hooks/useAuth';
+
 
 const Step4 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const auth = useSelector(getUser);
+  const { userIn } = useAuth();
+
   const [formData] = useState(
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
-          name: auth._id ? auth?.userName : '',
-          surname: auth._id ? auth?.surname : '',
-          email: auth._id ? auth?.email : '',
-          phone: auth._id ? auth?.phone : '',
-          city: '',
-          address: '',
+          // name: auth._id ? auth?.userName : '',
+          // surname: auth._id ? auth?.surname : '',
+          // email: auth._id ? auth?.email : '',
+          // phone: auth._id ? auth?.phone : '',
+          // city: '',
+          // address: '',
+          name: auth._id ? userIn.address.userName : '',
+          surname: auth._id ? userIn.address.surname : '',
+          company: auth._id ? userIn.address.company : '',
+          email: auth._id ? userIn.address.email : '',
+          phone: auth._id ? userIn.address.phone : '',
+          address1: auth._id ? userIn.address.address1 : '',
+          address2: auth._id ? userIn.address.address2 : '',
+          city: auth._id ? userIn.address.city : '',
+          state: auth._id ? userIn.address.state : '',
+          zipCode: auth._id ? userIn.address.zipCode : '',
         },
   );
   let delivery = '';
@@ -106,7 +120,8 @@ const Step4 = () => {
     departmentDelivery = selectedDepartment_UP;
   } else {
     cityDelivery = formData.city;
-    departmentDelivery = formData.address;
+    departmentDelivery = formData.address1;
+    departmentDelivery = formData.address2;
   }
 
   const newOrder = {
@@ -116,9 +131,18 @@ const Step4 = () => {
     totalPayment: Math.round(+totalPayment * 100) / 100,
     currency,
     deliveryOrder: { delivery, cityDelivery, departmentDelivery },
+    // name: formData.name + ' ' + formData.surname,
+    // phone: formData.phone,
+    // email: formData.email,
     name: formData.name + ' ' + formData.surname,
+    company: formData.company,
+    city: formData.city,
+    state: formData.state,
     phone: formData.phone,
     email: formData.email,
+    address1: formData.address1,
+    address2: formData.address2,
+    zipCode: formData.zipCode,
     selectedPaymentOption,
     comments,
     user_id: auth._id,
@@ -200,6 +224,7 @@ const Step4 = () => {
         {/* Reciver */}
         <DataContainerItems>
           <DataTitle>Selected customer options</DataTitle>
+
           <DataContainerTextBox>
             <DataContainerText>
               {formData.name} {formData.surname}
@@ -215,6 +240,31 @@ const Step4 = () => {
               ))}
             <DataContainerText>{formData.email}</DataContainerText>
           </DataContainerTextBox>
+
+          <DataContainerText>
+            {formData.name} {formData.surname}
+          </DataContainerText>
+          <DataContainerText>{formData.company}</DataContainerText>
+          {delivery === '' ||
+            (delivery === 'Courier delivery' && (
+              <DataContainerText>{formData.city}</DataContainerText>
+            ))}
+          <DataContainerText>{formData.state}</DataContainerText>
+          <DataContainerText>{formData.zipCode}</DataContainerText>
+
+          {delivery === '' ||
+            (delivery === 'Courier delivery' && (
+              <DataContainerText>{formData.address1}</DataContainerText>
+            ))}
+          {delivery === '' ||
+            (delivery === 'Courier delivery' && (
+              <DataContainerText>{formData.address2}</DataContainerText>
+            ))}
+
+          <DataContainerText>{formData.phone}</DataContainerText>
+          <DataContainerText>{formData.email}</DataContainerText>
+
+
           <DataContainerPensil
             onClick={() => navigate('/checkout/step2', { replace: true })}
           >
