@@ -76,6 +76,9 @@ export const UserData = () => {
             <UserDataImgWrapper>
               <UserDataImg alt="User" src={avatar} />
               <EditCameraForm>
+                <EditPhotoLabel htmlFor="user_photo">
+                  <PensilStyle />
+                </EditPhotoLabel>
                 <EditPhotoInput
                   type="file"
                   name="edit photo"
