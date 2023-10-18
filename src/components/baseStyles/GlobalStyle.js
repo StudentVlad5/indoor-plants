@@ -400,7 +400,7 @@ input::-webkit-calendar-picker-indicator:hover {
     position: absolute;
     top: 18px;
     left: 0;
-    width: 110px;
+    width: 110%;
     height: 0.5px;
     background: ${theme.colors.beige};
 
