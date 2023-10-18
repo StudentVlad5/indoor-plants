@@ -280,6 +280,8 @@ const IconBtn = styled.button`
   height: 27px;
 
   border: none;
+  border-radius: 50%;
+  background-color: transparent;
 
   cursor: pointer;
   transform: ${theme.transition[1]};
