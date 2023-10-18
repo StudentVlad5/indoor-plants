@@ -9,6 +9,7 @@ import { GlobalStyle } from 'components/baseStyles/GlobalStyle';
 import { I18nextProvider } from 'react-i18next';
 import { StatusProvider } from 'components/ContextStatus/ContextStatus';
 import i18n from './utils/i18n';
+import { getTemporaryToken } from 'token';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -26,3 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>,
 );
+
+const storedToken = getTemporaryToken();
+
+console.log('Тимчасовий токен з локального сховища:', storedToken);
