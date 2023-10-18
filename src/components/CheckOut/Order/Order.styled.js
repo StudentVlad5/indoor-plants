@@ -244,6 +244,11 @@ export const DeliveryFormLableText = styled.span`
   }
 `;
 
+export const DeliveryFormLableTextSpan = styled.span`
+  color: red;
+  font-size: 20px;
+`;
+
 export const DeliveryFormInput = styled.input`
   width: 100%;
   padding: 8px 30px 8px 20px;
