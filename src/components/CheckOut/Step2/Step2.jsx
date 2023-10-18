@@ -15,6 +15,7 @@ import {
   DeliveryFormInput,
   DeliveryFormLable,
   DeliveryFormBtn,
+  DeliveryFormLableTextSpan,
 } from '../Order/Order.styled';
 import { getUser } from 'redux/auth/selectors';
 import { getFromStorage, saveToStorage } from 'services/localStorService';
@@ -98,6 +99,22 @@ const Step2 = () => {
     }
   }, [formData, delivery]);
 
+  useEffect(() => {
+    const requiredFields = [
+      'name',
+      'surname',
+      'address1',
+      'city',
+      'state',
+      'zipCode',
+      'email',
+      'phone',
+    ];
+
+    const isFilled = requiredFields.every(field => !!formData[field]);
+    setDisabled(!isFilled);
+  }, [formData]);
+
   const handleInputChange = e => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
@@ -142,14 +159,17 @@ const Step2 = () => {
         <DataContainerText>{formData.phone}</DataContainerText>
 
         <DataContainerPensil onClick={() => setShowAddAddress(!showAddAddress)}>
-          {showAddAddress ? <PensilStyle /> : <DataContainerCheckMark />}
+          {showAddAddress ? <DataContainerCheckMark /> : <PensilStyle />}
         </DataContainerPensil>
       </DataContainer>
 
-      {!showAddAddress && (
+      {showAddAddress && (
         <DeliveryForm>
           <DeliveryFormLable>
-            <DeliveryFormLableText>First name</DeliveryFormLableText>
+            <DeliveryFormLableText>
+              First name{' '}
+              <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+            </DeliveryFormLableText>
             <DeliveryFormInput
               onChange={handleInputChange}
               type="text"
@@ -161,7 +181,9 @@ const Step2 = () => {
           </DeliveryFormLable>
 
           <DeliveryFormLable>
-            <DeliveryFormLableText>Last name</DeliveryFormLableText>
+            <DeliveryFormLableText>
+              Last name <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+            </DeliveryFormLableText>
             <DeliveryFormInput
               onChange={handleInputChange}
               type="text"
@@ -187,7 +209,9 @@ const Step2 = () => {
           {delivery === '' ||
             (delivery === 'Courier delivery' && (
               <DeliveryFormLable>
-                <DeliveryFormLableText>City</DeliveryFormLableText>
+                <DeliveryFormLableText>
+                  City <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
                 <DeliveryFormInput
                   onChange={handleInputChange}
                   type="text"
@@ -202,7 +226,10 @@ const Step2 = () => {
           {delivery === '' ||
             (delivery === 'Courier delivery' && (
               <DeliveryFormLable>
-                <DeliveryFormLableText>Address 1</DeliveryFormLableText>
+                <DeliveryFormLableText>
+                  Address 1{' '}
+                  <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
                 <DeliveryFormInput
                   onChange={handleInputChange}
                   type="text"
@@ -226,7 +253,9 @@ const Step2 = () => {
           </DeliveryFormLable>
 
           <DeliveryFormLable>
-            <DeliveryFormLableText>State</DeliveryFormLableText>
+            <DeliveryFormLableText>
+              State <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+            </DeliveryFormLableText>
             <DeliveryFormInput
               onChange={handleInputChange}
               type="text"
@@ -238,7 +267,9 @@ const Step2 = () => {
           </DeliveryFormLable>
 
           <DeliveryFormLable>
-            <DeliveryFormLableText>Zip code</DeliveryFormLableText>
+            <DeliveryFormLableText>
+              Zip code <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+            </DeliveryFormLableText>
             <DeliveryFormInput
               onChange={handleInputChange}
               type="text"
@@ -250,7 +281,9 @@ const Step2 = () => {
           </DeliveryFormLable>
 
           <DeliveryFormLable>
-            <DeliveryFormLableText>Phone</DeliveryFormLableText>
+            <DeliveryFormLableText>
+              Phone <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+            </DeliveryFormLableText>
             <DeliveryFormInput
               onChange={handleInputChange}
               type="tel"
@@ -263,7 +296,9 @@ const Step2 = () => {
           </DeliveryFormLable>
 
           <DeliveryFormLable>
-            <DeliveryFormLableText>Email</DeliveryFormLableText>
+            <DeliveryFormLableText>
+              Email <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+            </DeliveryFormLableText>
             <DeliveryFormInput
               onChange={handleInputChange}
               type="email"
