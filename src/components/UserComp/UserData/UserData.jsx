@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { update } from 'redux/auth/operations';
 import { selectId, getUserAvatar } from 'redux/auth/selectors';
+// import {
+//   EditBtn,
+//   Input,
+//   Label,
+// } from '../DefaultDelivery/DefaultDelivery.styled';
 import {
   BtnLight,
   EditCameraForm,
@@ -27,6 +32,7 @@ import {
 
 import NotFoundImg from 'images/No-image-available.webp';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
+
 import { Profile } from '../Profile/Profile';
 import { ChangePassword } from '../ChangePassword/ChangePassword';
 import { DefaultDelivery } from '../DefaultDelivery/DefaultDelivery';
@@ -35,8 +41,10 @@ import { Address } from '../Address/Address';
 export const UserData = () => {
   const [editProfileSettings, setEditProfileSettings] = useState(false);
   const [showAddAddress, setShowAddAddress] = useState(false);
+  const [showAddDelivery, setShowAddDelivery] = useState(false);
   const dispatch = useDispatch();
 
+  let { userIn } = useAuth();
   const id = useSelector(selectId);
   const userAvatar = useSelector(getUserAvatar);
   let avatar = NotFoundImg;
@@ -46,8 +54,6 @@ export const UserData = () => {
       'avatars/' +
       userAvatar.split('/')[userAvatar.split('/').length - 1];
   }
-  // const { t } = useTranslation();
-  let { userIn } = useAuth();
 
   const changeAvatar = e => {
     const data = {};
@@ -59,6 +65,8 @@ export const UserData = () => {
   const birthday = userIn.birthday
     ? new Date(userIn.birthday).toLocaleDateString()
     : '';
+
+  useEffect(() => {}, [userIn]);
 
   return (
     <UserDataSection>
@@ -100,13 +108,13 @@ export const UserData = () => {
       </UserDataContainer>
       <UserDataContainer>
         <TitleArticle>My addresses</TitleArticle>
-        {userIn.address.length === 0 && !showAddAddress && (
+        {userIn.address === '' && !showAddAddress && (
           <BtnLight onClick={() => setShowAddAddress(true)}>
             add address
           </BtnLight>
         )}
         {showAddAddress && <Address onClose={setShowAddAddress} />}
-        {userIn.address.length !== 0 && (
+        {userIn.address !== '' && (
           <ProfileContainer>
             <IconBtn onClick={() => setShowAddAddress(true)}>
               <PensilStyle />
@@ -118,16 +126,14 @@ export const UserData = () => {
               <ProfileSpanValues>{userIn.address.company}</ProfileSpanValues>
             )}
             <ProfileSpanValues>
-              {userIn.address.city}, {userIn.address.state},{' '}
-              {userIn.address.zipCode}
+              {userIn?.address?.city}, {userIn?.address?.state},{' '}
+              {userIn?.address?.zipCode}
             </ProfileSpanValues>
-            {userIn.address.address1 && userIn.address.address2 && (
-              <ProfileSpanValues>
-                {userIn.address.address1} {userIn.address.address2}
-              </ProfileSpanValues>
-            )}
-            <ProfileSpanValues>{userIn.address.phone}</ProfileSpanValues>
-            <ProfileSpanValues>{userIn.address.email}</ProfileSpanValues>
+            <ProfileSpanValues>
+              {userIn?.address?.address1}, {userIn?.address?.address2}
+            </ProfileSpanValues>
+            <ProfileSpanValues>{userIn?.address?.phone}</ProfileSpanValues>
+            <ProfileSpanValues>{userIn?.address?.email}</ProfileSpanValues>
           </ProfileContainer>
         )}
       </UserDataContainer>
