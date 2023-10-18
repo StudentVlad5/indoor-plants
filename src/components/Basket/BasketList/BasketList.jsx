@@ -104,7 +104,7 @@ export const BasketList = ({ _id, name, optionData, images, quantity }) => {
                   </DiscrDataTableData>
                 ) : (
                   <DiscrDataTableData>
-                    <DiscrDataListItemPrice>
+                    <DiscrDataListItemPrice $current>
                       {currency}
                       {optionData.currentPrice}
                     </DiscrDataListItemPrice>

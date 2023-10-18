@@ -86,7 +86,8 @@ export const InputComments = styled.textarea`
 
 export const DataContainerTextBox = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${props => (props.$row ? 'row' : 'column')};
+  align-items: ${props => (props.$row ? 'center' : 'flex-start')};
   gap: 6px;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {

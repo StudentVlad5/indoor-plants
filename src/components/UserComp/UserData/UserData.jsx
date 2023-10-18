@@ -76,6 +76,9 @@ export const UserData = () => {
             <UserDataImgWrapper>
               <UserDataImg alt="User" src={avatar} />
               <EditCameraForm>
+                <EditPhotoLabel htmlFor="user_photo">
+                  <PensilStyle />
+                </EditPhotoLabel>
                 <EditPhotoInput
                   type="file"
                   name="edit photo"
@@ -126,11 +129,11 @@ export const UserData = () => {
               <ProfileSpanValues>{userIn.address.company}</ProfileSpanValues>
             )}
             <ProfileSpanValues>
+              {userIn?.address?.address1}, {userIn?.address?.address2}
+            </ProfileSpanValues>{' '}
+            <ProfileSpanValues>
               {userIn?.address?.city}, {userIn?.address?.state},{' '}
               {userIn?.address?.zipCode}
-            </ProfileSpanValues>
-            <ProfileSpanValues>
-              {userIn?.address?.address1}, {userIn?.address?.address2}
             </ProfileSpanValues>
             <ProfileSpanValues>{userIn?.address?.phone}</ProfileSpanValues>
             <ProfileSpanValues>{userIn?.address?.email}</ProfileSpanValues>

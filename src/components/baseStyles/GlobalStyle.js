@@ -369,22 +369,63 @@ input::-webkit-calendar-picker-indicator:hover {
   color: ${theme.colors.white}
 }
 
-.linkFolder.sideBar_menu.active{
-  font-size: 12px;
+.linkFolder.sideBar_menu{
+   position: relative;
+  padding-left: 10px;
+  font-family: ${theme.fonts[0]};
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+  text-decoration: none;
   color: ${theme.colors.darkGreen};
-  font-weight: 500;
-  transform: ${theme.scale[0]};
-  transition: ${theme.transition[0]};
-  /* text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4); */
-  background-color: transparent;
 
-  &::before {
-    width: 115%;
-    left: -5px;
+  @media (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
   }
 
-   @media screen and (min-width: ${theme.breakpoints.tablet}) {  
-    margin-left:5px;
+  @media (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.green2};
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 0;
+    width: 110px;
+    height: 0.5px;
+    background: ${theme.colors.beige};
+
+    @media (min-width: ${theme.breakpoints.tablet}) {
+      width: 150px;
+    }
+
+    @media (min-width: ${theme.breakpoints.desktop}) {
+      width: 285px;
+    }
+  }
+
+  &.active {
+    margin-left: 5px;
+    font-weight: 500;
+    color: ${theme.colors.darkGreen};
+    transform: ${theme.scale[0]};
+    transition: ${theme.transition[0]};
+    background-color: transparent;
+
+    &::before {
+      @media (min-width: ${theme.breakpoints.desktop}) {
+        width: 250px;
+      }
+    }
   }
 }
 

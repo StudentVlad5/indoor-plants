@@ -52,9 +52,8 @@ const UserDataImgWrapper = styled.div`
 
 const EditCameraForm = styled.form`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0;
+  left: 110%;
   z-index: 10;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -75,15 +74,6 @@ const UserDataImg = styled.img`
 `;
 
 const EditPhotoLabel = styled.label`
-  display: flex;
-  align-items: center;
-
-  font-family: ${theme.fonts[0]};
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%; /* 16.8px */
-
   transition: ${theme.transition[1]};
   cursor: pointer;
 
@@ -93,10 +83,11 @@ const EditPhotoLabel = styled.label`
 `;
 
 const EditPhotoInput = styled.input`
+  position: absolute;
   opacity: 0;
-  width: 75px;
-  height: 75px;
-  z-index: 11;
+  z-index: -1;
+  width: 0;
+  height: 0;
   cursor: pointer;
 `;
 

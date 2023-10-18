@@ -50,12 +50,6 @@ const Step4 = () => {
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
-          // name: auth._id ? auth?.userName : '',
-          // surname: auth._id ? auth?.surname : '',
-          // email: auth._id ? auth?.email : '',
-          // phone: auth._id ? auth?.phone : '',
-          // city: '',
-          // address: '',
           name: auth._id ? userIn.address.userName : '',
           surname: auth._id ? userIn.address.surname : '',
           company: auth._id ? userIn.address.company : '',
@@ -189,7 +183,7 @@ const Step4 = () => {
         {/* Delivery */}
         <DataContainerItems>
           <DataTitle>Selected delivery</DataTitle>
-          <DataContainerTextBox>
+          <DataContainerTextBox $row>
             {delivery === 'NovaPoshta' && (
               <img style={{ width: 30 }} src={novaPoshta} alt="NovaPoshta" />
             )}
@@ -228,12 +222,19 @@ const Step4 = () => {
             <DataContainerText>
               {formData.name} {formData.surname}
             </DataContainerText>
-            <DataContainerText>{formData.company}</DataContainerText>
-            <DataContainerText>{formData.phone}</DataContainerText>
-            {delivery === '' ||
-              (delivery === 'Courier delivery' && (
-                <DataContainerText>{formData.address}</DataContainerText>
-              ))}
+            {formData.company && (
+              <DataContainerText>{formData.company}</DataContainerText>
+            )}
+            {formData.address1 && (
+              <DataContainerText>
+                {formData.address1} {formData.address2}
+              </DataContainerText>
+            )}
+            {formData.city && formData.state && formData.zipCode && (
+              <DataContainerText>
+                {formData.city}, {formData.state}, {formData.zipCode}
+              </DataContainerText>
+            )}
             <DataContainerText>{formData.phone}</DataContainerText>
             <DataContainerText>{formData.email}</DataContainerText>
           </DataContainerTextBox>
@@ -248,7 +249,7 @@ const Step4 = () => {
         {/* Payment */}
         <DataContainerItems>
           <DataTitle>Selected payment</DataTitle>
-          <DataContainerTextBox>
+          <DataContainerTextBox $row>
             {selectedPaymentOption === 'Payment by bank card' ? (
               <img
                 style={{ width: 50 }}
@@ -257,7 +258,7 @@ const Step4 = () => {
               />
             ) : (
               <img
-                style={{ width: 50 }}
+                style={{ width: 30 }}
                 src={wallet}
                 alt="Payment on account or Cash on delivery"
               />
