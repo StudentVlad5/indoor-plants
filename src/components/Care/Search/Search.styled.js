@@ -16,15 +16,16 @@ const Label = styled.label`
   justify-content: space-between;
 
   width: 100%;
-  height: 40px;
-  padding: 10px 20px;
+  /* height: 30px; */
+  padding: 10px;
 
   color: ${theme.colors.grey};
   background-color: ${theme.colors.white};
   border: 0.5px solid ${theme.colors.greyOpacity};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    height: 44px;
+    padding: 10px 20px;
+    /* height: 44px; */
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -40,14 +41,19 @@ const Input = styled.input`
   font-family: ${theme.fonts[0]};
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 1.375;
   letter-spacing: 0.04em;
 
   color: ${theme.colors.brown2};
   background-color: ${theme.colors.white};
 
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
     background-color: ${theme.colors.fon};
   }
 `;

@@ -30,4 +30,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 const storedToken = getTemporaryToken();
 
-console.log('Тимчасовий токен з локального сховища:', storedToken);
+// console.log('Тимчасовий токен з локального сховища:', storedToken);
