@@ -12,8 +12,12 @@ import {
   BtnLight,
   PensilStyle,
 } from '../UserData/UserData.styled';
-import { EditBtn, Input, Label } from '../ChangePassword/ChangePassword.styled';
-import { ProfileInputSelect } from './DefaultDelivery.styled';
+import {
+  ProfileInputSelect,
+  EditBtn,
+  Input,
+  Label,
+} from './DefaultDelivery.styled';
 
 export const DefaultDelivery = () => {
   const [isShown, setIsShown] = useState(false);
@@ -24,13 +28,8 @@ export const DefaultDelivery = () => {
   return (
     <>
       {!isShown && (
-        <Label htmlFor="delivery">
-          <Input
-            type="text"
-            name="delivery"
-            id="delivery"
-            defaultValue={userIn.delivery}
-          />
+        <Label>
+          <Input>{userIn.delivery}</Input>
           <EditBtn onClick={() => setIsShown(true)}>
             <PensilStyle />
           </EditBtn>
@@ -42,7 +41,6 @@ export const DefaultDelivery = () => {
             delivery: userIn?.delivery ? userIn.delivery : '',
           }}
           onSubmit={(values, { setSubmitting }) => {
-            console.log('DefaultDelivery ~ values:', values);
             dispatch(update({ ...values, id }));
             setSubmitting(false);
             setIsShown(false);

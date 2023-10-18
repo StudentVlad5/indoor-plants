@@ -52,10 +52,11 @@ export const updateUserData = async updateData => {
   updateData.phone && formData.append('phone', updateData.phone);
   updateData.password && formData.append('password', updateData.password);
   updateData.delivery && formData.append('delivery', updateData.delivery);
-  Object.entries(updateData.address).forEach(([key, value]) => {
-    formData.append(`address[${key}]`, value);
-  });
-
+  if (updateData.address) {
+    Object.entries(updateData.address).forEach(([key, value]) => {
+      formData.append(`address[${key}]`, value);
+    });
+  }
   const { data } = await axios.patch(`/auth/user/${updateData.id}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',

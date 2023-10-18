@@ -77,7 +77,7 @@ const Input = styled.input`
 `;
 
 const EditBtn = styled(IconBtn)`
-  top: 0;
+  top: 1px;
   bottom: 1px;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {

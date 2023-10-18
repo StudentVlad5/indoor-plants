@@ -286,7 +286,7 @@ const IconBtn = styled.button`
   justify-content: center;
   align-items: center;
   width: 28px;
-  height: 28px;
+  height: 27px;
 
   border: none;
 
