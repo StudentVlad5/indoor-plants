@@ -20,9 +20,12 @@ import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
 import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
 // import { StatusContext } from 'components/ContextStatus/ContextStatus';
 import curier from 'images/delivery/pngegg.png';
+import { useAuth } from 'hooks/useAuth';
 
 const Step1 = () => {
   // const { setStatusDisableStep2 } = useContext(StatusContext);
+  const { userIn } = useAuth();
+
   const [selectedCity, setSelectedCity] = useState(
     getFromStorage('selectedCity') ? getFromStorage('selectedCity') : '',
   );
@@ -100,6 +103,16 @@ const Step1 = () => {
     navigate('/checkout/step2', { replace: true });
     saveToStorage('step', '2');
   };
+
+  useEffect(() => {
+    if (
+      userIn.delivery === 'NovaPoshta' ||
+      userIn.delivery === 'UkrPoshta' ||
+      userIn.delivery === 'Courier delivery'
+    ) {
+      setSelectedDeliveryOption(userIn.delivery);
+    }
+  }, [userIn.delivery]);
 
   return (
     <DeliveryBlockOptions>

@@ -22,7 +22,6 @@ import { getFromStorage, saveToStorage } from 'services/localStorService';
 import { useAuth } from 'hooks/useAuth';
 
 const Step2 = () => {
-  const [showAddAddress, setShowAddAddress] = useState(true);
   const [isDisabled, setDisabled] = useState(true);
   const navigate = useNavigate();
 
@@ -134,40 +133,192 @@ const Step2 = () => {
     saveToStorage('step', '3');
   };
 
+  const isAnyFieldEmpty = Object.values(formData).some(value => value === '');
+  const [showAddAddress, setShowAddAddress] = useState(isAnyFieldEmpty);
+  
   return (
     <DeliveryInfoBlock>
-      <DataContainer>
-        <DataContainerText>
-          {formData.name} {formData.surname}
-        </DataContainerText>
-        <DataContainerText>{formData.company}</DataContainerText>
-        {delivery === '' ||
-          (delivery === 'Courier delivery' && (
+      {auth._id ? (
+        <>
+          <DataContainer>
+            <DataContainerText>
+              {formData.name} {formData.surname}
+            </DataContainerText>
+            <DataContainerText>{formData.company}</DataContainerText>
+            {/* {delivery === '' ||
+            (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.city}</DataContainerText>
-          ))}
-        <DataContainerText>{formData.state}</DataContainerText>
-        <DataContainerText>{formData.zipCode}</DataContainerText>
-        {delivery === '' ||
-          (delivery === 'Courier delivery' && (
+            {/* ))} */}
+            <DataContainerText>{formData.state}</DataContainerText>
+            <DataContainerText>{formData.zipCode}</DataContainerText>
+            {/* {delivery === '' || */}
+            {/* (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.address1}</DataContainerText>
-          ))}
-        {delivery === '' ||
-          (delivery === 'Courier delivery' && (
+            {/* ))} */}
+            {/* {delivery === '' || */}
+            {/* (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.address2}</DataContainerText>
-          ))}
-        <DataContainerText>{formData.email}</DataContainerText>
-        <DataContainerText>{formData.phone}</DataContainerText>
+            {/* ))} */}
+            <DataContainerText>{formData.email}</DataContainerText>
+            <DataContainerText>{formData.phone}</DataContainerText>
 
-        <DataContainerPensil onClick={() => setShowAddAddress(!showAddAddress)}>
-          {showAddAddress ? <DataContainerCheckMark /> : <PensilStyle />}
-        </DataContainerPensil>
-      </DataContainer>
+            <DataContainerPensil
+              onClick={() => setShowAddAddress(!showAddAddress)}
+            >
+              {showAddAddress ? <PensilStyle /> : <DataContainerCheckMark />}
+            </DataContainerPensil>
+          </DataContainer>
 
-      {showAddAddress && (
+          {!showAddAddress && (
+            <DeliveryForm>
+              <DeliveryFormLable>
+                <DeliveryFormLableText>
+                  First name
+                  <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  required
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>
+                  Last name{' '}
+                  <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="surname"
+                  name="surname"
+                  value={formData.surname}
+                  required
+                  // placeholder="Washington"
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>Company</DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="company"
+                  value={formData.company}
+                  name="company"
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>
+                  City <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="city"
+                  name="city"
+                  value={formData.city}
+                  required
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>
+                  Address 1
+                  <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="address1"
+                  value={formData.address1}
+                  name="address1"
+                  required
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>Address 2</DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="address2"
+                  name="address2"
+                  value={formData.address2}
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>
+                  State <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="state"
+                  name="state"
+                  value={formData.state}
+                  required
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>
+                  Zip code{' '}
+                  <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="text"
+                  id="zipCode"
+                  name="zipCode"
+                  value={formData.zipCode}
+                  required
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>
+                  Phone <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  required
+                  // placeholder="+123456789"
+                />
+              </DeliveryFormLable>
+
+              <DeliveryFormLable>
+                <DeliveryFormLableText>
+                  Email <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+                </DeliveryFormLableText>
+                <DeliveryFormInput
+                  onChange={handleInputChange}
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  required
+                  // placeholder="george.washington@gmail.com"
+                />
+              </DeliveryFormLable>
+            </DeliveryForm>
+          )}
+        </>
+      ) : (
         <DeliveryForm>
           <DeliveryFormLable>
             <DeliveryFormLableText>
-              First name{' '}
+              First name
               <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
             </DeliveryFormLableText>
             <DeliveryFormInput
@@ -206,40 +357,33 @@ const Step2 = () => {
             />
           </DeliveryFormLable>
 
-          {delivery === '' ||
-            (delivery === 'Courier delivery' && (
-              <DeliveryFormLable>
-                <DeliveryFormLableText>
-                  City <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
-                </DeliveryFormLableText>
-                <DeliveryFormInput
-                  onChange={handleInputChange}
-                  type="text"
-                  id="city"
-                  name="city"
-                  value={formData.city}
-                  required
-                />
-              </DeliveryFormLable>
-            ))}
+          <DeliveryFormLable>
+            <DeliveryFormLableText>
+              City <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+            </DeliveryFormLableText>
+            <DeliveryFormInput
+              onChange={handleInputChange}
+              type="text"
+              id="city"
+              name="city"
+              value={formData.city}
+              required
+            />
+          </DeliveryFormLable>
 
-          {delivery === '' ||
-            (delivery === 'Courier delivery' && (
-              <DeliveryFormLable>
-                <DeliveryFormLableText>
-                  Address 1{' '}
-                  <DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
-                </DeliveryFormLableText>
-                <DeliveryFormInput
-                  onChange={handleInputChange}
-                  type="text"
-                  id="address1"
-                  value={formData.address1}
-                  name="address1"
-                  required
-                />
-              </DeliveryFormLable>
-            ))}
+          <DeliveryFormLable>
+            <DeliveryFormLableText>
+              Address 1<DeliveryFormLableTextSpan>*</DeliveryFormLableTextSpan>
+            </DeliveryFormLableText>
+            <DeliveryFormInput
+              onChange={handleInputChange}
+              type="text"
+              id="address1"
+              value={formData.address1}
+              name="address1"
+              required
+            />
+          </DeliveryFormLable>
 
           <DeliveryFormLable>
             <DeliveryFormLableText>Address 2</DeliveryFormLableText>
@@ -311,6 +455,7 @@ const Step2 = () => {
           </DeliveryFormLable>
         </DeliveryForm>
       )}
+
       <Btnwrapper>
         <Link to={`/checkout/step1`}>
           <DeliveryFormBtn type="button">Back</DeliveryFormBtn>
