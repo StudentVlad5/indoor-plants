@@ -182,6 +182,7 @@ const DeliveryPayBox = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row;
+    padding: 0 10px 10px;
   }
 
   & p {
