@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkindoor_plants=self.webpackChunkindoor_plants||[]).push([[413],{8413:function(t,e,n){n.r(e);var s=n(2791),o=n(9434),r=n(456),a=n(4116),i=n(3569),u=n(3329);e.default=function(){var t=(0,o.I0)();return(0,s.useEffect)((function(){t((0,r.X)({headerBottom:"addHeaderBottom"}))}),[]),(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(a.H,{title:"Basket",description:"Your shopping bag"}),(0,u.jsx)(i.L,{})]})}}}]);
-//# sourceMappingURL=413.f76b849c.chunk.js.map
