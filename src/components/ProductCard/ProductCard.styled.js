@@ -49,7 +49,7 @@ const ProductNavItem = styled.li`
 
 const ProductNavLink = styled.a`
   font-family: ${theme.fonts[1]}; //'Nib Pro'
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: ${props => (props.$primary ? 500 : 400)};
   line-height: normal;
@@ -58,6 +58,14 @@ const ProductNavLink = styled.a`
 
   text-decoration: none;
   text-transform: capitalize;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 16px;
+  }
 
   &:hover,
   &:focus {
@@ -84,9 +92,14 @@ const ProductContent = styled.div`
 const ProductGallery = styled.div`
   display: flex;
   justify-content: center;
-  gap: 47px;
+  gap: 20px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    justify-content: space-around;
+  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    gap: 47px;
     width: 50%;
   }
 `;
@@ -97,10 +110,15 @@ const ControlsList = styled.ul`
   align-items: center;
   gap: 24px;
 
+  width: 30%;
   height: 100%;
   max-height: 700px;
 
   transition: ${theme.transition};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: auto;
+  }
 
   & svg {
     stroke: ${theme.colors.greyOpacity};
@@ -118,9 +136,14 @@ const ControlsList = styled.ul`
 
 const ControlsItem = styled.li`
   & > img {
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      width: 80px;
+      height: 80px;
+    }
   }
 `;
 
@@ -130,7 +153,12 @@ const ProductImageWrapper = styled.div`
   justify-content: space-between;
   gap: 16px;
 
-  height: 823px;
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    height: 823px;
+  }
 `;
 
 const ProductImage = styled.img`
@@ -162,7 +190,7 @@ const DeliveryInfoItem = styled.li`
 
   & span {
     font-family: ${theme.fonts[0]}; //Raisonne Pro
-    font-size: 12px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -170,6 +198,10 @@ const DeliveryInfoItem = styled.li`
     color: ${theme.colors.green};
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
       font-size: 14px;
     }
   }
@@ -214,20 +246,37 @@ const Heading = styled.div`
   display: flex;
   justify-content: space-between;
 
-  margin-bottom: 16px;
-  padding-bottom: 40px;
+  margin-bottom: 6px;
+  padding-bottom: 10px;
 
   border-bottom: 1px solid ${theme.colors.brown1};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    margin-bottom: 12px;
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    margin-bottom: 16px;
+    padding-bottom: 40px;
+  }
 `;
 
 const Name = styled.h2`
   font-family: ${theme.fonts[1]}; //Nib Pro
-  font-size: 24px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
   color: ${theme.colors.green1};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 24px;
+  }
 `;
 
 const Prices = styled.ul`
@@ -238,27 +287,51 @@ const Prices = styled.ul`
 
 const Discount = styled.li`
   font-family: ${theme.fonts[1]}; //Nib Pro
-  font-size: 24px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-
   color: ${theme.colors.green1};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 24px;
+  }
 `;
 
 const Price = styled.li`
   font-family: ${theme.fonts[1]}; //Nib Pro
-  font-size: 20px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-decoration-line: line-through;
-
   color: ${theme.colors.brown2};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 20px;
+  }
 `;
 
 const Description = styled(Subtitle)`
   text-transform: lowercase;
+
+  font-size: 10px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 const Options = styled.div`
@@ -268,6 +341,12 @@ const Options = styled.div`
 const ProductSubTitle = styled(Subtitle)`
   margin-bottom: ${props => props.marginBottom || '16px'};
   text-transform: uppercase;
+
+  font-size: 12px;
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 const OptionsList = styled.div`
@@ -285,7 +364,7 @@ const Option = styled.label`
     padding: 6px 8px;
 
     font-family: ${theme.fonts[0]}; //Raisonne Pro
-    font-size: 14px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -299,6 +378,14 @@ const Option = styled.label`
     border: 0.5px solid ${theme.colors.brown1};
     cursor: pointer;
     transition: ${theme.transition};
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      font-size: 14px;
+    }
 
     &:hover,
     &:focus {
@@ -353,11 +440,19 @@ const Quantity = styled.div`
 
   & span {
     font-family: ${theme.fonts[1]}; //Nib Pro
-    font-size: 16px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: 166%; /* 26.56px */
     color: ${theme.colors.green};
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      font-size: 14px;
+    }
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -389,7 +484,7 @@ const TextBtn = styled.button`
   padding: 10px 0;
 
   font-family: ${theme.fonts[0]}; //Raisonne Pro
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -404,6 +499,14 @@ const TextBtn = styled.button`
 
   cursor: pointer;
   transition: ${theme.transition};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 
   &:hover,
   &:focus {
@@ -450,12 +553,22 @@ const AccordCareItem = styled.li`
   width: 100%;
 
   & span {
+    width: calc(100% - 30px);
+
     color: ${theme.colors.brown2};
     font-family: ${theme.fonts[1]}; //Nib Pro
-    font-size: 14px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: 138%; /* 19.32px */
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: ${theme.breakpoints.desktop}) {
+      font-size: 14px;
+    }
   }
 `;
 
@@ -477,12 +590,19 @@ const AccordIncludedItem = styled.li`
   display: list-item;
 
   font-family: ${theme.fonts[1]}; //Nib Pro
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 138%; /* 19.32px */
-
   color: ${theme.colors.grey};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    font-size: 14px;
+  }
 `;
 
 export {

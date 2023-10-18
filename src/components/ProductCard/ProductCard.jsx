@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; //, useEffect
+import React, { useState, useEffect } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from 'redux/basket/operations';
@@ -36,7 +36,6 @@ export const ProductCard = ({ product }) => {
     light,
     petFriendly,
     hardToKill,
-    waterSchedule,
     waterDescribe,
     category,
   } = product;
