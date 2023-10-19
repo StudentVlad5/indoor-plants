@@ -21,46 +21,91 @@ import { ListImage } from '../ShoppingBag.styled';
 import { ReactComponent as Minus } from 'images/svg/minus.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
+import { removeItemInBasket } from 'services/APIservice';
+import { getFromStorage } from 'services/localStorService';
 
-export const ShoppingBagList = ({
-  _id,
-  name,
-  optionData,
-  images,
-  quantity,
-}) => {
-  const dispatch = useDispatch();
+export const ShoppingBagList = ({ optionData, setDatas, datas, idx }) => {
+  // const dispatch = useDispatch();
+  const {
+    _id,
+    currency,
+    currentPrice,
+    discount,
+    images,
+    name,
+    oldPrice,
+    quantity,
+    title,
+    total,
+  } = optionData;
+
+  // ----------------------------------------->
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [userAnonimusID] = useState(
+    getFromStorage('userAnonimusID') ? getFromStorage('userAnonimusID') : '',
+  );
+
+  async function removeItem(_id, size) {
+    setIsLoading(true);
+    try {
+      const { data } = await removeItemInBasket(`/basket/${userAnonimusID}`, {
+        size,
+        _id,
+      });
+      if (!data) {
+        return onFetchError(t('Whoops, something went wrong'));
+      }
+      setDatas([data]);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  // ----------------------------------------->
 
   const removeProductHandler = (_id, size) => {
-    dispatch(removeProduct({ _id, size }));
+    // dispatch(removeProduct({ _id, size }));
+    removeItem(_id, size);
   };
-  const currency = useSelector(selectCurrency);
+  // const currency = useSelector(selectCurrency);
 
-  const initialPrice = optionData.currentPrice * optionData.quantity;
+  const initialPrice = currentPrice * quantity;
   const [price, setPrice] = useState(initialPrice);
 
   const handleDecrease = () => {
-    if (optionData.quantity > 1) {
-      const newValue = optionData.quantity - 1;
-      const newPrice = newValue * optionData.currentPrice;
+    if (quantity > 1) {
+      const newValue = quantity - 1;
+      const newPrice = newValue * currentPrice;
       setPrice(newPrice);
-      dispatch(setQuantity({ _id, optionData, quantity: newValue }));
+      datas[0].optionData[idx].quantity = newValue;
+      setDatas(prev => [...prev, ...datas]);
+      // dispatch(setQuantity({ _id, optionData, quantity: newValue }));
     }
   };
 
   const handleIncrease = () => {
-    if (optionData.quantity < optionData.total) {
-      const newValue = optionData.quantity + 1;
-      const newPrice = newValue * optionData.currentPrice;
+    if (quantity < total) {
+      const newValue = quantity + 1;
+      const newPrice = newValue * currentPrice;
       setPrice(newPrice);
-      dispatch(setQuantity({ _id, optionData, quantity: newValue }));
+      datas[0].optionData[idx].quantity = newValue;
+      setDatas(prev => [...prev, ...datas]);
+      // dispatch(setQuantity({ _id, optionData, quantity: newValue }));
     }
   };
 
   return (
     <>
       <OrderItem>
-        <ListImage src={BASE_URL_IMG + images[0]} alt="Image" loading="lazy" />
+        {images && (
+          <ListImage
+            src={BASE_URL_IMG + images[0]}
+            alt="Image"
+            loading="lazy"
+          />
+        )}
         <DiscrBoxDiv>
           <DiscrBox>
             <DiscrBoxForText>
@@ -68,10 +113,10 @@ export const ShoppingBagList = ({
                 <DiscrTitle>{name}</DiscrTitle>
                 <DiscrTitle>
                   {currency}
-                  {optionData.currentPrice}
+                  {currentPrice}
                 </DiscrTitle>
               </DiscrBoxTitle>
-              <DiscrBoxSize>{optionData.title}</DiscrBoxSize>
+              <DiscrBoxSize>{title}</DiscrBoxSize>
             </DiscrBoxForText>
             <QuantityBox>
               <Quantity>
@@ -79,23 +124,23 @@ export const ShoppingBagList = ({
                   type="button"
                   aria-label="minus"
                   onClick={handleDecrease}
-                  disabled={optionData.quantity <= 1}
+                  disabled={quantity <= 1}
                 >
                   <Minus />
                 </IconQuantityBtn>
-                <span>{optionData.quantity}</span>
+                <span>{quantity}</span>
                 <IconQuantityBtn
                   type="button"
                   aria-label="plus"
                   onClick={handleIncrease}
-                  disabled={optionData.quantity >= optionData.total}
+                  disabled={quantity >= total}
                 >
                   <Plus />
                 </IconQuantityBtn>
               </Quantity>
               <RemoveBtn
                 onClick={() => {
-                  removeProductHandler(_id, optionData.title);
+                  removeProductHandler(_id, title);
                 }}
               >
                 remove

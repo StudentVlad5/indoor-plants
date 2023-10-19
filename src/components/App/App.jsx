@@ -11,7 +11,7 @@ import { selectIsRefreshing } from 'redux/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import NotFoundPage from 'pages/NotFound';
 import { UserData } from 'components/UserComp/UserData/UserData';
-import { selectBasket } from 'redux/basket/selectors';
+// import { selectBasket } from 'redux/basket/selectors';
 import Step1 from 'components/CheckOut/Step1/Step1';
 import Step2 from 'components/CheckOut/Step2/Step2';
 import Step3 from 'components/CheckOut/Step3/Step3';
@@ -47,9 +47,9 @@ export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   let basket = [];
-  useSelector(selectBasket)
-    ? (basket = useSelector(selectBasket))
-    : (basket = []);
+  // useSelector(selectBasket)
+  //   ? (basket = useSelector(selectBasket))
+  //   : (basket = []);
   const { t } = useTranslation();
 
   useEffect(() => {

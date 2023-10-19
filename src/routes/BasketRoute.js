@@ -2,10 +2,32 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { selectBasket } from 'redux/basket/selectors';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { getFromStorage } from 'services/localStorService';
+// import { useSelector } from 'react-redux';
 
 export const BasketRoute = ({ component: Component, redirectTo = '/' }) => {
-  const basket = useSelector(selectBasket);
+  const [userAnonimusID, _] = useState(
+    getFromStorage('userAnonimusID') ? getFromStorage('userAnonimusID') : '',
+  );
+  const [basket, setBasket] = useState([]);
+  useEffect(() => {
+    (async function getItem() {
+      setIsLoading(true);
+      try {
+        const { data } = await getItemInBasket(`/basket/${userAnonimusID}`);
+        if (!data) {
+          return onFetchError(t('Whoops, something went wrong'));
+        }
+        setBasket(data.data);
+        saveToStorage('basketData', data.data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, []);
+
   const shouldRedirect = !basket || basket?.length === 0;
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };

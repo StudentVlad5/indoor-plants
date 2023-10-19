@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; //, useEffect
+import React, { useContext, useState } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from 'redux/basket/operations';
@@ -19,6 +19,7 @@ import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
 import noImg from 'images/No-image-available.webp';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
+import { addItemInBasket } from 'services/APIservice';
 
 export const ProductCard = ({ product }) => {
   const {
@@ -36,11 +37,29 @@ export const ProductCard = ({ product }) => {
     light,
     petFriendly,
     hardToKill,
+    waterSchedule,
     waterDescribe,
     category,
   } = product;
 
   const dispatch = useDispatch();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  async function addItem(state) {
+    setIsLoading(true);
+    try {
+      const { data } = await addItemInBasket(`/basket`, state);
+      if (!data) {
+        return onFetchError(t('Whoops, something went wrong'));
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const init = {
     title: null,
@@ -50,16 +69,37 @@ export const ProductCard = ({ product }) => {
     total: totalQuantity || 0,
     quantity: 1,
   };
+  const [userAnonimusID] = useState(
+    getFromStorage('userAnonimusID')
+      ? getFromStorage('userAnonimusID')
+      : 'none',
+  );
 
   const addToBasketHandler = product => {
     const updatedProduct = {
       ...product,
+      userAnonimusID,
       optionData: {
         ...product.optionData,
         quantity: product.optionData.quantity,
+        _id: product._id,
       },
     };
-    dispatch(addToBasket(updatedProduct));
+    // dispatch(addToBasket(updatedProduct));
+    const updateBackEndBasket = {
+      _id: updatedProduct.userAnonimusID,
+      optionData: [
+        {
+          ...product.optionData,
+          quantity: product.optionData.quantity,
+          currency: product.currency,
+          name: product.name,
+          _id: product._id,
+          images: [...product.images],
+        },
+      ],
+    };
+    addItem(updateBackEndBasket);
     onSuccess('Added');
   };
 
@@ -79,7 +119,7 @@ export const ProductCard = ({ product }) => {
   //get selected value
   const [value, setValue] = useState(1);
   const quantity = useSelector(state => {
-    const item = state.basket.basketItems.find(
+    const item = state?.basket?.basketItems?.find(
       item => item.optionData._id === optionData._id,
     );
     return item ? item.optionData.quantity : value;

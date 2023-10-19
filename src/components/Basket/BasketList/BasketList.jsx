@@ -27,24 +27,29 @@ import { ReactComponent as Minus } from 'images/svg/minus.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 
-export const BasketList = ({ _id, name, optionData, images, quantity }) => {
-  const dispatch = useDispatch();
+export const BasketList = prod => {
+  // const dispatch = useDispatch();
+
+  console.log('prod', prod);
+  const [optionData, setOptionData] = useState(prod.prod);
 
   const removeProductHandler = (_id, size) => {
-    dispatch(removeProduct({ _id, size }));
+    // dispatch(removeProduct({ _id, size }));
     onSuccess('Removed');
   };
-  const currency = useSelector(selectCurrency);
+  // const currency = useSelector(selectCurrency);
 
-  const initialPrice = optionData.currentPrice * optionData.quantity;
-  const [price, setPrice] = useState(initialPrice);
+  // const initialPrice = optionData.currentPrice * optionData.quantity;
+  const [price, setPrice] = useState(
+    optionData?.currentPrice * optionData?.quantity,
+  );
 
   const handleDecrease = () => {
     if (optionData.quantity > 1) {
       const newValue = optionData.quantity - 1;
       const newPrice = newValue * optionData.currentPrice;
       setPrice(newPrice);
-      dispatch(setQuantity({ _id, optionData, quantity: newValue }));
+      // dispatch(setQuantity({ _id, optionData, quantity: newValue }));
     }
   };
 
@@ -53,14 +58,14 @@ export const BasketList = ({ _id, name, optionData, images, quantity }) => {
       const newValue = optionData.quantity + 1;
       const newPrice = newValue * optionData.currentPrice;
       setPrice(newPrice);
-      dispatch(setQuantity({ _id, optionData, quantity: newValue }));
+      // dispatch(setQuantity({ _id, optionData, quantity: newValue }));
     }
   };
 
   return (
     <BasketCompItem>
       <BasketCompImg
-        src={BASE_URL_IMG + images[0]}
+        src={BASE_URL_IMG + optionData.images[0]}
         width={107}
         height={140}
         alt="Image"
@@ -73,7 +78,7 @@ export const BasketList = ({ _id, name, optionData, images, quantity }) => {
             <DiscrDataListItemHeading>
               <DiscrDataListItemTitle>{name}</DiscrDataListItemTitle>
               <DiscrDataListItemTitlePrice>
-                {currency}
+                {optionData?.currency}
                 {price}
               </DiscrDataListItemTitlePrice>
             </DiscrDataListItemHeading>
@@ -82,31 +87,31 @@ export const BasketList = ({ _id, name, optionData, images, quantity }) => {
             <DiscrDataTable>
               <DiscrDataTableLine>
                 <DiscrDataTableHead>Size</DiscrDataTableHead>
-                {optionData.title === null ? (
+                {optionData?.title === null ? (
                   <DiscrDataTableData>-</DiscrDataTableData>
                 ) : (
-                  <DiscrDataTableData>{optionData.title}</DiscrDataTableData>
+                  <DiscrDataTableData>{optionData?.title}</DiscrDataTableData>
                 )}
               </DiscrDataTableLine>
 
               <DiscrDataTableLine>
                 <DiscrDataTableHead>Price</DiscrDataTableHead>
-                {optionData.discount !== 0 ? (
+                {optionData?.discount !== 0 ? (
                   <DiscrDataTableData>
                     <DiscrDataListItemPrice $red>
-                      {currency}
-                      {optionData.currentPrice}
+                      {optionData?.currency}
+                      {optionData?.currentPrice}
                     </DiscrDataListItemPrice>
                     <DiscrDataListItemPrice>
-                      {currency}
-                      {optionData.oldPrice}
+                      {optionData?.currency}
+                      {optionData?.oldPrice}
                     </DiscrDataListItemPrice>
                   </DiscrDataTableData>
                 ) : (
                   <DiscrDataTableData>
-                    <DiscrDataListItemPrice $current>
-                      {currency}
-                      {optionData.currentPrice}
+                    <DiscrDataListItemPrice>
+                      {optionData?.currency}
+                      {optionData?.currentPrice}
                     </DiscrDataListItemPrice>
                   </DiscrDataTableData>
                 )}
@@ -119,16 +124,16 @@ export const BasketList = ({ _id, name, optionData, images, quantity }) => {
                     type="button"
                     aria-label="minus"
                     onClick={handleDecrease}
-                    disabled={optionData.quantity <= 1}
+                    disabled={optionData?.quantity <= 1}
                   >
                     <Minus />
                   </IconBtn>
-                  <span>{optionData.quantity}</span>
+                  <span>{optionData?.quantity}</span>
                   <IconBtn
                     type="button"
                     aria-label="plus"
                     onClick={handleIncrease}
-                    disabled={optionData.quantity >= optionData.total}
+                    disabled={optionData?.quantity >= optionData?.total}
                   >
                     <Plus />
                   </IconBtn>
@@ -140,7 +145,7 @@ export const BasketList = ({ _id, name, optionData, images, quantity }) => {
 
         <BtnItem
           onClick={() => {
-            removeProductHandler(_id, optionData.title);
+            removeProductHandler(_id, optionData?.title);
           }}
         >
           <BasketCompIconClose />

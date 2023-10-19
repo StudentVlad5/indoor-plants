@@ -24,12 +24,24 @@ import {
 } from './TotalPrice.styled';
 // import { selectOrders } from 'redux/order/selectors';
 
-export const TotalPrice = ({ confirm, handleAddOrder }) => {
-  const totalAmount = useSelector(selectTotalAmount).toFixed(2);
-  const totalDiscount = useSelector(selectTotalDiscount).toFixed(2);
-  const totalPayment = useSelector(selectTotalPayment).toFixed(2);
-  const currency = useSelector(selectCurrency);
+export const TotalPrice = basket => {
+  // const totalAmount = useSelector(selectTotalAmount).toFixed(2);
+  // const totalDiscount = useSelector(selectTotalDiscount).toFixed(2);
+  // const totalPayment = useSelector(selectTotalPayment).toFixed(2);
+  // const currency = useSelector(selectCurrency);
   // const orders = useSelector(selectOrders);
+
+  const totalPayment = basket.basket.reduce((payment, item) => {
+    return payment + item.currentPrice * item.quantity;
+  }, 0);
+  const totalAmount = basket.basket.reduce((payment, item) => {
+    return payment + item.oldPrice * item.quantity;
+  }, 0);
+  const totalDiscount = basket.basket.reduce((payment, item) => {
+    return payment + item.discount * item.quantity;
+  }, 0);
+
+  const currency = basket.basket[0].currency;
 
   return (
     <PaymentBox>
@@ -79,27 +91,23 @@ export const TotalPrice = ({ confirm, handleAddOrder }) => {
           </PaymentTotalList>
         </table>
       </PaymentTotal>
-      {confirm ? (
-        <PaymentBtn onClick={handleAddOrder} id="paymentBtn">
-          confirm
-        </PaymentBtn>
-      ) : (
-        <PaymentBtn to={`/checkout/step1`} id="paymentBtn">
-          checkout
-        </PaymentBtn>
-      )}
-      {!confirm && (
-        <DeliverBox>
-          <DeliverBoxItem>
-            <ShippingFast />
-            Get free standart shipping when you spend $150 or more.
-          </DeliverBoxItem>
-          <DeliverBoxItem>
-            <Done />
-            If your plant dies withing 30 days, we’ll replace it for free.
-          </DeliverBoxItem>
-        </DeliverBox>
-      )}
+      {/* {orders.length > 0 ? (
+        <PaymentBtn>Pay</PaymentBtn>
+      ) : ( */}
+      <div id="paymentBtn">
+        <PaymentBtn to={`/checkout/step1`}>checkout</PaymentBtn>
+      </div>
+      {/* )} */}
+      <DeliverBox>
+        <DeliverBoxItem>
+          <ShippingFast />
+          Get free standart shipping when you spend $150 or more.
+        </DeliverBoxItem>
+        <DeliverBoxItem>
+          <Done />
+          If your plant dies withing 30 days, we’ll replace it for free.
+        </DeliverBoxItem>
+      </DeliverBox>
     </PaymentBox>
   );
 };
