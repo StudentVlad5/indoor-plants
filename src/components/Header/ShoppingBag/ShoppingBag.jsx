@@ -68,35 +68,59 @@ export const ShoppingBag = () => {
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
-        setDatas((datas[0] = data.data));
-        saveToStorage('basketData', data.data);
+        setDatas(prev => data.data);
         dispatch(addToBasket(data.data));
+        saveToStorage('basketData', data.data);
       } catch (error) {
         setError(error);
       } finally {
         setIsLoading(false);
       }
     })();
+  }, []);
+
+  useEffect(() => {
+    async function getItem() {
+      setIsLoading(true);
+      try {
+        const { data } = await getItemInBasket(`/basket/${userAnonimusID}`);
+        if (!data) {
+          return onFetchError(t('Whoops, something went wrong'));
+        }
+        setDatas(prev => data.data);
+        dispatch(addToBasket(data.data));
+        saveToStorage('basketData', data.data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    if (isOpen) {
+      getItem();
+    }
   }, [isOpen]);
 
   async function updateItem(items) {
-    setIsLoading(true);
-    const perem = { optionData: [...items] };
-    try {
-      const { data } = await updateItemInBasket(
-        `/basket/${userAnonimusID}`,
-        perem,
-      );
-      if (!data) {
-        return onFetchError(t('Whoops, something went wrong'));
+    if (items !== undefined) {
+      setIsLoading(true);
+      const perem = { optionData: [...items] };
+      try {
+        const { data } = await updateItemInBasket(
+          `/basket/${userAnonimusID}`,
+          perem,
+        );
+        if (!data) {
+          return onFetchError(t('Whoops, something went wrong'));
+        }
+        setDatas(prev => [data]);
+        dispatch(addToBasket([data]));
+        saveToStorage('basketData', [data]);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
-      setDatas((datas[0] = data.data));
-      dispatch(addToBasket(data));
-      saveToStorage('basketData', data.data);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -137,7 +161,10 @@ export const ShoppingBag = () => {
     setTotalPayment(total);
   }, [datas]);
   let currency = '';
-  if (datas && datas[0]?.optionData[0]?.currency !== undefined) {
+  if (
+    datas
+    // && datas[0]?.optionData[0]?.currency
+  ) {
     currency = datas[0]?.optionData[0]?.currency;
   }
   // document.querySelector('body').style.overflow = "hidden";
@@ -153,7 +180,7 @@ export const ShoppingBag = () => {
         <IconBasket onClick={() => setIsOpen(!isOpen)} aria-label="Basket" />
         {datas && datas[0]?.optionData?.length !== undefined && (
           <Count onClick={() => handlecheckout()}>
-            {datas.optionData?.length}
+            {datas[0].optionData?.length}
           </Count>
         )}
       </IconWrapper>

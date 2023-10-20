@@ -73,15 +73,26 @@ export const ShoppingBagList = ({ optionData, setDatas, datas, idx }) => {
 
   const initialPrice = currentPrice * quantity;
   const [price, setPrice] = useState(initialPrice);
+  let newData = [];
 
   const handleDecrease = () => {
     if (quantity > 1) {
       const newValue = quantity - 1;
       const newPrice = newValue * currentPrice;
       setPrice(newPrice);
-      datas[0].optionData[idx].quantity = newValue;
-      setDatas(prev => [...prev, ...datas]);
-      // dispatch(setQuantity({ _id, optionData, quantity: newValue }));
+      newData = { ...datas[0].optionData[idx] };
+      newData.quantity = newValue;
+
+      let options = [...datas[0].optionData];
+      options[idx] = newData;
+      let array = [
+        {
+          _id,
+          optionData: options,
+        },
+      ];
+
+      setDatas(prev => array);
     }
   };
 
@@ -90,9 +101,19 @@ export const ShoppingBagList = ({ optionData, setDatas, datas, idx }) => {
       const newValue = quantity + 1;
       const newPrice = newValue * currentPrice;
       setPrice(newPrice);
-      datas[0].optionData[idx].quantity = newValue;
-      setDatas(prev => [...prev, ...datas]);
-      // dispatch(setQuantity({ _id, optionData, quantity: newValue }));
+      newData = { ...datas[0].optionData[idx] };
+      newData.quantity = newValue;
+
+      let options = [...datas[0].optionData];
+      options[idx] = newData;
+      let array = [
+        {
+          _id,
+          optionData: options,
+        },
+      ];
+
+      setDatas(prev => array);
     }
   };
 
