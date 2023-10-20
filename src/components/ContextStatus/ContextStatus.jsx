@@ -13,8 +13,16 @@ export const StatusProvider = ({ children }) => {
   if (!getFromStorage('userAnonimusID')) {
     saveToStorage('userAnonimusID', userAnonimusID);
   }
+  const [contextBasket, setContextBasket] = useState([]);
   return (
-    <StatusContext.Provider value={{ userAnonimusID, setUserAnonimusID }}>
+    <StatusContext.Provider
+      value={{
+        userAnonimusID,
+        setUserAnonimusID,
+        contextBasket,
+        setContextBasket,
+      }}
+    >
       {children}
     </StatusContext.Provider>
   );

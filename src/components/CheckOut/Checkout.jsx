@@ -21,7 +21,6 @@ export const CheckOut = () => {
     getFromStorage('step') ? getFromStorage('step') : 1,
   );
   // const { t } = useTranslation();
-  const { statusDisableStep2 } = useContext(StatusContext);
 
   useEffect(() => {
     const links = document.querySelectorAll('.linkFolder');

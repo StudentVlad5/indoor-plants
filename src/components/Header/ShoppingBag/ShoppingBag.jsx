@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getItemInBasket, updateItemInBasket } from 'services/APIservice';
@@ -43,6 +43,7 @@ import philodendron from 'images/basket/philodendron.png';
 import plantGrayPot from 'images/basket/plant-gray-pot.png';
 import { reloadValue } from 'redux/reload/selectors';
 import { addReload } from 'redux/reload/slice';
+import { StatusContext } from 'components/ContextStatus/ContextStatus';
 
 export const ShoppingBag = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +54,7 @@ export const ShoppingBag = () => {
   const [userAnonimusID] = useState(
     getFromStorage('userAnonimusID') ? getFromStorage('userAnonimusID') : '',
   );
-
+  const { contextBasket, setContextBasket } = useContext(StatusContext);
   const dispatch = useDispatch();
   const reload = useSelector(reloadValue);
 
@@ -66,6 +67,7 @@ export const ShoppingBag = () => {
           return onFetchError(t('Whoops, something went wrong'));
         }
         setDatas(prev => data);
+        setContextBasket(prev => data);
         dispatch(addToBasket(data));
         saveToStorage('basketData', data);
       } catch (error) {
@@ -86,6 +88,7 @@ export const ShoppingBag = () => {
           return onFetchError(t('Whoops, something went wrong'));
         }
         setDatas(prev => data);
+        setContextBasket(prev => data);
         dispatch(addToBasket(data));
         saveToStorage('basketData', data);
       } catch (error) {
@@ -100,7 +103,6 @@ export const ShoppingBag = () => {
   }, [isOpen]);
 
   async function updateItem(items) {
-    console.log('items', items);
     if (items !== undefined) {
       setIsLoading(true);
       const perem = { optionData: [...items] };
@@ -115,6 +117,7 @@ export const ShoppingBag = () => {
         const optionData = data[0].optionData;
         const _id = data[0]._id;
         setDatas(prev => [{ optionData, _id }]);
+        setContextBasket(prev => [{ optionData, _id }]);
         dispatch(addToBasket([{ optionData, _id }]));
         saveToStorage('basketData', [{ optionData, _id }]);
       } catch (error) {
@@ -164,7 +167,6 @@ export const ShoppingBag = () => {
   }, [datas]);
 
   let currency = '';
-  console.log('datas', datas);
   if (
     datas
     // && datas[0]?.optionData[0]?.currency

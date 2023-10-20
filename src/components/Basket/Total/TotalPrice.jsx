@@ -24,24 +24,27 @@ import {
 } from './TotalPrice.styled';
 // import { selectOrders } from 'redux/order/selectors';
 
-export const TotalPrice = (basket, confirm, handleAddOrder) => {
-  const totalPayment = basket.basket
+export const TotalPrice = (basket, { confirm, handleAddOrder }) => {
+  if (confirm === undefined) {
+    confirm = false;
+  }
+  const totalPayment = basket.contextBasket
     .reduce((payment, item) => {
       return payment + item.currentPrice * item.quantity;
     }, 0)
     .toFixed(2);
-  const totalAmount = basket.basket
+  const totalAmount = basket.contextBasket
     .reduce((payment, item) => {
       return payment + item.oldPrice * item.quantity;
     }, 0)
     .toFixed(2);
-  const totalDiscount = basket.basket
+  const totalDiscount = basket.contextBasket
     .reduce((payment, item) => {
       return payment + item.discount * item.quantity;
     }, 0)
     .toFixed(2);
 
-  const currency = basket.basket[0].currency;
+  const currency = basket.contextBasket[0].currency;
 
   return (
     <PaymentBox>

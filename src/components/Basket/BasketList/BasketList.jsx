@@ -30,7 +30,6 @@ import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 export const BasketList = prod => {
   // const dispatch = useDispatch();
   const [optionData, setOptionData] = useState(prod.prod);
-  console.log('optionData', optionData);
   const {
     _id,
     currency,
