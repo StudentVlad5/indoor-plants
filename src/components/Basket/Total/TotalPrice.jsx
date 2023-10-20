@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   selectTotalAmount,
   selectTotalDiscount,
@@ -24,10 +25,9 @@ import {
 } from './TotalPrice.styled';
 // import { selectOrders } from 'redux/order/selectors';
 
-export const TotalPrice = (basket, { confirm, handleAddOrder }) => {
-  if (confirm === undefined) {
-    confirm = false;
-  }
+export const TotalPrice = basket => {
+  const { confirm, handleAddOrder } = basket;
+
   const totalPayment = basket.contextBasket
     .reduce((payment, item) => {
       return payment + item.currentPrice * item.quantity;
@@ -95,7 +95,7 @@ export const TotalPrice = (basket, { confirm, handleAddOrder }) => {
         </table>
       </PaymentTotal>
       {confirm ? (
-        <PaymentBtn onClick={() => handleAddOrder()} id="paymentBtn">
+        <PaymentBtn onClick={handleAddOrder} id="paymentBtn">
           confirm
         </PaymentBtn>
       ) : (
@@ -117,4 +117,10 @@ export const TotalPrice = (basket, { confirm, handleAddOrder }) => {
       )}
     </PaymentBox>
   );
+};
+
+TotalPrice.propTypes = {
+  basket: PropTypes.object,
+  confirm: PropTypes.bool,
+  handleAddOrder: PropTypes.func,
 };

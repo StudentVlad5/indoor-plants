@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 // import { selectBasket } from 'redux/basket/selectors';
 import { getUser } from 'redux/auth/selectors';
 import { BasketList } from 'components/Basket/BasketList/BasketList';
@@ -29,6 +30,7 @@ export const Basket = ({ confirm, handleAddOrder }) => {
   const auth = useSelector(getUser);
   // const basket = useSelector(selectBasket);
   const { contextBasket, setContextBasket } = useContext(StatusContext);
+
   return (
     <BasketSection>
       <BasketContainer>
@@ -104,4 +106,9 @@ export const Basket = ({ confirm, handleAddOrder }) => {
       </BasketContainer>
     </BasketSection>
   );
+};
+
+Basket.propTypes = {
+  confirm: PropTypes.bool,
+  handleAddOrder: PropTypes.func,
 };
