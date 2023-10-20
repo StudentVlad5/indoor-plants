@@ -65,9 +65,9 @@ export const ShoppingBag = () => {
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
-        setDatas(prev => data.data);
-        dispatch(addToBasket(data.data));
-        saveToStorage('basketData', data.data);
+        setDatas(prev => data);
+        dispatch(addToBasket(data));
+        saveToStorage('basketData', data);
       } catch (error) {
         setError(error);
       } finally {
@@ -85,9 +85,9 @@ export const ShoppingBag = () => {
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
-        setDatas(prev => data.data);
-        dispatch(addToBasket(data.data));
-        saveToStorage('basketData', data.data);
+        setDatas(prev => data);
+        dispatch(addToBasket(data));
+        saveToStorage('basketData', data);
       } catch (error) {
         setError(error);
       } finally {
@@ -100,6 +100,7 @@ export const ShoppingBag = () => {
   }, [isOpen]);
 
   async function updateItem(items) {
+    console.log('items', items);
     if (items !== undefined) {
       setIsLoading(true);
       const perem = { optionData: [...items] };
@@ -111,9 +112,11 @@ export const ShoppingBag = () => {
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
         }
-        setDatas(prev => [data]);
-        dispatch(addToBasket([data]));
-        saveToStorage('basketData', [data]);
+        const optionData = data[0].optionData;
+        const _id = data[0]._id;
+        setDatas(prev => [{ optionData, _id }]);
+        dispatch(addToBasket([{ optionData, _id }]));
+        saveToStorage('basketData', [{ optionData, _id }]);
       } catch (error) {
         setError(error);
       } finally {
@@ -161,6 +164,7 @@ export const ShoppingBag = () => {
   }, [datas]);
 
   let currency = '';
+  console.log('datas', datas);
   if (
     datas
     // && datas[0]?.optionData[0]?.currency
@@ -170,7 +174,7 @@ export const ShoppingBag = () => {
   // document.querySelector('body').style.overflow = "hidden";
 
   const handlecheckout = () => {
-    updateItem(datas?.optionData);
+    updateItem(datas[0]?.optionData);
     setIsOpen(!isOpen);
   };
 

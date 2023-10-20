@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBasket } from 'redux/basket/selectors';
@@ -26,7 +26,7 @@ export const Basket = ({ confirm, handleAddOrder }) => {
   // const { t } = useTranslation();
   // const userComment = useSelector(selectComment);
   const auth = useSelector(getUser);
-  const basket = useSelector(selectBasket);
+  const [basket, setBasket] = useState(useSelector(selectBasket));
 
   return (
     <BasketSection>
@@ -60,7 +60,7 @@ export const Basket = ({ confirm, handleAddOrder }) => {
             </Link>
           </AuthCheckOutBox>
         )}
-        {!auth._id && (
+        {/* {!auth._id && (
           <AuthCheckOutBox>
             <TitleCheckOut>
               For quick ordering and saving order history
@@ -72,29 +72,34 @@ export const Basket = ({ confirm, handleAddOrder }) => {
               <Btn>SIGN IN</Btn>
             </Link>
           </AuthCheckOutBox>
-        )}
+        )} */}
         {!auth._id &&
           basket &&
-          basket[0]?.optionData?.length !==
-            undefined(
-              <AuthCheckOutBox>
-                <TitleCheckOut>
-                  For quick ordering and saving order history
-                </TitleCheckOut>
-                <TextCheckOut>
-                  Make sure you’re signed into your account
-                </TextCheckOut>
-                <Link to="/signin" style={{ textDecoration: 'none' }}>
-                  <Btn>SIGN IN</Btn>
-                </Link>
-
-                <TitleCheckOut>YOUR Basket is empty</TitleCheckOut>
-                <TextCheckOut>Please add an item to checkout</TextCheckOut>
-                <Link to="/catalog" style={{ textDecoration: 'none' }}>
-                  <Btn>SHOP</Btn>
-                </Link>
-              </AuthCheckOutBox>,
-            )}
+          basket[0]?.optionData?.length !== undefined &&
+          basket[0]?.optionData?.length !== 0 && (
+            <AuthCheckOutBox>
+              <TitleCheckOut>
+                For quick ordering and saving order history
+              </TitleCheckOut>
+              <TextCheckOut>
+                Make sure you’re signed into your account
+              </TextCheckOut>
+              <Link to="/signin" style={{ textDecoration: 'none' }}>
+                <Btn>SIGN IN</Btn>
+              </Link>
+              {!basket &&
+                basket[0]?.optionData?.length == undefined &&
+                basket[0]?.optionData?.length == 0 && (
+                  <>
+                    <TitleCheckOut>YOUR Basket is empty</TitleCheckOut>
+                    <TextCheckOut>Please add an item to checkout</TextCheckOut>
+                    <Link to="/catalog" style={{ textDecoration: 'none' }}>
+                      <Btn>SHOP</Btn>
+                    </Link>
+                  </>
+                )}
+            </AuthCheckOutBox>
+          )}
       </BasketContainer>
     </BasketSection>
   );
