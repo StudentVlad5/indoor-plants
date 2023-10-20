@@ -171,6 +171,7 @@ const Step4 = () => {
   }
 
   const handleAddOrder = e => {
+    console.log('handleAddOrder ~ e:', e);
     createOrder();
   };
 

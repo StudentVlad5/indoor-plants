@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectBasket,
-  selectTotalPayment,
-  selectTotalAmount,
-  selectCurrency,
-} from 'redux/basket/selectors';
+import { getItemInBasket, updateItemInBasket } from 'services/APIservice';
+import { getFromStorage, saveToStorage } from 'services/localStorService';
+import { addToBasket } from 'redux/basket/operations';
 import { ShoppingBagList } from './ShoppingBagList/ShoppingBagList';
 import {
   BasketIconClose,
@@ -44,9 +41,8 @@ import groupPlants from 'images/basket/group-plants.png';
 import peaceLily from 'images/basket/peace-lily.png';
 import philodendron from 'images/basket/philodendron.png';
 import plantGrayPot from 'images/basket/plant-gray-pot.png';
-import { getItemInBasket, updateItemInBasket } from 'services/APIservice';
-import { getFromStorage, saveToStorage } from 'services/localStorService';
-import { addToBasket } from 'redux/basket/operations';
+import { reloadValue } from 'redux/reload/selectors';
+import { addReload } from 'redux/reload/slice';
 
 export const ShoppingBag = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,6 +55,7 @@ export const ShoppingBag = () => {
   );
 
   const dispatch = useDispatch();
+  const reload = useSelector(reloadValue);
 
   useEffect(() => {
     (async function getItem() {
@@ -74,10 +71,11 @@ export const ShoppingBag = () => {
       } catch (error) {
         setError(error);
       } finally {
+        dispatch(addReload(false));
         setIsLoading(false);
       }
     })();
-  }, []);
+  }, [reload]);
 
   useEffect(() => {
     async function getItem() {
@@ -151,6 +149,7 @@ export const ShoppingBag = () => {
 
   // const basket = useSelector(selectBasket);
   const [totalPayment, setTotalPayment] = useState(0);
+
   useEffect(() => {
     let total = 0;
     if (datas) {
@@ -160,6 +159,7 @@ export const ShoppingBag = () => {
     }
     setTotalPayment(total);
   }, [datas]);
+
   let currency = '';
   if (
     datas
@@ -170,7 +170,7 @@ export const ShoppingBag = () => {
   // document.querySelector('body').style.overflow = "hidden";
 
   const handlecheckout = () => {
-    updateItem(datas[0]?.optionData);
+    updateItem(datas?.optionData);
     setIsOpen(!isOpen);
   };
 
@@ -178,11 +178,13 @@ export const ShoppingBag = () => {
     <>
       <IconWrapper>
         <IconBasket onClick={() => setIsOpen(!isOpen)} aria-label="Basket" />
-        {datas && datas[0]?.optionData?.length !== undefined && (
-          <Count onClick={() => handlecheckout()}>
-            {datas[0].optionData?.length}
-          </Count>
-        )}
+        {datas &&
+          datas[0]?.optionData?.length !== 0 &&
+          datas[0]?.optionData?.length !== undefined && (
+            <Count onClick={() => handlecheckout()}>
+              {datas[0].optionData?.length}
+            </Count>
+          )}
       </IconWrapper>
 
       <Overlay isOpen={isOpen} onClick={() => handlecheckout()} />
@@ -194,7 +196,9 @@ export const ShoppingBag = () => {
         </BasketBoxTitle>
 
         <BasketBoxList>
-          {datas && datas[0]?.optionData?.length !== undefined ? (
+          {datas &&
+          datas[0]?.optionData?.length !== 0 &&
+          datas[0]?.optionData?.length !== undefined ? (
             <OrderBox>
               <div>
                 {totalPayment < 150 ? (

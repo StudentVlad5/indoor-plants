@@ -1,9 +1,12 @@
-import React, { useContext, useState } from 'react'; //, useEffect
+import React, { useContext, useState, useEffect } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from 'redux/basket/operations';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
+import { addItemInBasket } from 'services/APIservice';
+import { reloadValue } from 'redux/reload/selectors';
+import { addReload } from 'redux/reload/slice';
 
 import * as SC from './ProductCard.styled';
 
@@ -19,7 +22,6 @@ import { ReactComponent as Oil } from 'images/svg/oil.svg';
 import { ReactComponent as Sun } from 'images/svg/sun.svg';
 import noImg from 'images/No-image-available.webp';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
-import { addItemInBasket } from 'services/APIservice';
 
 export const ProductCard = ({ product }) => {
   const {
@@ -46,6 +48,7 @@ export const ProductCard = ({ product }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const reload = useSelector(reloadValue);
 
   async function addItem(state) {
     setIsLoading(true);
@@ -57,6 +60,7 @@ export const ProductCard = ({ product }) => {
     } catch (error) {
       setError(error);
     } finally {
+      reload === true ? dispatch(addReload(false)) : dispatch(addReload(true));
       setIsLoading(false);
     }
   }
@@ -69,6 +73,7 @@ export const ProductCard = ({ product }) => {
     total: totalQuantity || 0,
     quantity: 1,
   };
+
   const [userAnonimusID] = useState(
     getFromStorage('userAnonimusID')
       ? getFromStorage('userAnonimusID')
@@ -82,7 +87,7 @@ export const ProductCard = ({ product }) => {
       optionData: {
         ...product.optionData,
         quantity: product.optionData.quantity,
-        _id: product._id,
+        _id: product.optionData._id,
       },
     };
     // dispatch(addToBasket(updatedProduct));
@@ -94,7 +99,7 @@ export const ProductCard = ({ product }) => {
           quantity: product.optionData.quantity,
           currency: product.currency,
           name: product.name,
-          _id: product._id,
+          _id: product.optionData._id,
           images: [...product.images],
         },
       ],
@@ -113,6 +118,7 @@ export const ProductCard = ({ product }) => {
       option => option.title === selectedOption,
     );
     selectedData.quantity = optionData.quantity;
+    selectedData.title = selectedOption;
     setOptionData(selectedData);
   };
 

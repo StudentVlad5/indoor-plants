@@ -115,10 +115,11 @@ export const App = () => {
             <Route
               path="checkout"
               element={
-                <BasketRoute
-                  redirectTo="/catalog"
-                  component={<CheckOutPage />}
-                />
+                // <BasketRoute
+                //   redirectTo="/catalog"
+                //   component={<CheckOutPage />}
+                <CheckOutPage />
+                // />
               }
             >
               <Route path="step1" element={<Step1 />} />

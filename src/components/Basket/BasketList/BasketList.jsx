@@ -30,7 +30,6 @@ import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 export const BasketList = prod => {
   // const dispatch = useDispatch();
 
-  console.log('prod', prod);
   const [optionData, setOptionData] = useState(prod.prod);
 
   const removeProductHandler = (_id, size) => {
@@ -76,7 +75,9 @@ export const BasketList = prod => {
         <DiscrDataList>
           <DiscrDataListItem>
             <DiscrDataListItemHeading>
-              <DiscrDataListItemTitle>{name}</DiscrDataListItemTitle>
+              <DiscrDataListItemTitle>
+                {optionData?.name}
+              </DiscrDataListItemTitle>
               <DiscrDataListItemTitlePrice>
                 {optionData?.currency}
                 {price}

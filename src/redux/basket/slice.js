@@ -6,7 +6,7 @@ import { addToBasket, removeProduct, clearBasket } from './operations';
 //   totalAmount: 0,
 //   totalDiscount: 0,
 //   totalPayment: 0,
-//   currency: "$",
+//   currency: '$',
 // };
 const initialState = {};
 // const initialState = saveBasket();

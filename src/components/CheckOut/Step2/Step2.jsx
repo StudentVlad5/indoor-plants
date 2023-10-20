@@ -37,16 +37,6 @@ const Step2 = () => {
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
-          // name: auth._id ? auth?.userName : '',
-          // surname: '',
-          // company: auth._id ? auth?.company : '',
-          // email: auth._id ? auth?.email : '',
-          // phone: auth._id ? auth?.phone : '',
-          // city: '',
-          // address: '',
-          // address2: auth._id ? auth?.address2 : '',
-          // state: auth._id ? auth?.state : '',
-          // zipCode: auth._id ? auth?.zipCode : '',
           name: auth._id ? userIn.address.userName : '',
           surname: auth._id ? userIn.address.surname : '',
           company: auth._id ? userIn.address.company : '',
@@ -59,17 +49,6 @@ const Step2 = () => {
           zipCode: auth._id ? userIn.address.zipCode : '',
         },
   );
-
-  // const restoreFormDataFromLocalStorage = () => {
-  //   const savedFormData = getFromStorage('formData');
-  //   if (savedFormData) {
-  //     setFormData(savedFormData);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   restoreFormDataFromLocalStorage();
-  // }, []);
 
   useEffect(() => {
     delivery === 'Courier delivery' &&
@@ -135,7 +114,7 @@ const Step2 = () => {
 
   const isAnyFieldEmpty = Object.values(formData).some(value => value === '');
   const [showAddAddress, setShowAddAddress] = useState(isAnyFieldEmpty);
-  
+
   return (
     <DeliveryInfoBlock>
       {auth._id ? (

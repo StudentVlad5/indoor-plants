@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { selectBasket } from 'redux/basket/selectors';
 import PropTypes from 'prop-types';
@@ -6,10 +6,13 @@ import { getFromStorage } from 'services/localStorService';
 // import { useSelector } from 'react-redux';
 
 export const BasketRoute = ({ component: Component, redirectTo = '/' }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [userAnonimusID, _] = useState(
     getFromStorage('userAnonimusID') ? getFromStorage('userAnonimusID') : '',
   );
   const [basket, setBasket] = useState([]);
+
   useEffect(() => {
     (async function getItem() {
       setIsLoading(true);
