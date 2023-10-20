@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeProduct } from 'redux/basket/operations';
 import { setQuantity } from 'redux/basket/slice';
 import { selectCurrency } from 'redux/basket/selectors';
-import { onSuccess } from '../../helpers/Messages/NotifyMessages';
+import { onFetchError, onSuccess } from '../../helpers/Messages/NotifyMessages';
 import {
   BasketCompIconClose,
   BasketCompImg,
@@ -26,6 +26,8 @@ import {
 import { ReactComponent as Minus } from 'images/svg/minus.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
+import { getFromStorage } from 'services/localStorService';
+import { removeItemInBasket } from 'services/APIservice';
 
 export const BasketList = prod => {
   // const dispatch = useDispatch();
@@ -43,10 +45,31 @@ export const BasketList = prod => {
     total,
   } = optionData;
 
-  const removeProductHandler = (_id, size) => {
-    // dispatch(removeProduct({ _id, size }));
-    onSuccess('Removed');
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [userAnonimusID] = useState(
+    getFromStorage('userAnonimusID') ? getFromStorage('userAnonimusID') : '',
+  );
+
+  async function removeProductHandler(_id, size) {
+    setIsLoading(true);
+    try {
+      const { data } = await removeItemInBasket(`/basket/${userAnonimusID}`, {
+        size,
+        _id,
+      });
+      if (!data) {
+        return onFetchError(t('Whoops, something went wrong'));
+      }
+      setDatas([data]);
+      onSuccess('Removed');
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   // const currency = useSelector(selectCurrency);
 
   // const initialPrice = optionData.currentPrice * optionData.quantity;

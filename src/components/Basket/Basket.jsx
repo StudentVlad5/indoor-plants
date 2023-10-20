@@ -39,7 +39,7 @@ export const Basket = ({ confirm, handleAddOrder }) => {
             <BasketCompList>
               {contextBasket[0]?.optionData?.map((product, idx) => (
                 <BasketList
-                  key={`${idx}${product._id}`}
+                  key={`${idx}${product?.quantity}${product?._id}`}
                   // {...{ ...product, index: idx }}
                   prod={product}
                 />
