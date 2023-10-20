@@ -16,6 +16,7 @@ import {
   QuantityBox,
   IconQuantityBtn,
 } from './ShoppingBagList.styled';
+
 import { ListImage } from '../ShoppingBag.styled';
 
 import { ReactComponent as Minus } from 'images/svg/minus.svg';
@@ -23,8 +24,32 @@ import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
 import { removeItemInBasket } from 'services/APIservice';
 import { getFromStorage } from 'services/localStorService';
+import {
+  BasketCompIconClose,
+  BasketCompImg,
+  BasketCompItem,
+  BoxForDiscrData,
+  BtnItem,
+  DiscrDataList,
+  DiscrDataListItem,
+  DiscrDataListItemHeading,
+  DiscrDataListItemPrice,
+  DiscrDataListItemTitle,
+  DiscrDataListItemTitlePrice,
+  DiscrDataTable,
+  DiscrDataTableData,
+  DiscrDataTableHead,
+  DiscrDataTableLine,
+  IconBtn,
+} from 'components/Basket/BasketList/BasketList.styled';
 
-export const ShoppingBagList = ({ optionData, setDatas, datas, idx }) => {
+export const ShoppingBagList = ({
+  optionData,
+  setDatas,
+  datas,
+  idx,
+  statusBasket,
+}) => {
   // const dispatch = useDispatch();
   const {
     _id,
@@ -38,7 +63,9 @@ export const ShoppingBagList = ({ optionData, setDatas, datas, idx }) => {
     title,
     total,
   } = optionData;
-
+  if (statusBasket !== true) {
+    statusBasket = false;
+  }
   // ----------------------------------------->
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -117,7 +144,98 @@ export const ShoppingBagList = ({ optionData, setDatas, datas, idx }) => {
     }
   };
 
-  return (
+  return statusBasket ? (
+    <BasketCompItem>
+      <BasketCompImg
+        src={BASE_URL_IMG + images[0]}
+        width={107}
+        height={140}
+        alt="Image"
+        loading="lazy"
+      />
+
+      <BoxForDiscrData>
+        <DiscrDataList>
+          <DiscrDataListItem>
+            <DiscrDataListItemHeading>
+              <DiscrDataListItemTitle>{name}</DiscrDataListItemTitle>
+              <DiscrDataListItemTitlePrice>
+                {currency}
+                {price}
+              </DiscrDataListItemTitlePrice>
+            </DiscrDataListItemHeading>
+          </DiscrDataListItem>
+          <table>
+            <DiscrDataTable>
+              <DiscrDataTableLine>
+                <DiscrDataTableHead>Size</DiscrDataTableHead>
+                {title === null ? (
+                  <DiscrDataTableData>-</DiscrDataTableData>
+                ) : (
+                  <DiscrDataTableData>{title}</DiscrDataTableData>
+                )}
+              </DiscrDataTableLine>
+
+              <DiscrDataTableLine>
+                <DiscrDataTableHead>Price</DiscrDataTableHead>
+                {discount !== 0 ? (
+                  <DiscrDataTableData>
+                    <DiscrDataListItemPrice $red>
+                      {currency}
+                      {currentPrice}
+                    </DiscrDataListItemPrice>
+                    <DiscrDataListItemPrice>
+                      {currency}
+                      {oldPrice}
+                    </DiscrDataListItemPrice>
+                  </DiscrDataTableData>
+                ) : (
+                  <DiscrDataTableData>
+                    <DiscrDataListItemPrice>
+                      {currency}
+                      {currentPrice}
+                    </DiscrDataListItemPrice>
+                  </DiscrDataTableData>
+                )}
+              </DiscrDataTableLine>
+
+              <DiscrDataTableLine>
+                <DiscrDataTableHead>Quantity</DiscrDataTableHead>
+                <DiscrDataTableData>
+                  <IconBtn
+                    type="button"
+                    aria-label="minus"
+                    onClick={handleDecrease}
+                    disabled={quantity <= 1}
+                  >
+                    <Minus />
+                  </IconBtn>
+                  <span>{quantity}</span>
+                  <IconBtn
+                    type="button"
+                    aria-label="plus"
+                    onClick={handleIncrease}
+                    disabled={quantity >= total}
+                  >
+                    <Plus />
+                  </IconBtn>
+                </DiscrDataTableData>
+              </DiscrDataTableLine>
+            </DiscrDataTable>
+          </table>
+        </DiscrDataList>
+
+        <BtnItem
+          onClick={() => {
+            removeProductHandler(_id, title);
+          }}
+        >
+          <BasketCompIconClose />
+          remove
+        </BtnItem>
+      </BoxForDiscrData>
+    </BasketCompItem>
+  ) : (
     <>
       <OrderItem>
         {images && (

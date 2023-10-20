@@ -22,6 +22,7 @@ import {
   OrderBoxContainer,
 } from './Basket.styled';
 import { StatusContext } from 'components/ContextStatus/ContextStatus';
+import { ShoppingBagList } from 'components/Header/ShoppingBag/ShoppingBagList/ShoppingBagList';
 // import { useTranslation } from 'react-i18next';
 
 export const Basket = ({ confirm, handleAddOrder }) => {
@@ -40,10 +41,14 @@ export const Basket = ({ confirm, handleAddOrder }) => {
           <BasketWrapper>
             <BasketCompList>
               {contextBasket[0]?.optionData?.map((product, idx) => (
-                <BasketList
+                <ShoppingBagList
                   key={`${idx}${product?.quantity}${product?._id}`}
                   // {...{ ...product, index: idx }}
-                  prod={product}
+                  datas={contextBasket}
+                  idx={idx}
+                  setDatas={setContextBasket}
+                  optionData={product}
+                  statusBasket={true}
                 />
               ))}
             </BasketCompList>
