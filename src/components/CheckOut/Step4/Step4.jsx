@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -38,6 +38,7 @@ import curier from 'images/delivery/pngegg.png';
 import liqpay from 'images/svg/LIQPAY.svg';
 import wallet from 'images/svg/wallet.svg';
 import { useAuth } from 'hooks/useAuth';
+import { StatusContext } from 'components/ContextStatus/ContextStatus';
 
 const Step4 = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -97,11 +98,7 @@ const Step4 = () => {
   );
   const [showComments, setShowComments] = useState(false);
 
-  const basket = useSelector(selectBasket);
-  const totalAmount = useSelector(selectTotalAmount);
-  const totalDiscount = useSelector(selectTotalDiscount);
-  const totalPayment = useSelector(selectTotalPayment);
-  const currency = useSelector(selectCurrency);
+  const { contextBasket, setContextBasket } = useContext(StatusContext);
 
   let cityDelivery = '';
   let departmentDelivery = '';
@@ -117,8 +114,26 @@ const Step4 = () => {
     departmentDelivery = formData.address2;
   }
 
+  const totalPayment = contextBasket[0]?.optionData
+    .reduce((payment, item) => {
+      return payment + item.currentPrice * item.quantity;
+    }, 0)
+    .toFixed(2);
+  const totalAmount = contextBasket[0]?.optionData
+    .reduce((payment, item) => {
+      return payment + item.oldPrice * item.quantity;
+    }, 0)
+    .toFixed(2);
+  const totalDiscount = contextBasket[0]?.optionData
+    .reduce((payment, item) => {
+      return payment + item.discount * item.quantity;
+    }, 0)
+    .toFixed(2);
+
+  const currency = contextBasket[0]?.optionData[0].currency;
+
   const newOrder = {
-    basket,
+    basket: { ...contextBasket[0] },
     totalAmount: Math.round(+totalAmount * 100) / 100,
     totalDiscount: Math.round(+totalDiscount * 100) / 100,
     totalPayment: Math.round(+totalPayment * 100) / 100,
@@ -140,7 +155,7 @@ const Step4 = () => {
     comments,
     user_id: auth._id,
   };
-  // console.log(newOrder);
+  console.log(newOrder);
   const navigate = useNavigate();
 
   async function createOrder() {
