@@ -191,7 +191,7 @@ export const ShoppingBagList = ({
                   </DiscrDataTableData>
                 ) : (
                   <DiscrDataTableData>
-                    <DiscrDataListItemPrice>
+                    <DiscrDataListItemPrice $current>
                       {currency}
                       {currentPrice}
                     </DiscrDataListItemPrice>

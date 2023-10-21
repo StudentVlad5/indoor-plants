@@ -78,7 +78,7 @@ export const basketSlice = createSlice({
     // })
     // .addCase(
     clearBasket: () => {
-      state;
+      return initialState;
     },
   },
 });

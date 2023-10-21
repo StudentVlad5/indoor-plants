@@ -16,7 +16,6 @@ import { useState } from 'react';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
 
 const Step3 = () => {
-  // const basket = useSelector(selectBasket);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(
     getFromStorage('selectedPaymentOption')
       ? getFromStorage('selectedPaymentOption')
@@ -24,6 +23,10 @@ const Step3 = () => {
   );
   const navigate = useNavigate();
   const [isDisabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   useEffect(() => {
     selectedPaymentOption !== '' ? setDisabled(false) : setDisabled(true);

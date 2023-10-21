@@ -130,6 +130,7 @@ export const ProductCard = ({ product }) => {
         it.isActive = false;
       }
     });
+
     useCheck(prev => isChekedArray);
   };
 

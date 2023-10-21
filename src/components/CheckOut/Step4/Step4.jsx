@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
@@ -10,6 +10,9 @@ import {
 } from 'services/localStorService';
 import { makeOrder } from 'services/APIservice';
 import { getUser } from 'redux/auth/selectors';
+import { useAuth } from 'hooks/useAuth';
+import { StatusContext } from 'components/ContextStatus/ContextStatus';
+import { addReload } from 'redux/reload/slice';
 import { onFetchError, onSuccess } from '../../helpers/Messages/NotifyMessages';
 import { Basket } from '../../Basket/Basket';
 import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
@@ -30,8 +33,6 @@ import ukrPoshta from 'images/svg/ukrposhta-logo.svg';
 import curier from 'images/delivery/pngegg.png';
 import liqpay from 'images/svg/LIQPAY.svg';
 import wallet from 'images/svg/wallet.svg';
-import { useAuth } from 'hooks/useAuth';
-import { StatusContext } from 'components/ContextStatus/ContextStatus';
 
 const Step4 = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -132,9 +133,6 @@ const Step4 = () => {
     totalPayment: Math.round(+totalPayment * 100) / 100,
     currency,
     deliveryOrder: { delivery, cityDelivery, departmentDelivery },
-    // name: formData.name + ' ' + formData.surname,
-    // phone: formData.phone,
-    // email: formData.email,
     name: formData.name + ' ' + formData.surname,
     company: formData.company,
     city: formData.city,
@@ -148,13 +146,13 @@ const Step4 = () => {
     comments,
     user_id: auth._id,
   };
+
   const navigate = useNavigate();
 
   async function createOrder() {
     setIsLoading(true);
     try {
       const { data } = await makeOrder(`/order/`, newOrder);
-      console.log('data', data);
       navigate('/catalog/plants', { replace: true });
       setContextBasket([]);
       if (!data) {
@@ -174,6 +172,7 @@ const Step4 = () => {
       removeItem('formData');
       removeItem('selectedPaymentOption');
       dispatch(clearBasket());
+      dispatch(addReload(true));
     } catch (error) {
       setError(error);
     } finally {
@@ -184,6 +183,10 @@ const Step4 = () => {
   const handleAddOrder = e => {
     createOrder();
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <TotalBasket>

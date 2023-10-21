@@ -26,11 +26,9 @@ import { ShoppingBagList } from 'components/Header/ShoppingBag/ShoppingBagList/S
 // import { useTranslation } from 'react-i18next';
 
 export const Basket = ({ confirm, handleAddOrder }) => {
-  // const { t } = useTranslation();
-  // const userComment = useSelector(selectComment);
   const auth = useSelector(getUser);
-  // const basket = useSelector(selectBasket);
   const { contextBasket, setContextBasket } = useContext(StatusContext);
+  // const { t } = useTranslation();
 
   return (
     <BasketSection>
@@ -68,19 +66,6 @@ export const Basket = ({ confirm, handleAddOrder }) => {
             </Link>
           </AuthCheckOutBox>
         )}
-        {/* {!auth._id && (
-          <AuthCheckOutBox>
-            <TitleCheckOut>
-              For quick ordering and saving order history
-            </TitleCheckOut>
-            <TextCheckOut>
-              Make sure you’re signed into your account
-            </TextCheckOut>
-            <Link to="/signin" style={{ textDecoration: 'none' }}>
-              <Btn>SIGN IN</Btn>
-            </Link>
-          </AuthCheckOutBox>
-        )} */}
         {!auth._id &&
           contextBasket &&
           contextBasket[0]?.optionData?.length !== undefined &&

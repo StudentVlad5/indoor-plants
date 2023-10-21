@@ -37,18 +37,38 @@ const Step2 = () => {
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
-          name: auth._id ? userIn.userName : '',
-          surname: auth._id ? userIn.surname : '',
-          company: auth._id ? userIn.company : '',
-          email: auth._id ? userIn.email : '',
-          phone: auth._id ? userIn.phone : '',
-          address1: auth._id ? userIn.address1 : '',
-          address2: auth._id ? userIn.address2 : '',
-          city: auth._id ? userIn.city : '',
-          state: auth._id ? userIn.state : '',
-          zipCode: auth._id ? userIn.zipCode : '',
+          name: auth._id
+            ? userIn.address?.userName
+              ? userIn.address.userName
+              : userIn.userName
+            : '',
+          surname: auth._id
+            ? userIn.address?.surname
+              ? userIn.address.surname
+              : userIn.surname
+            : '',
+          company: auth._id ? userIn.address.company : '',
+          email: auth._id
+            ? userIn.address.email
+              ? userIn.address.email
+              : userIn.email
+            : '',
+          phone: auth._id
+            ? userIn.address.phone
+              ? userIn.address.phone
+              : userIn.phone
+            : '',
+          address1: auth._id ? userIn.address.address1 : '',
+          address2: auth._id ? userIn.address.address2 : '',
+          city: auth._id ? userIn.address.city : '',
+          state: auth._id ? userIn.address.state : '',
+          zipCode: auth._id ? userIn.address.zipCode : '',
         },
   );
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   useEffect(() => {
     delivery === 'Courier delivery' &&
@@ -124,23 +144,13 @@ const Step2 = () => {
               {formData.name} {formData.surname}
             </DataContainerText>
             <DataContainerText>{formData.company}</DataContainerText>
-            {/* {delivery === '' ||
-            (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.city}</DataContainerText>
-            {/* ))} */}
             <DataContainerText>{formData.state}</DataContainerText>
             <DataContainerText>{formData.zipCode}</DataContainerText>
-            {/* {delivery === '' || */}
-            {/* (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.address1}</DataContainerText>
-            {/* ))} */}
-            {/* {delivery === '' || */}
-            {/* (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.address2}</DataContainerText>
-            {/* ))} */}
             <DataContainerText>{formData.email}</DataContainerText>
             <DataContainerText>{formData.phone}</DataContainerText>
-
             <DataContainerPensil
               onClick={() => setShowAddAddress(!showAddAddress)}
             >

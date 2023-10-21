@@ -113,8 +113,8 @@ export const DiscrDataListItemPrice = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-decoration-line: ${props => (props.$red ? 'none' : 'line-through')};
-  text-decoration-line: ${props => (props.$current ? 'none' : 'line-through')};
+  text-decoration-line: ${props =>
+    props.$red || props.$current ? 'none' : 'line-through'};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 12px;

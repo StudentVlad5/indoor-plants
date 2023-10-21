@@ -2,12 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  selectTotalAmount,
-  selectTotalDiscount,
-  selectTotalPayment,
-  selectCurrency,
-} from 'redux/basket/selectors';
-import {
   DeliverBox,
   DeliverBoxItem,
   Done,
@@ -23,7 +17,6 @@ import {
   PaymentTotalTitlePriceDiscr,
   ShippingFast,
 } from './TotalPrice.styled';
-// import { selectOrders } from 'redux/order/selectors';
 
 export const TotalPrice = basket => {
   const { confirm, handleAddOrder } = basket;
@@ -74,10 +67,10 @@ export const TotalPrice = basket => {
 
             <PaymentTotalListItem>
               <PaymentTotalListItemTitle>Delivery</PaymentTotalListItemTitle>
-              {totalAmount < 150 ? (
+              {totalPayment < 150 ? (
                 <PaymentTotalListItemDiscr>
                   {currency}
-                  {150 - totalAmount}
+                  {150 - totalPayment}
                 </PaymentTotalListItemDiscr>
               ) : (
                 <PaymentTotalListItemDiscr>Free</PaymentTotalListItemDiscr>
