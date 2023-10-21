@@ -1,13 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectBasket,
-  selectTotalAmount,
-  selectTotalDiscount,
-  selectCurrency,
-  selectTotalPayment,
-} from 'redux/basket/selectors';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { clearBasket } from 'redux/basket/operations';
 import {
@@ -155,18 +148,21 @@ const Step4 = () => {
     comments,
     user_id: auth._id,
   };
-  console.log(newOrder);
   const navigate = useNavigate();
 
   async function createOrder() {
     setIsLoading(true);
     try {
       const { data } = await makeOrder(`/order/`, newOrder);
+      console.log('data', data);
+      navigate('/catalog/plants', { replace: true });
+      setContextBasket([]);
       if (!data) {
         return onFetchError(t('Whoops, something went wrong'));
       }
       onSuccess('Thank you for order');
       removeItem('step');
+      removeItem('basketData');
       removeItem('selectedCity');
       removeItem('selectedCity_UP_NAME');
       removeItem('comments');
@@ -186,7 +182,6 @@ const Step4 = () => {
   }
 
   const handleAddOrder = e => {
-    console.log('handleAddOrder ~ e:', e);
     createOrder();
   };
 
