@@ -110,7 +110,7 @@ export const UserOrders = () => {
       [idx]: !prevState[idx],
     }));
   };
-  orderList.map(order => console.log(order?.basket?.optionData));
+
   return (
     <ListContainer>
       {orderList &&

@@ -105,14 +105,38 @@ export const ProductCard = ({ product }) => {
       ],
     };
     addItem(updateBackEndBasket);
+    useCheck(
+      options.map(it =>
+        isChekedArray.push({ title: it.title, isActive: false }),
+      ),
+    );
     onSuccess('Added');
   };
 
   // get data from selected option
   const [optionData, setOptionData] = useState(init);
 
+  let isChekedArray = [];
+  if (options?.length !== 0) {
+    options.map(it => isChekedArray.push({ title: it.title, isActive: false }));
+  }
+  const [check, useCheck] = useState(isChekedArray);
+
+  const changeActiveStyleInput = e => {
+    isChekedArray.map(it => {
+      if (it.title === e.target.value) {
+        it.isActive = true;
+      } else {
+        it.isActive = false;
+      }
+    });
+    console.log('after', isChekedArray);
+    useCheck(prev => isChekedArray);
+  };
+
   const getOptionData = e => {
     e.preventDefault();
+    changeActiveStyleInput(e);
     const selectedOption = e.currentTarget.value;
     const selectedData = options.find(
       option => option.title === selectedOption,
@@ -329,7 +353,15 @@ export const ProductCard = ({ product }) => {
                 <SC.OptionsList>
                   {options.map((option, i) => {
                     return (
-                      <SC.Option key={i}>
+                      <SC.Option
+                        key={i}
+                        className={
+                          check &&
+                          check.find(it => it?.title === option.title)?.isActive
+                            ? 'isActive isImportant real'
+                            : 'notActive'
+                        }
+                      >
                         <input
                           type="radio"
                           id={option.title}
