@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react'; //, useEffect
+import React, { useContext, useState, useEffect } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from 'redux/basket/operations';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
+import { addItemInBasket } from 'services/APIservice';
+import { reloadValue } from 'redux/reload/selectors';
+import { addReload } from 'redux/reload/slice';
 
 import * as SC from './ProductCard.styled';
 
@@ -36,11 +39,31 @@ export const ProductCard = ({ product }) => {
     light,
     petFriendly,
     hardToKill,
+    waterSchedule,
     waterDescribe,
     category,
   } = product;
 
   const dispatch = useDispatch();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const reload = useSelector(reloadValue);
+
+  async function addItem(state) {
+    setIsLoading(true);
+    try {
+      const { data } = await addItemInBasket(`/basket`, state);
+      if (!data) {
+        return onFetchError(t('Whoops, something went wrong'));
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      reload === true ? dispatch(addReload(false)) : dispatch(addReload(true));
+      setIsLoading(false);
+    }
+  }
 
   const init = {
     title: null,
@@ -51,35 +74,82 @@ export const ProductCard = ({ product }) => {
     quantity: 1,
   };
 
+  const [userAnonimusID] = useState(
+    getFromStorage('userAnonimusID')
+      ? getFromStorage('userAnonimusID')
+      : 'none',
+  );
+
   const addToBasketHandler = product => {
     const updatedProduct = {
       ...product,
+      userAnonimusID,
       optionData: {
         ...product.optionData,
         quantity: product.optionData.quantity,
+        _id: product.optionData._id,
       },
     };
-    dispatch(addToBasket(updatedProduct));
+    // dispatch(addToBasket(updatedProduct));
+    const updateBackEndBasket = {
+      _id: updatedProduct.userAnonimusID,
+      optionData: [
+        {
+          ...product.optionData,
+          quantity: product.optionData.quantity,
+          currency: product.currency,
+          name: product.name,
+          _id: product.optionData._id,
+          images: [...product.images],
+        },
+      ],
+    };
+    addItem(updateBackEndBasket);
+    useCheck(
+      options.map(it =>
+        isChekedArray.push({ title: it.title, isActive: false }),
+      ),
+    );
     onSuccess('Added');
   };
 
   // get data from selected option
   const [optionData, setOptionData] = useState(init);
 
+  let isChekedArray = [];
+  if (options?.length !== 0) {
+    options.map(it => isChekedArray.push({ title: it.title, isActive: false }));
+  }
+  const [check, useCheck] = useState(isChekedArray);
+
+  const changeActiveStyleInput = e => {
+    isChekedArray.map(it => {
+      if (it.title === e.target.value) {
+        it.isActive = true;
+      } else {
+        it.isActive = false;
+      }
+    });
+
+    useCheck(prev => isChekedArray);
+  };
+
   const getOptionData = e => {
     e.preventDefault();
+    changeActiveStyleInput(e);
     const selectedOption = e.currentTarget.value;
     const selectedData = options.find(
       option => option.title === selectedOption,
     );
     selectedData.quantity = optionData.quantity;
+    selectedData.title = selectedOption;
     setOptionData(selectedData);
   };
 
   //get selected value
   const [value, setValue] = useState(1);
   const quantity = useSelector(state => {
-    const item = state.basket.basketItems.find(
+    const item = state?.basket?.basketItems?.find(
       item => item.optionData._id === optionData._id,
     );
     return item ? item.optionData.quantity : value;
@@ -283,7 +353,15 @@ export const ProductCard = ({ product }) => {
                 <SC.OptionsList>
                   {options.map((option, i) => {
                     return (
-                      <SC.Option key={i}>
+                      <SC.Option
+                        key={i}
+                        className={
+                          check &&
+                          check.find(it => it?.title === option.title)?.isActive
+                            ? 'isActive isImportant real'
+                            : 'notActive'
+                        }
+                      >
                         <input
                           type="radio"
                           id={option.title}

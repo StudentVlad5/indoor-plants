@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import { selectBasket } from 'redux/basket/selectors';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { getFromStorage } from 'services/localStorService';
+import { StatusContext } from 'components/ContextStatus/ContextStatus';
 
 export const BasketRoute = ({ component: Component, redirectTo = '/' }) => {
-  const basket = useSelector(selectBasket);
-  const shouldRedirect = !basket || basket?.length === 0;
+  const [userAnonimusID, _] = useState(
+    getFromStorage('userAnonimusID') ? getFromStorage('userAnonimusID') : '',
+  );
+  const { contextBasket, setContextBasket } = useContext(StatusContext);
+  const shouldRedirect =
+    !contextBasket || contextBasket[0]?.optionData?.length === 0;
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };
 

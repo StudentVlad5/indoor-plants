@@ -142,6 +142,19 @@ img {
 
 }
 
+//----- ProductList -----//
+
+.isActive.isImportant.real,
+.isActive.isImportant.real + input,
+.isActive.isImportant.real + span {
+   & span {
+    color: #6f8d4c;
+    background-color: ${theme.colors.green5};
+    border: 1px solid ${theme.colors.green2};
+   }
+}
+
+
 //-----Swiper-----//
 
 .swiper {

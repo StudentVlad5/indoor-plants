@@ -23,6 +23,9 @@ import curier from 'images/delivery/pngegg.png';
 import { useAuth } from 'hooks/useAuth';
 
 const Step1 = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   // const { setStatusDisableStep2 } = useContext(StatusContext);
   const { userIn } = useAuth();
 

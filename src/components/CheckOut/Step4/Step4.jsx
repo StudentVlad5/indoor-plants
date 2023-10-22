@@ -1,13 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectBasket,
-  selectTotalAmount,
-  selectTotalDiscount,
-  selectCurrency,
-  selectTotalPayment,
-} from 'redux/basket/selectors';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { clearBasket } from 'redux/basket/operations';
 import {
@@ -17,6 +10,9 @@ import {
 } from 'services/localStorService';
 import { makeOrder } from 'services/APIservice';
 import { getUser } from 'redux/auth/selectors';
+import { useAuth } from 'hooks/useAuth';
+import { StatusContext } from 'components/ContextStatus/ContextStatus';
+import { addReload } from 'redux/reload/slice';
 import { onFetchError, onSuccess } from '../../helpers/Messages/NotifyMessages';
 import { Basket } from '../../Basket/Basket';
 import { PensilStyle } from 'components/UserComp/UserData/UserData.styled';
@@ -37,7 +33,6 @@ import ukrPoshta from 'images/svg/ukrposhta-logo.svg';
 import curier from 'images/delivery/pngegg.png';
 import liqpay from 'images/svg/LIQPAY.svg';
 import wallet from 'images/svg/wallet.svg';
-import { useAuth } from 'hooks/useAuth';
 
 const Step4 = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -97,11 +92,7 @@ const Step4 = () => {
   );
   const [showComments, setShowComments] = useState(false);
 
-  const basket = useSelector(selectBasket);
-  const totalAmount = useSelector(selectTotalAmount);
-  const totalDiscount = useSelector(selectTotalDiscount);
-  const totalPayment = useSelector(selectTotalPayment);
-  const currency = useSelector(selectCurrency);
+  const { contextBasket, setContextBasket } = useContext(StatusContext);
 
   let cityDelivery = '';
   let departmentDelivery = '';
@@ -117,16 +108,31 @@ const Step4 = () => {
     departmentDelivery = formData.address2;
   }
 
+  const totalPayment = contextBasket[0]?.optionData
+    .reduce((payment, item) => {
+      return payment + item.currentPrice * item.quantity;
+    }, 0)
+    .toFixed(2);
+  const totalAmount = contextBasket[0]?.optionData
+    .reduce((payment, item) => {
+      return payment + item.oldPrice * item.quantity;
+    }, 0)
+    .toFixed(2);
+  const totalDiscount = contextBasket[0]?.optionData
+    .reduce((payment, item) => {
+      return payment + item.discount * item.quantity;
+    }, 0)
+    .toFixed(2);
+
+  const currency = contextBasket[0]?.optionData[0].currency;
+
   const newOrder = {
-    basket,
+    basket: { ...contextBasket[0] },
     totalAmount: Math.round(+totalAmount * 100) / 100,
     totalDiscount: Math.round(+totalDiscount * 100) / 100,
     totalPayment: Math.round(+totalPayment * 100) / 100,
     currency,
     deliveryOrder: { delivery, cityDelivery, departmentDelivery },
-    // name: formData.name + ' ' + formData.surname,
-    // phone: formData.phone,
-    // email: formData.email,
     name: formData.name + ' ' + formData.surname,
     company: formData.company,
     city: formData.city,
@@ -140,18 +146,21 @@ const Step4 = () => {
     comments,
     user_id: auth._id,
   };
-  // console.log(newOrder);
+
   const navigate = useNavigate();
 
   async function createOrder() {
     setIsLoading(true);
     try {
       const { data } = await makeOrder(`/order/`, newOrder);
+      navigate('/catalog/plants', { replace: true });
+      setContextBasket([]);
       if (!data) {
         return onFetchError(t('Whoops, something went wrong'));
       }
       onSuccess('Thank you for order');
       removeItem('step');
+      removeItem('basketData');
       removeItem('selectedCity');
       removeItem('selectedCity_UP_NAME');
       removeItem('comments');
@@ -163,6 +172,7 @@ const Step4 = () => {
       removeItem('formData');
       removeItem('selectedPaymentOption');
       dispatch(clearBasket());
+      dispatch(addReload(true));
     } catch (error) {
       setError(error);
     } finally {
@@ -173,6 +183,10 @@ const Step4 = () => {
   const handleAddOrder = e => {
     createOrder();
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <TotalBasket>

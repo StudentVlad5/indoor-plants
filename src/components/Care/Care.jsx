@@ -33,7 +33,6 @@ export const Care = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState(false);
   const [plant, setPlant] = useState(false);
-  console.log('Care ~ plant:', plant);
   const [, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -103,6 +102,7 @@ export const Care = () => {
       }
     })();
   }, []);
+
   return (
     <CareSection>
       <CareContainer>

@@ -147,8 +147,8 @@ export const UserOrders = () => {
             </OrderItemHeadlineList>
             {!isShowDetails[idx] && (
               <OrderListDetails $row>
-                {order?.basket.map(item => (
-                  <OrderItemDetails key={item.optionData._id}>
+                {order?.basket?.optionData.map(item => (
+                  <OrderItemDetails key={item?._id}>
                     <ImgItem
                       src={BASE_URL_IMG + item?.images[0]}
                       alt="Product image"
@@ -162,8 +162,8 @@ export const UserOrders = () => {
               <>
                 <OrderItemList>
                   <OrderListDetails $halfWidth>
-                    {order?.basket.map(item => (
-                      <OrderItemDetails $width key={item.optionData._id}>
+                    {order?.basket?.optionData.map(item => (
+                      <OrderItemDetails $width key={item._id}>
                         <ImgItem
                           src={BASE_URL_IMG + item?.images[0]}
                           alt="Product image"
@@ -181,33 +181,33 @@ export const UserOrders = () => {
                             <DiscrDataTable style={{ gap: '5px' }}>
                               <DiscrDataTableLine>
                                 <DiscrDataTableHead>Size</DiscrDataTableHead>
-                                {item?.optionData.title === null ? (
+                                {item?.title === null ? (
                                   <DiscrDataTableData>-</DiscrDataTableData>
                                 ) : (
                                   <DiscrDataTableData>
-                                    {item?.optionData.title}
+                                    {item?.title}
                                   </DiscrDataTableData>
                                 )}
                               </DiscrDataTableLine>
 
                               <DiscrDataTableLine>
                                 <DiscrDataTableHead>Price</DiscrDataTableHead>
-                                {item?.optionData.discount !== 0 ? (
+                                {item?.discount !== 0 ? (
                                   <DiscrDataTableData>
                                     <DiscrDataListItemPrice $red>
                                       {item?.currency}
-                                      {item?.optionData.currentPrice}
+                                      {item?.currentPrice}
                                     </DiscrDataListItemPrice>
                                     <DiscrDataListItemPrice>
                                       {item?.currency}
-                                      {item?.optionData.oldPrice}
+                                      {item?.oldPrice}
                                     </DiscrDataListItemPrice>
                                   </DiscrDataTableData>
                                 ) : (
                                   <DiscrDataTableData>
                                     <DiscrDataListItemPrice $current>
                                       {item?.currency}
-                                      {item?.optionData.currentPrice}
+                                      {item?.currentPrice}
                                     </DiscrDataListItemPrice>
                                   </DiscrDataTableData>
                                 )}
@@ -217,7 +217,7 @@ export const UserOrders = () => {
                                   Quantity
                                 </DiscrDataTableHead>
                                 <DiscrDataTableData>
-                                  <span>{item?.optionData.quantity}</span>
+                                  <span>{item?.quantity}</span>
                                 </DiscrDataTableData>
                               </DiscrDataTableLine>
                             </DiscrDataTable>

@@ -1,11 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-  selectTotalAmount,
-  selectTotalDiscount,
-  selectTotalPayment,
-  selectCurrency,
-} from 'redux/basket/selectors';
+import PropTypes from 'prop-types';
 import {
   DeliverBox,
   DeliverBoxItem,
@@ -22,14 +17,27 @@ import {
   PaymentTotalTitlePriceDiscr,
   ShippingFast,
 } from './TotalPrice.styled';
-// import { selectOrders } from 'redux/order/selectors';
 
-export const TotalPrice = ({ confirm, handleAddOrder }) => {
-  const totalAmount = useSelector(selectTotalAmount).toFixed(2);
-  const totalDiscount = useSelector(selectTotalDiscount).toFixed(2);
-  const totalPayment = useSelector(selectTotalPayment).toFixed(2);
-  const currency = useSelector(selectCurrency);
-  // const orders = useSelector(selectOrders);
+export const TotalPrice = basket => {
+  const { confirm, handleAddOrder } = basket;
+
+  const totalPayment = basket.contextBasket
+    .reduce((payment, item) => {
+      return payment + item.currentPrice * item.quantity;
+    }, 0)
+    .toFixed(2);
+  const totalAmount = basket.contextBasket
+    .reduce((payment, item) => {
+      return payment + item.oldPrice * item.quantity;
+    }, 0)
+    .toFixed(2);
+  const totalDiscount = basket.contextBasket
+    .reduce((payment, item) => {
+      return payment + item.discount * item.quantity;
+    }, 0)
+    .toFixed(2);
+
+  const currency = basket.contextBasket[0].currency;
 
   return (
     <PaymentBox>
@@ -59,10 +67,10 @@ export const TotalPrice = ({ confirm, handleAddOrder }) => {
 
             <PaymentTotalListItem>
               <PaymentTotalListItemTitle>Delivery</PaymentTotalListItemTitle>
-              {totalAmount < 150 ? (
+              {totalPayment < 150 ? (
                 <PaymentTotalListItemDiscr>
                   {currency}
-                  {150 - totalAmount}
+                  {150 - totalPayment}
                 </PaymentTotalListItemDiscr>
               ) : (
                 <PaymentTotalListItemDiscr>Free</PaymentTotalListItemDiscr>
@@ -102,4 +110,10 @@ export const TotalPrice = ({ confirm, handleAddOrder }) => {
       )}
     </PaymentBox>
   );
+};
+
+TotalPrice.propTypes = {
+  basket: PropTypes.object,
+  confirm: PropTypes.bool,
+  handleAddOrder: PropTypes.func,
 };

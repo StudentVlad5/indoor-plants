@@ -37,21 +37,27 @@ const Step2 = () => {
     getFromStorage('formData')
       ? getFromStorage('formData')
       : {
-          // name: auth._id ? auth?.userName : '',
-          // surname: '',
-          // company: auth._id ? auth?.company : '',
-          // email: auth._id ? auth?.email : '',
-          // phone: auth._id ? auth?.phone : '',
-          // city: '',
-          // address: '',
-          // address2: auth._id ? auth?.address2 : '',
-          // state: auth._id ? auth?.state : '',
-          // zipCode: auth._id ? auth?.zipCode : '',
-          name: auth._id ? userIn.address.userName : '',
-          surname: auth._id ? userIn.address.surname : '',
+          name: auth._id
+            ? userIn.address?.userName
+              ? userIn.address.userName
+              : userIn.userName
+            : '',
+          surname: auth._id
+            ? userIn.address?.surname
+              ? userIn.address.surname
+              : userIn.surname
+            : '',
           company: auth._id ? userIn.address.company : '',
-          email: auth._id ? userIn.address.email : '',
-          phone: auth._id ? userIn.address.phone : '',
+          email: auth._id
+            ? userIn.address.email
+              ? userIn.address.email
+              : userIn.email
+            : '',
+          phone: auth._id
+            ? userIn.address.phone
+              ? userIn.address.phone
+              : userIn.phone
+            : '',
           address1: auth._id ? userIn.address.address1 : '',
           address2: auth._id ? userIn.address.address2 : '',
           city: auth._id ? userIn.address.city : '',
@@ -60,16 +66,9 @@ const Step2 = () => {
         },
   );
 
-  // const restoreFormDataFromLocalStorage = () => {
-  //   const savedFormData = getFromStorage('formData');
-  //   if (savedFormData) {
-  //     setFormData(savedFormData);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   restoreFormDataFromLocalStorage();
-  // }, []);
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   useEffect(() => {
     delivery === 'Courier delivery' &&
@@ -135,7 +134,7 @@ const Step2 = () => {
 
   const isAnyFieldEmpty = Object.values(formData).some(value => value === '');
   const [showAddAddress, setShowAddAddress] = useState(isAnyFieldEmpty);
-  
+
   return (
     <DeliveryInfoBlock>
       {auth._id ? (
@@ -145,23 +144,13 @@ const Step2 = () => {
               {formData.name} {formData.surname}
             </DataContainerText>
             <DataContainerText>{formData.company}</DataContainerText>
-            {/* {delivery === '' ||
-            (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.city}</DataContainerText>
-            {/* ))} */}
             <DataContainerText>{formData.state}</DataContainerText>
             <DataContainerText>{formData.zipCode}</DataContainerText>
-            {/* {delivery === '' || */}
-            {/* (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.address1}</DataContainerText>
-            {/* ))} */}
-            {/* {delivery === '' || */}
-            {/* (delivery === 'Courier delivery' && ( */}
             <DataContainerText>{formData.address2}</DataContainerText>
-            {/* ))} */}
             <DataContainerText>{formData.email}</DataContainerText>
             <DataContainerText>{formData.phone}</DataContainerText>
-
             <DataContainerPensil
               onClick={() => setShowAddAddress(!showAddAddress)}
             >

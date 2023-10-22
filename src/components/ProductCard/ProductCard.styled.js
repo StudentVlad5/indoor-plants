@@ -414,15 +414,15 @@ const Option = styled.label`
 
     &:checked + span,
     &:not(:disabled):active + span {
-      color: #6f8d4c;
+      /* color: #6f8d4c;
       background-color: ${theme.colors.green5};
-      border: 1px solid ${theme.colors.green2};
+      border: 1px solid ${theme.colors.green2}; */
     }
 
     & > input:checked {
-      color: #6f8d4c;
+      /* color: #6f8d4c;
       background-color: ${theme.colors.green5};
-      border: 1px solid ${theme.colors.green2};
+      border: 1px solid ${theme.colors.green2}; */
     }
   }
 `;
