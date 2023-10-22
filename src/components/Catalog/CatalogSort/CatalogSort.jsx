@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getFromStorage, saveToStorage } from 'services/localStorService';
 import * as SC from './CatalogSort.styled';
 
 export const CatalogSort = () => {
   const [sort, setSort] = useState(
-    localStorage.getItem('sort') ? localStorage.getItem('sort') : [],
+    getFromStorage('sort') ? getFromStorage('sort') : [],
   );
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    localStorage.setItem('sort', sort);
+    saveToStorage('sort', sort);
     setParams();
   }, [sort]);
 
@@ -21,7 +22,7 @@ export const CatalogSort = () => {
 
   const handleClick = type => {
     setSort(type);
-    localStorage.setItem('sort', type);
+    saveToStorage('sort', type);
     setParams();
   };
 
