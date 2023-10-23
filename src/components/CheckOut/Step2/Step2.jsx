@@ -263,7 +263,7 @@ const Step2 = () => {
                 </DeliveryFormLableText>
                 <DeliveryFormInput
                   onChange={handleInputChange}
-                  type="text"
+                  type="number"
                   id="zipCode"
                   name="zipCode"
                   value={formData.zipCode}

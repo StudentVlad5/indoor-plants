@@ -78,6 +78,9 @@ export const Catalog = () => {
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [filters, setFilters] = useState(filterState);
   const [search, setSearch] = useState('');
+  const [sort, setSort] = useState(
+    getFromStorage('sort') ? getFromStorage('sort') : '',
+  );
   const { t } = useTranslation();
 
   const setPage = toPage => {
@@ -117,17 +120,18 @@ export const Catalog = () => {
         setIsLoading(false);
       }
     })();
-  }, [t, page, perPage, searchParams]);
+  }, [t, page, perPage, searchParams, sort]);
 
   useEffect(() => {
     setFilters(getFromStorage('filters'));
     setSearch(searchParams.get('search'));
+    setSort(searchParams.get('sort'));
     setParams();
 
     if (selectedFilter.length === 0) {
       setParams();
     }
-  }, [selectedFilter, search]);
+  }, [selectedFilter, search, sort]);
 
   useEffect(() => {
     window.addEventListener('unload', removeLocalStor);

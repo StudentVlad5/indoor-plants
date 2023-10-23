@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'; //, useEffect
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToBasket } from 'redux/basket/operations';
 import { onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { saveToStorage, getFromStorage } from 'services/localStorService';
 import { addItemInBasket } from 'services/APIservice';
@@ -39,7 +38,6 @@ export const ProductCard = ({ product }) => {
     light,
     petFriendly,
     hardToKill,
-    waterSchedule,
     waterDescribe,
     category,
   } = product;
@@ -480,24 +478,6 @@ export const ProductCard = ({ product }) => {
                         {waterDescribe.charAt(0).toUpperCase() +
                           waterDescribe.slice(1)}
                       </span>
-                      {/* {waterSchedule === 'often' && (
-                        <span>
-                          Do not wait until half of the substrate in the pot
-                          dries out before watering again, and water often
-                        </span>
-                      )}
-                      {waterSchedule === 'average' && (
-                        <span>
-                          Wait until half of the substrate in the pot is dry
-                          before watering again
-                        </span>
-                      )}
-                      {waterSchedule === 'seldom' && (
-                        <span>
-                          Wait for the substrate in the pot to dry before
-                          watering again
-                        </span>
-                      )} */}
                     </SC.AccordCareItem>
                     <SC.AccordCareItem>
                       <Evenodd width={24} height={24} />
