@@ -309,6 +309,18 @@ const Step2 = () => {
                   // placeholder="george.washington@gmail.com"
                 />
               </DeliveryFormLable>
+              <Btnwrapper>
+                <Link to={`/checkout/step1`}>
+                  <DeliveryFormBtn type="button">Back</DeliveryFormBtn>
+                </Link>
+                <DeliveryFormBtnFinish
+                  type="button"
+                  onClick={nextStep}
+                  disabled={isDisabled}
+                >
+                  Next
+                </DeliveryFormBtnFinish>
+              </Btnwrapper>
             </DeliveryForm>
           )}
         </>
@@ -459,7 +471,7 @@ const Step2 = () => {
             // dispatch(update({ address: { ...values }, id }));
             setSubmitting(false);
             // onClose(false);
-            nextStep()
+            nextStep();
           }}
           enableReinitialize={true}
           validationSchema={schemas.addressSchema}
