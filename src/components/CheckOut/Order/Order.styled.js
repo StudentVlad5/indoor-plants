@@ -224,6 +224,7 @@ export const DeliveryForm = styled.form`
 export const DeliveryFormLable = styled.label`
   display: flex;
   flex-direction: column;
+  position: relative;
   @media screen and (max-width: ${theme.breakpoints.desktop_max}) {
     width: 100%;
   }
