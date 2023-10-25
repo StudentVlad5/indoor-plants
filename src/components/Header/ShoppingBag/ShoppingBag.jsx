@@ -265,8 +265,8 @@ export const ShoppingBag = () => {
                     <NavLink to={item.link}>
                       <ListImage
                         src={item.imageUrl}
-                        width={95}
-                        height={105}
+                        width={120}
+                        height={130}
                         alt="Image"
                         loading="lazy"
                       />

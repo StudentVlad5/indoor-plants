@@ -11,6 +11,7 @@ export const BasketRoute = ({ component: Component, redirectTo = '/' }) => {
   const { contextBasket, setContextBasket } = useContext(StatusContext);
   const shouldRedirect =
     !contextBasket || contextBasket[0]?.optionData?.length === 0;
+  contextBasket[0]?.optionData?.length === undefined;
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };
 

@@ -119,7 +119,6 @@ export const NewArrivals = () => {
       ],
     },
   ];
-
   return (
     <ProductsSection>
       <ImgTitle>New Arrivals</ImgTitle>
@@ -163,6 +162,151 @@ export const NewArrivals = () => {
             </Link>
           </ListItem>
         ))}
+        {/* <ListItem>
+          <Link
+            style={{ textDecoration: 'none' }}
+            to="/catalog?perPage=12&page=1&petFriendly=pet+friendly"
+          >
+            <picture>
+              <source
+                media="(min-width:1440px)"
+                srcSet={`
+                 ${dog_plants_desk_webp} 1x, 
+                 ${dog_plants_desk_2x_webp} 2x`}
+                type="image/webp"
+              />
+              <source
+                media="(max-width:1439.98px)"
+                srcSet={`
+                 ${dog_plants_mob_webp} 1x, 
+                 ${dog_plants_mob_2x_webp} 2x`}
+                type="image/webp"
+              />
+              <img
+                srcSet={`
+                   ${dog_plants_desk_jpg} 285w, 
+                   ${dog_plants_desk_2x_jpg} 570w, 
+                   ${dog_plants_mob_jpg} 356w, 
+                   ${dog_plants_mob_2x_jpg} 711w`}
+                src={dog_plants_mob_jpg}
+                alt="Dog on a chair"
+                sizes="(min-width:1440px) 285px, (max-width:1439.98px) 356px, 100vw"
+                width="356"
+                height="375"
+                loading="lazy"
+              />
+            </picture>
+            <ImgDiscr>Pet - friendly plants</ImgDiscr>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link
+            style={{ textDecoration: 'none' }}
+            to="/catalog?page=1&perPage=12&hardToKill=easy+to+care"
+          >
+            <picture>
+              <source
+                media="(min-width:1440px)"
+                srcSet={`
+                 ${pepper_plant_desk_webp} 1x, 
+                 ${pepper_plant_desk_2x_webp} 2x`}
+                type="image/webp"
+              />
+              <source
+                media="(max-width:1439.98px)"
+                srcSet={`
+                 ${pepper_plant_mob_webp} 1x, 
+                 ${pepper_plant_mob_2x_webp} 2x`}
+                type="image/webp"
+              />
+              <img
+                srcSet={`
+                   ${pepper_plant_desk_jpg} 285w, 
+                   ${pepper_plant_desk_2x_jpg} 570w, 
+                   ${pepper_plant_mob_jpg} 356w, 
+                   ${pepper_plant_mob_2x_jpg} 711w`}
+                src={pepper_plant_mob_jpg}
+                alt="Plant in a pot"
+                sizes="(min-width:1440px) 285px, (max-width:1439.98px) 356px, 100vw"
+                width="356"
+                height="375"
+                loading="lazy"
+              />
+            </picture>
+            <ImgDiscr>Hard to kill plants</ImgDiscr>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link
+            style={{ textDecoration: 'none' }}
+            to="/catalog?page=1&perPage=12&rare=rare"
+          >
+            <picture>
+              <source
+                media="(min-width:1440px)"
+                srcSet={`
+                 ${african_plant_desk_webp} 1x, 
+                 ${african_plant_desk_2x_webp} 2x`}
+                type="image/webp"
+              />
+              <source
+                media="(max-width:1439.98px)"
+                srcSet={`
+                 ${african_plant_mob_webp} 1x, 
+                 ${african_plant_mob_2x_webp} 2x`}
+                type="image/webp"
+              />
+              <img
+                srcSet={`
+                   ${african_plant_desk_jpg} 285w, 
+                   ${african_plant_desk_2x_jpg} 570w, 
+                   ${african_plant_mob_jpg} 356w, 
+                   ${african_plant_mob_2x_jpg} 711w`}
+                src={african_plant_mob_jpg}
+                alt="Rare plant in a pot"
+                sizes="(min-width:1440px) 285px, (max-width:1439.98px) 356px, 100vw"
+                width="356"
+                height="375"
+                loading="lazy"
+              />
+            </picture>
+            <ImgDiscr>Rar plants</ImgDiscr>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link style={{ textDecoration: 'none' }} to="/catalog/cards">
+            <picture>
+              <source
+                media="(min-width:1440px)"
+                srcSet={`
+                 ${plant_packaging_desk_webp} 1x, 
+                 ${plant_packaging_desk_2x_webp} 2x`}
+                type="image/webp"
+              />
+              <source
+                media="(max-width:1439.98px)"
+                srcSet={`
+                 ${plant_packaging_mob_webp} 1x, 
+                 ${plant_packaging_mob_2x_webp} 2x`}
+                type="image/webp"
+              />
+              <img
+                srcSet={`
+                   ${plant_packaging_desk_jpg} 285w, 
+                   ${plant_packaging_desk_2x_jpg} 570w, 
+                   ${plant_packaging_mob_jpg} 356w, 
+                   ${plant_packaging_mob_2x_jpg} 711w`}
+                src={plant_packaging_mob_jpg}
+                alt="Plant in a paper bag"
+                sizes="(min-width:1440px) 285px, (max-width:1439.98px) 356px, 100vw"
+                width="356"
+                height="375"
+                loading="lazy"
+              />
+            </picture>
+            <ImgDiscr>Gifts</ImgDiscr>
+          </Link>
+        </ListItem> */}
       </List>
     </ProductsSection>
   );

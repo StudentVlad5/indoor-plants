@@ -81,7 +81,7 @@ export const Hero = () => {
             sizes="(min-width:1440px) 1440px, (min-width:768px) 768px, (max-width:767px) 372px, 100vw"
             width="1440"
             height="800"
-            loading="lazy"
+            // loading="lazy"
           />
         </picture>
 

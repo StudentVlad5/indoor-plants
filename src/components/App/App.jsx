@@ -106,7 +106,12 @@ export const App = () => {
             <Route path="gifts" element={<GiftsPage />} />
             <Route path="care" element={<CarePage />} />
 
-            <Route path="basket" element={<BasketPage />} />
+            <Route
+              path="basket"
+              element={
+                <BasketRoute redirectTo="/catalog" component={<BasketPage />} />
+              }
+            ></Route>
 
             <Route
               path="checkout"

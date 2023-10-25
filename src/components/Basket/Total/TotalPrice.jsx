@@ -37,7 +37,7 @@ export const TotalPrice = basket => {
     }, 0)
     .toFixed(2);
 
-  const currency = basket.contextBasket[0].currency;
+  const currency = basket?.contextBasket[0]?.currency;
 
   return (
     <PaymentBox>

@@ -32,24 +32,13 @@ export const Products = ({ products }) => {
 
   const slideProducs = products.slice(currentIndex);
 
-  // const handleNextSlide = () => {
-  //   setCurrentIndex(prevIndex => (prevIndex + 1) % products.length);
-  // };
-
-  // const handlePrevSlide = () => {
-  //   setCurrentIndex(prevIndex =>
-  //     prevIndex - 1 < 0 ? products.length - 1 : prevIndex - 1
-  //   );
-  // };
   return (
     <ProductsBox>
       <ProductsSection>
         <ProductsTitle>Discounts from 10 to 25%</ProductsTitle>
         <ProductsBtn to="/catalog">See all</ProductsBtn>
-        {/* currentIndex={currentIndex} */}
         <ProductsList>
           {slideProducs.map(card => {
-            // {products.map(card => {
             return (
               <ProductsListItem key={card._id}>
                 <ProductsListItemLink to={`/catalog/byid/${card._id}`}>

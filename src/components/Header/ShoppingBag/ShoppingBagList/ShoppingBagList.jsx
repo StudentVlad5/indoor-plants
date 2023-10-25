@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeProduct } from 'redux/basket/operations';
-import { setQuantity } from 'redux/basket/slice';
-import { selectCurrency } from 'redux/basket/selectors';
+import { reloadValue } from 'redux/reload/selectors';
+import { addReload } from 'redux/reload/slice';
+import { removeItemInBasket } from 'services/APIservice';
+import { getFromStorage } from 'services/localStorService';
+import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
+import { ListImage } from '../ShoppingBag.styled';
 import {
   DiscrBox,
   RemoveBtn,
@@ -16,14 +19,6 @@ import {
   QuantityBox,
   IconQuantityBtn,
 } from './ShoppingBagList.styled';
-
-import { ListImage } from '../ShoppingBag.styled';
-
-import { ReactComponent as Minus } from 'images/svg/minus.svg';
-import { ReactComponent as Plus } from 'images/svg/plus.svg';
-import { BASE_URL_IMG } from 'BASE_CONST/Base-const';
-import { removeItemInBasket } from 'services/APIservice';
-import { getFromStorage } from 'services/localStorService';
 import {
   BasketCompIconClose,
   BasketCompImg,
@@ -42,6 +37,8 @@ import {
   DiscrDataTableLine,
   IconBtn,
 } from 'components/Basket/BasketList/BasketList.styled';
+import { ReactComponent as Minus } from 'images/svg/minus.svg';
+import { ReactComponent as Plus } from 'images/svg/plus.svg';
 
 export const ShoppingBagList = ({
   optionData,
@@ -71,6 +68,8 @@ export const ShoppingBagList = ({
   const [userAnonimusID] = useState(
     getFromStorage('userAnonimusID') ? getFromStorage('userAnonimusID') : '',
   );
+  const dispatch = useDispatch();
+  const reload = useSelector(reloadValue);
 
   async function removeItem(_id, size) {
     setIsLoading(true);
@@ -87,12 +86,14 @@ export const ShoppingBagList = ({
       setError(error);
     } finally {
       setIsLoading(false);
+      dispatch(addReload(true));
     }
   }
   // ----------------------------------------->
 
   const removeProductHandler = (_id, size) => {
     removeItem(_id, size);
+    dispatch(addReload(true));
   };
 
   const initialPrice = currentPrice * quantity;

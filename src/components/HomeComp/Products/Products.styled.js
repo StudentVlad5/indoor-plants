@@ -98,7 +98,7 @@ export const ProductsListItemLink = styled(NavLink)`
 `;
 
 export const ProductsImg = styled.img`
-  width: 285px;
+  width: 275px;
   height: 400px;
   margin-bottom: 21px;
 
