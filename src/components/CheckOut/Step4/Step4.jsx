@@ -153,13 +153,14 @@ const Step4 = () => {
     setIsLoading(true);
     try {
       const { data } = await makeOrder(`/order/`, newOrder);
-      navigate('/catalog/plants', { replace: true });
+      navigate('/catalog/plants?perPage=12&page=1', { replace: true });
       setContextBasket([]);
       if (!data) {
         return onFetchError(t('Whoops, something went wrong'));
       }
       onSuccess('Thank you for order');
       removeItem('step');
+      removeItem('sort');
       removeItem('basketData');
       removeItem('selectedCity');
       removeItem('selectedCity_UP_NAME');

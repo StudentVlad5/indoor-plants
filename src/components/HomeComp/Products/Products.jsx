@@ -36,7 +36,9 @@ export const Products = ({ products }) => {
     <ProductsBox>
       <ProductsSection>
         <ProductsTitle>Discounts from 10 to 25%</ProductsTitle>
-        <ProductsBtn to="/catalog">See all</ProductsBtn>
+        <ProductsBtn to="/catalog/plants?perPage=12&page=1">
+          See all
+        </ProductsBtn>
         <ProductsList>
           {slideProducs.map(card => {
             return (
