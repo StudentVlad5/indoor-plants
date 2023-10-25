@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   ArrowIcon,
-  // Feedback,
   FeedbackBox,
   FeedbackBox1,
   FeedbackBox1Text,

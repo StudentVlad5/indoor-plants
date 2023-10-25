@@ -10,13 +10,7 @@ import { ReactComponent as arrowDown } from 'images/svg/arrowDown.svg';
 import theme from 'components/baseStyles/Variables.styled';
 import { Text } from 'components/Header/Elements/logo/Logo.styled';
 
-export const FooterSection = styled.footer`
-  /* position: fixed;
-  bottom: 0%;
-  left: 0;
-  right: 0;
-  z-index: 10; */
-`;
+export const FooterSection = styled.footer``;
 
 export const FooterContainer = styled(Container)`
   margin: 0 auto;

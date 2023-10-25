@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { getFromStorage, saveToStorage } from 'services/localStorService';
 import * as SC from './CatalogSort.styled';
 

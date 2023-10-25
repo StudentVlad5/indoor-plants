@@ -13,13 +13,10 @@ import {
 } from './Checkout.styled';
 import { getFromStorage } from 'services/localStorService';
 
-// import { useTranslation } from 'react-i18next';
-
 export const CheckOut = () => {
   const [activeStep, setActiveStep] = useState(
     getFromStorage('step') ? getFromStorage('step') : 1,
   );
-  // const { t } = useTranslation();
 
   useEffect(() => {
     const links = document.querySelectorAll('.linkFolder');

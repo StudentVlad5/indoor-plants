@@ -39,10 +39,8 @@ export const Products = ({ products }) => {
         <ProductsBtn to="/catalog/plants?perPage=12&page=1">
           See all
         </ProductsBtn>
-        {/* currentIndex={currentIndex} */}
         <ProductsList>
           {slideProducs.map(card => {
-            // {products.map(card => {
             return (
               <ProductsListItem key={card._id}>
                 <ProductsListItemLink to={`/catalog/byid/${card._id}`}>

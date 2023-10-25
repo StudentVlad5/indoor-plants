@@ -1,10 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { selectBasket } from 'redux/basket/selectors';
 import { getUser } from 'redux/auth/selectors';
-import { BasketList } from 'components/Basket/BasketList/BasketList';
 import { TotalPrice } from './Total/TotalPrice';
 import {
   BasketSection,
@@ -16,32 +14,24 @@ import {
   AuthCheckOutBox,
   BasketCompList,
   BasketWrapper,
-  OrderBox,
-  OrderBoxTitle,
-  DataContainerTextGreen,
-  OrderBoxContainer,
 } from './Basket.styled';
 import { StatusContext } from 'components/ContextStatus/ContextStatus';
 import { ShoppingBagList } from 'components/Header/ShoppingBag/ShoppingBagList/ShoppingBagList';
-// import { useTranslation } from 'react-i18next';
 
 export const Basket = ({ confirm, handleAddOrder }) => {
   const auth = useSelector(getUser);
   const { contextBasket, setContextBasket } = useContext(StatusContext);
-  // const { t } = useTranslation();
 
   return (
     <BasketSection>
       <BasketContainer>
         <Legend>Basket</Legend>
-        {/* {auth._id && contextBasket.length > 0 ? ( */}
         {contextBasket && contextBasket[0]?.optionData?.length !== undefined ? (
           <BasketWrapper>
             <BasketCompList>
               {contextBasket[0]?.optionData?.map((product, idx) => (
                 <ShoppingBagList
                   key={`${idx}${product?.quantity}${product?._id}`}
-                  // {...{ ...product, index: idx }}
                   datas={contextBasket}
                   idx={idx}
                   setDatas={setContextBasket}

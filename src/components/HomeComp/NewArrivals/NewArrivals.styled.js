@@ -33,7 +33,7 @@ export const ImgTitle = styled(HealthTitle)`
   }
 `;
 
-export const ImgDiscr = styled.h4`
+export const ImgDiscr = styled.p`
   color: ${theme.colors.brown1};
   text-align: center;
   font-family: ${theme.fonts[1]};

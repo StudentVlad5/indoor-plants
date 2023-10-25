@@ -13,26 +13,6 @@ export const HeroContainer = styled.div`
   position: relative;
 `;
 
-export const Img = styled.img`
-  display: block;
-  height: auto;
-  width: 100%;
-
-  &:nth-child(1) {
-    @media screen and (min-width: 1440px) {
-      display: none;
-    }
-  }
-
-  &:nth-child(2) {
-    display: none;
-    @media screen and (min-width: 1440px) {
-      display: block;
-      max-width: 1440px;
-    }
-  }
-`;
-
 export const HeroBox = styled.div`
   position: absolute;
   padding: 37px 77px 37px 16px;

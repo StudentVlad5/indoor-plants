@@ -22,14 +22,12 @@ import {
   Span,
   StyledLink,
 } from '../AuthForm.styled';
-// import { useTranslation } from 'react-i18next';
 
 export const LoginForm = () => {
   const [isShown, setIsShown] = useState(true); //
   const [showPass, setShowPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  // const { t } = useTranslation();
 
   const hideForm = () => {
     setIsShown(true);

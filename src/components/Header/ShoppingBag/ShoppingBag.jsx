@@ -153,7 +153,6 @@ export const ShoppingBag = () => {
     },
   ];
 
-  // const basket = useSelector(selectBasket);
   const [totalPayment, setTotalPayment] = useState(0);
 
   useEffect(() => {
@@ -167,13 +166,9 @@ export const ShoppingBag = () => {
   }, [datas]);
 
   let currency = '';
-  if (
-    datas
-    // && datas[0]?.optionData[0]?.currency
-  ) {
+  if (datas) {
     currency = datas[0]?.optionData[0]?.currency;
   }
-  // document.querySelector('body').style.overflow = "hidden";
 
   const handlecheckout = () => {
     updateItem(datas[0]?.optionData);
@@ -270,8 +265,8 @@ export const ShoppingBag = () => {
                     <NavLink to={item.link}>
                       <ListImage
                         src={item.imageUrl}
-                        width={95}
-                        height={105}
+                        width={120}
+                        height={130}
                         alt="Image"
                         loading="lazy"
                       />

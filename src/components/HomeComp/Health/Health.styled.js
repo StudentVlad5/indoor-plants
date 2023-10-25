@@ -79,11 +79,15 @@ export const ReadMore = styled(Link)`
 `;
 
 export const ImgBox = styled.img`
-  width: 355px;
-  height: 222px;
+  @media screen and (min-width: ${theme.breakpoints.mobile}) {
+    width: 355px;
+    max-width: 355px;
+    height: 222px;
+  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 590px;
+    max-width: 590px;
     height: 370px;
   }
 `;

@@ -91,9 +91,6 @@ export const CatalogFilter = () => {
       try {
         const { data } = await fetchData(`/catalog/${category}`);
         getActiveLabel();
-        // document
-        //   .querySelector(`div[data-key="typeOfPlants"]`)
-        //   .classList.add('active'); // default open filter
         setCategory(routeParams.category);
         if (!data) {
           return onFetchError(t('Whoops, something went wrong'));
@@ -607,10 +604,6 @@ export const CatalogFilter = () => {
       <SC.FilterBtn type="button" onClick={handleClearAllFilters}>
         {t('CLEAR ALL')}
       </SC.FilterBtn>
-      {/* <SC.InfoBtnBox>
-        <SC.InfoBtn type="button">{t('SIZE GUIDE')}</SC.InfoBtn>
-        <SC.InfoBtn type="button">{t('ABOUT OUR SHIPPING')}</SC.InfoBtn>
-      </SC.InfoBtnBox> */}
     </>
   );
 };
