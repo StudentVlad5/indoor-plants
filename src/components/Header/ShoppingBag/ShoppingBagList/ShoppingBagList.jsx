@@ -50,7 +50,6 @@ export const ShoppingBagList = ({
   idx,
   statusBasket,
 }) => {
-  // const dispatch = useDispatch();
   const {
     _id,
     currency,
@@ -93,10 +92,8 @@ export const ShoppingBagList = ({
   // ----------------------------------------->
 
   const removeProductHandler = (_id, size) => {
-    // dispatch(removeProduct({ _id, size }));
     removeItem(_id, size);
   };
-  // const currency = useSelector(selectCurrency);
 
   const initialPrice = currentPrice * quantity;
   const [price, setPrice] = useState(initialPrice);

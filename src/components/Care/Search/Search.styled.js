@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
-import { ReactComponent as iconSearch } from 'images/svg/icon_searchLight__header.svg';
 import { ReactComponent as iconClose } from 'images/svg/icon_close.svg';
 
 const FormContainer = styled.div`

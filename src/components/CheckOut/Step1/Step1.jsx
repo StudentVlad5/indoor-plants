@@ -18,7 +18,6 @@ import {
 } from '../Order/Order.styled';
 import { NovaPoshta } from 'components/Delivery/NovaPoshta/NovaPoshta';
 import { UkrPoshta } from 'components/Delivery/UkrPoshta/UkrPoshta';
-// import { StatusContext } from 'components/ContextStatus/ContextStatus';
 import curier from 'images/delivery/pngegg.png';
 import { useAuth } from 'hooks/useAuth';
 
@@ -26,7 +25,6 @@ const Step1 = () => {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
-  // const { setStatusDisableStep2 } = useContext(StatusContext);
   const { userIn } = useAuth();
 
   const [selectedCity, setSelectedCity] = useState(
@@ -96,7 +94,6 @@ const Step1 = () => {
   ]);
 
   const nextStep = () => {
-    // setStatusDisableStep2(false);
     saveToStorage('selectedCity', selectedCity);
     saveToStorage('selectedCity_UP', selectedCity_UP);
     saveToStorage('selectedCity_UP_NAME', selectedCity_UP_NAME);

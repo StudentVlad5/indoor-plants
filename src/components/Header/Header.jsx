@@ -2,7 +2,6 @@ import React from 'react';
 import { Navigation } from 'components/Header/Navigation/Navigation';
 import {
   HeaderContainer,
-  // HeaderSection,
   HeaderUnderLine,
   HeaderSectionWrap,
 } from './Header.styled';
@@ -37,7 +36,6 @@ export const Header = () => {
       <HeaderContainer>
         <Menu />
         <Logo />
-        {/* <Language /> */}
         <Navigation />
       </HeaderContainer>
       <HeaderUnderLine className={headerBottom.headerBottom} />

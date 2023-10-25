@@ -9,7 +9,6 @@ import {
   HeroBox,
   Img,
 } from './Hero.styled';
-// import { useTranslation } from 'react-i18next';
 import hero from '../../../images/hero/hero1.png';
 import heroDesk from '../../../images/hero/heroDesk.png';
 import { Products } from '../Products/Products';
@@ -20,7 +19,6 @@ import { fetchData } from 'services/APIservice';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 export const Hero = () => {
-  // const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

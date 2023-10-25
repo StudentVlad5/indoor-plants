@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from 'components/baseStyles/Variables.styled';
-import { IconClose } from 'components/Footer/ModalTeam/ModalTeam.styled';
+import { ReactComponent as IconClose } from 'images/svg/icon_close.svg';
 
 export const BasketCompItem = styled.li`
   display: flex;

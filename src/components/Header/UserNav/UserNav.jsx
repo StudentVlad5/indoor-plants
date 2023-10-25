@@ -21,8 +21,6 @@ export const MobileUserNav = ({ toggleMenu }) => {
       userAvatar.split('/')[userAvatar.split('/').length - 1];
   }
 
-  // const { t } = useTranslation();
-
   return (
     <MobileAccountButton to="/user/profile" onClick={toggleMenu}>
       {avatar ? <AvatarUser src={avatar} alt="User" /> : <IconUser />}
