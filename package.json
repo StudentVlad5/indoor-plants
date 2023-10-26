@@ -2,7 +2,7 @@
   "name": "indoor-plants",
   "version": "0.1.0",
   "private": true,
-  "homepage": "indoor-plants-shop.vercel.app",
+  "homepage": "https://indoor-plants-shop.vercel.app",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.3.4",
