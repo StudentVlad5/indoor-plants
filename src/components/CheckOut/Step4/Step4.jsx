@@ -191,7 +191,11 @@ const Step4 = () => {
 
   return (
     <TotalBasket>
-      <Basket handleAddOrder={handleAddOrder} confirm={true}></Basket>
+      <Basket
+        handleAddOrder={handleAddOrder}
+        confirm={true}
+        isClosed={'isClosed'}
+      ></Basket>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
       <DataContainerItem>

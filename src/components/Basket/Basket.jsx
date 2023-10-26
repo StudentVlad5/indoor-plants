@@ -18,7 +18,7 @@ import {
 import { StatusContext } from 'components/ContextStatus/ContextStatus';
 import { ShoppingBagList } from 'components/Header/ShoppingBag/ShoppingBagList/ShoppingBagList';
 
-export const Basket = ({ confirm, handleAddOrder }) => {
+export const Basket = ({ confirm, handleAddOrder, isClosed }) => {
   const auth = useSelector(getUser);
   const { contextBasket, setContextBasket } = useContext(StatusContext);
 
@@ -63,7 +63,7 @@ export const Basket = ({ confirm, handleAddOrder }) => {
           contextBasket &&
           contextBasket[0]?.optionData?.length !== undefined &&
           contextBasket[0]?.optionData?.length !== 0 && (
-            <AuthCheckOutBox>
+            <AuthCheckOutBox isClosed={isClosed}>
               <TitleCheckOut>
                 For quick ordering and saving order history
               </TitleCheckOut>

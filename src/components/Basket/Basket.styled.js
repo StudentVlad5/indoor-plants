@@ -154,7 +154,7 @@ export const BasketCompList = styled.ul`
 
 export const AuthCheckOutBox = styled.div`
   margin-top: 100px;
-  display: flex;
+  display: ${props => (props.isClosed ? 'none' : 'flex')};
   flex-direction: column;
   align-items: center;
 `;
