@@ -253,13 +253,13 @@ export const Catalog = () => {
         <SC.Heading>
           <div>
             <a
-              href={`/indoor-plants/catalog?perPage=12&page=1`}
+              href={`/catalog?perPage=12&page=1`}
               onClick={() => removeLocalStor()}
             >
               <SC.HeadlineShop>Shop / </SC.HeadlineShop>
             </a>
             <a
-              href={`/indoor-plants/catalog/${category}?perPage=12&page=1`}
+              href={`/catalog/${category}?perPage=12&page=1`}
               onClick={() => removeLocalStor()}
             >
               <SC.HeadlineShop $primary>{category}</SC.HeadlineShop>
